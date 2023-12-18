@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:landa/flavor_config.dart';
-import 'package:landa/screens/home/home.dart';
+import 'package:landa/screens/login/login.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -14,7 +14,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: flavorConfig.appTitle,
-      home: const HomePage(),
+      home: const LoginPage(),
     );
   }
 }
