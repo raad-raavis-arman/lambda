@@ -22,12 +22,15 @@ class VerifyLoginPage extends StatelessWidget {
               height: 24,
             ),
             ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (_) => const HomePage(),
-                  ));
-                },
-                child: const Text('ورود'))
+              onPressed: () {
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                      builder: (_) => const HomePage(),
+                    ),
+                    (route) => false);
+              },
+              child: const Text('ورود'),
+            )
           ],
         ),
       ),
