@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:landa/screens/home/home.dart';
+import 'package:go_router/go_router.dart';
+import 'package:landa/core/utils/router/router.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerifyLoginPage extends StatelessWidget {
-  const VerifyLoginPage({super.key});
+  const VerifyLoginPage({
+    super.key,
+    required this.mobileNumber,
+  });
+
+  final String mobileNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +19,7 @@ class VerifyLoginPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('کد تایید پیامک شده را وارد نمایید'),
+            Text('کد تایید پیامک شده به $mobileNumber را وارد نمایید'),
             const SizedBox(
               height: 100,
             ),
@@ -23,11 +29,7 @@ class VerifyLoginPage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(
-                      builder: (_) => const HomePage(),
-                    ),
-                    (route) => false);
+                context.goNamed(RouteNames.home);
               },
               child: const Text('ورود'),
             )

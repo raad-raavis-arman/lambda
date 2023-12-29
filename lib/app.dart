@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:landa/core/utils/router/router.dart';
 import 'package:landa/flavor_config.dart';
-import 'package:landa/screens/login/login.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -12,9 +12,9 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: flavorConfig.appTitle,
-      home: const LoginPage(),
+      routerConfig: RouteConfig.router,
     );
   }
 }

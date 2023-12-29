@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:landa/screens/verify_login/verify_login.dart';
+import 'package:go_router/go_router.dart';
+import 'package:landa/core/utils/router/router.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -25,9 +26,10 @@ class LoginPage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => const VerifyLoginPage(),
-                ));
+                // Navigator.of(context).push(MaterialPageRoute(
+                //   builder: (_) => const VerifyLoginPage(),
+                // ));
+                context.pushNamed(RouteNames.verifyLogin, extra: '09377729207');
               },
               child: const Text('بعدی'),
             ),
