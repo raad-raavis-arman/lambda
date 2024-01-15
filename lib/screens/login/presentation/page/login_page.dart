@@ -10,11 +10,11 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Column(
-          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-                'برای ورود و استفاده از خدمات\nشماره تلفن خود را وارد نمایید'),
+              'برای ورود و استفاده از خدمات\nشماره تلفن خود را وارد نمایید',
+            ),
             const SizedBox(
               height: 80,
             ),

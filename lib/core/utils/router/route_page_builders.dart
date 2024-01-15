@@ -1,17 +1,18 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:landa/screens/home/home.dart';
 import 'package:landa/screens/login/login.dart';
 import 'package:landa/screens/verify_login/verify_login.dart';
 
 class RoutePageBuilders {
-  static get loginPageBuilder => (BuildContext context, GoRouterState state) {
+  static GoRouterPageBuilder get loginPageBuilder => (context, state) {
         return const NoTransitionPage(child: LoginPage());
       };
 
-  static get verifyLoginPageBuilder =>
-      (BuildContext context, GoRouterState state) {
-        final mobileNumber = state.extra as String;
+  static GoRouterPageBuilder get verifyLoginPageBuilder => (context, state) {
+        final mobileNumber = state.extra as String?;
+        if (mobileNumber == null) {
+          throw Exception('Mobile number must not be null');
+        }
         return NoTransitionPage(
           child: VerifyLoginPage(
             mobileNumber: mobileNumber,
@@ -19,7 +20,7 @@ class RoutePageBuilders {
         );
       };
 
-  static get homePageBuilder => (BuildContext context, GoRouterState state) {
+  static GoRouterPageBuilder get homePageBuilder => (context, state) {
         return const NoTransitionPage(child: HomePage());
       };
 }

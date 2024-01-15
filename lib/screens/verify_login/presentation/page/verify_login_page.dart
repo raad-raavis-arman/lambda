@@ -5,8 +5,8 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerifyLoginPage extends StatelessWidget {
   const VerifyLoginPage({
-    super.key,
     required this.mobileNumber,
+    super.key,
   });
 
   final String mobileNumber;
@@ -16,7 +16,6 @@ class VerifyLoginPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Column(
-          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('کد تایید پیامک شده به $mobileNumber را وارد نمایید'),
@@ -32,7 +31,7 @@ class VerifyLoginPage extends StatelessWidget {
                 context.goNamed(RouteNames.home);
               },
               child: const Text('ورود'),
-            )
+            ),
           ],
         ),
       ),

@@ -1,22 +1,22 @@
-import 'package:landa/core/network/network.dart';
 import 'package:dio/dio.dart';
+import 'package:landa/core/network/network.dart';
 
 class RestClientServiceImpl implements RestClientService {
+  factory RestClientServiceImpl() => _instance;
+
   RestClientServiceImpl._() {
     _initializeDio();
   }
-
-  factory RestClientServiceImpl() => _instance;
 
   static final _instance = RestClientServiceImpl._();
 
   late final Dio _dio;
 
+  // TODO(Taleb): base url must replace here
   void _initializeDio() {
     _dio = Dio(
       BaseOptions(
-        baseUrl: 'baseUrl', // TODO: base url must replace here
-        responseType: ResponseType.json,
+        baseUrl: 'baseUrl',
         receiveTimeout: const Duration(seconds: 60),
         connectTimeout: const Duration(seconds: 60),
       ),
@@ -42,9 +42,9 @@ class RestClientServiceImpl implements RestClientService {
       if (response.statusCode == 204 || response.statusCode == 200) {
         return response.data;
       } else {
-        throw 'something went wrong';
+        throw Exception('something went wrong');
       }
-    } catch (e) {
+    } on Exception catch (_) {
       rethrow;
     }
   }
@@ -70,21 +70,23 @@ class RestClientServiceImpl implements RestClientService {
       if (response.statusCode == 200) {
         return response.data;
       } else {
-        throw 'something went wrong';
+        throw Exception('something went wrong');
       }
-    } catch (e) {
+    } on Exception catch (_) {
       rethrow;
     }
   }
 
   @override
-  Future<Map<String, dynamic>> post(String path,
-      {Object? data,
-      Map<String, dynamic>? queryParameters,
-      Options? options,
-      CancelToken? cancelToken,
-      ProgressCallback? onSendProgress,
-      ProgressCallback? onReceiveProgress}) async {
+  Future<Map<String, dynamic>> post(
+    String path, {
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
     try {
       final response = await _dio.post(
         path,
@@ -98,21 +100,23 @@ class RestClientServiceImpl implements RestClientService {
       if (response.statusCode == 200 || response.statusCode == 201) {
         return response.data;
       } else {
-        throw 'something went wrong';
+        throw Exception('something went wrong');
       }
-    } catch (e) {
+    } on Exception catch (_) {
       rethrow;
     }
   }
 
   @override
-  Future<Map<String, dynamic>> put(String path,
-      {Object? data,
-      Map<String, dynamic>? queryParameters,
-      Options? options,
-      CancelToken? cancelToken,
-      ProgressCallback? onSendProgress,
-      ProgressCallback? onReceiveProgress}) async {
+  Future<Map<String, dynamic>> put(
+    String path, {
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
     try {
       final respnse = await _dio.put(
         path,
@@ -126,9 +130,9 @@ class RestClientServiceImpl implements RestClientService {
       if (respnse.statusCode == 200) {
         return respnse.data;
       } else {
-        throw 'something went wrong';
+        throw Exception('something went wrong');
       }
-    } catch (e) {
+    } on Exception catch (_) {
       rethrow;
     }
   }

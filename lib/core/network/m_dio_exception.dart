@@ -9,13 +9,13 @@ class MDioException implements Exception {
       case DioExceptionType.cancel:
         errorMessage = 'Request to the server was cancelled';
       case DioExceptionType.connectionTimeout:
-        errorMessage = "Connection timed out.";
+        errorMessage = 'Connection timed out.';
         break;
       case DioExceptionType.receiveTimeout:
-        errorMessage = "Receiving timeout occurred.";
+        errorMessage = 'Receiving timeout occurred.';
         break;
       case DioExceptionType.sendTimeout:
-        errorMessage = "Request send timeout.";
+        errorMessage = 'Request send timeout.';
         break;
       case DioExceptionType.badResponse:
         errorMessage = _handleStatusCode(dioException.response?.statusCode);
@@ -27,7 +27,10 @@ class MDioException implements Exception {
         }
         errorMessage = 'Unexpected error occurred.';
         break;
-      default:
+      case DioExceptionType.badCertificate:
+        errorMessage = 'Something went wrong';
+        break;
+      case DioExceptionType.connectionError:
         errorMessage = 'Something went wrong';
         break;
     }
@@ -40,7 +43,8 @@ class MDioException implements Exception {
       case 401:
         return 'Authentication failed.';
       case 403:
-        return 'The authenticated user is not allowed to access the specified API endpoint.';
+        return 'The authenticated user is not allowed to access the specified'
+            ' API endpoint.';
       case 404:
         return 'The requested resource does not exist.';
       case 500:
