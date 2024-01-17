@@ -5,5 +5,5 @@ abstract interface class BaseUseCase<Type, Params> {
   Future<Either<Failure, Type>> call(Params params);
 
   @override
-  String toString();
+  String toString() => '$runtimeType<$Type, $Params>';
 }
