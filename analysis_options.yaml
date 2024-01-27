@@ -7,7 +7,7 @@ analyzer:
     no_logic_in_create_state: ignore
     always_put_control_body_on_new_line: ignore
     avoid_classes_with_only_static_members: ignore
-    sort_pub_dependencies: ignore
+    sort_pub_dependencies: error
     prefer_relative_imports: ignore
     prefer_final_parameters: ignore
     omit_local_variable_types: ignore
@@ -196,6 +196,7 @@ analyzer:
 
 linter:
   rules:
+    - sort_pub_dependencies
     - always_declare_return_types
     - always_put_required_named_parameters_first
     - always_require_non_null_named_parameters
