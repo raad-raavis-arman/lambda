@@ -3,13 +3,16 @@ import 'package:equatable/equatable.dart';
 import 'package:landa/core/error/failure.dart';
 import 'package:landa/core/usecase/usecase.dart';
 import 'package:landa/screens/login/domain/entities/entities.dart';
+import 'package:landa/screens/login/domain/repositories/repositories.dart';
 
-class UserOtp implements BaseUseCase<Otp, OtpParam> {
+class UserOtpUsescase implements BaseUseCase<Otp, OtpParam> {
+  final UserOtpRepository userOtpRepository;
+
+  UserOtpUsescase({required this.userOtpRepository});
+
   @override
-  Future<Either<Failure, Otp>> call(OtpParam params) {
-    throw UnimplementedError();
-  }
-  
+  Future<Either<Failure, Otp>> call(OtpParam params) =>
+      userOtpRepository.sendMobileOtp(params.mobileNumber);
 }
 
 class OtpParam extends Equatable {

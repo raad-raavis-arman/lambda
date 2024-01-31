@@ -16,7 +16,7 @@ class RestClientServiceImpl implements RestClientService {
   void _initializeDio() {
     _dio = Dio(
       BaseOptions(
-        baseUrl: 'baseUrl',
+        baseUrl: 'https://mybaseurl.com',
         receiveTimeout: const Duration(seconds: 60),
         connectTimeout: const Duration(seconds: 60),
       ),

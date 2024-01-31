@@ -22,9 +22,11 @@ class OtpRemoteDataSourceImpl implements OtpRemoteDataSource {
   @override
   Future<Otp> sendMobileOtp(String mobileNumber) async {
     try {
-      final response = await restClientService
-          .post('/otp', data: {'mobileNumber': mobileNumber});
-      return OtpModel.fromJson(response);
+      // TODO(Taleb): get real data from server
+      // final response = await restClientService
+      //     .post('/otp', data: {'mobileNumber': mobileNumber});
+      await Future.delayed(const Duration(seconds: 2));
+      return OtpModel.fromJson(const {'otpCode': '32478'});
     } on DioException catch (e) {
       throw MDioException.fromDioError(e);
     } on Exception catch (_) {
