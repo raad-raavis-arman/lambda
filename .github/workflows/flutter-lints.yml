@@ -1,0 +1,17 @@
+name: Flutter lints
+
+on:
+  push: 
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Set up Dart
+        uses: dart-lang/setup-dart@v1
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Lint
+        run: flutter analyze
