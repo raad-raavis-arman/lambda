@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:landa/core/network/network.dart';
 import 'package:landa/core/utils/router/router.dart';
-import 'package:landa/screens/login/data/datasources/datasources.dart';
-import 'package:landa/screens/login/data/repositories/repositories.dart';
-import 'package:landa/screens/login/domain/usecases/usecases.dart';
+import 'package:landa/di_service.dart';
 import 'package:landa/screens/login/presentation/bloc/login_bloc.dart';
 
 class LoginPage extends StatelessWidget {
@@ -14,15 +11,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginBloc(
-        userOtp: UserOtpUsescase(
-          userOtpRepository: UserOtpRepositoryImpl(
-            otpRemoteDataSource: OtpRemoteDataSourceImpl(
-              restClientService: RestClientServiceImpl(),
-            ),
-          ),
-        ),
-      ),
+      create: (context) => locator.get<LoginBloc>(),
       child: const _LoginView(),
     );
   }
