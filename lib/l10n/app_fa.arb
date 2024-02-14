@@ -1,0 +1,18 @@
+{
+    "@@locale": "fa",
+    "language": "فارسی",
+    "@language": {
+        "description": "زبان فعلی"
+    },
+    "loginTitle": "برای ورود و استفاده از خدمات،\n شماره تلفن خود را وارد نمایید",
+    "next": "بعدی",
+    "otpVerifyTitle": " کد تایید پیامک شده به{mobileNumber} را وارد نمایید",
+    "@otpVerifyTitle": {
+        "placeholders": {
+            "mobileNumber": {
+                "type": "String"
+            }
+        }
+    },
+    "login": "ورود"
+}

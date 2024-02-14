@@ -10,13 +10,17 @@ environment:
 dependencies:
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
+  devicelocale: ^0.7.0
   dio: ^5.4.0
   equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.4
+  flutter_localizations:
+    sdk: flutter
   get_it: ^7.6.7
   go_router: ^13.2.0
+  intl: ^0.18.1
   json_annotation: ^4.8.1
   pin_code_fields: ^8.0.1
 
@@ -29,3 +33,4 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:landa/core/utils/router/router.dart';
 import 'package:landa/di_service.dart';
+import 'package:landa/l10n/l10n.dart';
 import 'package:landa/screens/login/presentation/bloc/login_bloc.dart';
 
 class LoginPage extends StatelessWidget {
@@ -52,8 +53,8 @@ class _LoginViewState extends State<_LoginView> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                'برای ورود و استفاده از خدمات\nشماره تلفن خود را وارد نمایید',
+              Text(
+                context.l10n.loginTitle,
               ),
               const SizedBox(
                 height: 80,
@@ -78,7 +79,7 @@ class _LoginViewState extends State<_LoginView> {
                     if (state is LoginProgressState) {
                       return const CircularProgressIndicator();
                     } else {
-                      return const Text('بعدی');
+                      return Text(context.l10n.next);
                     }
                   },
                 ),

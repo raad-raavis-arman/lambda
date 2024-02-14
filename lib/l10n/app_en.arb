@@ -1,0 +1,18 @@
+{
+    "@@locale": "en",
+    "language": "English",
+    "@language": {
+        "description": "The current Language"
+    },
+    "loginTitle": "Enter your phone number,\n to log in and use the services.",
+    "next": "Next",
+    "otpVerifyTitle": "Enter the verification code sent to {mobileNumber}",
+    "@otpVerifyTitle": {
+        "placeholders": {
+            "mobileNumber": {
+                "type": "String"
+            }
+        }
+    },
+    "login": "Login"
+}
