@@ -14,7 +14,8 @@
                 "dev",
                 "--target",
                 "lib/main_development.dart",
-                "--debug"
+                "--debug",
+                "--web-port=5000"
             ]
         },
         {
@@ -27,7 +28,8 @@
                 "stg",
                 "--target",
                 "lib/main_staging.dart",
-                "--debug"
+                "--debug",
+                "--web-port=5000"
             ]
         },
         {
@@ -40,7 +42,8 @@
                 "prod",
                 "--target",
                 "lib/main_production.dart",
-                "--debug"
+                "--debug",
+                "--web-port=5000"
             ]
         },
         // profile
