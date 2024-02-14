@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:landa/core/utils/router/router.dart';
+import 'package:landa/l10n/l10n.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerifyLoginPage extends StatelessWidget {
@@ -18,7 +19,7 @@ class VerifyLoginPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('کد تایید پیامک شده به $mobileNumber را وارد نمایید'),
+            Text(context.l10n.otpVerifyTitle(mobileNumber)),
             const SizedBox(
               height: 100,
             ),
@@ -30,7 +31,7 @@ class VerifyLoginPage extends StatelessWidget {
               onPressed: () {
                 context.goNamed(RouteNames.home);
               },
-              child: const Text('ورود'),
+              child: Text(context.l10n.login),
             ),
           ],
         ),

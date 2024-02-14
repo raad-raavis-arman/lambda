@@ -15,8 +15,11 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.4
+  flutter_localizations:
+    sdk: flutter
   get_it: ^7.6.7
   go_router: ^13.2.0
+  intl: ^0.18.1
   json_annotation: ^4.8.1
   pin_code_fields: ^8.0.1
 
@@ -29,3 +32,4 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
