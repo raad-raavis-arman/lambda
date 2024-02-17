@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:landa/core/utils/router/router.dart';
+import 'package:landa/core/utils/theme/theme.dart';
 import 'package:landa/flavor_config.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/l10n/lang/lang_bloc.dart';
@@ -23,6 +24,9 @@ class AppRootPage extends StatelessWidget {
               LangFetchLocaleEvent(),
             ),
         ),
+        BlocProvider(
+          create: (_) => ThemeBloc(),
+        ),
       ],
       child: _AppRootView(
         flavorConfig: flavorConfig,
@@ -43,7 +47,11 @@ class _AppRootView extends StatelessWidget {
     return Builder(
       builder: (context) {
         final langState = context.watch<LangBloc>().state;
+        final themeState = context.watch<ThemeBloc>().state;
         return MaterialApp.router(
+          themeMode: themeState.mode,
+          darkTheme: DarkTheme.data,
+          theme: LightTheme.data,
           supportedLocales: L10n.all,
           locale: langState.locale,
           localizationsDelegates: const [
