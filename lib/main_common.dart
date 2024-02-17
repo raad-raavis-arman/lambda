@@ -6,7 +6,7 @@ import 'package:landa/flavor_config.dart';
 void mainCommon(FlavorConfig flavorConfig) {
   setup();
   runApp(
-    App(
+    AppRootPage(
       flavorConfig: flavorConfig,
     ),
   );

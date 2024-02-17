@@ -5,4 +5,8 @@ sealed class LangEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class LangFetchLocalEvent extends LangEvent {}
+final class LangFetchLocaleEvent extends LangEvent {
+  final Locale? locale;
+
+  LangFetchLocaleEvent({this.locale});
+}
