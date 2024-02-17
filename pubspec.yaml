@@ -34,3 +34,18 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+
+  fonts:
+    - family: Yekan
+      fonts:
+        - asset: assets/fonts/persian/yekan/yekan-bold.ttf
+        - asset: assets/fonts/persian/yekan/yekan-light.ttf
+        - asset: assets/fonts/persian/yekan/yekan-regular.ttf
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/non-persian/poppins/Poppins-Bold.ttf
+        - asset: assets/fonts/non-persian/poppins/Poppins-Italic.ttf
+        - asset: assets/fonts/non-persian/poppins/Poppins-Medium.ttf
+        - asset: assets/fonts/non-persian/poppins/Poppins-Regular.ttf
+        - asset: assets/fonts/non-persian/poppins/Poppins-Thin.ttf
+

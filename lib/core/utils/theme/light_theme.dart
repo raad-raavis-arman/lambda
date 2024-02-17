@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 class LightTheme {
-  const LightTheme._();
+  final String fontFamily;
 
-  static final data = ThemeData.light(useMaterial3: true).copyWith();
+  LightTheme({required this.fontFamily});
+
+  ThemeData get data => ThemeData(
+        useMaterial3: true,
+        brightness: Brightness.light,
+        fontFamily: fontFamily,
+      );
 }

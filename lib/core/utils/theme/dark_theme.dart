@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
 class DarkTheme {
-  const DarkTheme._();
+  final String fontFamily;
 
-  static final data = ThemeData.dark(useMaterial3: true).copyWith(
-    scaffoldBackgroundColor: Colors.black,
-  );
+  DarkTheme({required this.fontFamily});
+
+  ThemeData get data => ThemeData(
+        useMaterial3: true,
+        brightness: Brightness.dark,
+        fontFamily: fontFamily,
+      );
 }
