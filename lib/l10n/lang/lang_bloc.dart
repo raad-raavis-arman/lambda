@@ -8,13 +8,25 @@ part 'lang_event.dart';
 part 'lang_state.dart';
 
 class LangBloc extends Bloc<LangEvent, LangState> {
-  LangBloc() : super(const LangState(locale: Locale('fa'))) {
-    on<LangFetchLocalEvent>((event, emit) async {
-      final Locale locale = LanguageCode.locale;
+  LangBloc()
+      : super(
+          const LangState(
+            locale: Locale('fa'),
+          ),
+        ) {
+    on<LangFetchLocaleEvent>((event, emit) async {
+      if (event.locale != null) {
+        final langauageCode = event.locale!.languageCode;
+        if (L10n.all.contains(Locale(langauageCode))) {
+          emit(LangState(locale: Locale(langauageCode)));
+        }
+      } else {
+        final Locale locale = LanguageCode.locale;
 
-      final langauageCode = locale.languageCode;
-      if (L10n.all.contains(Locale(langauageCode))) {
-        emit(LangState(locale: locale));
+        final langauageCode = locale.languageCode;
+        if (L10n.all.contains(Locale(langauageCode))) {
+          emit(LangState(locale: locale));
+        }
       }
     });
   }
