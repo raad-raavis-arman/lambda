@@ -49,6 +49,9 @@ class _LoginViewState extends State<_LoginView> {
         }
       },
       child: Scaffold(
+        appBar: AppBar(
+          title: Text(context.l10n.login),
+        ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
