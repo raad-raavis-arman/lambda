@@ -9,5 +9,8 @@ class LightTheme {
         useMaterial3: true,
         brightness: Brightness.light,
         fontFamily: fontFamily,
+        inputDecorationTheme: const InputDecorationTheme(
+          border: OutlineInputBorder(),
+        ),
       );
 }
