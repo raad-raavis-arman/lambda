@@ -8,7 +8,7 @@ part 'theme_state.dart';
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeBloc()
       : super(
-          const ThemeState(mode: ThemeMode.system),
+          const ThemeState(mode: ThemeMode.light),
         ) {
     on<ThemeEvent>((event, emit) {
       emit(const ThemeState(mode: ThemeMode.light));

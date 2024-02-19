@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:landa/core/utils/router/router.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/l10n/lang/lang_bloc.dart';
