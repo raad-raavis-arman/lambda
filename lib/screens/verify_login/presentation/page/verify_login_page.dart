@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:landa/core/utils/router/router.dart';
+import 'package:landa/core/utils/utils.dart';
 import 'package:landa/l10n/l10n.dart';
+import 'package:landa/l10n/lang/lang_bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerifyLoginPage extends StatelessWidget {
@@ -14,12 +16,19 @@ class VerifyLoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final languageCode = context.read<LangBloc>().state.locale.languageCode;
     return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(context.l10n.otpVerifyTitle(mobileNumber)),
+            Text(
+              context.l10n.otpVerifyTitle(
+                languageCode == 'fa'
+                    ? mobileNumber.replaceEnNumToFa()
+                    : mobileNumber.replaceFaNumToEn(),
+              ),
+            ),
             const SizedBox(
               height: 100,
             ),

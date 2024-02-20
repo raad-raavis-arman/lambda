@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:landa/core/utils/theme/constant/constant.dart';
 
 class LightTheme {
   final String fontFamily;
@@ -9,5 +10,21 @@ class LightTheme {
         useMaterial3: true,
         brightness: Brightness.light,
         fontFamily: fontFamily,
+        colorScheme: lightColorScheme,
+        textTheme: textTheme,
+        inputDecorationTheme: const InputDecorationTheme(
+          border: OutlineInputBorder(),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(5),
+                ),
+              ),
+            ),
+          ),
+        ),
       );
 }
