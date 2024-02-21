@@ -61,5 +61,14 @@ function releaseIosProd {
     echo "ios ipa deployed on internal testing track"
 }
 
+function releaseWebProd {
+    echo "Build release for Web in production flavor.."
+    echo "Make sure you are in right branch.."
+    pub
+    buildRunner
+    flutter build web --release --web-renderer html --target "lib/main_production.dart"
+    # the flavor name in ios set to prod so we use prod instead of production
+    echo "web release is ready in build/web/ path of your project"
+}
 
 
