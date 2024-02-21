@@ -14,5 +14,7 @@
             }
         }
     },
-    "login": "ورود"
+    "login": "ورود",
+    "editMobileNumber": "ویرایش شماره",
+    "sendCode": "ارسال کد"
 }

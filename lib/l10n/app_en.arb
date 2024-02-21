@@ -14,5 +14,7 @@
             }
         }
     },
-    "login": "Login"
+    "login": "Login",
+    "editMobileNumber": "Edit number",
+    "sendCode": "Send code"
 }
