@@ -1,5 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:landa/core/utils/router/router.dart';
+import 'package:landa/screens/home/home.dart';
+import 'package:landa/screens/login/login.dart';
+import 'package:landa/screens/verify_login/verify_login.dart';
 
 class RouteConfig {
   static final _router = GoRouter(
@@ -8,17 +11,17 @@ class RouteConfig {
       GoRoute(
         path: '/login',
         name: RouteNames.login,
-        pageBuilder: RoutePageBuilders.loginPageBuilder,
+        pageBuilder: LoginPage.routeBuilder,
       ),
       GoRoute(
         path: '/verifyLogin',
         name: RouteNames.verifyLogin,
-        pageBuilder: RoutePageBuilders.verifyLoginPageBuilder,
+        pageBuilder: VerifyLoginPage.routeBuilder,
       ),
       GoRoute(
         path: '/home',
         name: RouteNames.home,
-        pageBuilder: RoutePageBuilders.homePageBuilder,
+        pageBuilder: HomePage.routeBuilder,
       ),
     ],
   );

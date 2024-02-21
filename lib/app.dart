@@ -64,6 +64,8 @@ class _AppRootView extends StatelessWidget {
           ],
           title: flavorConfig.appTitle,
           routerConfig: RouteConfig.router,
+          debugShowCheckedModeBanner:
+              flavorConfig.flavorType == FlavorType.production,
         );
       },
     );

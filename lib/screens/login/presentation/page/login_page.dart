@@ -10,6 +10,12 @@ import 'package:landa/screens/login/presentation/bloc/login_bloc.dart';
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
+  static GoRouterPageBuilder get routeBuilder => (context, state) {
+        return const NoTransitionPage(
+          child: LoginPage(),
+        );
+      };
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -116,7 +122,6 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
                         },
                         child: Text(
                           context.l10n.next,
-                          style: Theme.of(context).textTheme.labelLarge,
                         ),
                       ),
                     );
