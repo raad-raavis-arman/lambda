@@ -16,12 +16,12 @@ final class AuthenticateLoginEvent extends VerifyLoginEvent {
 }
 
 final class ResendOtpEvent extends VerifyLoginEvent {
-  final String otp;
+  final String mobileNumber;
 
-  ResendOtpEvent({required this.otp});
+  ResendOtpEvent({required this.mobileNumber});
 
   @override
   List<Object?> get props => [
-        otp,
+        mobileNumber,
       ];
 }
