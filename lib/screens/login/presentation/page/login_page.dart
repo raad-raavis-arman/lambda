@@ -6,6 +6,7 @@ import 'package:landa/di_service.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/l10n/lang/lang_bloc.dart';
 import 'package:landa/screens/login/presentation/bloc/login_bloc.dart';
+import 'package:landa/screens/verify_login/presentation/bloc/bloc.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -19,7 +20,9 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => locator.get<LoginBloc>(),
+      create: (context) => LoginBloc(
+        userOtp: locator.get(),
+      ),
       child: const _LoginView(),
     );
   }
@@ -44,11 +47,12 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
 
   @override
   Widget build(BuildContext context) {
-    final languageCode = context.read<LangBloc>().state.locale.languageCode;
+    final isPersian = context.read<LangBloc>().state.isPersian;
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state is LoginOtpSentState) {
           // TODO(Taleb): show a Toast and tell user that otp sent successfully
+          context.read<OtpTimerBloc>().add(OtpTimerStartEvent());
           context.pushNamed(
             RouteNames.verifyLogin,
             extra: validatedMobileNumber,
@@ -79,7 +83,7 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   style: Theme.of(context).textTheme.titleMedium,
                   inputFormatters: [
-                    if (languageCode == 'fa')
+                    if (isPersian)
                       TextFieldPersianFormatter()
                     else
                       TextFieldEnglishFormatter(),
@@ -107,22 +111,38 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
                   } else {
                     return SizedBox(
                       width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          final formValidated =
-                              formKey.currentState?.validate() ?? false;
-                          if (formValidated) {
-                            formKey.currentState?.save();
-                            context.read<LoginBloc>().add(
-                                  SendOtpEvent(
-                                    mobileNumber: validatedMobileNumber,
-                                  ),
-                                );
-                          }
+                      child: BlocBuilder<OtpTimerBloc, OtpTimerState>(
+                        builder: (context, otpTimerState) {
+                          return ElevatedButton(
+                            onPressed: otpTimerState.timerFinished
+                                ? () {
+                                    final formValidated =
+                                        formKey.currentState?.validate() ??
+                                            false;
+                                    if (formValidated) {
+                                      formKey.currentState?.save();
+                                      context.read<LoginBloc>().add(
+                                            SendOtpEvent(
+                                              mobileNumber:
+                                                  validatedMobileNumber,
+                                            ),
+                                          );
+                                    }
+                                  }
+                                : null,
+                            child: Text(
+                              otpTimerState.timerFinished
+                                  ? context.l10n.next
+                                  : isPersian
+                                      ? otpTimerState
+                                          .remainedTimeFormattedString
+                                          .replaceEnNumToFa()
+                                      : otpTimerState
+                                          .remainedTimeFormattedString
+                                          .replaceFaNumToEn(),
+                            ),
+                          );
                         },
-                        child: Text(
-                          context.l10n.next,
-                        ),
                       ),
                     );
                   }

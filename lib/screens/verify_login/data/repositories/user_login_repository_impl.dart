@@ -5,16 +5,16 @@ import 'package:landa/screens/verify_login/domain/entities/entities.dart';
 import 'package:landa/screens/verify_login/domain/repositories/repositories.dart';
 
 final class UserLoginRepositoryImpl implements UserLoginRepository {
-  final LoginRemoteDataSource otpRemoteDataSource;
+  final LoginRemoteDataSource loginRemoteDataSource;
 
-  UserLoginRepositoryImpl({required this.otpRemoteDataSource});
+  UserLoginRepositoryImpl({required this.loginRemoteDataSource});
   @override
   Future<Either<Failure, LoginAuth>> loginWithEmail(
     String email,
     String otpCode,
   ) async {
     try {
-      final result = await otpRemoteDataSource.loginWithEmail(
+      final result = await loginRemoteDataSource.loginWithEmail(
         email,
         otpCode,
       );
@@ -30,7 +30,7 @@ final class UserLoginRepositoryImpl implements UserLoginRepository {
     String otpCode,
   ) async {
     try {
-      final result = await otpRemoteDataSource.loginWithMobile(
+      final result = await loginRemoteDataSource.loginWithMobile(
         mobileNumber,
         mobileNumber,
       );

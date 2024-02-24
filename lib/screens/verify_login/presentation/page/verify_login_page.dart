@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:landa/core/utils/utils.dart';
+import 'package:landa/di_service.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/l10n/lang/lang_bloc.dart';
+import 'package:landa/screens/verify_login/presentation/bloc/bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerifyLoginPage extends StatelessWidget {
@@ -28,8 +30,14 @@ class VerifyLoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _VerifyLoginView(
-      mobileNumber: mobileNumber,
+    return BlocProvider(
+      create: (context) => VerifyLoginBloc(
+        userLoginUsescase: locator.get(),
+        userOtpUsescase: locator.get(),
+      ),
+      child: _VerifyLoginView(
+        mobileNumber: mobileNumber,
+      ),
     );
   }
 }
@@ -47,6 +55,7 @@ class _VerifyLoginView extends StatefulWidget {
 
 class _VerifyLoginViewState extends State<_VerifyLoginView> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String otpCode = '';
 
   @override
   void initState() {
@@ -55,7 +64,7 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
 
   @override
   Widget build(BuildContext context) {
-    final languageCode = context.read<LangBloc>().state.locale.languageCode;
+    final isPersian = context.read<LangBloc>().state.isPersian;
     return Scaffold(
       body: Center(
         child: Column(
@@ -66,7 +75,7 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
               children: [
                 Text(
                   context.l10n.otpVerifyTitle(
-                    languageCode == 'fa'
+                    isPersian
                         ? widget.mobileNumber.replaceEnNumToFa()
                         : widget.mobileNumber.replaceFaNumToEn(),
                   ),
@@ -92,8 +101,16 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
                   appContext: context,
                   length: 6,
                   keyboardType: TextInputType.number,
+                  onSaved: (newValue) => otpCode = newValue ?? '',
+                  validator: (value) {
+                    if (value?.trim().length == 6) {
+                      return null;
+                    } else {
+                      return '';
+                    }
+                  },
                   inputFormatters: [
-                    if (languageCode == 'fa')
+                    if (isPersian)
                       TextFieldPersianFormatter()
                     else
                       TextFieldEnglishFormatter(),
@@ -110,15 +127,48 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      context.goNamed(RouteNames.home);
+                      if (formKey.currentState?.validate() ?? false) {
+                        formKey.currentState?.save();
+                        context.read<VerifyLoginBloc>().add(
+                              AuthenticateLoginEvent(
+                                otp: otpCode.replaceFaNumToEn(),
+                                mobileNumber:
+                                    widget.mobileNumber.replaceFaNumToEn(),
+                              ),
+                            );
+                      }
+                      //context.goNamed(RouteNames.home);
                     },
                     child: Text(context.l10n.login),
                   ),
                 ),
                 const SizedBox().paddingS(),
-                OutlinedButton(
-                  onPressed: () {},
-                  child: Text(context.l10n.sendCode),
+                BlocBuilder<OtpTimerBloc, OtpTimerState>(
+                  builder: (context, state) {
+                    return OutlinedButton(
+                      onPressed: state.timerFinished
+                          ? () {
+                              context
+                                  .read<OtpTimerBloc>()
+                                  .add(OtpTimerStartEvent());
+                              context.read<VerifyLoginBloc>().add(
+                                    ResendOtpEvent(
+                                      mobileNumber: widget.mobileNumber,
+                                    ),
+                                  );
+                            }
+                          : null,
+                      child: Text(
+                        state.timerFinished
+                            ? context.l10n.sendCode
+                            : isPersian
+                                ? state.remainedTimeFormattedString
+                                    .replaceEnNumToFa()
+                                : state.remainedTimeFormattedString
+                                    .replaceFaNumToEn(),
+                      ),
+                    );
+                  },
                 ),
               ],
             ).paddingXL(),

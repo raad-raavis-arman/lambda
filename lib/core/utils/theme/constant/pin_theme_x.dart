@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:landa/core/utils/utils.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 final lightPinTheme = PinTheme(
@@ -13,6 +14,8 @@ final lightPinTheme = PinTheme(
   borderRadius: BorderRadius.circular(6),
   fieldHeight: 60,
   fieldWidth: 50,
+  errorBorderColor: lightColorScheme.error,
+  errorBorderWidth: 2,
 );
 
 final darkPinTheme = PinTheme(
@@ -27,4 +30,6 @@ final darkPinTheme = PinTheme(
   borderRadius: BorderRadius.circular(6),
   fieldHeight: 60,
   fieldWidth: 50,
+  errorBorderColor: darkColorScheme.error,
+  errorBorderWidth: 2,
 );

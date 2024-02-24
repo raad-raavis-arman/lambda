@@ -6,6 +6,7 @@ import 'package:landa/core/utils/theme/theme.dart';
 import 'package:landa/flavor_config.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/l10n/lang/lang_bloc.dart';
+import 'package:landa/screens/verify_login/presentation/bloc/bloc.dart';
 
 class AppRootPage extends StatelessWidget {
   const AppRootPage({
@@ -18,6 +19,9 @@ class AppRootPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (_) => OtpTimerBloc(),
+        ),
         BlocProvider(
           create: (_) => LangBloc()
             ..add(

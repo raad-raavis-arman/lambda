@@ -22,7 +22,7 @@ final class VerifyLoginBloc extends Bloc<VerifyLoginEvent, VerifyLoginState> {
     AuthenticateLoginEvent event,
     Emitter<VerifyLoginState> emit,
   ) async {}
-  
+
   Future<void> _onResendOtp(
     ResendOtpEvent event,
     Emitter<VerifyLoginState> emit,
