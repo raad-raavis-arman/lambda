@@ -6,9 +6,9 @@ import 'package:landa/screens/login/domain/entities/entities.dart';
 import 'package:landa/screens/login/domain/repositories/repositories.dart';
 
 class UserOtpUsescase implements BaseUseCase<Otp, OtpParam> {
-  final UserOtpRepository userOtpRepository;
 
   UserOtpUsescase({required this.userOtpRepository});
+  final UserOtpRepository userOtpRepository;
 
   @override
   Future<Either<Failure, Otp>> call(OtpParam params) =>
@@ -16,9 +16,9 @@ class UserOtpUsescase implements BaseUseCase<Otp, OtpParam> {
 }
 
 class OtpParam extends Equatable {
-  final String mobileNumber;
 
   const OtpParam({required this.mobileNumber});
+  final String mobileNumber;
 
   @override
   List<Object?> get props => [mobileNumber];

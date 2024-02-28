@@ -6,7 +6,7 @@ sealed class LangEvent extends Equatable {
 }
 
 final class LangFetchLocaleEvent extends LangEvent {
-  final Locale? locale;
 
   LangFetchLocaleEvent({this.locale});
+  final Locale? locale;
 }

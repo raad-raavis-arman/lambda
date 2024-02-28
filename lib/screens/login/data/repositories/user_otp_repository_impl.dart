@@ -5,9 +5,9 @@ import 'package:landa/screens/login/domain/entities/otp.dart';
 import 'package:landa/screens/login/domain/repositories/repositories.dart';
 
 final class UserOtpRepositoryImpl implements UserOtpRepository {
-  final OtpRemoteDataSource otpRemoteDataSource;
 
   UserOtpRepositoryImpl({required this.otpRemoteDataSource});
+  final OtpRemoteDataSource otpRemoteDataSource;
   @override
   Future<Either<Failure, Otp>> sendEmailOtp(String email) async {
     try {

@@ -6,9 +6,10 @@ import 'package:landa/screens/verify_login/domain/entities/entities.dart';
 import 'package:landa/screens/verify_login/domain/repositories/repositories.dart';
 
 class UserLoginUsescase implements BaseUseCase<LoginAuth, LoginParam> {
-  final UserLoginRepository userLoginRepository;
 
   UserLoginUsescase({required this.userLoginRepository});
+
+  final UserLoginRepository userLoginRepository;
 
   @override
   Future<Either<Failure, LoginAuth>> call(LoginParam params) =>
@@ -16,13 +17,14 @@ class UserLoginUsescase implements BaseUseCase<LoginAuth, LoginParam> {
 }
 
 class LoginParam extends Equatable {
-  final String mobileNumber;
-  final String otpCode;
 
   const LoginParam({
     required this.mobileNumber,
     required this.otpCode,
   });
+  
+  final String mobileNumber;
+  final String otpCode;
 
   @override
   List<Object?> get props => [

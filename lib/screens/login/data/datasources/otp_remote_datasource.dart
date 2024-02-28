@@ -10,9 +10,10 @@ abstract interface class OtpRemoteDataSource {
 }
 
 class OtpRemoteDataSourceImpl implements OtpRemoteDataSource {
-  final RestClientService restClientService;
 
   OtpRemoteDataSourceImpl({required this.restClientService});
+  
+  final RestClientService restClientService;
 
   @override
   Future<Otp> sendEmailOtp(String email) {

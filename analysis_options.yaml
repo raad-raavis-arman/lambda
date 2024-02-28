@@ -12,7 +12,7 @@ analyzer:
     prefer_final_parameters: ignore
     omit_local_variable_types: ignore
     public_member_api_docs: ignore
-    sort_constructors_first: ignore
+    sort_constructors_first: error
     prefer_expression_function_bodies: ignore
     prefer_mixin: ignore
     library_private_types_in_public_api: ignore
@@ -196,6 +196,7 @@ analyzer:
 
 linter:
   rules:
+    - sort_constructors_first
     - sort_pub_dependencies
     - always_declare_return_types
     - always_put_required_named_parameters_first
