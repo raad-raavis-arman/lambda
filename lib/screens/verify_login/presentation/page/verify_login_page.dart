@@ -129,15 +129,15 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
                     onPressed: () {
                       if (formKey.currentState?.validate() ?? false) {
                         formKey.currentState?.save();
-                        context.read<VerifyLoginBloc>().add(
-                              AuthenticateLoginEvent(
-                                otp: otpCode.replaceFaNumToEn(),
-                                mobileNumber:
-                                    widget.mobileNumber.replaceFaNumToEn(),
-                              ),
-                            );
+                        context.goNamed(RouteNames.home);
+                        // context.read<VerifyLoginBloc>().add(
+                        //       AuthenticateLoginEvent(
+                        //         otp: otpCode.replaceFaNumToEn(),
+                        //         mobileNumber:
+                        //             widget.mobileNumber.replaceFaNumToEn(),
+                        //       ),
+                        //     );
                       }
-                      //context.goNamed(RouteNames.home);
                     },
                     child: Text(context.l10n.login),
                   ),

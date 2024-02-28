@@ -1,8 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:landa/core/utils/router/router.dart';
-import 'package:landa/screens/home/home.dart';
-import 'package:landa/screens/login/login.dart';
-import 'package:landa/screens/verify_login/verify_login.dart';
+import 'package:landa/screens/home/presentation/presentation.dart';
+import 'package:landa/screens/login/presentation/presentation.dart';
+import 'package:landa/screens/verify_login/presentation/presentation.dart';
 
 class RouteConfig {
   static final _router = GoRouter(
