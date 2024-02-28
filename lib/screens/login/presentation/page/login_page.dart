@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:landa/core/utils/logger/logger.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/di_service.dart';
 import 'package:landa/l10n/l10n.dart';
@@ -51,6 +52,7 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state is LoginOtpSentState) {
+          logger.i('LoginOtpSentState');
           // TODO(Taleb): show a Toast and tell user that otp sent successfully
           context.read<OtpTimerBloc>().add(OtpTimerStartEvent());
           context.pushNamed(
