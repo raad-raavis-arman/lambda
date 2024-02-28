@@ -10,9 +10,10 @@ abstract interface class OtpRemoteDataSource {
 }
 
 class OtpRemoteDataSourceImpl implements OtpRemoteDataSource {
-  final RestClientService restClientService;
 
   OtpRemoteDataSourceImpl({required this.restClientService});
+  
+  final RestClientService restClientService;
 
   @override
   Future<Otp> sendEmailOtp(String email) {
@@ -25,7 +26,7 @@ class OtpRemoteDataSourceImpl implements OtpRemoteDataSource {
       // TODO(Taleb): get real data from server
       // final response = await restClientService
       //     .post('/otp', data: {'mobileNumber': mobileNumber});
-      await Future.delayed(const Duration(seconds: 2));
+      await Future.delayed(const Duration(milliseconds: 300));
       return OtpModel.fromJson(const {'otpCode': '32478'});
     } on DioException catch (e) {
       throw MDioException.fromDioError(e);

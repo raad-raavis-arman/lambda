@@ -3,10 +3,11 @@ part of 'verify_login_bloc.dart';
 sealed class VerifyLoginEvent extends Equatable {}
 
 final class AuthenticateLoginEvent extends VerifyLoginEvent {
-  final String otp;
-  final String mobileNumber;
 
   AuthenticateLoginEvent({required this.otp, required this.mobileNumber});
+
+  final String otp;
+  final String mobileNumber;
 
   @override
   List<Object?> get props => [
@@ -16,9 +17,10 @@ final class AuthenticateLoginEvent extends VerifyLoginEvent {
 }
 
 final class ResendOtpEvent extends VerifyLoginEvent {
-  final String mobileNumber;
 
   ResendOtpEvent({required this.mobileNumber});
+  
+  final String mobileNumber;
 
   @override
   List<Object?> get props => [

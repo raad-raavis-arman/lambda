@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:landa/core/utils/theme/constant/constant.dart';
 
 class LightTheme {
-  final String fontFamily;
 
   LightTheme({required this.fontFamily});
+  final String fontFamily;
 
   ThemeData get data => ThemeData(
         useMaterial3: true,

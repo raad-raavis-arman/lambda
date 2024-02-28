@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 
 class MDioException implements Exception {
-  late String errorMessage;
-  final DioException dioException;
 
   MDioException.fromDioError(this.dioException) {
     switch (dioException.type) {
@@ -35,6 +33,8 @@ class MDioException implements Exception {
         break;
     }
   }
+  late String errorMessage;
+  final DioException dioException;
 
   String _handleStatusCode(int? statusCode) {
     switch (statusCode) {

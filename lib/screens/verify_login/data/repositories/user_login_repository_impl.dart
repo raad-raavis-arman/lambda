@@ -5,9 +5,10 @@ import 'package:landa/screens/verify_login/domain/entities/entities.dart';
 import 'package:landa/screens/verify_login/domain/repositories/repositories.dart';
 
 final class UserLoginRepositoryImpl implements UserLoginRepository {
-  final LoginRemoteDataSource loginRemoteDataSource;
 
   UserLoginRepositoryImpl({required this.loginRemoteDataSource});
+  
+  final LoginRemoteDataSource loginRemoteDataSource;
   @override
   Future<Either<Failure, LoginAuth>> loginWithEmail(
     String email,

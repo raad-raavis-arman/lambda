@@ -10,9 +10,9 @@ abstract interface class LoginRemoteDataSource {
 }
 
 class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
-  final RestClientService restClientService;
 
   LoginRemoteDataSourceImpl({required this.restClientService});
+  final RestClientService restClientService;
 
   @override
   Future<LoginAuth> loginWithEmail(String email,String otpCode) {
