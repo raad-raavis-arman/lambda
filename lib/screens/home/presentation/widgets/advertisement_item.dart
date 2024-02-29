@@ -36,7 +36,7 @@ class AdvertisementItem extends StatelessWidget {
                 ),
                 Text(
                   description,
-                  style: Theme.of(context).textTheme.labelSmall,
+                  style: Theme.of(context).textTheme.labelMedium,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                 ),

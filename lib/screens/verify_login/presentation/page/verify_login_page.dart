@@ -86,7 +86,7 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
                   },
                   child: Text(
                     context.l10n.editMobileNumber,
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
                           decoration: TextDecoration.underline,
                         ),
                   ),
