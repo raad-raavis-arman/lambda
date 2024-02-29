@@ -16,5 +16,19 @@
     },
     "login": "Login",
     "editMobileNumber": "Edit number",
-    "sendCode": "Send code"
+    "sendCode": "Send code",
+    "countdownTime": "Day(s) {days}\n hour(s) {hours}\nminute(s) {minutes}\n remained",
+    "@countdownTime": {
+        "placeholders": {
+            "days": {
+                "type": "String"
+            },
+            "hours": {
+                "type": "String"
+            },
+            "minutes": {
+                "type": "String"
+            }
+        }
+    }
 }

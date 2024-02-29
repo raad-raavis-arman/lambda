@@ -45,4 +45,11 @@ extension PaddingX on Widget {
       child: this,
     );
   }
+  
+  Widget paddingXS() {
+    return Padding(
+      padding: const EdgeInsets.all(4),
+      child: this,
+    );
+  }
 }
