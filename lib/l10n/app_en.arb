@@ -30,5 +30,13 @@
                 "type": "String"
             }
         }
+    },
+    "tmn": "Toman {toman}",
+    "@tmn": {
+        "placeholders": {
+            "toman": {
+                "type": "String"
+            }
+        }
     }
 }

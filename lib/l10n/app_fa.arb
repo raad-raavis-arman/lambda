@@ -30,5 +30,13 @@
                 "type": "String"
             }
         }
+    },
+    "tmn": "{toman} تومان",
+    "@tmn": {
+        "placeholders": {
+            "toman": {
+                "type": "String"
+            }
+        }
     }
 }
