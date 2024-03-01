@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:landa/core/utils/utils.dart';
+import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/l10n/l10n.dart';
-import 'package:landa/l10n/lang/lang_bloc.dart';
 
 class PriceDiscount extends StatelessWidget {
   const PriceDiscount({
@@ -16,7 +15,6 @@ class PriceDiscount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isPersian = context.read<LangBloc>().state.isPersian;
     final realPriceFormatted =
         realPrice.toString().separate(textType: TextType.double);
     final discountedPriceFormatted = (realPrice * (1 - (discount / 100)))
@@ -25,26 +23,23 @@ class PriceDiscount extends StatelessWidget {
     final discountFormatted = ' ⬅️ $discount٪ ⬅️ ';
     return Row(
       children: [
-        Text(
-          isPersian
-              ? context.l10n.tmn(realPriceFormatted).replaceEnNumToFa()
-              : context.l10n.tmn(realPriceFormatted).replaceFaNumToEn(),
+        MText(
+          context,
+          context.l10n.tmn(realPriceFormatted),
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.labelSmall?.copyWith(
                 decoration: TextDecoration.lineThrough,
               ),
         ),
-        Text(
-          isPersian
-              ? discountFormatted.replaceEnNumToFa()
-              : discountFormatted.replaceFaNumToEn(),
+        MText(
+          context,
+          discountFormatted.replaceEnNumToFa(),
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.labelSmall,
         ),
-        Text(
-          isPersian
-              ? context.l10n.tmn(discountedPriceFormatted).replaceEnNumToFa()
-              : context.l10n.tmn(discountedPriceFormatted).replaceFaNumToEn(),
+        MText(
+          context,
+          context.l10n.tmn(discountedPriceFormatted),
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.labelSmall,
         ),

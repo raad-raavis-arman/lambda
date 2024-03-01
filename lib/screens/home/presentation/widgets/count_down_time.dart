@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:landa/core/utils/utils.dart';
+import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/l10n/l10n.dart';
-import 'package:landa/l10n/lang/lang_bloc.dart';
 
 class CountDownTime extends StatelessWidget {
   const CountDownTime({
@@ -19,7 +18,6 @@ class CountDownTime extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final totalDuration = expireDateTime.difference(creationDateTime);
-    final isPersian = context.read<LangBloc>().state.isPersian;
     return StreamBuilder(
       stream: Stream.periodic(const Duration(seconds: 30)),
       builder: (context, _) {
@@ -36,17 +34,12 @@ class CountDownTime extends StatelessWidget {
                 ),
               ),
             ),
-            Text(
+            MText(
+              context,
               context.l10n.countdownTime(
-                isPersian
-                    ? remainedDuration.days.toString().replaceEnNumToFa()
-                    : remainedDuration.days.toString().replaceFaNumToEn(),
-                isPersian
-                    ? remainedDuration.hours.toString().replaceEnNumToFa()
-                    : remainedDuration.hours.toString().replaceFaNumToEn(),
-                isPersian
-                    ? remainedDuration.minutes.toString().replaceEnNumToFa()
-                    : remainedDuration.minutes.toString().replaceFaNumToEn(),
+                remainedDuration.days.toString(),
+                remainedDuration.hours.toString(),
+                remainedDuration.minutes.toString(),
               ),
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.labelSmall,

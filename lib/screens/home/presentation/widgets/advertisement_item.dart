@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:landa/core/utils/utils.dart';
+import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/screens/home/presentation/widgets/widgets.dart';
 
 class AdvertisementItem extends StatelessWidget {
@@ -29,13 +30,15 @@ class AdvertisementItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
+                MText(
+                  context,
                   title,
                   style: Theme.of(context).textTheme.labelLarge,
                   maxLines: 1,
                 ),
                 const SizedBox.shrink().paddingXXS(),
-                Text(
+                MText(
+                  context,
                   description,
                   style: Theme.of(context).textTheme.labelMedium,
                   overflow: TextOverflow.ellipsis,
