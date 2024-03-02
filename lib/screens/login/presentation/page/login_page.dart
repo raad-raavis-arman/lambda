@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:landa/core/utils/logger/logger.dart';
 import 'package:landa/core/utils/utils.dart';
+import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/di_service.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/l10n/lang/lang_bloc.dart';
@@ -65,13 +66,14 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text(context.l10n.login),
+          title: MText(context, context.l10n.login),
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              MText(
+                context,
                 context.l10n.loginTitle,
               ).paddingXL(),
               Form(
@@ -132,16 +134,11 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
                                     }
                                   }
                                 : null,
-                            child: Text(
+                            child: MText(
+                              context,
                               otpTimerState.timerFinished
                                   ? context.l10n.next
-                                  : isPersian
-                                      ? otpTimerState
-                                          .remainedTimeFormattedString
-                                          .replaceEnNumToFa()
-                                      : otpTimerState
-                                          .remainedTimeFormattedString
-                                          .replaceFaNumToEn(),
+                                  : otpTimerState.remainedTimeFormattedString,
                             ),
                           );
                         },

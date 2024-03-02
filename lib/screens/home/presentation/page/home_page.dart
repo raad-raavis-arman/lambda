@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:landa/screens/home/presentation/presentation.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -16,18 +17,23 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class _HomeView extends StatefulWidget {
+class _HomeView extends StatelessWidget {
   const _HomeView();
 
   @override
-  State<_HomeView> createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<_HomeView> {
-  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text('Home')),
+    return Scaffold(
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await Future.delayed(const Duration(seconds: 1));
+        },
+        child: ListView.builder(
+          itemCount: 10,
+          itemBuilder: (_, __) {
+            return const AdvertisementItem();
+          },
+        ),
+      ),
     );
   }
 }

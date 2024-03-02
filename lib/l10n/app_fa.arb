@@ -16,5 +16,27 @@
     },
     "login": "ورود",
     "editMobileNumber": "ویرایش شماره",
-    "sendCode": "ارسال کد"
+    "sendCode": "ارسال کد",
+    "countdownTime": "{days} روز \n {hours} ساعت \n {minutes} دقیقه \n مانده",
+    "@countdownTime": {
+        "placeholders": {
+            "days": {
+                "type": "String"
+            },
+            "hours": {
+                "type": "String"
+            },
+            "minutes": {
+                "type": "String"
+            }
+        }
+    },
+    "tmn": "{toman} تومان",
+    "@tmn": {
+        "placeholders": {
+            "toman": {
+                "type": "String"
+            }
+        }
+    }
 }

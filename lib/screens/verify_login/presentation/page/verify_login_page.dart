@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:landa/core/utils/utils.dart';
+import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/di_service.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/l10n/lang/lang_bloc.dart';
@@ -73,20 +74,20 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                MText(
+                  context,
                   context.l10n.otpVerifyTitle(
-                    isPersian
-                        ? widget.mobileNumber.replaceEnNumToFa()
-                        : widget.mobileNumber.replaceFaNumToEn(),
+                    widget.mobileNumber,
                   ),
                 ),
                 MaterialButton(
                   onPressed: () {
                     context.pop();
                   },
-                  child: Text(
+                  child: MText(
+                    context,
                     context.l10n.editMobileNumber,
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
                           decoration: TextDecoration.underline,
                         ),
                   ),
@@ -129,17 +130,17 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
                     onPressed: () {
                       if (formKey.currentState?.validate() ?? false) {
                         formKey.currentState?.save();
-                        context.read<VerifyLoginBloc>().add(
-                              AuthenticateLoginEvent(
-                                otp: otpCode.replaceFaNumToEn(),
-                                mobileNumber:
-                                    widget.mobileNumber.replaceFaNumToEn(),
-                              ),
-                            );
+                        context.goNamed(RouteNames.home);
+                        // context.read<VerifyLoginBloc>().add(
+                        //       AuthenticateLoginEvent(
+                        //         otp: otpCode.replaceFaNumToEn(),
+                        //         mobileNumber:
+                        //             widget.mobileNumber.replaceFaNumToEn(),
+                        //       ),
+                        //     );
                       }
-                      //context.goNamed(RouteNames.home);
                     },
-                    child: Text(context.l10n.login),
+                    child: MText(context, context.l10n.login),
                   ),
                 ),
                 const SizedBox().paddingS(),
@@ -158,14 +159,11 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
                                   );
                             }
                           : null,
-                      child: Text(
+                      child: MText(
+                        context,
                         state.timerFinished
                             ? context.l10n.sendCode
-                            : isPersian
-                                ? state.remainedTimeFormattedString
-                                    .replaceEnNumToFa()
-                                : state.remainedTimeFormattedString
-                                    .replaceFaNumToEn(),
+                            : state.remainedTimeFormattedString,
                       ),
                     );
                   },
