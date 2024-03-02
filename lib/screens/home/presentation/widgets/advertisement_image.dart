@@ -16,6 +16,9 @@ class AdvertisementImage extends StatelessWidget {
       borderRadius: BorderRadius.circular(12),
       child: Image.network(
         kIsWeb ? '$corsProxyUrl/$imageUrl' : imageUrl,
+        headers: const {
+          'origin': '*',
+        },
         width: 80,
         height: 80,
         errorBuilder: (context, error, stackTrace) {
