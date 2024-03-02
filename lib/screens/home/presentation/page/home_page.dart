@@ -23,11 +23,16 @@ class _HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-        itemCount: 2,
-        itemBuilder: (_, __) {
-          return const AdvertisementItem();
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await Future.delayed(const Duration(seconds: 1));
         },
+        child: ListView.builder(
+          itemCount: 10,
+          itemBuilder: (_, __) {
+            return const AdvertisementItem();
+          },
+        ),
       ),
     );
   }
