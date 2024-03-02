@@ -66,7 +66,7 @@ function releaseWebProd {
     echo "Make sure you are in right branch.."
     pub
     buildRunner
-    flutter build web --release --web-renderer html --target "lib/main_production.dart"
+    flutter build web --release --web-renderer canvaskit --target "lib/main_production.dart"
     # the flavor name in ios set to prod so we use prod instead of production
     echo "web release is ready in build/web/ path of your project"
 }

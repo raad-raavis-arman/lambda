@@ -15,7 +15,9 @@
                 "--target",
                 "lib/main_development.dart",
                 "--debug",
-                "--web-port=5000"
+                "--web-port=5000",
+                "--web-renderer",
+                "canvaskit"
             ]
         },
         {
@@ -29,7 +31,9 @@
                 "--target",
                 "lib/main_staging.dart",
                 "--debug",
-                "--web-port=5000"
+                "--web-port=5000",
+                "--web-renderer",
+                "canvaskit"
             ]
         },
         {
@@ -43,7 +47,9 @@
                 "--target",
                 "lib/main_production.dart",
                 "--debug",
-                "--web-port=5000"
+                "--web-port=5000",
+                "--web-renderer",
+                "canvaskit"
             ]
         },
         // profile
@@ -57,7 +63,10 @@
                 "dev",
                 "--target",
                 "lib/main_development.dart",
-                "--profile"
+                "--profile",
+                "--web-port=5001",
+                "--web-renderer",
+                "canvaskit"
             ]
         },
         {
@@ -70,7 +79,10 @@
                 "stg",
                 "--target",
                 "lib/main_staging.dart",
-                "--profile"
+                "--profile",
+                "--web-port=5001",
+                "--web-renderer",
+                "canvaskit"
             ]
         },
         {
@@ -83,7 +95,10 @@
                 "prod",
                 "--target",
                 "lib/main_production.dart",
-                "--profile"
+                "--profile",
+                "--web-port=5001",
+                "--web-renderer",
+                "canvaskit"
             ]
         },
 
@@ -98,7 +113,10 @@
                 "dev",
                 "--target",
                 "lib/main_development.dart",
-                "--release"
+                "--release",
+                "--web-port=5002",
+                "--web-renderer",
+                "canvaskit"
             ]
         },
         {
@@ -111,7 +129,10 @@
                 "stg",
                 "--target",
                 "lib/main_staging.dart",
-                "--release"
+                "--release",
+                "--web-port=5002",
+                "--web-renderer",
+                "canvaskit"
             ]
         },
         {
@@ -124,7 +145,10 @@
                 "prod",
                 "--target",
                 "lib/main_production.dart",
-                "--release"
+                "--release",
+                "--web-port=5002",
+                "--web-renderer",
+                "canvaskit"
             ]
         }
     ]
