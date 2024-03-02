@@ -24,8 +24,11 @@ extension SparatorExtension on String {
 
     if (textType == TextType.double) {
       final splited = str.split('.');
-      str = splited.first;
-      endPart = '.${splited.last}';
+      if (splited.length == 1) {
+        str = splited.first;
+      } else if (splited.length == 2) {
+        endPart = '.${splited.last}';
+      }
     }
 
     if (fromRightToLeft) {
