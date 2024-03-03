@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:landa/core/utils/router/router.dart';
@@ -70,7 +71,9 @@ class _AppRootView extends StatelessWidget {
           routerConfig: RouteConfig.router,
           debugShowCheckedModeBanner:
               flavorConfig.flavorType == FlavorType.production,
-        );
+        ).animate().fadeIn(
+              duration: const Duration(milliseconds: 400),
+            );
       },
     );
   }

@@ -1,19 +1,7 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
   <base href="$FLUTTER_BASE_HREF">
 
   <meta charset="UTF-8">
@@ -27,10 +15,16 @@
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="favicon.png" />
 
   <title>landa</title>
   <link rel="manifest" href="manifest.json">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="https://unpkg.com/canvaskit-wasm@0.33.0/bin/canvaskit.js"></script>
+  <link rel="preload" href="https://unpkg.com/canvaskit-wasm@0.33.0/bin/canvaskit.wasm" as="fetch"
+    crossOrigin="anonymous">
 
   <script>
     // The value below is injected by flutter build, do not touch.
@@ -39,21 +33,40 @@
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
 </head>
+
 <body>
   <script>
-    window.addEventListener('load', function(ev) {
+    function delay(time) {
+      return new Promise(resolve => setTimeout(resolve, time));
+    }
+    window.addEventListener('load', function (ev) {
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
         },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            appRunner.runApp();
+        onEntrypointLoaded: function (engineInitializer) {
+          engineInitializer.initializeEngine().then(async function (appRunner) {
+            var loaderContent = document.querySelector('#loader-content');
+            loaderContent.style.opacity = "0";
+            await delay(400);
+            await appRunner.runApp();
           });
         }
       });
     });
   </script>
+
+  <!-- splash Logo -->
+  <div class="main-content" id="loader-content">
+    <div class="loader">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <img src="main-icon.png" alt="My App Logo" />
+  </div>
 </body>
+
 </html>

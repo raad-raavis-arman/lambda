@@ -1,0 +1,36 @@
+[
+    {
+        "family": "Yekan",
+        "fonts": [
+            {
+                "asset": "fonts/persian/yekan/yekan-bold.ttf"
+            },
+            {
+                "asset": "fonts/persian/yekan/yekan-light.ttf"
+            },
+            {
+                "asset": "fonts/persian/yekan/yekan-regular.ttf"
+            }
+        ]
+    },
+    {
+        "family": "Yekan",
+        "fonts": [
+            {
+                "asset": "fonts/non-persian/poppins/Poppins-Bold.ttf"
+            },
+            {
+                "asset": "fonts/non-persian/poppins/Poppins-Italic.ttf"
+            },
+            {
+                "asset": "fonts/non-persian/poppins/Poppins-Medium.ttf"
+            },
+            {
+                "asset": "fonts/non-persian/poppins/Poppins-Regular.ttf"
+            },
+            {
+                "asset": "fonts/non-persian/poppins/Poppins-Thin.ttf"
+            }
+        ]
+    }
+]

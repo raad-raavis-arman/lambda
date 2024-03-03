@@ -17,7 +17,7 @@
                 "--debug",
                 "--web-port=5000",
                 "--web-renderer",
-                "canvaskit"
+                "html"
             ]
         },
         {
@@ -33,7 +33,7 @@
                 "--debug",
                 "--web-port=5000",
                 "--web-renderer",
-                "canvaskit"
+                "html"
             ]
         },
         {
@@ -49,7 +49,7 @@
                 "--debug",
                 "--web-port=5000",
                 "--web-renderer",
-                "canvaskit"
+                "html"
             ]
         },
         // profile
@@ -66,7 +66,7 @@
                 "--profile",
                 "--web-port=5001",
                 "--web-renderer",
-                "canvaskit"
+                "html"
             ]
         },
         {
@@ -82,7 +82,7 @@
                 "--profile",
                 "--web-port=5001",
                 "--web-renderer",
-                "canvaskit"
+                "html"
             ]
         },
         {
@@ -98,7 +98,7 @@
                 "--profile",
                 "--web-port=5001",
                 "--web-renderer",
-                "canvaskit"
+                "html"
             ]
         },
 
@@ -116,7 +116,7 @@
                 "--release",
                 "--web-port=5002",
                 "--web-renderer",
-                "canvaskit"
+                "html"
             ]
         },
         {
@@ -132,7 +132,7 @@
                 "--release",
                 "--web-port=5002",
                 "--web-renderer",
-                "canvaskit"
+                "html"
             ]
         },
         {
@@ -148,7 +148,7 @@
                 "--release",
                 "--web-port=5002",
                 "--web-renderer",
-                "canvaskit"
+                "html"
             ]
         }
     ]
