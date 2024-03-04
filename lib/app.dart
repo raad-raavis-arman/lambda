@@ -53,12 +53,10 @@ class _AppRootView extends StatelessWidget {
       builder: (context) {
         final langState = context.watch<LangBloc>().state;
         final themeState = context.watch<ThemeBloc>().state;
-        final fontFamily =
-            langState.locale.languageCode == 'fa' ? 'Yekan' : 'Poppins';
         return MaterialApp.router(
           themeMode: themeState.mode,
-          darkTheme: DarkTheme(fontFamily: fontFamily).data,
-          theme: LightTheme(fontFamily: fontFamily).data,
+          darkTheme: DarkTheme(fontFamily: langState.fontFamily).data,
+          theme: LightTheme(fontFamily: langState.fontFamily).data,
           supportedLocales: L10n.all,
           locale: langState.locale,
           localizationsDelegates: const [
