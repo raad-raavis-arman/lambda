@@ -64,7 +64,7 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
           // TODO(Taleb): show an alert and show user error message
         }
       },
-      child: Scaffold(
+      child: MScaffold(
         appBar: AppBar(
           title: MText(context, context.l10n.login),
         ),

@@ -66,7 +66,7 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
   @override
   Widget build(BuildContext context) {
     final isPersian = context.read<LangBloc>().state.isPersian;
-    return Scaffold(
+    return MScaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
