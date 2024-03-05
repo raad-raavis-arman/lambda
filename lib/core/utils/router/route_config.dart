@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:landa/core/utils/router/router.dart';
+import 'package:landa/screens/create_advertisement/presentation/presentation.dart';
 import 'package:landa/screens/home/presentation/presentation.dart';
 import 'package:landa/screens/login/presentation/presentation.dart';
 import 'package:landa/screens/verify_login/presentation/presentation.dart';
@@ -22,6 +23,11 @@ class RouteConfig {
         path: '/home',
         name: RouteNames.home,
         pageBuilder: HomePage.routeBuilder,
+      ),
+      GoRoute(
+        path: '/createAdvertisement',
+        name: RouteNames.createAdvertisement,
+        pageBuilder: CreateAdvertisementPage.routeBuilder,
       ),
     ],
   );
