@@ -1,7 +1,7 @@
 import 'dart:async';
 
+import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'otp_timer_event.dart';
 part 'otp_timer_state.dart';

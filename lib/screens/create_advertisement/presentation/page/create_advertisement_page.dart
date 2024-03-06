@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 
 class CreateAdvertisementPage extends StatelessWidget {
@@ -25,6 +26,12 @@ class _CreateAdvertisementView extends StatelessWidget {
     return MScaffold(
       body: Center(
         child: MText(context, 'Create Advertisement Page'),
+      ),
+      bottomNavigationBar: ElevatedButton(
+        onPressed: () {
+          context.goNamed(RouteNames.category);
+        },
+        child: MText(context, 'Advertisement'),
       ),
     );
   }
