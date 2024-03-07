@@ -24,14 +24,14 @@ class _CreateAdvertisementView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MScaffold(
-      body: Center(
-        child: MText(context, 'Create Advertisement Page'),
+      body: const Center(
+        child: MText(text: 'Create Advertisement Page'),
       ),
       bottomNavigationBar: ElevatedButton(
         onPressed: () {
           context.goNamed(RouteNames.category);
         },
-        child: MText(context, 'Advertisement'),
+        child: const MText(text: 'Advertisement'),
       ),
     );
   }

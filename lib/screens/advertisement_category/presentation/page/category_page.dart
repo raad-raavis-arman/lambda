@@ -36,10 +36,12 @@ class _CategoryView extends StatelessWidget {
     return MScaffold(
       body: ListView.builder(
         itemBuilder: (context, index) => ExpansionTile(
-          title: MText(context, 'text kjhkhkhkj'),
+          title: const MText(
+            text: 'text kjhkhkhkj',
+          ),
           children: List.generate(
             4,
-            (index) => MText(context, 'Sddfd $index'),
+            (index) => MText(text: 'Sddfd $index'),
           ),
         ),
       ),

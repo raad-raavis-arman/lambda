@@ -66,15 +66,14 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
       },
       child: MScaffold(
         appBar: AppBar(
-          title: MText(context, context.l10n.login),
+          title: MText(text: context.l10n.login),
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               MText(
-                context,
-                context.l10n.loginTitle,
+                text: context.l10n.loginTitle,
               ).paddingXL(),
               Form(
                 key: formKey,
@@ -135,8 +134,7 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
                                   }
                                 : null,
                             child: MText(
-                              context,
-                              otpTimerState.timerFinished
+                              text: otpTimerState.timerFinished
                                   ? context.l10n.next
                                   : otpTimerState.remainedTimeFormattedString,
                             ),

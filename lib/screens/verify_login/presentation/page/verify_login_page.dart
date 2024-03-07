@@ -75,8 +75,7 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 MText(
-                  context,
-                  context.l10n.otpVerifyTitle(
+                  text: context.l10n.otpVerifyTitle(
                     widget.mobileNumber,
                   ),
                 ),
@@ -85,8 +84,7 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
                     context.pop();
                   },
                   child: MText(
-                    context,
-                    context.l10n.editMobileNumber,
+                    text: context.l10n.editMobileNumber,
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
                           decoration: TextDecoration.underline,
                         ),
@@ -140,7 +138,7 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
                         //     );
                       }
                     },
-                    child: MText(context, context.l10n.login),
+                    child: MText(text: context.l10n.login),
                   ),
                 ),
                 const SizedBox().paddingS(),
@@ -160,8 +158,7 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
                             }
                           : null,
                       child: MText(
-                        context,
-                        state.timerFinished
+                        text: state.timerFinished
                             ? context.l10n.sendCode
                             : state.remainedTimeFormattedString,
                       ),

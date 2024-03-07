@@ -31,15 +31,13 @@ class AdvertisementItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 MText(
-                  context,
-                  title,
+                  text: title,
                   style: Theme.of(context).textTheme.labelLarge,
                   maxLines: 1,
                 ),
                 const SizedBox.shrink().paddingXXS(),
                 MText(
-                  context,
-                  description,
+                  text: description,
                   style: Theme.of(context).textTheme.labelMedium,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
