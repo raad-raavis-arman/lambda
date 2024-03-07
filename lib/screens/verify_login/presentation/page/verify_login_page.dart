@@ -18,8 +18,8 @@ class VerifyLoginPage extends StatelessWidget {
   final String mobileNumber;
 
   static GoRoute get route => GoRoute(
-        path: RouteNames.createAdvertisement,
-        name: RouteNames.createAdvertisement,
+        path: RouteNames.verifyLogin,
+        name: RouteNames.verifyLogin,
         pageBuilder: (context, state) {
           final mobileNumber = state.extra as String?;
           if (mobileNumber == null) {

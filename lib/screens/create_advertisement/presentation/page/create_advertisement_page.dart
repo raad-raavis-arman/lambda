@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:landa/core/utils/logger/logger.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 
@@ -32,8 +33,9 @@ class _CreateAdvertisementView extends StatelessWidget {
         child: MText(text: 'Create Advertisement Page'),
       ),
       bottomNavigationBar: ElevatedButton(
-        onPressed: () {
-          context.goNamed(RouteNames.category);
+        onPressed: () async {
+          final category = await context.pushNamed(RouteNames.category);
+          logger.i('selected category: $category');
         },
         child: const MText(text: 'Advertisement'),
       ),
