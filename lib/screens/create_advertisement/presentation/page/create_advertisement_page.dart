@@ -6,11 +6,15 @@ import 'package:landa/core/widgets/widgets.dart';
 class CreateAdvertisementPage extends StatelessWidget {
   const CreateAdvertisementPage({super.key});
 
-  static GoRouterPageBuilder get routeBuilder => (context, state) {
-        return const NoTransitionPage(
-          child: CreateAdvertisementPage(),
-        );
-      };
+  static GoRoute get route => GoRoute(
+        path: RouteNames.createAdvertisement,
+        name: RouteNames.createAdvertisement,
+        pageBuilder: (context, state) {
+          return const NoTransitionPage(
+            child: CreateAdvertisementPage(),
+          );
+        },
+      );
 
   @override
   Widget build(BuildContext context) {

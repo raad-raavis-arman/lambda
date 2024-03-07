@@ -7,11 +7,15 @@ import 'package:landa/screens/home/presentation/presentation.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  static GoRouterPageBuilder get routeBuilder => (context, state) {
-        return const NoTransitionPage(
-          child: HomePage(),
-        );
-      };
+  static GoRoute get route => GoRoute(
+        path: RouteNames.home,
+        name: RouteNames.home,
+        pageBuilder: (context, state) {
+          return const NoTransitionPage(
+            child: HomePage(),
+          );
+        },
+      );
 
   @override
   Widget build(BuildContext context) {

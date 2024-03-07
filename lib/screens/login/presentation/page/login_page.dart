@@ -13,11 +13,15 @@ import 'package:landa/screens/verify_login/presentation/bloc/bloc.dart';
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
-  static GoRouterPageBuilder get routeBuilder => (context, state) {
-        return const NoTransitionPage(
-          child: LoginPage(),
-        );
-      };
+  static GoRoute get route => GoRoute(
+        path: RouteNames.login,
+        name: RouteNames.login,
+        pageBuilder: (context, state) {
+          return const NoTransitionPage(
+            child: LoginPage(),
+          );
+        },
+      );
 
   @override
   Widget build(BuildContext context) {

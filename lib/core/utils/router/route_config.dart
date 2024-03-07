@@ -10,31 +10,11 @@ class RouteConfig {
   static final _router = GoRouter(
     initialLocation: RouteNames.login,
     routes: [
-      GoRoute(
-        path: RouteNames.login,
-        name: RouteNames.login,
-        pageBuilder: LoginPage.routeBuilder,
-      ),
-      GoRoute(
-        path: RouteNames.verifyLogin,
-        name: RouteNames.verifyLogin,
-        pageBuilder: VerifyLoginPage.routeBuilder,
-      ),
-      GoRoute(
-        path: RouteNames.home,
-        name: RouteNames.home,
-        pageBuilder: HomePage.routeBuilder,
-      ),
-      GoRoute(
-        path: RouteNames.createAdvertisement,
-        name: RouteNames.createAdvertisement,
-        pageBuilder: CreateAdvertisementPage.routeBuilder,
-      ),
-      GoRoute(
-        path: RouteNames.category,
-        name: RouteNames.category,
-        pageBuilder: CategoryPage.routeBuilder,
-      ),
+      LoginPage.route,
+      VerifyLoginPage.route,
+      HomePage.route,
+      CreateAdvertisementPage.route,
+      CategoryPage.route,
     ],
   );
 

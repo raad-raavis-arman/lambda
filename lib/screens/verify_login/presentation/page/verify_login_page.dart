@@ -17,17 +17,21 @@ class VerifyLoginPage extends StatelessWidget {
 
   final String mobileNumber;
 
-  static GoRouterPageBuilder get routeBuilder => (context, state) {
-        final mobileNumber = state.extra as String?;
-        if (mobileNumber == null) {
-          throw Exception('Mobile number must not be null');
-        }
-        return NoTransitionPage(
-          child: VerifyLoginPage(
-            mobileNumber: mobileNumber,
-          ),
-        );
-      };
+  static GoRoute get route => GoRoute(
+        path: RouteNames.createAdvertisement,
+        name: RouteNames.createAdvertisement,
+        pageBuilder: (context, state) {
+          final mobileNumber = state.extra as String?;
+          if (mobileNumber == null) {
+            throw Exception('Mobile number must not be null');
+          }
+          return NoTransitionPage(
+            child: VerifyLoginPage(
+              mobileNumber: mobileNumber,
+            ),
+          );
+        },
+      );
 
   @override
   Widget build(BuildContext context) {
