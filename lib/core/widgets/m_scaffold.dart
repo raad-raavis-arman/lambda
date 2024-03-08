@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 class MScaffold extends StatelessWidget {
   const MScaffold({
     super.key,
+    this.bodyPadding = const EdgeInsets.all(8),
+    this.scrollable = false,
     this.appBar,
     this.body,
     this.floatingActionButton,
@@ -29,6 +31,9 @@ class MScaffold extends StatelessWidget {
     this.endDrawerEnableOpenDragGesture = true,
     this.restorationId,
   });
+
+  final EdgeInsets bodyPadding;
+  final bool scrollable;
 
   final bool extendBody;
 
@@ -80,10 +85,22 @@ class MScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mBody = scrollable
+        ? SingleChildScrollView(
+            child: Padding(
+              padding: bodyPadding,
+              child: body,
+            ),
+          )
+        : Padding(
+            padding: bodyPadding,
+            child: body,
+          );
+
     return Scaffold(
       key: key,
       appBar: appBar,
-      body: body,
+      body: mBody,
       floatingActionButton: floatingActionButton,
       floatingActionButtonLocation: floatingActionButtonLocation,
       floatingActionButtonAnimator: floatingActionButtonAnimator,

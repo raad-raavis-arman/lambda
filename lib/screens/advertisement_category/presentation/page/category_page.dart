@@ -92,7 +92,7 @@ class _CategoryView extends StatelessWidget {
                 ),
                 onTap: () {
                   if (isSelect) {
-                    context.pop(subCategories[index]);
+                    context.pop([category,subCategories[index]]);
                   }
                 },
               ),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:landa/core/utils/logger/logger.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
+import 'package:landa/l10n/l10n.dart';
+import 'package:landa/screens/advertisement_category/domain/entities/entities.dart';
 
 class CreateAdvertisementPage extends StatelessWidget {
   const CreateAdvertisementPage({super.key});
@@ -23,21 +24,51 @@ class CreateAdvertisementPage extends StatelessWidget {
   }
 }
 
-class _CreateAdvertisementView extends StatelessWidget {
+class _CreateAdvertisementView extends StatefulWidget {
   const _CreateAdvertisementView();
+
+  @override
+  State<_CreateAdvertisementView> createState() =>
+      _CreateAdvertisementViewState();
+}
+
+class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
+  final formKey = GlobalKey<FormState>();
+
+  final categoryController = TextController();
+
+  @override
+  void dispose() {
+    categoryController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return MScaffold(
-      body: const Center(
-        child: MText(text: 'Create Advertisement Page'),
+      appBar: AppBar(
+        title: MText(text: context.l10n.newAdvertisement),
       ),
-      bottomNavigationBar: ElevatedButton(
-        onPressed: () async {
-          final category = await context.pushNamed(RouteNames.category);
-          logger.i('selected category: $category');
-        },
-        child: const MText(text: 'Advertisement'),
+      scrollable: true,
+      body: Form(
+        key: formKey,
+        child: Column(
+          children: [
+            SelectableItemButton(
+              title: context.l10n.category,
+              textController: categoryController,
+              onClick: () async {
+                final data = await context.pushNamed(RouteNames.category);
+                if (data != null) {
+                  final category = (data as List<Object>)[0] as Category;
+                  final subCategory = data[1] as SubCategory;
+                  categoryController.value =
+                      '${category.title}/${subCategory.title}';
+                }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
