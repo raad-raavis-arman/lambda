@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:landa/core/utils/logger/logger.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/l10n/l10n.dart';
@@ -37,10 +36,20 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
   final formKey = GlobalKey<FormState>();
 
   final categoryController = TextController();
+  final advertisementAreaController = TextController();
+  final priceController = TextController();
+  final productCountController = TextController();
+  final creationAndExpirationDateController = TextController();
+  final contactInfoController = TextController();
 
   @override
   void dispose() {
     categoryController.dispose();
+    advertisementAreaController.dispose();
+    priceController.dispose();
+    productCountController.dispose();
+    creationAndExpirationDateController.dispose();
+    contactInfoController.dispose();
     super.dispose();
   }
 
@@ -55,6 +64,28 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
         key: formKey,
         child: Column(
           children: [
+            TextFormField(
+              validator: (value) {
+                if ((value?.length ?? 0) < 3) {
+                  return '';
+                } else {
+                  return null;
+                }
+              },
+              onSaved: (newValue) {},
+              decoration: InputDecoration(
+                hintText: context.l10n.createAdCaptionHint,
+                labelText: context.l10n.caption,
+                contentPadding: const EdgeInsets.symmetric(horizontal: 6),
+              ),
+              inputFormatters: [
+                if (context.isPersian)
+                  TextFieldPersianFormatter()
+                else
+                  TextFieldEnglishFormatter(),
+              ],
+            ),
+            const SizedBox.shrink().paddingM(),
             SelectableItemFormButton(
               title: context.l10n.category,
               textController: categoryController,
@@ -77,26 +108,76 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
               },
             ),
             const SizedBox.shrink().paddingL(),
-            TextFormField(
+            SelectableItemFormButton(
+              title: context.l10n.advertisementArea,
+              textController: advertisementAreaController,
               validator: (value) {
-                if ((value?.length ?? 0) < 3) {
+                if (value?.isEmpty ?? true) {
                   return '';
                 } else {
                   return null;
                 }
               },
               onSaved: (newValue) {},
-              decoration: InputDecoration(
-                hintText: context.l10n.createAdCaptionHint,
-                labelText: context.l10n.caption,
-              ),
-              inputFormatters: [
-                if (context.isPersian)
-                  TextFieldPersianFormatter()
-                else
-                  TextFieldEnglishFormatter(),
-              ],
+              onClick: () async {},
             ),
+            const SizedBox.shrink().paddingL(),
+            SelectableItemFormButton(
+              title: context.l10n.price,
+              textController: priceController,
+              validator: (value) {
+                if (value?.isEmpty ?? true) {
+                  return '';
+                } else {
+                  return null;
+                }
+              },
+              onSaved: (newValue) {},
+              onClick: () async {},
+            ),
+            const SizedBox.shrink().paddingL(),
+            SelectableItemFormButton(
+              title: context.l10n.productCount,
+              textController: productCountController,
+              validator: (value) {
+                if (value?.isEmpty ?? true) {
+                  return '';
+                } else {
+                  return null;
+                }
+              },
+              onSaved: (newValue) {},
+              onClick: () async {},
+            ),
+            const SizedBox.shrink().paddingL(),
+            SelectableItemFormButton(
+              title: context.l10n.creationAndExpirationDate,
+              textController: creationAndExpirationDateController,
+              validator: (value) {
+                if (value?.isEmpty ?? true) {
+                  return '';
+                } else {
+                  return null;
+                }
+              },
+              onSaved: (newValue) {},
+              onClick: () async {},
+            ),
+            const SizedBox.shrink().paddingL(),
+            SelectableItemFormButton(
+              title: context.l10n.contactInfo,
+              textController: contactInfoController,
+              validator: (value) {
+                if (value?.isEmpty ?? true) {
+                  return '';
+                } else {
+                  return null;
+                }
+              },
+              onSaved: (newValue) {},
+              onClick: () async {},
+            ),
+            const SizedBox.shrink().paddingL(),
           ],
         ),
       ),
