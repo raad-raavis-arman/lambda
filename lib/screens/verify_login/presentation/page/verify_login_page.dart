@@ -5,7 +5,6 @@ import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/di_service.dart';
 import 'package:landa/l10n/l10n.dart';
-import 'package:landa/l10n/lang/lang_bloc.dart';
 import 'package:landa/screens/verify_login/presentation/bloc/bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -69,7 +68,6 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
 
   @override
   Widget build(BuildContext context) {
-    final isPersian = context.read<LangBloc>().state.isPersian;
     return MScaffold(
       body: Center(
         child: Column(
@@ -113,7 +111,7 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
                     }
                   },
                   inputFormatters: [
-                    if (isPersian)
+                    if (context.isPersian)
                       TextFieldPersianFormatter()
                     else
                       TextFieldEnglishFormatter(),

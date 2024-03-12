@@ -40,5 +40,8 @@
         }
     },
     "newAdvertisement": "آگهی جدید",
-    "category": "دسته بندی"
+    "category": "دسته بندی",
+    "createAdCaptionHint": "عنوان مناسبی برای آگهی تان انتخاب کنید",
+    "caption": "عنوان",
+    "publish": "انتشار"
 }

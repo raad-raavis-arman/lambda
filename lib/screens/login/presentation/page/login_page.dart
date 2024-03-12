@@ -6,7 +6,6 @@ import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/di_service.dart';
 import 'package:landa/l10n/l10n.dart';
-import 'package:landa/l10n/lang/lang_bloc.dart';
 import 'package:landa/screens/login/presentation/bloc/login_bloc.dart';
 import 'package:landa/screens/verify_login/presentation/bloc/bloc.dart';
 
@@ -53,7 +52,6 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
 
   @override
   Widget build(BuildContext context) {
-    final isPersian = context.read<LangBloc>().state.isPersian;
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state is LoginOtpSentState) {
@@ -90,7 +88,7 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   style: Theme.of(context).textTheme.titleMedium,
                   inputFormatters: [
-                    if (isPersian)
+                    if (context.isPersian)
                       TextFieldPersianFormatter()
                     else
                       TextFieldEnglishFormatter(),

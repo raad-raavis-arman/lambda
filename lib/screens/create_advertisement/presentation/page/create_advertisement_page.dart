@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:landa/core/utils/logger/logger.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/l10n/l10n.dart';
@@ -54,9 +55,17 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
         key: formKey,
         child: Column(
           children: [
-            SelectableItemButton(
+            SelectableItemFormButton(
               title: context.l10n.category,
               textController: categoryController,
+              validator: (value) {
+                if (value?.isEmpty ?? true) {
+                  return '';
+                } else {
+                  return null;
+                }
+              },
+              onSaved: (newValue) {},
               onClick: () async {
                 final data = await context.pushNamed(RouteNames.category);
                 if (data != null) {
@@ -67,8 +76,37 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                 }
               },
             ),
+            const SizedBox.shrink().paddingL(),
+            TextFormField(
+              validator: (value) {
+                if ((value?.length ?? 0) < 3) {
+                  return '';
+                } else {
+                  return null;
+                }
+              },
+              onSaved: (newValue) {},
+              decoration: InputDecoration(
+                hintText: context.l10n.createAdCaptionHint,
+                labelText: context.l10n.caption,
+              ),
+              inputFormatters: [
+                if (context.isPersian)
+                  TextFieldPersianFormatter()
+                else
+                  TextFieldEnglishFormatter(),
+              ],
+            ),
           ],
         ),
+      ),
+      bottomNavigationBar: ElevatedButton(
+        onPressed: () {
+          if (formKey.currentState?.validate() ?? false) {
+            formKey.currentState?.save();
+          }
+        },
+        child: MText(text: context.l10n.publish),
       ),
     );
   }

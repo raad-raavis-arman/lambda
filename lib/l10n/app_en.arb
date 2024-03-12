@@ -40,5 +40,8 @@
         }
     },
     "newAdvertisement": "New advertisement",
-    "category": "Category"
+    "category": "Category",
+    "createAdCaptionHint": "Select appropriate caption for your advertisement",
+    "caption": "Caption",
+    "publish": "Publish"
 }
