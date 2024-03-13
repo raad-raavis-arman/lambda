@@ -54,5 +54,6 @@
     "discountPercentage": "درصد تخفیف",
     "tooman": "تومان",
     "originalPrice": "قیمت اصلی",
-    "finalPriceAfterDiscount": "قیمت نهایی پس از اعمال تخفیف"
+    "finalPriceAfterDiscount": "قیمت نهایی پس از اعمال تخفیف",
+    "number": "عدد"
 }

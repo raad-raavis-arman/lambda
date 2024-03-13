@@ -39,7 +39,6 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
   final categoryController = TextController();
   final advertisementAreaController = TextController();
   final priceController = TextController();
-  final productCountController = TextController();
   final creationAndExpirationDateController = TextController();
   final contactInfoController = TextController();
 
@@ -48,7 +47,6 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
     categoryController.dispose();
     advertisementAreaController.dispose();
     priceController.dispose();
-    productCountController.dispose();
     creationAndExpirationDateController.dispose();
     contactInfoController.dispose();
     super.dispose();
@@ -59,6 +57,11 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
     return MScaffold(
       appBar: AppBar(
         title: MText(text: context.l10n.newAdvertisement),
+        leading: BackButton(
+          onPressed: () {
+            context.goNamed(RouteNames.home);
+          },
+        ),
       ),
       scrollable: true,
       body: Form(
@@ -66,8 +69,10 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
         child: Column(
           children: [
             TextFormField(
+              initialValue: ' ',
+              style: Theme.of(context).textTheme.titleMedium,
               validator: (value) {
-                if ((value?.length ?? 0) < 3) {
+                if ((value?.trim().length ?? 0) < 3) {
                   return '';
                 } else {
                   return null;
@@ -75,8 +80,8 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
               },
               onSaved: (newValue) {},
               decoration: InputDecoration(
-                hintText: context.l10n.createAdCaptionHint,
                 labelText: context.l10n.caption,
+                labelStyle: Theme.of(context).textTheme.titleMedium,
                 contentPadding: const EdgeInsets.symmetric(horizontal: 6),
               ),
               inputFormatters: [
@@ -151,18 +156,34 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
               },
             ),
             const SizedBox.shrink().paddingL(),
-            SelectableItemFormButton(
-              title: context.l10n.productCount,
-              textController: productCountController,
+            TextFormField(
+              textAlign: TextAlign.center,
+              initialValue: ' ',
+              keyboardType: TextInputType.number,
+              style: Theme.of(context).textTheme.titleMedium,
               validator: (value) {
-                if (value?.isEmpty ?? true) {
+                if (value?.trim().isEmpty ?? true) {
                   return '';
                 } else {
                   return null;
                 }
               },
-              onSaved: (newValue) {},
-              onClick: () async {},
+              inputFormatters: [
+                if (context.isPersian)
+                  TextFieldPersianFormatter()
+                else
+                  TextFieldEnglishFormatter(),
+                NumberSeparatorFormatter(),
+              ],
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 6),
+                suffix: MText(
+                  text: context.l10n.number,
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+                labelText: context.l10n.productCount,
+                labelStyle: Theme.of(context).textTheme.titleMedium,
+              ),
             ),
             const SizedBox.shrink().paddingL(),
             SelectableItemFormButton(

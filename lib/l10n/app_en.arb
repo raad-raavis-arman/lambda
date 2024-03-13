@@ -54,5 +54,6 @@
     "discountPercentage": "Discount percentage",
     "tooman": "Tooman",
     "originalPrice": "Original price",
-    "finalPriceAfterDiscount": "Final price after discount"
+    "finalPriceAfterDiscount": "Final price after discount",
+    "number": "Number"
 }
