@@ -4,4 +4,5 @@ class RouteNames {
   static const String verifyLogin = '/verifyLogin';
   static const String createAdvertisement = '/createAdvertisement';
   static const String category = '/category';
+  static const String advertisementArea = '/advertisementArea';
 }

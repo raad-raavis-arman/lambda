@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/l10n/l10n.dart';
+import 'package:landa/screens/advertisement_area/domain/entities/entities.dart';
 import 'package:landa/screens/advertisement_category/domain/entities/entities.dart';
 
 class CreateAdvertisementPage extends StatelessWidget {
@@ -119,7 +120,15 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                 }
               },
               onSaved: (newValue) {},
-              onClick: () async {},
+              onClick: () async {
+                final data =
+                    await context.pushNamed(RouteNames.advertisementArea);
+                if (data != null) {
+                  final city = data as City;
+                  advertisementAreaController.value =
+                      '${city.provinceName}/${city.cityName}';
+                }
+              },
             ),
             const SizedBox.shrink().paddingL(),
             SelectableItemFormButton(

@@ -5,7 +5,7 @@ import 'package:landa/core/usecase/usecase.dart';
 import 'package:landa/screens/verify_login/domain/entities/entities.dart';
 import 'package:landa/screens/verify_login/domain/repositories/repositories.dart';
 
-class UserLoginUsescase implements BaseUseCase<LoginAuth, LoginParam> {
+class UserLoginUsescase extends BaseUseCase<LoginAuth, LoginParam> {
 
   UserLoginUsescase({required this.userLoginRepository});
 

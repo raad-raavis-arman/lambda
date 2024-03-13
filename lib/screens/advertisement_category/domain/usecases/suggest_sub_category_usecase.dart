@@ -5,7 +5,7 @@ import 'package:landa/core/usecase/usecase.dart';
 import 'package:landa/screens/advertisement_category/domain/repositories/repositories.dart';
 
 class SuggestSubCategoryUsescase
-    implements BaseUseCase<bool, SuggestSubCategoryParams> {
+    extends BaseUseCase<bool, SuggestSubCategoryParams> {
   SuggestSubCategoryUsescase({required this.subCategoryRepository});
 
   final SubCategoryRepository subCategoryRepository;

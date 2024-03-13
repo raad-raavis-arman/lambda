@@ -39,6 +39,9 @@ flutter:
   uses-material-design: true
   generate: true
 
+  assets:
+    - assets/jsons/
+
   fonts:
     - family: Yekan
       fonts:

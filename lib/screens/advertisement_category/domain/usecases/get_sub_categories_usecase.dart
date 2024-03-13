@@ -5,7 +5,7 @@ import 'package:landa/screens/advertisement_category/domain/entities/entities.da
 import 'package:landa/screens/advertisement_category/domain/repositories/repositories.dart';
 
 class GetSubCategoriesUsescase
-    implements BaseUseCase<List<SubCategory>, NoParams> {
+    extends BaseUseCase<List<SubCategory>, NoParams> {
   GetSubCategoriesUsescase({required this.subCategoryRepository});
 
   final SubCategoryRepository subCategoryRepository;

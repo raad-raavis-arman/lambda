@@ -4,7 +4,7 @@ import 'package:landa/core/usecase/usecase.dart';
 import 'package:landa/screens/advertisement_category/domain/entities/entities.dart';
 import 'package:landa/screens/advertisement_category/domain/repositories/repositories.dart';
 
-class GetCategoriesUsescase implements BaseUseCase<List<Category>, NoParams> {
+class GetCategoriesUsescase extends BaseUseCase<List<Category>, NoParams> {
   GetCategoriesUsescase({required this.categoryRepository});
 
   final CategoryRepository categoryRepository;
