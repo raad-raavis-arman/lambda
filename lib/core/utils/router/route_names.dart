@@ -5,4 +5,5 @@ class RouteNames {
   static const String createAdvertisement = '/createAdvertisement';
   static const String category = '/category';
   static const String advertisementArea = '/advertisementArea';
+  static const String advertisementPrice = '/advertisementPrice';
 }

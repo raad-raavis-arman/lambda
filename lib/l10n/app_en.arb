@@ -48,5 +48,11 @@
     "price": "Price",
     "productCount": "Product count",
     "creationAndExpirationDate": "Creation and expiration date",
-    "contactInfo": "Contact info"
+    "contactInfo": "Contact info",
+    "confirm": "Confirm",
+    "percentage": "Percentage",
+    "discountPercentage": "Discount percentage",
+    "tooman": "Tooman",
+    "originalPrice": "Original price",
+    "finalPriceAfterDiscount": "Final price after discount"
 }

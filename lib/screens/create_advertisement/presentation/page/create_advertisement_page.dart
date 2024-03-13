@@ -142,7 +142,13 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                 }
               },
               onSaved: (newValue) {},
-              onClick: () async {},
+              onClick: () {
+                context.pushNamed(RouteNames.advertisementPrice).then((data) {
+                  if (data != null) {
+                    priceController.value = context.l10n.tmn(data as String);
+                  }
+                });
+              },
             ),
             const SizedBox.shrink().paddingL(),
             SelectableItemFormButton(

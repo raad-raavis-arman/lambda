@@ -48,5 +48,11 @@
     "price": "قیمت",
     "productCount": "تعداد محصول",
     "creationAndExpirationDate": "تاریخ تولید و انقضا",
-    "contactInfo": "اطلاعات تماس"
+    "contactInfo": "اطلاعات تماس",
+    "confirm": "تایید",
+    "percentage": "درصد",
+    "discountPercentage": "درصد تخفیف",
+    "tooman": "تومان",
+    "originalPrice": "قیمت اصلی",
+    "finalPriceAfterDiscount": "قیمت نهایی پس از اعمال تخفیف"
 }
