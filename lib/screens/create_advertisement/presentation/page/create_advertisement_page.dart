@@ -215,7 +215,13 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                 }
               },
               onSaved: (newValue) {},
-              onClick: () async {},
+              onClick: () async {
+                final result = await context
+                    .pushNamed(RouteNames.advertisementContactInfo);
+                if (result != null) {
+                  contactInfoController.value = result as String?;
+                }
+              },
             ),
             const SizedBox.shrink().paddingL(),
           ],

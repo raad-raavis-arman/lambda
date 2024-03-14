@@ -58,5 +58,7 @@
     "number": "Number",
     "creationDate": "Creation date",
     "expirationDate": "Expiration date",
-    "until": "Until"
+    "until": "Until",
+    "mobileNumber": "Mobile number",
+    "dontShowMyNumberInAdvertisement": "Don't show my mobile number in advertisement"
 }

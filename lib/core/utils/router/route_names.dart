@@ -7,4 +7,5 @@ class RouteNames {
   static const String advertisementArea = '/advertisementArea';
   static const String advertisementPrice = '/advertisementPrice';
   static const String advertisementDate = '/advertisementDate';
+  static const String advertisementContactInfo = '/advertisementContactInfo';
 }

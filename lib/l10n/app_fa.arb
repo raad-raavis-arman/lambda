@@ -58,5 +58,7 @@
     "number": "عدد",
     "creationDate": "تاریخ تولید",
     "expirationDate": "تاریخ انقضا",
-    "until": "تا"
+    "until": "تا",
+    "mobileNumber": "شماره موبایل",
+    "dontShowMyNumberInAdvertisement": "شماره موبایل من را در آگهی نمایش نده"
 }
