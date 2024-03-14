@@ -69,7 +69,6 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
         child: Column(
           children: [
             TextFormField(
-              initialValue: ' ',
               style: Theme.of(context).textTheme.titleMedium,
               validator: (value) {
                 if ((value?.trim().length ?? 0) < 3) {
@@ -158,7 +157,6 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
             const SizedBox.shrink().paddingL(),
             TextFormField(
               textAlign: TextAlign.center,
-              initialValue: ' ',
               keyboardType: TextInputType.number,
               style: Theme.of(context).textTheme.titleMedium,
               validator: (value) {
@@ -197,7 +195,13 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                 }
               },
               onSaved: (newValue) {},
-              onClick: () async {},
+              onClick: () async {
+                final result =
+                    await context.pushNamed(RouteNames.advertisementDate);
+                if (result != null) {
+                  creationAndExpirationDateController.value = result as String?;
+                }
+              },
             ),
             const SizedBox.shrink().paddingL(),
             SelectableItemFormButton(

@@ -91,7 +91,7 @@ class SelectableItemButton extends StatelessWidget {
               text: value!,
               style: Theme.of(context).textTheme.titleSmall,
             ),
-          const SizedBox.shrink().paddingM(),
+          const SizedBox.shrink().paddingXXS(),
           if (showArrow)
             Icon(
               Icons.navigate_next_rounded,

@@ -55,5 +55,8 @@
     "tooman": "تومان",
     "originalPrice": "قیمت اصلی",
     "finalPriceAfterDiscount": "قیمت نهایی پس از اعمال تخفیف",
-    "number": "عدد"
+    "number": "عدد",
+    "creationDate": "تاریخ تولید",
+    "expirationDate": "تاریخ انقضا",
+    "until": "تا"
 }

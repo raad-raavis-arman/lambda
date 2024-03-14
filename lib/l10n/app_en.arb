@@ -55,5 +55,8 @@
     "tooman": "Tooman",
     "originalPrice": "Original price",
     "finalPriceAfterDiscount": "Final price after discount",
-    "number": "Number"
+    "number": "Number",
+    "creationDate": "Creation date",
+    "expirationDate": "Expiration date",
+    "until": "Until"
 }
