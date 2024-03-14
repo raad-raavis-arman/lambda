@@ -1,37 +1,69 @@
+import 'dart:ui' as ui show TextHeightBehavior;
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:landa/core/utils/utils.dart';
-import 'package:landa/l10n/lang/lang_bloc.dart';
 
-class MText extends Text {
-  const MText(
-    this.context,
-    this.text, {
+class MText extends StatelessWidget {
+  const MText({
+    required this.text,
+    this.locale,
     super.key,
-    super.style,
-    super.strutStyle,
-    super.textAlign,
-    super.textDirection,
-    super.locale,
-    super.softWrap,
-    super.overflow,
-    super.textScaler,
-    super.maxLines,
-    super.semanticsLabel,
-    super.textWidthBasis,
-    super.textHeightBehavior,
-    super.selectionColor,
-  }) : super(text);
+    this.style,
+    this.strutStyle,
+    this.textAlign,
+    this.textDirection,
+    this.softWrap,
+    this.overflow,
+    this.textScaler,
+    this.maxLines,
+    this.semanticsLabel,
+    this.textWidthBasis,
+    this.textHeightBehavior,
+    this.selectionColor,
+    this.textSpan,
+  });
 
-  final BuildContext context;
   final String text;
+  final Locale? locale;
+
+  final InlineSpan? textSpan;
+  final TextStyle? style;
+  final StrutStyle? strutStyle;
+  final TextAlign? textAlign;
+  final TextDirection? textDirection;
+  final bool? softWrap;
+  final TextOverflow? overflow;
+
+  final TextScaler? textScaler;
+  final int? maxLines;
+
+  final String? semanticsLabel;
+  final TextWidthBasis? textWidthBasis;
+  final ui.TextHeightBehavior? textHeightBehavior;
+  final Color? selectionColor;
 
   @override
-  String? get data {
-    if (context.read<LangBloc>().state.isPersian) {
-      return text.replaceEnNumToFa();
-    } else {
-      return text.replaceFaNumToEn();
-    }
+  Widget build(BuildContext context) {
+    final mLocale = locale ?? Localizations.localeOf(context);
+    final translatedText = mLocale.languageCode == 'fa'
+        ? text.replaceEnNumToFa()
+        : text.replaceFaNumToEn();
+    return Text(
+      translatedText,
+      key: key,
+      style: style,
+      strutStyle: strutStyle,
+      textAlign: textAlign,
+      textDirection: textDirection,
+      locale: mLocale,
+      softWrap: softWrap,
+      overflow: overflow,
+      textScaler: textScaler,
+      maxLines: maxLines,
+      semanticsLabel: semanticsLabel,
+      textWidthBasis: textWidthBasis,
+      textHeightBehavior: textHeightBehavior,
+      selectionColor: selectionColor,
+    );
   }
 }

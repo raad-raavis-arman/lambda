@@ -38,5 +38,27 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "newAdvertisement": "New advertisement",
+    "category": "Category",
+    "createAdCaptionHint": "Select appropriate caption for your advertisement",
+    "caption": "Caption",
+    "publish": "Publish",
+    "advertisementArea": "Advertisement area",
+    "price": "Price",
+    "productCount": "Product count",
+    "creationAndExpirationDate": "Creation and expiration date",
+    "contactInfo": "Contact info",
+    "confirm": "Confirm",
+    "percentage": "Percentage",
+    "discountPercentage": "Discount percentage",
+    "tooman": "Tooman",
+    "originalPrice": "Original price",
+    "finalPriceAfterDiscount": "Final price after discount",
+    "number": "Number",
+    "creationDate": "Creation date",
+    "expirationDate": "Expiration date",
+    "until": "Until",
+    "mobileNumber": "Mobile number",
+    "dontShowMyNumberInAdvertisement": "Don't show my mobile number in advertisement"
 }

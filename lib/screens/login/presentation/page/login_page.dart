@@ -6,18 +6,21 @@ import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/di_service.dart';
 import 'package:landa/l10n/l10n.dart';
-import 'package:landa/l10n/lang/lang_bloc.dart';
 import 'package:landa/screens/login/presentation/bloc/login_bloc.dart';
 import 'package:landa/screens/verify_login/presentation/bloc/bloc.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
-  static GoRouterPageBuilder get routeBuilder => (context, state) {
-        return const NoTransitionPage(
-          child: LoginPage(),
-        );
-      };
+  static GoRoute get route => GoRoute(
+        path: RouteNames.login,
+        name: RouteNames.login,
+        pageBuilder: (context, state) {
+          return const NoTransitionPage(
+            child: LoginPage(),
+          );
+        },
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +52,6 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
 
   @override
   Widget build(BuildContext context) {
-    final isPersian = context.read<LangBloc>().state.isPersian;
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state is LoginOtpSentState) {
@@ -66,15 +68,14 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
       },
       child: MScaffold(
         appBar: AppBar(
-          title: MText(context, context.l10n.login),
+          title: MText(text: context.l10n.login),
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               MText(
-                context,
-                context.l10n.loginTitle,
+                text: context.l10n.loginTitle,
               ).paddingXL(),
               Form(
                 key: formKey,
@@ -87,7 +88,7 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   style: Theme.of(context).textTheme.titleMedium,
                   inputFormatters: [
-                    if (isPersian)
+                    if (context.isPersian)
                       TextFieldPersianFormatter()
                     else
                       TextFieldEnglishFormatter(),
@@ -135,8 +136,7 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
                                   }
                                 : null,
                             child: MText(
-                              context,
-                              otpTimerState.timerFinished
+                              text: otpTimerState.timerFinished
                                   ? context.l10n.next
                                   : otpTimerState.remainedTimeFormattedString,
                             ),

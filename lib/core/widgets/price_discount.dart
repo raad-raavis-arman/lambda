@@ -24,22 +24,19 @@ class PriceDiscount extends StatelessWidget {
     return Row(
       children: [
         MText(
-          context,
-          context.l10n.tmn(realPriceFormatted),
+          text: context.l10n.tmn(realPriceFormatted),
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.labelSmall?.copyWith(
                 decoration: TextDecoration.lineThrough,
               ),
         ),
         MText(
-          context,
-          discountFormatted.replaceEnNumToFa(),
+          text: discountFormatted.replaceEnNumToFa(),
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.labelSmall,
         ),
         MText(
-          context,
-          context.l10n.tmn(discountedPriceFormatted),
+          text: context.l10n.tmn(discountedPriceFormatted),
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.labelSmall,
         ),

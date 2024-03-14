@@ -38,5 +38,27 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "newAdvertisement": "آگهی جدید",
+    "category": "دسته بندی",
+    "createAdCaptionHint": "عنوان مناسبی برای آگهی تان انتخاب کنید",
+    "caption": "عنوان",
+    "publish": "انتشار",
+    "advertisementArea": "محدوده آگهی",
+    "price": "قیمت",
+    "productCount": "تعداد محصول",
+    "creationAndExpirationDate": "تاریخ تولید و انقضا",
+    "contactInfo": "اطلاعات تماس",
+    "confirm": "تایید",
+    "percentage": "درصد",
+    "discountPercentage": "درصد تخفیف",
+    "tooman": "تومان",
+    "originalPrice": "قیمت اصلی",
+    "finalPriceAfterDiscount": "قیمت نهایی پس از اعمال تخفیف",
+    "number": "عدد",
+    "creationDate": "تاریخ تولید",
+    "expirationDate": "تاریخ انقضا",
+    "until": "تا",
+    "mobileNumber": "شماره موبایل",
+    "dontShowMyNumberInAdvertisement": "شماره موبایل من را در آگهی نمایش نده"
 }

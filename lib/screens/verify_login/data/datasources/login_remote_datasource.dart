@@ -2,25 +2,26 @@ import 'package:dio/dio.dart';
 import 'package:landa/core/error/m_dio_exception.dart';
 import 'package:landa/core/network/network.dart';
 import 'package:landa/screens/verify_login/data/models/login_auth_model.dart';
-import 'package:landa/screens/verify_login/domain/entities/entities.dart';
 
 abstract interface class LoginRemoteDataSource {
-  Future<LoginAuth> loginWithMobile(String mobileNumber,String otpCode);
-  Future<LoginAuth> loginWithEmail(String email,String otpCode);
+  Future<LoginAuthModel> loginWithMobile(String mobileNumber, String otpCode);
+  Future<LoginAuthModel> loginWithEmail(String email, String otpCode);
 }
 
 class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
-
   LoginRemoteDataSourceImpl({required this.restClientService});
   final RestClientService restClientService;
 
   @override
-  Future<LoginAuth> loginWithEmail(String email,String otpCode) {
+  Future<LoginAuthModel> loginWithEmail(String email, String otpCode) {
     throw UnimplementedError();
   }
 
   @override
-  Future<LoginAuth> loginWithMobile(String mobileNumber,String otpCode) async {
+  Future<LoginAuthModel> loginWithMobile(
+    String mobileNumber,
+    String otpCode,
+  ) async {
     try {
       // TODO(Taleb): get real data from server
       // final response = await restClientService

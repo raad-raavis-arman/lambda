@@ -5,7 +5,7 @@ import 'package:landa/core/usecase/usecase.dart';
 import 'package:landa/screens/login/domain/entities/entities.dart';
 import 'package:landa/screens/login/domain/repositories/repositories.dart';
 
-class UserOtpUsescase implements BaseUseCase<Otp, OtpParam> {
+class UserOtpUsescase extends BaseUseCase<Otp, OtpParam> {
 
   UserOtpUsescase({required this.userOtpRepository});
   final UserOtpRepository userOtpRepository;

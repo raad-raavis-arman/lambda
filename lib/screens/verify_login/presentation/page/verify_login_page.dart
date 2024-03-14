@@ -5,7 +5,6 @@ import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/di_service.dart';
 import 'package:landa/l10n/l10n.dart';
-import 'package:landa/l10n/lang/lang_bloc.dart';
 import 'package:landa/screens/verify_login/presentation/bloc/bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -17,17 +16,21 @@ class VerifyLoginPage extends StatelessWidget {
 
   final String mobileNumber;
 
-  static GoRouterPageBuilder get routeBuilder => (context, state) {
-        final mobileNumber = state.extra as String?;
-        if (mobileNumber == null) {
-          throw Exception('Mobile number must not be null');
-        }
-        return NoTransitionPage(
-          child: VerifyLoginPage(
-            mobileNumber: mobileNumber,
-          ),
-        );
-      };
+  static GoRoute get route => GoRoute(
+        path: RouteNames.verifyLogin,
+        name: RouteNames.verifyLogin,
+        pageBuilder: (context, state) {
+          final mobileNumber = state.extra as String?;
+          if (mobileNumber == null) {
+            throw Exception('Mobile number must not be null');
+          }
+          return NoTransitionPage(
+            child: VerifyLoginPage(
+              mobileNumber: mobileNumber,
+            ),
+          );
+        },
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +68,6 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
 
   @override
   Widget build(BuildContext context) {
-    final isPersian = context.read<LangBloc>().state.isPersian;
     return MScaffold(
       body: Center(
         child: Column(
@@ -75,8 +77,7 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 MText(
-                  context,
-                  context.l10n.otpVerifyTitle(
+                  text: context.l10n.otpVerifyTitle(
                     widget.mobileNumber,
                   ),
                 ),
@@ -85,8 +86,7 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
                     context.pop();
                   },
                   child: MText(
-                    context,
-                    context.l10n.editMobileNumber,
+                    text: context.l10n.editMobileNumber,
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
                           decoration: TextDecoration.underline,
                         ),
@@ -111,7 +111,7 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
                     }
                   },
                   inputFormatters: [
-                    if (isPersian)
+                    if (context.isPersian)
                       TextFieldPersianFormatter()
                     else
                       TextFieldEnglishFormatter(),
@@ -140,7 +140,7 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
                         //     );
                       }
                     },
-                    child: MText(context, context.l10n.login),
+                    child: MText(text: context.l10n.login),
                   ),
                 ),
                 const SizedBox().paddingS(),
@@ -160,8 +160,7 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
                             }
                           : null,
                       child: MText(
-                        context,
-                        state.timerFinished
+                        text: state.timerFinished
                             ? context.l10n.sendCode
                             : state.remainedTimeFormattedString,
                       ),

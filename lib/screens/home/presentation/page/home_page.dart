@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/screens/home/presentation/presentation.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  static GoRouterPageBuilder get routeBuilder => (context, state) {
-        return const NoTransitionPage(
-          child: HomePage(),
-        );
-      };
+  static GoRoute get route => GoRoute(
+        path: RouteNames.home,
+        name: RouteNames.home,
+        pageBuilder: (context, state) {
+          return const NoTransitionPage(
+            child: HomePage(),
+          );
+        },
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +39,13 @@ class _HomeView extends StatelessWidget {
             return const AdvertisementItem();
           },
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.goNamed(RouteNames.createAdvertisement);
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }

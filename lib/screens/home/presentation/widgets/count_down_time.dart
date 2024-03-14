@@ -35,8 +35,7 @@ class CountDownTime extends StatelessWidget {
               ),
             ),
             MText(
-              context,
-              context.l10n.countdownTime(
+              text: context.l10n.countdownTime(
                 remainedDuration.days.toString(),
                 remainedDuration.hours.toString(),
                 remainedDuration.minutes.toString(),
