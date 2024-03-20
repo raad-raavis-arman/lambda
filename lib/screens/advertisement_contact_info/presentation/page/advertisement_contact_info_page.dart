@@ -24,7 +24,7 @@ class AdvertisementContactInfoPage extends StatelessWidget {
 }
 
 class _AdvertisementContactInfoView extends StatefulWidget {
-  const _AdvertisementContactInfoView({super.key});
+  const _AdvertisementContactInfoView();
 
   @override
   State<_AdvertisementContactInfoView> createState() =>
@@ -58,7 +58,8 @@ class _AdvertisementContactInfoViewState
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleMedium,
               decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 6),
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: context.margingXS),
                 labelText: context.l10n.mobileNumber,
                 labelStyle: Theme.of(context).textTheme.titleMedium,
                 suffixIcon: const Icon(Icons.contact_phone),
@@ -84,7 +85,8 @@ class _AdvertisementContactInfoViewState
             ValueListenableBuilder(
               valueListenable: checkBoxNotifier,
               builder: (_, value, __) => CheckboxListTile(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 6),
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: context.margingXS),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
                   side: const BorderSide(width: 0.4),

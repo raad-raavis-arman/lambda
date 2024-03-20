@@ -74,7 +74,8 @@ class _AdvertisementPriceViewState extends State<_AdvertisementPriceView> {
                 NumberSeparatorFormatter(),
               ],
               decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 6),
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: context.margingXS),
                 suffix: MText(
                   text: context.l10n.tooman,
                   style: Theme.of(context).textTheme.titleSmall,
@@ -114,7 +115,8 @@ class _AdvertisementPriceViewState extends State<_AdvertisementPriceView> {
                 const InputNumberRangeLimited(begin: 0, end: 100),
               ],
               decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 6),
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: context.margingXS),
                 suffix: MText(
                   text: context.l10n.percentage,
                   style: Theme.of(context).textTheme.titleSmall,
@@ -150,7 +152,8 @@ class _AdvertisementPriceViewState extends State<_AdvertisementPriceView> {
                 NumberSeparatorFormatter(),
               ],
               decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 6),
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: context.margingXS),
                 suffix: MText(
                   text: context.l10n.tooman,
                   style: Theme.of(context).textTheme.titleSmall,
