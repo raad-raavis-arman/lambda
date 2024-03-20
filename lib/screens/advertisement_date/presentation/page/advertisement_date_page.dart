@@ -67,7 +67,8 @@ class _AdvertisementDateViewState extends State<_AdvertisementDateView> {
                 }
               },
               decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 6),
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: context.margingXS),
                 labelText: context.l10n.creationDate,
                 labelStyle: Theme.of(context).textTheme.titleMedium,
                 suffixIcon: const Icon(Icons.date_range),
@@ -91,7 +92,8 @@ class _AdvertisementDateViewState extends State<_AdvertisementDateView> {
               readOnly: true,
               style: Theme.of(context).textTheme.titleMedium,
               decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 6),
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: context.margingXS),
                 labelText: context.l10n.expirationDate,
                 labelStyle: Theme.of(context).textTheme.titleMedium,
                 suffixIcon: const Icon(Icons.date_range),
