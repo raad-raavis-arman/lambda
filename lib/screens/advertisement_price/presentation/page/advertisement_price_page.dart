@@ -65,6 +65,7 @@ class _AdvertisementPriceViewState extends State<_AdvertisementPriceView> {
               textAlign: TextAlign.center,
               controller: originalPriceController,
               keyboardType: TextInputType.number,
+              textInputAction: TextInputAction.done,
               style: Theme.of(context).textTheme.titleMedium,
               inputFormatters: [
                 if (context.isPersian)
@@ -107,6 +108,7 @@ class _AdvertisementPriceViewState extends State<_AdvertisementPriceView> {
               textAlign: TextAlign.center,
               keyboardType: TextInputType.number,
               controller: discountController,
+              textInputAction: TextInputAction.done,
               inputFormatters: [
                 if (context.isPersian)
                   TextFieldPersianFormatter()

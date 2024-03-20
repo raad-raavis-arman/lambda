@@ -57,6 +57,8 @@ class _AdvertisementContactInfoViewState
             TextFormField(
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleMedium,
+              textInputAction: TextInputAction.done,
+              keyboardType:TextInputType.number,
               decoration: InputDecoration(
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: context.margingXS),
