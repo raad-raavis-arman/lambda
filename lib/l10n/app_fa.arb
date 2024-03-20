@@ -60,5 +60,7 @@
     "expirationDate": "تاریخ انقضا",
     "until": "تا",
     "mobileNumber": "شماره موبایل",
-    "dontShowMyNumberInAdvertisement": "شماره موبایل من را در آگهی نمایش نده"
+    "dontShowMyNumberInAdvertisement": "شماره موبایل من را در آگهی نمایش نده",
+    "newVersionChanges": "تغییرات ورژن جدید",
+    "features": "-تغییر اول \n-تغییر دوم \n-تغییر سوم"
 }

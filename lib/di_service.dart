@@ -17,6 +17,8 @@ import 'package:landa/screens/verify_login/data/datasources/datasources.dart';
 import 'package:landa/screens/verify_login/data/repositories/repositories.dart';
 import 'package:landa/screens/verify_login/domain/repositories/repositories.dart';
 import 'package:landa/screens/verify_login/domain/usecases/usecases.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final locator = GetIt.instance;
 
@@ -115,5 +117,11 @@ void setup() {
     )
     ..registerLazySingleton(
       ProvinceLocalDatasource.new,
-    );
+    )
+
+    // register shared preferences
+    ..registerLazySingletonAsync(SharedPreferences.getInstance)
+
+    // register package info pluse
+    ..registerLazySingletonAsync(PackageInfo.fromPlatform);
 }
