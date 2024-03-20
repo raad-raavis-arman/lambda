@@ -70,6 +70,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
           children: [
             TextFormField(
               style: Theme.of(context).textTheme.titleMedium,
+              textInputAction: TextInputAction.done,
               validator: (value) {
                 if ((value?.trim().length ?? 0) < 3) {
                   return '';
@@ -159,6 +160,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
             TextFormField(
               textAlign: TextAlign.center,
               keyboardType: TextInputType.number,
+              textInputAction: TextInputAction.done,
               style: Theme.of(context).textTheme.titleMedium,
               validator: (value) {
                 if (value?.trim().isEmpty ?? true) {
