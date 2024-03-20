@@ -27,6 +27,7 @@ dependencies:
   language_code: ^0.4.0
   logger: ^2.0.2+1
   pin_code_fields: ^8.0.1
+  shared_preferences: ^2.2.2
   url_strategy: ^0.2.0
 
 dev_dependencies:
