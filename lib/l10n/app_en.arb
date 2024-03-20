@@ -60,5 +60,7 @@
     "expirationDate": "Expiration date",
     "until": "Until",
     "mobileNumber": "Mobile number",
-    "dontShowMyNumberInAdvertisement": "Don't show my mobile number in advertisement"
+    "dontShowMyNumberInAdvertisement": "Don't show my mobile number in advertisement",
+    "newVersionChanges": "New version changes",
+    "features": "-feature on \n -feature 2 \n-feature 3"
 }

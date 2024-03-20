@@ -5,6 +5,7 @@ import 'package:landa/flavor_config.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 void mainCommon(FlavorConfig flavorConfig) {
+  WidgetsFlutterBinding.ensureInitialized();
   setup();
   setPathUrlStrategy();
   runApp(

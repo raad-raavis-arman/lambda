@@ -20,7 +20,7 @@ class MPopup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: Colors.grey[200]!.withOpacity(0.5),
+      backgroundColor: Colors.grey[200]!.withOpacity(0.65),
       surfaceTintColor: Colors.transparent,
       contentPadding: EdgeInsets.symmetric(
         horizontal: context.margingM,
@@ -51,6 +51,7 @@ class MPopup extends StatelessWidget {
             SizedBox(height: context.margingS),
             Container(
               padding: EdgeInsets.all(context.margingS),
+              width: double.infinity,
               decoration: BoxDecoration(
                 color: Theme.of(context).dialogBackgroundColor,
                 borderRadius: BorderRadius.all(
@@ -60,7 +61,6 @@ class MPopup extends StatelessWidget {
               child: MText(
                 text: description,
                 style: Theme.of(context).textTheme.bodyMedium,
-                textAlign: TextAlign.center,
               ),
             ),
             SizedBox(height: context.margingS),

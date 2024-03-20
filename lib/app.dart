@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:landa/core/utils/router/router.dart';
-import 'package:landa/core/utils/theme/theme.dart';
+import 'package:landa/core/utils/utils.dart';
+import 'package:landa/di_service.dart';
 import 'package:landa/flavor_config.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/l10n/lang/lang_bloc.dart';
@@ -31,6 +31,12 @@ class AppRootPage extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => ThemeBloc(),
+        ),
+        BlocProvider(
+          create: (_) => NewVersionBloc(
+            packageInfo: locator.getAsync(),
+            preferences: locator.getAsync(),
+          )..add(CheckNewVersionEvent()),
         ),
       ],
       child: _AppRootView(

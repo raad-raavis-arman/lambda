@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
@@ -28,24 +29,34 @@ class _HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MScaffold(
-      body: RefreshIndicator(
-        onRefresh: () async {
-          await Future.delayed(const Duration(seconds: 1));
-        },
-        child: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (_, __) {
-            return const AdvertisementItem();
+    return BlocListener<NewVersionBloc, NewVersionState>(
+      listener: (context, state) {
+        if (state.isNewVersion) {
+          showDialog(
+            context: context,
+            builder: (_) => const NewVersionPopup(),
+          );
+        }
+      },
+      child: MScaffold(
+        body: RefreshIndicator(
+          onRefresh: () async {
+            await Future.delayed(const Duration(seconds: 1));
           },
+          child: ListView.builder(
+            itemCount: 10,
+            itemBuilder: (_, __) {
+              return const AdvertisementItem();
+            },
+          ),
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.goNamed(RouteNames.createAdvertisement);
-        },
-        child: const Icon(Icons.add),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            context.goNamed(RouteNames.createAdvertisement);
+          },
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }
