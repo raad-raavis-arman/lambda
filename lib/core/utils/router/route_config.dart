@@ -4,6 +4,7 @@ import 'package:landa/screens/advertisement_area/presentation/presentation.dart'
 import 'package:landa/screens/advertisement_category/presentation/page/page.dart';
 import 'package:landa/screens/advertisement_contact_info/presentation/presentation.dart';
 import 'package:landa/screens/advertisement_date/presentation/presentation.dart';
+import 'package:landa/screens/advertisement_details/presentation/presentation.dart';
 import 'package:landa/screens/advertisement_price/presentation/presentation.dart';
 import 'package:landa/screens/create_advertisement/presentation/presentation.dart';
 import 'package:landa/screens/home/presentation/presentation.dart';
