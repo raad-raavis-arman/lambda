@@ -87,10 +87,9 @@ class MScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     final mBody = scrollable
         ? SingleChildScrollView(
-            child: Padding(
-              padding: bodyPadding,
-              child: body,
-            ),
+            padding: bodyPadding,
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+            child: body,
           )
         : Padding(
             padding: bodyPadding,
