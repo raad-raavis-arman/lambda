@@ -44,6 +44,7 @@ flutter:
 
   assets:
     - assets/jsons/
+    - assets/img/logo/
 
   fonts:
     - family: Yekan

@@ -8,12 +8,14 @@ import 'package:landa/screens/advertisement_price/presentation/presentation.dart
 import 'package:landa/screens/create_advertisement/presentation/presentation.dart';
 import 'package:landa/screens/home/presentation/presentation.dart';
 import 'package:landa/screens/login/presentation/presentation.dart';
+import 'package:landa/screens/splash/presentation/page/page.dart';
 import 'package:landa/screens/verify_login/presentation/presentation.dart';
 
 class RouteConfig {
   static final _router = GoRouter(
-    initialLocation: RouteNames.login,
+    initialLocation: RouteNames.splash,
     routes: [
+      SplashPage.route,
       LoginPage.route,
       VerifyLoginPage.route,
       HomePage.route,
