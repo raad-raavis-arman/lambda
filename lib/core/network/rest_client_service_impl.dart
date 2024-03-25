@@ -1,7 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:landa/core/network/network.dart';
-import 'package:landa/core/utils/logger/logger.dart';
-import 'package:logger/logger.dart';
 
 class RestClientServiceImpl implements RestClientService {
   factory RestClientServiceImpl() => _instance;

@@ -4,9 +4,9 @@ import 'package:landa/di_service.dart';
 import 'package:landa/flavor_config.dart';
 import 'package:url_strategy/url_strategy.dart';
 
-void mainCommon(FlavorConfig flavorConfig) {
+Future<void> mainCommon(FlavorConfig flavorConfig) async {
   WidgetsFlutterBinding.ensureInitialized();
-  setup();
+  await setup();
   setPathUrlStrategy();
   runApp(
     AppRootPage(

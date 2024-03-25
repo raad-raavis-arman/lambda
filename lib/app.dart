@@ -34,8 +34,8 @@ class AppRootPage extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => NewVersionBloc(
-            packageInfo: locator.getAsync(),
-            preferences: locator.getAsync(),
+            packageInfo: locator.get(),
+            preferences: locator.get(),
           )..add(CheckNewVersionEvent()),
         ),
       ],
