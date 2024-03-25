@@ -7,6 +7,7 @@ sealed class VerifyLoginState extends Equatable {
 }
 
 final class VerifyLoginInitialState extends VerifyLoginState {}
+final class VerifyLoginLoadingState extends VerifyLoginState {}
 
 final class VerifyLoginSuccessState extends VerifyLoginState {}
 

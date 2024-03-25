@@ -22,6 +22,7 @@ final class VerifyLoginBloc extends Bloc<VerifyLoginEvent, VerifyLoginState> {
     AuthenticateLoginEvent event,
     Emitter<VerifyLoginState> emit,
   ) async {
+    emit(VerifyLoginLoadingState());
     final result = await userLoginUsescase.call(
       LoginParam(
         mobileNumber: event.mobileNumber,

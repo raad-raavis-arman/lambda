@@ -29,6 +29,8 @@ final class UserLoginRepositoryImpl implements UserLoginRepository {
       return Right(result);
     } on MException catch (e) {
       return Left(ServerFailure(e.errorMessage));
+    } on Exception catch (e) {
+      return Left(ServerFailure(e.toString()));
     }
   }
 
@@ -51,6 +53,8 @@ final class UserLoginRepositoryImpl implements UserLoginRepository {
       return Right(result);
     } on MException catch (e) {
       return Left(ServerFailure(e.errorMessage));
+    } on Exception catch (e) {
+      return Left(ServerFailure(e.toString()));
     }
   }
 }

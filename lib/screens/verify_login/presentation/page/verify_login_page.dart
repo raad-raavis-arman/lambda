@@ -7,6 +7,7 @@ import 'package:landa/di_service.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/screens/verify_login/presentation/bloc/bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:toastification/toastification.dart';
 
 class VerifyLoginPage extends StatelessWidget {
   const VerifyLoginPage({
@@ -73,11 +74,26 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
         if (state is VerifyLoginSuccessState) {
           context.replaceNamed(RouteNames.home);
         } else if (state is VerifyLoginFailState) {
-          // TODO(Taleb): show toast with messag
+          Toastification().show(
+            context: context,
+            type: ToastificationType.error,
+            title: MText(text: context.l10n.error),
+            description: MText(text: context.l10n.sthWentWrong),
+          );
         } else if (state is VerifyLoginOtpFailState) {
-          // TODO(Taleb): show toast with message
+          Toastification().show(
+            context: context,
+            type: ToastificationType.error,
+            title: MText(text: context.l10n.error),
+            description: MText(text: context.l10n.failedToSendOtp),
+          );
         } else if (state is VerifyLoginOtpSuccessState) {
-          // TODO(Taleb): show toast with message
+          Toastification().show(
+            context: context,
+            type: ToastificationType.error,
+            title: MText(text: context.l10n.success),
+            description: MText(text: context.l10n.otpSentSuccessfully),
+          );
         }
       },
       child: MScaffold(
@@ -138,20 +154,31 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
               Row(
                 children: [
                   Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (formKey.currentState?.validate() ?? false) {
-                          formKey.currentState?.save();
-                          context.read<VerifyLoginBloc>().add(
-                                AuthenticateLoginEvent(
-                                  otp: otpCode.replaceFaNumToEn(),
-                                  mobileNumber:
-                                      widget.mobileNumber.replaceFaNumToEn(),
-                                ),
-                              );
-                        }
+                    child: BlocBuilder<VerifyLoginBloc, VerifyLoginState>(
+                      builder: (context, state) {
+                        return ElevatedButton(
+                          onPressed: state is VerifyLoginLoadingState
+                              ? null
+                              : () {
+                                  if (formKey.currentState?.validate() ??
+                                      false) {
+                                    formKey.currentState?.save();
+                                    context.read<VerifyLoginBloc>().add(
+                                          AuthenticateLoginEvent(
+                                            otp: otpCode.replaceFaNumToEn(),
+                                            mobileNumber: widget.mobileNumber
+                                                .replaceFaNumToEn(),
+                                          ),
+                                        );
+                                  }
+                                },
+                          child: state is VerifyLoginLoadingState
+                              ? const Center(
+                                  child: CircularProgressIndicator(),
+                                ).paddingXS()
+                              : MText(text: context.l10n.login),
+                        );
                       },
-                      child: MText(text: context.l10n.login),
                     ),
                   ),
                   const SizedBox().paddingS(),

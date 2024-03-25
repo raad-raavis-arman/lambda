@@ -62,5 +62,10 @@
     "mobileNumber": "Mobile number",
     "dontShowMyNumberInAdvertisement": "Don't show my mobile number in advertisement",
     "newVersionChanges": "New version changes",
-    "features": "-feature on \n -feature 2 \n-feature 3"
+    "features": "-feature on \n -feature 2 \n-feature 3",
+    "sthWentWrong": "Something went wrong",
+    "error": "Error",
+    "otpSentSuccessfully": "OTP code sent successfully",
+    "success": "Success",
+    "failedToSendOtp": "Failed to send OTP"
 }

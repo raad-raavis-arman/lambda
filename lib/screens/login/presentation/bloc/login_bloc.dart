@@ -23,7 +23,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         await userOtp.call(OtpParam(mobileNumber: event.mobileNumber));
     response.fold(
       (failure) => emit(LoginFailureState()),
-      (otp) => emit(LoginOtpSentState()),
+      (otp) => emit(LoginOtpSentState(otpCode: otp.otpCode)),
     );
   }
 }
