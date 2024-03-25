@@ -7,6 +7,7 @@ import 'package:landa/di_service.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/screens/verify_login/presentation/bloc/bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:toastification/toastification.dart';
 
 class VerifyLoginPage extends StatelessWidget {
   const VerifyLoginPage({
@@ -68,109 +69,147 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return MScaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                MText(
-                  text: context.l10n.otpVerifyTitle(
-                    widget.mobileNumber,
+    return BlocListener<VerifyLoginBloc, VerifyLoginState>(
+      listener: (context, state) {
+        if (state is VerifyLoginSuccessState) {
+          context.replaceNamed(RouteNames.home);
+        } else if (state is VerifyLoginFailState) {
+          Toastification().show(
+            context: context,
+            type: ToastificationType.error,
+            title: MText(text: context.l10n.error),
+            description: MText(text: context.l10n.sthWentWrong),
+          );
+        } else if (state is VerifyLoginOtpFailState) {
+          Toastification().show(
+            context: context,
+            type: ToastificationType.error,
+            title: MText(text: context.l10n.error),
+            description: MText(text: context.l10n.failedToSendOtp),
+          );
+        } else if (state is VerifyLoginOtpSuccessState) {
+          Toastification().show(
+            context: context,
+            type: ToastificationType.error,
+            title: MText(text: context.l10n.success),
+            description: MText(text: context.l10n.otpSentSuccessfully),
+          );
+        }
+      },
+      child: MScaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  MText(
+                    text: context.l10n.otpVerifyTitle(
+                      widget.mobileNumber,
+                    ),
                   ),
-                ),
-                MaterialButton(
-                  onPressed: () {
-                    context.pop();
-                  },
-                  child: MText(
-                    text: context.l10n.editMobileNumber,
-                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                          decoration: TextDecoration.underline,
-                        ),
-                  ),
-                ),
-              ],
-            ).paddingL(),
-            Directionality(
-              textDirection: TextDirection.ltr,
-              child: Form(
-                key: formKey,
-                child: PinCodeTextField(
-                  appContext: context,
-                  length: 6,
-                  keyboardType: TextInputType.number,
-                  onSaved: (newValue) => otpCode = newValue ?? '',
-                  validator: (value) {
-                    if (value?.trim().length == 6) {
-                      return null;
-                    } else {
-                      return '';
-                    }
-                  },
-                  inputFormatters: [
-                    if (context.isPersian)
-                      TextFieldPersianFormatter()
-                    else
-                      TextFieldEnglishFormatter(),
-                  ],
-                  pinTheme: MediaQuery.of(context).platformBrightness ==
-                          Brightness.dark
-                      ? darkPinTheme
-                      : lightPinTheme,
-                ).paddingXL(),
-              ),
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
+                  MaterialButton(
                     onPressed: () {
-                      if (formKey.currentState?.validate() ?? false) {
-                        formKey.currentState?.save();
-                        context.goNamed(RouteNames.home);
-                        // context.read<VerifyLoginBloc>().add(
-                        //       AuthenticateLoginEvent(
-                        //         otp: otpCode.replaceFaNumToEn(),
-                        //         mobileNumber:
-                        //             widget.mobileNumber.replaceFaNumToEn(),
-                        //       ),
-                        //     );
+                      context.pop();
+                    },
+                    child: MText(
+                      text: context.l10n.editMobileNumber,
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                            decoration: TextDecoration.underline,
+                          ),
+                    ),
+                  ),
+                ],
+              ).paddingL(),
+              Directionality(
+                textDirection: TextDirection.ltr,
+                child: Form(
+                  key: formKey,
+                  child: PinCodeTextField(
+                    appContext: context,
+                    length: 6,
+                    keyboardType: TextInputType.number,
+                    onSaved: (newValue) => otpCode = newValue ?? '',
+                    validator: (value) {
+                      if (value?.trim().length == 6) {
+                        return null;
+                      } else {
+                        return '';
                       }
                     },
-                    child: MText(text: context.l10n.login),
+                    inputFormatters: [
+                      if (context.isPersian)
+                        TextFieldPersianFormatter()
+                      else
+                        TextFieldEnglishFormatter(),
+                    ],
+                    pinTheme: MediaQuery.of(context).platformBrightness ==
+                            Brightness.dark
+                        ? darkPinTheme
+                        : lightPinTheme,
+                  ).paddingXL(),
+                ),
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: BlocBuilder<VerifyLoginBloc, VerifyLoginState>(
+                      builder: (context, state) {
+                        return ElevatedButton(
+                          onPressed: state is VerifyLoginLoadingState
+                              ? null
+                              : () {
+                                  if (formKey.currentState?.validate() ??
+                                      false) {
+                                    formKey.currentState?.save();
+                                    context.read<VerifyLoginBloc>().add(
+                                          AuthenticateLoginEvent(
+                                            otp: otpCode.replaceFaNumToEn(),
+                                            mobileNumber: widget.mobileNumber
+                                                .replaceFaNumToEn(),
+                                          ),
+                                        );
+                                  }
+                                },
+                          child: state is VerifyLoginLoadingState
+                              ? const Center(
+                                  child: CircularProgressIndicator(),
+                                ).paddingXS()
+                              : MText(text: context.l10n.login),
+                        );
+                      },
+                    ),
                   ),
-                ),
-                const SizedBox().paddingS(),
-                BlocBuilder<OtpTimerBloc, OtpTimerState>(
-                  builder: (context, state) {
-                    return OutlinedButton(
-                      onPressed: state.timerFinished
-                          ? () {
-                              context
-                                  .read<OtpTimerBloc>()
-                                  .add(OtpTimerStartEvent());
-                              context.read<VerifyLoginBloc>().add(
-                                    ResendOtpEvent(
-                                      mobileNumber: widget.mobileNumber,
-                                    ),
-                                  );
-                            }
-                          : null,
-                      child: MText(
-                        text: state.timerFinished
-                            ? context.l10n.sendCode
-                            : state.remainedTimeFormattedString,
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ).paddingXL(),
-          ],
-        ).paddingM(),
+                  const SizedBox().paddingS(),
+                  BlocBuilder<OtpTimerBloc, OtpTimerState>(
+                    builder: (context, state) {
+                      return OutlinedButton(
+                        onPressed: state.timerFinished
+                            ? () {
+                                context
+                                    .read<OtpTimerBloc>()
+                                    .add(OtpTimerStartEvent());
+                                context.read<VerifyLoginBloc>().add(
+                                      ResendOtpEvent(
+                                        mobileNumber: widget.mobileNumber,
+                                      ),
+                                    );
+                              }
+                            : null,
+                        child: MText(
+                          text: state.timerFinished
+                              ? context.l10n.sendCode
+                              : state.remainedTimeFormattedString,
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ).paddingXL(),
+            ],
+          ).paddingM(),
+        ),
       ),
     );
   }

@@ -8,8 +8,8 @@ class UserModel extends User {
   const UserModel({
     required super.id,
     required super.mobileNumber,
-    required super.currentProvince,
-    super.currentCity,
+    required super.currentProvinceId,
+    super.currentCityId,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

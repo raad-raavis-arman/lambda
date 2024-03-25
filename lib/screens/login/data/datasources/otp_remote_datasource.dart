@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:landa/core/error/m_dio_exception.dart';
+import 'package:landa/core/error/m_exception.dart';
 import 'package:landa/core/network/network.dart';
 import 'package:landa/screens/login/data/models/otp_model.dart';
 import 'package:landa/screens/login/domain/entities/entities.dart';
@@ -10,9 +10,8 @@ abstract interface class OtpRemoteDataSource {
 }
 
 class OtpRemoteDataSourceImpl implements OtpRemoteDataSource {
-
   OtpRemoteDataSourceImpl({required this.restClientService});
-  
+
   final RestClientService restClientService;
 
   @override
@@ -23,13 +22,18 @@ class OtpRemoteDataSourceImpl implements OtpRemoteDataSource {
   @override
   Future<Otp> sendMobileOtp(String mobileNumber) async {
     try {
-      // TODO(Taleb): get real data from server
-      // final response = await restClientService
-      //     .post('/otp', data: {'mobileNumber': mobileNumber});
-      await Future.delayed(const Duration(milliseconds: 300));
-      return OtpModel.fromJson(const {'otpCode': '32478'});
+      final response = await restClientService
+          .post('/auth/sendOtp', data: {'mobile_number': mobileNumber});
+      if (response['success'] == true) {
+        return OtpModel.fromJson(response['data']);
+      } else {
+        throw MException(
+          errorMessage: 'failed to send otp message',
+          data: response,
+        );
+      }
     } on DioException catch (e) {
-      throw MDioException.fromDioError(e);
+      throw MException.fromDioError(e);
     } on Exception catch (_) {
       rethrow;
     }

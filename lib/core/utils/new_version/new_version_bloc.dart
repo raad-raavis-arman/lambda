@@ -13,20 +13,18 @@ class NewVersionBloc extends Bloc<NewVersionEvent, NewVersionState> {
     required this.preferences,
   }) : super(const NewVersionState()) {
     on<CheckNewVersionEvent>((event, emit) async {
-      final savedVersion =
-          (await preferences).getString(PreferenceKeys.version);
+      final savedVersion = preferences.getString(PreferenceKeys.version);
       final currentVersion =
-          '${(await packageInfo).version}+${(await packageInfo).buildNumber}';
+          '${packageInfo.version}+${packageInfo.buildNumber}';
       if (savedVersion != currentVersion) {
         emit(const NewVersionState(isNewVersion: true));
-        await (await preferences)
-            .setString(PreferenceKeys.version, currentVersion);
+        await preferences.setString(PreferenceKeys.version, currentVersion);
       } else {
         emit(const NewVersionState());
       }
     });
   }
 
-  final Future<SharedPreferences> preferences;
-  final Future<PackageInfo> packageInfo;
+  final SharedPreferences preferences;
+  final PackageInfo packageInfo;
 }

@@ -11,6 +11,7 @@ class LoginAuthModel extends LoginAuth {
     required super.accessToken,
     required super.expiresIn,
     required super.tokenType,
+    required super.issuedAt,
     required this.mUser,
   }) : super(user: mUser);
 

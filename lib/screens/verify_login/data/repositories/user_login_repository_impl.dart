@@ -1,13 +1,20 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:landa/core/error/error.dart';
+import 'package:landa/core/utils/utils.dart';
 import 'package:landa/screens/verify_login/data/datasources/datasources.dart';
 import 'package:landa/screens/verify_login/domain/entities/entities.dart';
 import 'package:landa/screens/verify_login/domain/repositories/repositories.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final class UserLoginRepositoryImpl implements UserLoginRepository {
+  UserLoginRepositoryImpl({
+    required this.loginRemoteDataSource,
+    required this.preferences,
+  });
+  final SharedPreferences preferences;
 
-  UserLoginRepositoryImpl({required this.loginRemoteDataSource});
-  
   final LoginRemoteDataSource loginRemoteDataSource;
   @override
   Future<Either<Failure, LoginAuth>> loginWithEmail(
@@ -20,8 +27,10 @@ final class UserLoginRepositoryImpl implements UserLoginRepository {
         otpCode,
       );
       return Right(result);
-    } on MDioException catch (e) {
+    } on MException catch (e) {
       return Left(ServerFailure(e.errorMessage));
+    } on Exception catch (e) {
+      return Left(ServerFailure(e.toString()));
     }
   }
 
@@ -33,11 +42,19 @@ final class UserLoginRepositoryImpl implements UserLoginRepository {
     try {
       final result = await loginRemoteDataSource.loginWithMobile(
         mobileNumber,
-        mobileNumber,
+        otpCode,
+      );
+      await preferences.setString(
+        PreferenceKeys.userAuth,
+        jsonEncode(
+          result.toJson(),
+        ),
       );
       return Right(result);
-    } on MDioException catch (e) {
+    } on MException catch (e) {
       return Left(ServerFailure(e.errorMessage));
+    } on Exception catch (e) {
+      return Left(ServerFailure(e.toString()));
     }
   }
 }

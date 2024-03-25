@@ -8,6 +8,7 @@ import 'package:landa/di_service.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/screens/login/presentation/bloc/login_bloc.dart';
 import 'package:landa/screens/verify_login/presentation/bloc/bloc.dart';
+import 'package:toastification/toastification.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -56,14 +57,26 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
       listener: (context, state) {
         if (state is LoginOtpSentState) {
           logger.i('LoginOtpSentState');
-          // TODO(Taleb): show a Toast and tell user that otp sent successfully
+          Toastification().show(
+            context: context,
+            type: ToastificationType.success,
+            title: MText(text: context.l10n.success),
+            description: MText(
+              text: '${context.l10n.otpSentSuccessfully} ${state.otpCode}',
+            ),
+          );
           context.read<OtpTimerBloc>().add(OtpTimerStartEvent());
           context.pushNamed(
             RouteNames.verifyLogin,
             extra: validatedMobileNumber,
           );
         } else if (state is LoginFailureState) {
-          // TODO(Taleb): show an alert and show user error message
+          Toastification().show(
+            context: context,
+            type: ToastificationType.error,
+            title: MText(text: context.l10n.error),
+            description: MText(text: context.l10n.sthWentWrong),
+          );
         }
       },
       child: MScaffold(

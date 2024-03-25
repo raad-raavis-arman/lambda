@@ -28,8 +28,8 @@ class OtpTimerBloc extends Bloc<OtpTimerEvent, OtpTimerState> {
   }
 
   Timer? _timer;
-  final _totalTimeDurationInSecond = 2 * 60;
-  int _remainedTimeSeconds = 2 * 60;
+  final _totalTimeDurationInSecond = 5 * 60;
+  int _remainedTimeSeconds = 5 * 60;
   OtpTimerState _currentState = const OtpTimerState();
 
   OtpTimerState _onTimerTick() {

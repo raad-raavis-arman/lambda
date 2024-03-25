@@ -12,13 +12,18 @@ class RestClientServiceImpl implements RestClientService {
 
   late final Dio _dio;
 
-  // TODO(Taleb): base url must replace here
   void _initializeDio() {
     _dio = Dio(
       BaseOptions(
-        baseUrl: 'https://mybaseurl.com',
+        baseUrl: 'https://lambda-api.gymino.ir/api/v1/',
         receiveTimeout: const Duration(seconds: 60),
         connectTimeout: const Duration(seconds: 60),
+      ),
+    );
+    _dio.interceptors.add(
+      LogInterceptor(
+        responseBody: true,
+        requestBody: true,
       ),
     );
   }

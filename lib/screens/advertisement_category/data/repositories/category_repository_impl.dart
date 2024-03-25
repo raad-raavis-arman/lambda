@@ -19,7 +19,7 @@ class CategoryRepositoryImpl implements CategoryRepository {
     try {
       final result = await categoryRemoteDataSourceImpl.getAllCategory();
       return Right(result);
-    } on MDioException catch (e) {
+    } on MException catch (e) {
       return Left(ServerFailure(e.errorMessage));
     }
   }
@@ -33,7 +33,7 @@ class CategoryRepositoryImpl implements CategoryRepository {
       final result =
           await categoryRemoteDataSourceImpl.suggestNewCategory(name: name);
       return Right(result);
-    } on MDioException catch (e) {
+    } on MException catch (e) {
       return Left(ServerFailure(e.errorMessage));
     }
   }

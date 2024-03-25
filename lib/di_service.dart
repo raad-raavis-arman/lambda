@@ -22,7 +22,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 final locator = GetIt.instance;
 
-void setup() {
+Future<void> setup() async {
+  final SharedPreferences preferences = await SharedPreferences.getInstance();
+  final PackageInfo packageInfo = await PackageInfo.fromPlatform();
   locator
     // register LoginBloc
     ..registerFactory(() => UserOtpUsescase(userOtpRepository: locator.get()))
@@ -41,7 +43,10 @@ void setup() {
       () => UserLoginUsescase(userLoginRepository: locator.get()),
     )
     ..registerLazySingleton<UserLoginRepository>(
-      () => UserLoginRepositoryImpl(loginRemoteDataSource: locator.get()),
+      () => UserLoginRepositoryImpl(
+        loginRemoteDataSource: locator.get(),
+        preferences: locator.get(),
+      ),
     )
     ..registerLazySingleton<LoginRemoteDataSource>(
       () => LoginRemoteDataSourceImpl(
@@ -120,8 +125,8 @@ void setup() {
     )
 
     // register shared preferences
-    ..registerLazySingletonAsync(SharedPreferences.getInstance)
+    ..registerLazySingleton(() => preferences)
 
     // register package info pluse
-    ..registerLazySingletonAsync(PackageInfo.fromPlatform);
+    ..registerLazySingleton(() => packageInfo);
 }

@@ -62,5 +62,10 @@
     "mobileNumber": "شماره موبایل",
     "dontShowMyNumberInAdvertisement": "شماره موبایل من را در آگهی نمایش نده",
     "newVersionChanges": "تغییرات ورژن جدید",
-    "features": "-تغییر اول \n-تغییر دوم \n-تغییر سوم"
+    "features": "-تغییر اول \n-تغییر دوم \n-تغییر سوم",
+    "sthWentWrong": "خطایی بوجود آمده است",
+    "error": "خطا",
+    "otpSentSuccessfully": "کد تایید با موفقیت ارسال شد",
+    "success": "موفق",
+    "failedToSendOtp": "خطا در ارسال کد تایید"
 }
