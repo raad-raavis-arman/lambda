@@ -21,10 +21,35 @@ final class VerifyLoginBloc extends Bloc<VerifyLoginEvent, VerifyLoginState> {
   Future<void> _onAuthenticateLogin(
     AuthenticateLoginEvent event,
     Emitter<VerifyLoginState> emit,
-  ) async {}
+  ) async {
+    final result = await userLoginUsescase.call(
+      LoginParam(
+        mobileNumber: event.mobileNumber,
+        otpCode: event.otp,
+      ),
+    );
+    result.fold(
+      (l) => emit(VerifyLoginFailState(message: l.message)),
+      (r) => emit(
+        VerifyLoginSuccessState(),
+      ),
+    );
+  }
 
   Future<void> _onResendOtp(
     ResendOtpEvent event,
     Emitter<VerifyLoginState> emit,
-  ) async {}
+  ) async {
+    final result = await userOtpUsescase.call(
+      OtpParam(
+        mobileNumber: event.mobileNumber,
+      ),
+    );
+    result.fold(
+      (l) => emit(VerifyLoginOtpFailState(message: l.message)),
+      (r) => emit(
+        VerifyLoginOtpSuccessState(),
+      ),
+    );
+  }
 }

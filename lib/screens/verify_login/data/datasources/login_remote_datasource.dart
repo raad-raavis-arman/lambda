@@ -23,11 +23,18 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
     String otpCode,
   ) async {
     try {
-      // TODO(Taleb): get real data from server
-      // final response = await restClientService
-      //     .post('/auth/login', data: {'mobile_number': mobileNumber,'sms_code': otpCode,});
-      await Future.delayed(const Duration(seconds: 2));
-      return LoginAuthModel.fromJson(const {'otpCode': '32478'});
+      final response = await restClientService.post(
+        '/auth/login',
+        data: {
+          'mobile_number': mobileNumber,
+          'sms_code': otpCode,
+        },
+      );
+      if (response['success'] = true) {
+        return LoginAuthModel.fromJson(response['data']);
+      } else {
+        throw MException(errorMessage: 'failed to verify otp',data: response);
+      }
     } on DioException catch (e) {
       throw MException.fromDioError(e);
     } on Exception catch (_) {

@@ -32,7 +32,7 @@ final class UserLoginRepositoryImpl implements UserLoginRepository {
     try {
       final result = await loginRemoteDataSource.loginWithMobile(
         mobileNumber,
-        mobileNumber,
+        otpCode,
       );
       return Right(result);
     } on MException catch (e) {

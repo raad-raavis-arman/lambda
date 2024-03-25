@@ -16,7 +16,7 @@ class LoginAuth extends Equatable {
   final String accessToken;
   @JsonKey(name: 'token_type')
   final String tokenType;
-  @JsonKey(name: 'expire_in')
+  @JsonKey(name: 'expires_in')
   final int expiresIn;
   final User user;
 

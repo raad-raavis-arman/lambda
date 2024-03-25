@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:landa/core/network/network.dart';
+import 'package:landa/core/utils/logger/logger.dart';
+import 'package:logger/logger.dart';
 
 class RestClientServiceImpl implements RestClientService {
   factory RestClientServiceImpl() => _instance;
@@ -20,7 +22,12 @@ class RestClientServiceImpl implements RestClientService {
         connectTimeout: const Duration(seconds: 60),
       ),
     );
-    _dio.interceptors.add(LogInterceptor(responseBody: true));
+    _dio.interceptors.add(
+      LogInterceptor(
+        responseBody: true,
+        requestBody: true,
+      ),
+    );
   }
 
   @override
