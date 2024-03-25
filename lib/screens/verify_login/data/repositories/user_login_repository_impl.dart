@@ -5,9 +5,8 @@ import 'package:landa/screens/verify_login/domain/entities/entities.dart';
 import 'package:landa/screens/verify_login/domain/repositories/repositories.dart';
 
 final class UserLoginRepositoryImpl implements UserLoginRepository {
-
   UserLoginRepositoryImpl({required this.loginRemoteDataSource});
-  
+
   final LoginRemoteDataSource loginRemoteDataSource;
   @override
   Future<Either<Failure, LoginAuth>> loginWithEmail(
@@ -20,7 +19,7 @@ final class UserLoginRepositoryImpl implements UserLoginRepository {
         otpCode,
       );
       return Right(result);
-    } on MDioException catch (e) {
+    } on MException catch (e) {
       return Left(ServerFailure(e.errorMessage));
     }
   }
@@ -36,7 +35,7 @@ final class UserLoginRepositoryImpl implements UserLoginRepository {
         mobileNumber,
       );
       return Right(result);
-    } on MDioException catch (e) {
+    } on MException catch (e) {
       return Left(ServerFailure(e.errorMessage));
     }
   }

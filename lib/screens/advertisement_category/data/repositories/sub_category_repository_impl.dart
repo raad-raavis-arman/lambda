@@ -19,7 +19,7 @@ class SubCategoryRepositoryImpl implements SubCategoryRepository {
     try {
       final result = await subcategoryRemoteDataSourceImpl.getAllSubCategory();
       return Right(result);
-    } on MDioException catch (e) {
+    } on MException catch (e) {
       return Left(ServerFailure(e.errorMessage));
     }
   }
@@ -37,7 +37,7 @@ class SubCategoryRepositoryImpl implements SubCategoryRepository {
         categoryId: categoryId,
       );
       return Right(result);
-    } on MDioException catch (e) {
+    } on MException catch (e) {
       return Left(ServerFailure(e.errorMessage));
     }
   }

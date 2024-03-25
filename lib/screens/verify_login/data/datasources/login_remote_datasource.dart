@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:landa/core/error/m_dio_exception.dart';
+import 'package:landa/core/error/m_exception.dart';
 import 'package:landa/core/network/network.dart';
 import 'package:landa/screens/verify_login/data/models/login_auth_model.dart';
 
@@ -29,7 +29,7 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
       await Future.delayed(const Duration(seconds: 2));
       return LoginAuthModel.fromJson(const {'otpCode': '32478'});
     } on DioException catch (e) {
-      throw MDioException.fromDioError(e);
+      throw MException.fromDioError(e);
     } on Exception catch (_) {
       rethrow;
     }

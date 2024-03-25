@@ -1,8 +1,13 @@
 import 'package:dio/dio.dart';
 
-class MDioException implements Exception {
+class MException implements Exception {
+  MException({
+    required this.errorMessage,
+    this.data,
+  });
 
-  MDioException.fromDioError(this.dioException) {
+  MException.fromDioError(DioException dioException) {
+    data = dioException.response?.data;
     switch (dioException.type) {
       case DioExceptionType.cancel:
         errorMessage = 'Request to the server was cancelled';
@@ -34,7 +39,7 @@ class MDioException implements Exception {
     }
   }
   late String errorMessage;
-  final DioException dioException;
+  dynamic data;
 
   String _handleStatusCode(int? statusCode) {
     switch (statusCode) {
