@@ -57,11 +57,12 @@ class _AdvertisementDateViewState extends State<_AdvertisementDateView> {
             TextFormField(
               controller: productionDateController,
               textAlign: TextAlign.center,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               style: Theme.of(context).textTheme.titleMedium,
               readOnly: true,
               validator: (value) {
                 if (value?.trim().isEmpty ?? true) {
-                  return '';
+                  return context.l10n.fillingThisFieldIsRequired;
                 } else {
                   return null;
                 }

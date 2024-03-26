@@ -70,10 +70,14 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
           children: [
             TextFormField(
               style: Theme.of(context).textTheme.titleMedium,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               textInputAction: TextInputAction.done,
+              onChanged: (value) {
+                
+              },
               validator: (value) {
                 if ((value?.trim().length ?? 0) < 3) {
-                  return '';
+                  return context.l10n.fillingThisFieldIsRequired;
                 } else {
                   return null;
                 }
@@ -96,9 +100,10 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
             SelectableItemFormButton(
               title: context.l10n.category,
               textController: categoryController,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
                 if (value?.isEmpty ?? true) {
-                  return '';
+                  return context.l10n.fillingThisFieldIsRequired;
                 } else {
                   return null;
                 }
@@ -118,9 +123,10 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
             SelectableItemFormButton(
               title: context.l10n.advertisementArea,
               textController: advertisementAreaController,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
                 if (value?.isEmpty ?? true) {
-                  return '';
+                  return context.l10n.fillingThisFieldIsRequired;
                 } else {
                   return null;
                 }
@@ -140,9 +146,10 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
             SelectableItemFormButton(
               title: context.l10n.price,
               textController: priceController,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
                 if (value?.isEmpty ?? true) {
-                  return '';
+                  return context.l10n.fillingThisFieldIsRequired;
                 } else {
                   return null;
                 }
@@ -161,10 +168,11 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
               textAlign: TextAlign.center,
               keyboardType: TextInputType.number,
               textInputAction: TextInputAction.done,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               style: Theme.of(context).textTheme.titleMedium,
               validator: (value) {
                 if (value?.trim().isEmpty ?? true) {
-                  return '';
+                  return context.l10n.fillingThisFieldIsRequired;
                 } else {
                   return null;
                 }
@@ -191,9 +199,10 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
             SelectableItemFormButton(
               title: context.l10n.creationAndExpirationDate,
               textController: creationAndExpirationDateController,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
                 if (value?.isEmpty ?? true) {
-                  return '';
+                  return context.l10n.fillingThisFieldIsRequired;
                 } else {
                   return null;
                 }
@@ -211,9 +220,10 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
             SelectableItemFormButton(
               title: context.l10n.contactInfo,
               textController: contactInfoController,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
                 if (value?.isEmpty ?? true) {
-                  return '';
+                  return context.l10n.fillingThisFieldIsRequired;
                 } else {
                   return null;
                 }
@@ -233,9 +243,10 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
               textInputAction: TextInputAction.done,
               minLines: 4,
               maxLines: 10,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
                 if ((value?.trim().length ?? 0) < 3) {
-                  return '';
+                  return context.l10n.fillingThisFieldIsRequired;
                 } else {
                   return null;
                 }

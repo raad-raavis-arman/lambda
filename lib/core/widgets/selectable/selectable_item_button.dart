@@ -6,7 +6,7 @@ class TextController extends ValueNotifier<String?> {
   TextController({String? initialValue}) : super(initialValue);
 }
 
-class SelectableItemButton extends StatelessWidget {
+class SelectableItemButton extends StatefulWidget {
   const SelectableItemButton({
     required this.title,
     required this.onClick,
@@ -21,6 +21,7 @@ class SelectableItemButton extends StatelessWidget {
     this.textController,
     this.onChange,
     this.hasError = false,
+    this.errorText,
   }) : assert(
           (value != null && textController == null) ||
               (textController != null && value == null) ||
@@ -28,6 +29,8 @@ class SelectableItemButton extends StatelessWidget {
           'one of textController or value property '
           'can be initialized at same time',
         );
+
+  final String? errorText;
   final EdgeInsets padding;
   final BorderRadius borderRadius;
   final bool hasError;
@@ -42,63 +45,88 @@ class SelectableItemButton extends StatelessWidget {
   final bool showArrow;
 
   @override
+  State<SelectableItemButton> createState() => _SelectableItemButtonState();
+}
+
+class _SelectableItemButtonState extends State<SelectableItemButton> {
+  late String? value = widget.value ?? widget.textController?.value;
+  @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onClick,
+      onTap: widget.onClick,
       child: _buildContent(context),
     );
   }
 
   Widget _buildContent(BuildContext context) {
-    return Container(
-      margin: margin,
-      padding: padding,
-      decoration: BoxDecoration(
-        borderRadius: borderRadius,
-        border: Border.all(
-          color: hasError
-              ? Theme.of(context).colorScheme.error
-              : Theme.of(context).dividerColor,
-          width: borderWidth,
-        ),
-      ),
-      child: Row(
-        children: [
-          if (icon != null) icon!.padding(left: Paddings.medium.value),
-          MText(
-            text: title,
-            textAlign: TextAlign.start,
-            style: Theme.of(context).textTheme.titleMedium,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          margin: widget.margin,
+          padding: widget.padding,
+          decoration: BoxDecoration(
+            borderRadius: widget.borderRadius,
+            border: Border.all(
+              color: widget.hasError
+                  ? Theme.of(context).colorScheme.error
+                  : Theme.of(context).dividerColor,
+              width: widget.borderWidth,
+            ),
           ),
-          const Spacer(),
-          if (textController != null && value == null)
-            ValueListenableBuilder(
-              valueListenable: textController!,
-              builder: (_, newValue, __) {
-                Future.microtask(() => onChange?.call(newValue));
-                if (newValue != null) {
-                  return MText(
-                    text: newValue,
-                    style: Theme.of(context).textTheme.titleSmall,
-                  );
-                } else {
-                  return const SizedBox.shrink();
-                }
-              },
-            ),
-          if (value != null && textController == null)
-            MText(
-              text: value!,
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
-          const SizedBox.shrink().paddingXXS(),
-          if (showArrow)
-            Icon(
-              Icons.navigate_next_rounded,
-              size: context.iconM,
-            ),
-        ],
-      ).paddingS(),
+          child: Row(
+            children: [
+              if (widget.icon != null)
+                widget.icon!.padding(left: Paddings.medium.value),
+              MText(
+                text: widget.title,
+                textAlign: TextAlign.start,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const Spacer(),
+              if (widget.textController != null && widget.value == null)
+                ValueListenableBuilder(
+                  valueListenable: widget.textController!,
+                  builder: (_, newValue, __) {
+                    if (newValue != value) {
+                      value = newValue;
+                      Future.microtask(() {
+                        return widget.onChange?.call(newValue);
+                      });
+                    }
+                    if (value != null) {
+                      return MText(
+                        text: value!,
+                        style: Theme.of(context).textTheme.titleSmall,
+                      );
+                    } else {
+                      return const SizedBox.shrink();
+                    }
+                  },
+                ),
+              if (widget.value != null && widget.textController == null)
+                MText(
+                  text: widget.value!,
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+              const SizedBox.shrink().paddingXXS(),
+              if (widget.showArrow)
+                Icon(
+                  Icons.navigate_next_rounded,
+                  size: context.iconM,
+                ),
+            ],
+          ).paddingS(),
+        ),
+        if (widget.errorText != null)
+          MText(
+            text: widget.errorText!,
+            style: Theme.of(context)
+                .textTheme
+                .bodySmall
+                ?.copyWith(color: Theme.of(context).colorScheme.error),
+          ).paddingS(),
+      ],
     );
   }
 }

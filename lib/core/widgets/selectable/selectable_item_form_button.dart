@@ -7,6 +7,9 @@ class SelectableItemFormButton extends FormField<String> {
     required VoidCallback onClick,
     super.onSaved,
     super.validator,
+    super.restorationId,
+    super.enabled,
+    super.autovalidateMode = AutovalidateMode.disabled,
     super.key,
     EdgeInsets margin = EdgeInsets.zero,
     String? value,
@@ -27,22 +30,26 @@ class SelectableItemFormButton extends FormField<String> {
         super(
           initialValue: value ?? textController?.value,
           builder: (state) {
-            return SelectableItemButton(
-              title: title,
-              onClick: onClick,
-              margin: margin,
-              value: value,
-              icon: icon,
-              padding: padding,
-              borderRadius: borderRadius,
-              borderWidth: borderWidth,
-              showArrow: showArrow,
-              textController: textController,
-              hasError: state.hasError,
-              onChange: (newValue) {
-                onChange?.call(newValue);
-                state.didChange(newValue);
-              },
+            return UnmanagedRestorationScope(
+              bucket: state.bucket,
+              child: SelectableItemButton(
+                title: title,
+                onClick: onClick,
+                margin: margin,
+                value: value,
+                icon: icon,
+                padding: padding,
+                borderRadius: borderRadius,
+                borderWidth: borderWidth,
+                showArrow: showArrow,
+                textController: textController,
+                hasError: state.hasError,
+                errorText: state.errorText,
+                onChange: (newValue) {
+                  state.didChange(newValue);
+                  onChange?.call(newValue);
+                },
+              ),
             );
           },
         );
