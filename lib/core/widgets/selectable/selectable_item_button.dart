@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:landa/core/controllers/controllers.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
-
-class TextController extends ValueNotifier<String?> {
-  TextController({String? initialValue}) : super(initialValue);
-}
 
 class SelectableItemButton extends StatefulWidget {
   const SelectableItemButton({
@@ -35,7 +32,7 @@ class SelectableItemButton extends StatefulWidget {
   final BorderRadius borderRadius;
   final bool hasError;
   final Function(String?)? onChange;
-  final TextController? textController;
+  final MTextEditingController? textController;
   final String title;
   final VoidCallback onClick;
   final Widget? icon;
@@ -49,7 +46,7 @@ class SelectableItemButton extends StatefulWidget {
 }
 
 class _SelectableItemButtonState extends State<SelectableItemButton> {
-  late String? value = widget.value ?? widget.textController?.value;
+  late String? value = widget.value ?? widget.textController?.text;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -88,10 +85,10 @@ class _SelectableItemButtonState extends State<SelectableItemButton> {
                 ValueListenableBuilder(
                   valueListenable: widget.textController!,
                   builder: (_, newValue, __) {
-                    if (newValue != value) {
-                      value = newValue;
+                    if (newValue.text != value) {
+                      value = newValue.text;
                       Future.microtask(() {
-                        return widget.onChange?.call(newValue);
+                        return widget.onChange?.call(newValue.text);
                       });
                     }
                     if (value != null) {

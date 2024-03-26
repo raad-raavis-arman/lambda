@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:landa/core/controllers/controllers.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/l10n/l10n.dart';
@@ -36,11 +37,16 @@ class _CreateAdvertisementView extends StatefulWidget {
 class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
   final formKey = GlobalKey<FormState>();
 
-  final categoryController = TextController();
-  final advertisementAreaController = TextController();
-  final priceController = TextController();
-  final creationAndExpirationDateController = TextController();
-  final contactInfoController = TextController();
+  final categoryController = MTextEditingController();
+  final advertisementAreaController = MTextEditingController();
+  final priceController = MTextEditingController();
+  final creationAndExpirationDateController = MTextEditingController();
+  final contactInfoController = MTextEditingController();
+  final titleController = MTextEditingController();
+  final descriptionController = MTextEditingController();
+  final productCountController = MTextEditingController();
+
+  late final until = context.l10n.until;
 
   @override
   void dispose() {
@@ -69,12 +75,10 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
         child: Column(
           children: [
             TextFormField(
+              controller: titleController,
               style: Theme.of(context).textTheme.titleMedium,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               textInputAction: TextInputAction.done,
-              onChanged: (value) {
-                
-              },
               validator: (value) {
                 if ((value?.trim().length ?? 0) < 3) {
                   return context.l10n.fillingThisFieldIsRequired;
@@ -82,12 +86,10 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                   return null;
                 }
               },
-              onSaved: (newValue) {},
               decoration: InputDecoration(
                 labelText: context.l10n.caption,
                 labelStyle: Theme.of(context).textTheme.titleMedium,
-                contentPadding:
-                    EdgeInsets.all(context.margingXS),
+                contentPadding: EdgeInsets.all(context.margingXS),
               ),
               inputFormatters: [
                 if (context.isPersian)
@@ -108,14 +110,14 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                   return null;
                 }
               },
-              onSaved: (newValue) {},
               onClick: () async {
                 final data = await context.pushNamed(RouteNames.category);
                 if (data != null) {
                   final category = (data as List<Object>)[0] as Category;
                   final subCategory = data[1] as SubCategory;
-                  categoryController.value =
-                      '${category.title}/${subCategory.title}';
+                  categoryController
+                    ..text = '${category.title}/${subCategory.title}'
+                    ..object = data;
                 }
               },
             ),
@@ -131,14 +133,14 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                   return null;
                 }
               },
-              onSaved: (newValue) {},
               onClick: () async {
                 final data =
                     await context.pushNamed(RouteNames.advertisementArea);
                 if (data != null) {
                   final city = data as City;
-                  advertisementAreaController.value =
-                      '${city.provinceName}/${city.cityName}';
+                  advertisementAreaController
+                    ..text = '${city.provinceName}/${city.cityName}'
+                    ..object = city;
                 }
               },
             ),
@@ -154,17 +156,19 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                   return null;
                 }
               },
-              onSaved: (newValue) {},
               onClick: () {
                 context.pushNamed(RouteNames.advertisementPrice).then((data) {
                   if (data != null) {
-                    priceController.value = context.l10n.tmn(data as String);
+                    priceController
+                      ..text = context.l10n.tmn(data as String)
+                      ..object = data;
                   }
                 });
               },
             ),
             const SizedBox.shrink().paddingL(),
             TextFormField(
+              controller: productCountController,
               textAlign: TextAlign.center,
               keyboardType: TextInputType.number,
               textInputAction: TextInputAction.done,
@@ -185,8 +189,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                 NumberSeparatorFormatter(),
               ],
               decoration: InputDecoration(
-                contentPadding:
-                    EdgeInsets.all(context.margingXS),
+                contentPadding: EdgeInsets.all(context.margingXS),
                 suffix: MText(
                   text: context.l10n.number,
                   style: Theme.of(context).textTheme.titleSmall,
@@ -207,12 +210,15 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                   return null;
                 }
               },
-              onSaved: (newValue) {},
               onClick: () async {
                 final result =
                     await context.pushNamed(RouteNames.advertisementDate);
                 if (result != null) {
-                  creationAndExpirationDateController.value = result as String?;
+                  final List<String> data = result as List<String>;
+                  creationAndExpirationDateController
+                    ..text = '${data.first} $until '
+                        '${data.last}'
+                    ..object = data;
                 }
               },
             ),
@@ -228,17 +234,17 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                   return null;
                 }
               },
-              onSaved: (newValue) {},
               onClick: () async {
                 final result = await context
                     .pushNamed(RouteNames.advertisementContactInfo);
                 if (result != null) {
-                  contactInfoController.value = result as String?;
+                  contactInfoController.text = result as String? ?? '';
                 }
               },
             ),
             const SizedBox.shrink().paddingL(),
             TextFormField(
+              controller: descriptionController,
               style: Theme.of(context).textTheme.titleMedium,
               textInputAction: TextInputAction.done,
               minLines: 4,
@@ -251,12 +257,10 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                   return null;
                 }
               },
-              onSaved: (newValue) {},
               decoration: InputDecoration(
                 labelText: context.l10n.description,
                 labelStyle: Theme.of(context).textTheme.titleMedium,
-                contentPadding:
-                    EdgeInsets.all(context.margingXS),
+                contentPadding: EdgeInsets.all(context.margingXS),
               ),
               inputFormatters: [
                 if (context.isPersian)
@@ -273,6 +277,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
         onPressed: () {
           if (formKey.currentState?.validate() ?? false) {
             formKey.currentState?.save();
+            //get values of form
           }
         },
         child: MText(text: context.l10n.publish),

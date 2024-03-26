@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:landa/core/controllers/controllers.dart';
 import 'package:landa/core/widgets/widgets.dart';
 
 class SelectableItemFormButton extends FormField<String> {
@@ -16,7 +17,7 @@ class SelectableItemFormButton extends FormField<String> {
     Widget? icon,
     double borderWidth = 0.4,
     bool showArrow = true,
-    TextController? textController,
+    MTextEditingController? textController,
     Function(String?)? onChange,
     EdgeInsets padding = const EdgeInsets.all(4),
     BorderRadius borderRadius = const BorderRadius.all(Radius.circular(4)),
@@ -28,7 +29,7 @@ class SelectableItemFormButton extends FormField<String> {
           'can be initialized at same time',
         ),
         super(
-          initialValue: value ?? textController?.value,
+          initialValue: value ?? textController?.text,
           builder: (state) {
             return UnmanagedRestorationScope(
               bucket: state.bucket,

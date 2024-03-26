@@ -126,8 +126,10 @@ class _AdvertisementDateViewState extends State<_AdvertisementDateView> {
           if (formKey.currentState?.validate() ?? false) {
             formKey.currentState?.save();
             context.pop(
-              '${productionDateController.text} ${context.l10n.until} '
-              '${expirationDateController.text}',
+              [
+                productionDateController.text,
+                expirationDateController.text,
+              ],
             );
           }
         },
