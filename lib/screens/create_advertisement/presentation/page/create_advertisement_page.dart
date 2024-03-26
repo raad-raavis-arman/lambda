@@ -83,7 +83,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                 labelText: context.l10n.caption,
                 labelStyle: Theme.of(context).textTheme.titleMedium,
                 contentPadding:
-                    EdgeInsets.symmetric(horizontal: context.margingXS),
+                    EdgeInsets.all(context.margingXS),
               ),
               inputFormatters: [
                 if (context.isPersian)
@@ -178,7 +178,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
               ],
               decoration: InputDecoration(
                 contentPadding:
-                    EdgeInsets.symmetric(horizontal: context.margingXS),
+                    EdgeInsets.all(context.margingXS),
                 suffix: MText(
                   text: context.l10n.number,
                   style: Theme.of(context).textTheme.titleSmall,
@@ -226,6 +226,33 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                   contactInfoController.value = result as String?;
                 }
               },
+            ),
+            const SizedBox.shrink().paddingL(),
+            TextFormField(
+              style: Theme.of(context).textTheme.titleMedium,
+              textInputAction: TextInputAction.done,
+              minLines: 4,
+              maxLines: 10,
+              validator: (value) {
+                if ((value?.trim().length ?? 0) < 3) {
+                  return '';
+                } else {
+                  return null;
+                }
+              },
+              onSaved: (newValue) {},
+              decoration: InputDecoration(
+                labelText: context.l10n.description,
+                labelStyle: Theme.of(context).textTheme.titleMedium,
+                contentPadding:
+                    EdgeInsets.all(context.margingXS),
+              ),
+              inputFormatters: [
+                if (context.isPersian)
+                  TextFieldPersianFormatter()
+                else
+                  TextFieldEnglishFormatter(),
+              ],
             ),
             const SizedBox.shrink().paddingL(),
           ],

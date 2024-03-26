@@ -67,5 +67,7 @@
     "error": "خطا",
     "otpSentSuccessfully": "کد تایید با موفقیت ارسال شد",
     "success": "موفق",
-    "failedToSendOtp": "خطا در ارسال کد تایید"
+    "failedToSendOtp": "خطا در ارسال کد تایید",
+    "description": "توضیحات",
+    "fillingThisFieldIsRequired": "پر کردن این فیلد الزامی است"
 }
