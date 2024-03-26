@@ -6,9 +6,6 @@ import 'package:landa/screens/home/presentation/widgets/widgets.dart';
 class AdvertisementItem extends StatelessWidget {
   const AdvertisementItem({super.key});
 
-  String get imageUrl =>
-      'https://drinkmilk.co.uk/wp-content/uploads/2021/02/Office-Milk-Bottles-Shelf.png';
-
   String get title => 'شیر تازه';
   String get description =>
       'تعداد خیلی زیاد از شیر موجود میباشد برای استفاده سریع';
@@ -23,8 +20,6 @@ class AdvertisementItem extends StatelessWidget {
     return Card(
       child: Row(
         children: [
-          AdvertisementImage(imageUrl: imageUrl),
-          const SizedBox().paddingXS(),
           Flexible(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
