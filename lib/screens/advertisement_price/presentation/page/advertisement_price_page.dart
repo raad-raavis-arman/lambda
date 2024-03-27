@@ -173,7 +173,11 @@ class _AdvertisementPriceViewState extends State<_AdvertisementPriceView> {
           if (formKey.currentState?.validate() ?? false) {
             formKey.currentState?.save();
             context.pop(
-              finalPriceController.text,
+              [
+                originalPriceController.text,
+                discountController.text,
+                finalPriceController.text,
+              ],
             );
           }
         },

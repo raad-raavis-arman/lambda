@@ -69,5 +69,6 @@
     "success": "موفق",
     "failedToSendOtp": "خطا در ارسال کد تایید",
     "description": "توضیحات",
-    "fillingThisFieldIsRequired": "پر کردن این فیلد الزامی است"
+    "fillingThisFieldIsRequired": "پر کردن این فیلد الزامی است",
+    "advertisementUploadSuccess": "درخواست ایجاد آگهی شما با موفقیت ارسال شد و پس از بررسی واحد پشتیبانی در برنامه منتشر میشود"
 }

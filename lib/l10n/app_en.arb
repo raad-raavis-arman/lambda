@@ -69,5 +69,6 @@
     "success": "Success",
     "failedToSendOtp": "Failed to send OTP",
     "description": "Description",
-    "fillingThisFieldIsRequired": "Filling this field is required"
+    "fillingThisFieldIsRequired": "Filling this field is required",
+    "advertisementUploadSuccess": "Your request for creating advertisement succfully sent and will be published in application after review"
 }

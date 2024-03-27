@@ -1,11 +1,17 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:landa/core/controllers/controllers.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
+import 'package:landa/di_service.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/screens/advertisement_area/domain/entities/entities.dart';
 import 'package:landa/screens/advertisement_category/domain/entities/entities.dart';
+import 'package:landa/screens/create_advertisement/domain/usecases/creaet_advertisement_usecase.dart';
+import 'package:landa/screens/create_advertisement/presentation/bloc/bloc.dart';
+import 'package:toastification/toastification.dart';
 
 class CreateAdvertisementPage extends StatelessWidget {
   const CreateAdvertisementPage({super.key});
@@ -22,7 +28,12 @@ class CreateAdvertisementPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _CreateAdvertisementView();
+    return BlocProvider(
+      create: (context) => CreateAdvertisementBloc(
+        createAdvertisementUsescase: locator.get(),
+      ),
+      child: const _CreateAdvertisementView(),
+    );
   }
 }
 
@@ -78,6 +89,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
               controller: titleController,
               style: Theme.of(context).textTheme.titleMedium,
               autovalidateMode: AutovalidateMode.onUserInteraction,
+              maxLength: 60,
               textInputAction: TextInputAction.done,
               validator: (value) {
                 if ((value?.trim().length ?? 0) < 3) {
@@ -112,8 +124,8 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
               },
               onClick: () async {
                 final data = await context.pushNamed(RouteNames.category);
-                if (data != null) {
-                  final category = (data as List<Object>)[0] as Category;
+                if (data != null && data is List<Equatable>) {
+                  final category = data[0] as Category;
                   final subCategory = data[1] as SubCategory;
                   categoryController
                     ..text = '${category.title}/${subCategory.title}'
@@ -158,9 +170,10 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
               },
               onClick: () {
                 context.pushNamed(RouteNames.advertisementPrice).then((data) {
-                  if (data != null) {
+                  if (data != null && data is List<String>) {
+                    final finalPrice = data.last;
                     priceController
-                      ..text = context.l10n.tmn(data as String)
+                      ..text = context.l10n.tmn(finalPrice)
                       ..object = data;
                   }
                 });
@@ -237,8 +250,10 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
               onClick: () async {
                 final result = await context
                     .pushNamed(RouteNames.advertisementContactInfo);
-                if (result != null) {
-                  contactInfoController.text = result as String? ?? '';
+                if (result != null && result is List<String>) {
+                  contactInfoController
+                    ..text = result.first
+                    ..object = result;
                 }
               },
             ),
@@ -273,14 +288,93 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
           ],
         ),
       ),
-      bottomNavigationBar: ElevatedButton(
-        onPressed: () {
-          if (formKey.currentState?.validate() ?? false) {
-            formKey.currentState?.save();
-            //get values of form
+      bottomNavigationBar:
+          BlocConsumer<CreateAdvertisementBloc, CreateAdvertisementState>(
+        listener: (context, state) {
+          if (state is CreateAdvertisementErrorState) {
+            Toastification().show(
+              context: context,
+              type: ToastificationType.error,
+              title: MText(text: context.l10n.error),
+              description: MText(text: context.l10n.sthWentWrong),
+            );
+          } else if (state is CreateAdvertisementSuccessState) {
+            Toastification().show(
+              context: context,
+              type: ToastificationType.success,
+              title: MText(text: context.l10n.success),
+              description: MText(text: context.l10n.advertisementUploadSuccess),
+            );
+            context.replaceNamed(RouteNames.home);
           }
         },
-        child: MText(text: context.l10n.publish),
+        builder: (context, state) {
+          return ElevatedButton(
+            onPressed: state is CreateAdvertisementLoadingState
+                ? null
+                : () {
+                    if (formKey.currentState?.validate() ?? false) {
+                      formKey.currentState?.save();
+                      final productCreateAndExpirationDateTime =
+                          creationAndExpirationDateController.object
+                              as List<String>;
+                      final productCreateDateTime =
+                          productCreateAndExpirationDateTime.first
+                              .replaceFaNumToEn();
+                      final productExpirationDateTime =
+                          productCreateAndExpirationDateTime.last
+                              .replaceFaNumToEn();
+                      //
+                      final priceData = priceController.object as List<String>;
+                      final origianlPrice =
+                          priceData[0].replaceFaNumToEn().parseDouble();
+                      final discount =
+                          priceData[1].replaceFaNumToEn().parseDouble();
+                      final discountedPrice =
+                          priceData[2].replaceFaNumToEn().parseDouble();
+                      //
+                      final categoryData =
+                          categoryController.object as List<Equatable>;
+                      final subCategory = categoryData.last as SubCategory;
+                      //
+                      final city = advertisementAreaController.object as City;
+                      //
+                      final contactInfo =
+                          contactInfoController.object as List<String>;
+                      final mobileNumber = contactInfo[0].replaceFaNumToEn();
+                      final showContactInfo = !bool.parse(contactInfo[1]);
+                      //
+                      final param = CreateAdvertisementParam(
+                        title: titleController.text,
+                        description: descriptionController.text,
+                        pExpireDateTime: productExpirationDateTime,
+                        pCreateDateTime: productCreateDateTime,
+                        count: int.parse(
+                          productCountController.text
+                              .replaceFaNumToEn()
+                              .replaceAll(',', ''),
+                        ),
+                        originalPrice: origianlPrice,
+                        discountedPrice: discountedPrice,
+                        discount: discount,
+                        categoryId: subCategory.categoryId,
+                        subCategoryId: subCategory.id,
+                        provinceId: int.parse(city.provinceId),
+                        cityId: int.parse(city.cityId),
+                        contactNumber: mobileNumber,
+                        showContactInfo: showContactInfo,
+                      );
+
+                      context.read<CreateAdvertisementBloc>().add(
+                            CreateAdvertisementEvent(param: param),
+                          );
+                    }
+                  },
+            child: state is CreateAdvertisementLoadingState
+                ? const CircularProgressIndicator()
+                : MText(text: context.l10n.publish),
+          );
+        },
       ),
     );
   }
