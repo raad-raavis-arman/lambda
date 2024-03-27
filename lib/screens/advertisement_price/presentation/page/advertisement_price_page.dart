@@ -66,6 +66,7 @@ class _AdvertisementPriceViewState extends State<_AdvertisementPriceView> {
               controller: originalPriceController,
               keyboardType: TextInputType.number,
               textInputAction: TextInputAction.done,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               style: Theme.of(context).textTheme.titleMedium,
               inputFormatters: [
                 if (context.isPersian)
@@ -88,7 +89,7 @@ class _AdvertisementPriceViewState extends State<_AdvertisementPriceView> {
                 if ((value?.parseDouble() ?? 0) > 0) {
                   return null;
                 } else {
-                  return '';
+                  return context.l10n.fillingThisFieldIsRequired;
                 }
               },
               onChanged: (origianl) {
@@ -172,7 +173,11 @@ class _AdvertisementPriceViewState extends State<_AdvertisementPriceView> {
           if (formKey.currentState?.validate() ?? false) {
             formKey.currentState?.save();
             context.pop(
-              finalPriceController.text,
+              [
+                originalPriceController.text,
+                discountController.text,
+                finalPriceController.text,
+              ],
             );
           }
         },

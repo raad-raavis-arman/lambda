@@ -57,11 +57,12 @@ class _AdvertisementDateViewState extends State<_AdvertisementDateView> {
             TextFormField(
               controller: productionDateController,
               textAlign: TextAlign.center,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               style: Theme.of(context).textTheme.titleMedium,
               readOnly: true,
               validator: (value) {
                 if (value?.trim().isEmpty ?? true) {
-                  return '';
+                  return context.l10n.fillingThisFieldIsRequired;
                 } else {
                   return null;
                 }
@@ -125,8 +126,10 @@ class _AdvertisementDateViewState extends State<_AdvertisementDateView> {
           if (formKey.currentState?.validate() ?? false) {
             formKey.currentState?.save();
             context.pop(
-              '${productionDateController.text} ${context.l10n.until} '
-              '${expirationDateController.text}',
+              [
+                productionDateController.text,
+                expirationDateController.text,
+              ],
             );
           }
         },

@@ -67,5 +67,8 @@
     "error": "Error",
     "otpSentSuccessfully": "OTP code sent successfully",
     "success": "Success",
-    "failedToSendOtp": "Failed to send OTP"
+    "failedToSendOtp": "Failed to send OTP",
+    "description": "Description",
+    "fillingThisFieldIsRequired": "Filling this field is required",
+    "advertisementUploadSuccess": "Your request for creating advertisement succfully sent and will be published in application after review"
 }

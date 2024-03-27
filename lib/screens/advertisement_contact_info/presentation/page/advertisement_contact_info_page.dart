@@ -58,7 +58,7 @@ class _AdvertisementContactInfoViewState
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleMedium,
               textInputAction: TextInputAction.done,
-              keyboardType:TextInputType.number,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: context.margingXS),
@@ -110,9 +110,10 @@ class _AdvertisementContactInfoViewState
         onPressed: () {
           if (formKey.currentState?.validate() ?? false) {
             formKey.currentState?.save();
-            context.pop(
+            context.pop([
               contactNumber,
-            );
+              checkBoxNotifier.value.toString(),
+            ]);
           }
         },
         child: MText(

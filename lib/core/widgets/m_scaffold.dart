@@ -113,8 +113,12 @@ class MScaffold extends StatelessWidget {
         onDrawerChanged: onDrawerChanged,
         endDrawer: endDrawer,
         onEndDrawerChanged: onEndDrawerChanged,
-        bottomNavigationBar:
-            Padding(padding: bodyPadding, child: bottomNavigationBar),
+        bottomNavigationBar: SafeArea(
+          child: Padding(
+            padding: bodyPadding,
+            child: bottomNavigationBar,
+          ),
+        ),
         bottomSheet: bottomSheet,
         backgroundColor: backgroundColor,
         resizeToAvoidBottomInset: resizeToAvoidBottomInset,
