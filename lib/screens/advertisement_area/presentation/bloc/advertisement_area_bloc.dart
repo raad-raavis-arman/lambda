@@ -35,9 +35,7 @@ class AdvertisementAreaBloc
       final map = provinceList.asMap().map((index, value) {
         return MapEntry(
           provinceList[index],
-          cityList
-              .where((element) => element.provinceId == value.provinceId)
-              .toList(),
+          cityList.where((element) => element.provinceId == value.id).toList(),
         );
       });
 

@@ -151,7 +151,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                 if (data != null) {
                   final city = data as City;
                   advertisementAreaController
-                    ..text = '${city.provinceName}/${city.cityName}'
+                    ..text = '${city.provinceName}/${city.name}'
                     ..object = city;
                 }
               },
@@ -360,7 +360,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                         categoryId: subCategory.categoryId,
                         subCategoryId: subCategory.id,
                         provinceId: int.parse(city.provinceId),
-                        cityId: int.parse(city.cityId),
+                        cityId: int.parse(city.id),
                         contactNumber: mobileNumber,
                         showContactInfo: showContactInfo,
                       );

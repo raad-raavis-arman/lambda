@@ -3,15 +3,15 @@ import 'package:json_annotation/json_annotation.dart';
 
 class Province extends Equatable {
   const Province({
-    required this.provinceId,
-    required this.provinceName,
+    required this.id,
+    required this.name,
   });
 
   @JsonKey(name: 'province_id')
-  final String provinceId;
+  final String id;
   @JsonKey(name: 'province_name')
-  final String provinceName;
+  final String name;
 
   @override
-  List<Object?> get props => [provinceId, provinceName];
+  List<Object?> get props => [id, name];
 }
