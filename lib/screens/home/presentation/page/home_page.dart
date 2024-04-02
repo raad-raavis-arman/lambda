@@ -3,7 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
+import 'package:landa/di_service.dart';
+import 'package:landa/l10n/l10n.dart';
 import 'package:landa/screens/home/presentation/presentation.dart';
+import 'package:toastification/toastification.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -20,35 +23,67 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _HomeView();
+    return BlocProvider(
+      create: (context) => HomeBloc(
+        getAllAdUsecase: locator.get(),
+      )..add(
+          const HomeGetAllAdEvent(offset: 0, limit: 10),
+        ),
+      child: const _HomeView(),
+    );
   }
 }
 
-class _HomeView extends StatelessWidget {
+class _HomeView extends StatefulWidget {
   const _HomeView();
 
   @override
+  State<_HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<_HomeView> {
+  @override
   Widget build(BuildContext context) {
-    return BlocListener<NewVersionBloc, NewVersionState>(
-      listener: (context, state) {
-        if (state.isNewVersion) {
-          showDialog(
-            context: context,
-            builder: (_) => const NewVersionPopup(),
-          );
-        }
-      },
-      child: MScaffold(
-        body: RefreshIndicator(
-          onRefresh: () async {
-            await Future.delayed(const Duration(seconds: 1));
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<NewVersionBloc, NewVersionState>(
+          listener: (context, state) {
+            if (state.isNewVersion) {
+              showDialog(
+                context: context,
+                builder: (_) => const NewVersionPopup(),
+              );
+            }
           },
-          child: ListView.builder(
-            itemCount: 10,
-            itemBuilder: (_, __) {
-              return const AdvertisementItem();
-            },
-          ),
+        ),
+        BlocListener<HomeBloc, HomeState>(
+          listener: (context, state) {
+            if (state is HomeErrorState) {
+              Toastification().show(
+                context: context,
+                type: ToastificationType.error,
+                title: MText(text: context.l10n.error),
+                description: MText(text: context.l10n.sthWentWrong),
+              );
+            }
+          },
+        ),
+      ],
+      child: MScaffold(
+        body: BlocBuilder<HomeBloc, HomeState>(
+          builder: (context, state) {
+            return RefreshIndicator(
+              onRefresh: () async {
+                await Future.delayed(const Duration(seconds: 1));
+              },
+              child: ListView.builder(
+                itemCount: 10,
+                itemBuilder: (_, __) {
+                  return const AdvertisementItem();
+                },
+              ),
+            );
+          },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(

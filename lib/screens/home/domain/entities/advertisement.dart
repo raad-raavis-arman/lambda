@@ -1,7 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:landa/screens/advertisement_area/domain/entities/entities.dart';
-import 'package:landa/screens/advertisement_category/domain/entities/entities.dart';
+import 'package:landa/screens/advertisement_area/data/models/city_model.dart';
+import 'package:landa/screens/advertisement_area/data/models/province_model.dart';
+import 'package:landa/screens/advertisement_category/data/models/models.dart';
 
 class Advertisement extends Equatable {
   const Advertisement({
@@ -45,11 +46,11 @@ class Advertisement extends Equatable {
   final String contactNumber;
   @JsonKey(name: 'show_contact_info')
   final String showContactInfo;
-  final Category category;
+  final CategoryModel category;
   @JsonKey(name: 'sub_category')
-  final SubCategory subCategory;
-  final Province province;
-  final City city;
+  final SubCategoryModel subCategory;
+  final ProvinceModel province;
+  final CityModel city;
 
   @override
   List<Object?> get props => [
