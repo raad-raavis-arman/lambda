@@ -359,8 +359,8 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                         discount: discount,
                         categoryId: subCategory.categoryId,
                         subCategoryId: subCategory.id,
-                        provinceId: int.parse(city.provinceId),
-                        cityId: int.parse(city.id),
+                        provinceId: city.provinceId,
+                        cityId: city.id,
                         contactNumber: mobileNumber,
                         showContactInfo: showContactInfo,
                       );

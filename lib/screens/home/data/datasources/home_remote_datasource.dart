@@ -21,7 +21,7 @@ class HomeRemoteDatasource implements HomeDatasource {
   }) async {
     try {
       final authorization = preferences.getAuthorizationToken();
-      final result = await restClientService.post(
+      final result = await restClientService.get(
         '/advertisement',
         queryParameters: {
           'offset': offset,
@@ -34,12 +34,14 @@ class HomeRemoteDatasource implements HomeDatasource {
         ),
       );
       if (result['success'] == true) {
-        final jsonArray = result['data'] as List<Map<String, dynamic>>;
+        final jsonArray = result['data'] as List<dynamic>;
         return List<AdvertisementModel>.from(
-          jsonArray.map(AdvertisementModel.fromJson),
+          jsonArray.map(
+            (e) => AdvertisementModel.fromJson(e as Map<String, dynamic>),
+          ),
         );
-      }else {
-        throw MException(
+      } else {
+      throw MException(
           errorMessage: 'failed to get all advertisement',
           data: result,
         );

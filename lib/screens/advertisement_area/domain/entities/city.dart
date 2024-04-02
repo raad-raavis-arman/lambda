@@ -10,11 +10,11 @@ class City extends Equatable {
   });
 
   @JsonKey(name: 'province_id')
-  final String provinceId;
+  final int provinceId;
   @JsonKey(name: 'province_name')
   final String provinceName;
   @JsonKey(name: 'city_id')
-  final String id;
+  final int id;
   @JsonKey(name: 'city_name')
   final String name;
 

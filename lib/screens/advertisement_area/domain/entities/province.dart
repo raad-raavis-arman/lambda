@@ -8,7 +8,7 @@ class Province extends Equatable {
   });
 
   @JsonKey(name: 'province_id')
-  final String id;
+  final int id;
   @JsonKey(name: 'province_name')
   final String name;
 

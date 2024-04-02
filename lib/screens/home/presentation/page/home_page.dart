@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:landa/core/bloc/bloc.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/di_service.dart';
@@ -58,7 +59,7 @@ class _HomeViewState extends State<_HomeView> {
         ),
         BlocListener<HomeBloc, HomeState>(
           listener: (context, state) {
-            if (state is HomeErrorState) {
+            if (state.status == StateStatus.error) {
               Toastification().show(
                 context: context,
                 type: ToastificationType.error,
@@ -72,14 +73,17 @@ class _HomeViewState extends State<_HomeView> {
       child: MScaffold(
         body: BlocBuilder<HomeBloc, HomeState>(
           builder: (context, state) {
+            final data = state.advertisements;
             return RefreshIndicator(
               onRefresh: () async {
                 await Future.delayed(const Duration(seconds: 1));
               },
               child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (_, __) {
-                  return const AdvertisementItem();
+                itemCount: data.length,
+                itemBuilder: (_, index) {
+                  return AdvertisementItem(
+                    advertisement: data[index],
+                  );
                 },
               ),
             );

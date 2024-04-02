@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
+import 'package:landa/screens/home/domain/entities/entities.dart';
 import 'package:landa/screens/home/presentation/widgets/widgets.dart';
 
 class AdvertisementItem extends StatelessWidget {
-  const AdvertisementItem({super.key});
+  const AdvertisementItem({
+    required this.advertisement,
+    super.key,
+  });
+
+  final Advertisement advertisement;
 
   String get title => 'شیر تازه';
   String get description =>
@@ -26,28 +32,28 @@ class AdvertisementItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 MText(
-                  text: title,
+                  text: advertisement.title,
                   style: Theme.of(context).textTheme.labelLarge,
                   maxLines: 1,
                 ),
                 const SizedBox.shrink().paddingXXS(),
                 MText(
-                  text: description,
+                  text: advertisement.description,
                   style: Theme.of(context).textTheme.labelMedium,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                 ),
                 const SizedBox.shrink().paddingXXS(),
-                const PriceDiscount(
-                  realPrice: 28000,
-                  discount: 12.5,
+                PriceDiscount(
+                  realPrice: advertisement.originalPrice,
+                  discount: advertisement.discount,
                 ),
               ],
             ),
           ),
           CountDownTime(
-            expireDateTime: exprireDateTime,
-            creationDateTime: creationDateTime,
+            expireDateTime: DateTime.parse(advertisement.pExpireDateTime),
+            creationDateTime: DateTime.parse(advertisement.pCreateDateTime),
           ),
         ],
       ).paddingS(),

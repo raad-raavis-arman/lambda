@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:landa/core/bloc/bloc.dart';
 import 'package:landa/screens/home/domain/entities/advertisement.dart';
 import 'package:landa/screens/home/domain/usecases/usecases.dart';
 
@@ -9,9 +10,9 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc({
     required this.getAllAdUsecase,
-  }) : super(HomeInitialState()) {
+  }) : super(const HomeState()) {
     on<HomeGetAllAdEvent>((event, emit) async {
-      emit(HomeLoadingState());
+      emit(state.copyWith(status: StateStatus.loading));
       final result = await getAllAdUsecase.call(
         GetAllAdParam(
           offset: event.offset,
@@ -19,9 +20,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         ),
       );
       result.fold(
-        (l) => emit(HomeErrorState()),
+        (l) => emit(state.copyWith(status: StateStatus.error)),
         (r) => emit(
-          HomeAdvertisementsState(advertisements: r),
+          state.copyWith(advertisements: r, status: StateStatus.success),
         ),
       );
     });
