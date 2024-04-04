@@ -12,15 +12,6 @@ class AdvertisementItem extends StatelessWidget {
 
   final Advertisement advertisement;
 
-  String get title => 'شیر تازه';
-  String get description =>
-      'تعداد خیلی زیاد از شیر موجود میباشد برای استفاده سریع';
-
-  DateTime get exprireDateTime => DateTime.now().add(const Duration(days: 18));
-  DateTime get creationDateTime => DateTime.now().subtract(
-        const Duration(days: 50),
-      );
-
   @override
   Widget build(BuildContext context) {
     return Card(

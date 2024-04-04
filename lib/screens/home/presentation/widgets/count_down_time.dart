@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/l10n/l10n.dart';
+import 'package:shamsi_date/shamsi_date.dart';
 
 class CountDownTime extends StatelessWidget {
   const CountDownTime({
@@ -13,7 +14,16 @@ class CountDownTime extends StatelessWidget {
   final DateTime expireDateTime;
   final DateTime creationDateTime;
 
-  Duration get remainedDuration => expireDateTime.difference(DateTime.now());
+  Duration get remainedDuration => expireDateTime.difference(
+        DateTime(
+          Jalali.now().year,
+          Jalali.now().month,
+          Jalali.now().day,
+          Jalali.now().hour,
+          Jalali.now().minute,
+          Jalali.now().second,
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
