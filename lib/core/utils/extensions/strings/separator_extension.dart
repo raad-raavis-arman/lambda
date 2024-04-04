@@ -27,6 +27,7 @@ extension SparatorExtension on String {
       if (splited.length == 1) {
         str = splited.first;
       } else if (splited.length == 2) {
+        str = splited.first;
         endPart = '.${splited.last}';
       }
     }
