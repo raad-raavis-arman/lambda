@@ -52,7 +52,7 @@ class _AdvertisementAreaView extends StatelessWidget {
                 final cities = data.entries.toList()[index].value;
                 return ExpansionTile(
                   title: MText(
-                    text: province.provinceName,
+                    text: province.name,
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   children: List.generate(
@@ -61,7 +61,7 @@ class _AdvertisementAreaView extends StatelessWidget {
                       child: SizedBox(
                         width: double.infinity,
                         child: MText(
-                          text: cities[index].cityName,
+                          text: cities[index].name,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ).paddingS(),
                       ),

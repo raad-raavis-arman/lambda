@@ -3,25 +3,25 @@ import 'package:json_annotation/json_annotation.dart';
 
 class City extends Equatable {
   const City({
-    required this.cityId,
-    required this.cityName,
+    required this.id,
+    required this.name,
     required this.provinceId,
     required this.provinceName,
   });
 
   @JsonKey(name: 'province_id')
-  final String provinceId;
+  final int provinceId;
   @JsonKey(name: 'province_name')
   final String provinceName;
   @JsonKey(name: 'city_id')
-  final String cityId;
+  final int id;
   @JsonKey(name: 'city_name')
-  final String cityName;
+  final String name;
 
   @override
   List<Object?> get props => [
-        cityId,
-        cityName,
+        id,
+        name,
         provinceId,
         provinceName,
       ];

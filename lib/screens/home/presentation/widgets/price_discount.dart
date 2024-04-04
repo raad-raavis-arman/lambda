@@ -7,17 +7,19 @@ class PriceDiscount extends StatelessWidget {
   const PriceDiscount({
     required this.realPrice,
     required this.discount,
+    required this.discountedPrice,
     super.key,
   });
 
   final double realPrice;
   final double discount;
+  final double discountedPrice;
 
   @override
   Widget build(BuildContext context) {
     final realPriceFormatted =
         realPrice.toString().separate(textType: TextType.double);
-    final discountedPriceFormatted = (realPrice * (1 - (discount / 100)))
+    final discountedPriceFormatted = discountedPrice
         .toString()
         .separate(textType: TextType.double);
     final discountFormatted = ' ⬅️ $discount٪ ⬅️ ';

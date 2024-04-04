@@ -6,8 +6,8 @@ part 'province_model.g.dart';
 @JsonSerializable()
 class ProvinceModel extends Province {
   const ProvinceModel({
-    required super.provinceId,
-    required super.provinceName,
+    required super.id,
+    required super.name,
   });
 
   factory ProvinceModel.fromJson(Map<String, dynamic> json) =>

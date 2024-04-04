@@ -13,6 +13,10 @@ import 'package:landa/screens/create_advertisement/data/datasources/create_adver
 import 'package:landa/screens/create_advertisement/data/repositories/create_advertisement_repository_impl.dart';
 import 'package:landa/screens/create_advertisement/domain/repositories/repositories.dart';
 import 'package:landa/screens/create_advertisement/domain/usecases/creaet_advertisement_usecase.dart';
+import 'package:landa/screens/home/data/datasources/datasources.dart';
+import 'package:landa/screens/home/data/repositories/home_repository_impl.dart';
+import 'package:landa/screens/home/domain/repositories/repositories.dart';
+import 'package:landa/screens/home/domain/usecases/get_all_ad_usecase.dart';
 import 'package:landa/screens/login/data/datasources/datasources.dart';
 import 'package:landa/screens/login/data/repositories/repositories.dart';
 import 'package:landa/screens/login/domain/repositories/repositories.dart';
@@ -149,6 +153,24 @@ Future<void> setup() async {
       () => CreateAdvertisementRemoteDatasource(
         restClientService: locator.get(),
         preferences: locator.get(),
+      ),
+    )
+
+    //regiseter for home bloc
+    ..registerLazySingleton(
+      () => GetAllAdUsecase(
+        homeRepository: locator.get(),
+      ),
+    )
+    ..registerLazySingleton<HomeRepository>(
+      () => HomeRepositoryImpl(
+        remoteDatasource: locator.get(),
+      ),
+    )
+    ..registerLazySingleton(
+      () => HomeRemoteDatasource(
+        preferences: locator.get(),
+        restClientService: locator.get(),
       ),
     );
 }

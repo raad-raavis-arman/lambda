@@ -70,5 +70,7 @@
     "failedToSendOtp": "Failed to send OTP",
     "description": "Description",
     "fillingThisFieldIsRequired": "Filling this field is required",
-    "advertisementUploadSuccess": "Your request for creating advertisement succfully sent and will be published in application after review"
+    "advertisementUploadSuccess": "Your request for creating advertisement succfully sent and will be published in application after review",
+    "thereIsNoAdToShow": "There is no advertisement to show, you can be first one to create advertisement :)",
+    "createAdvertisement": "Create advertisement"
 }

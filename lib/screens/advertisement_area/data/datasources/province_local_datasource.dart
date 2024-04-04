@@ -13,7 +13,15 @@ class ProvinceLocalDatasource implements ProvinceDatasource {
     final json = jsonDecode(rawString) as List<dynamic>;
     return List<CityModel>.generate(
       json.length,
-      (index) => CityModel.fromJson(json[index]),
+      (index) {
+        final mJson = json[index] as Map<String, dynamic>;
+        return CityModel(
+          id: int.parse(mJson['id']),
+          name: mJson['city_name'],
+          provinceId: int.parse(mJson['province_id']),
+          provinceName: mJson['province_name'],
+        );
+      },
     );
   }
 
@@ -24,9 +32,13 @@ class ProvinceLocalDatasource implements ProvinceDatasource {
     final json = jsonDecode(rawString) as List<dynamic>;
     return List<ProvinceModel>.generate(
       json.length,
-      (index) => ProvinceModel.fromJson(
-        json[index],
-      ),
+      (index) {
+        final mJson = json[index] as Map<String, dynamic>;
+        return ProvinceModel(
+          id: int.parse(mJson['province_id']),
+          name: mJson['province_name'],
+        );
+      },
     ).toSet().toList();
   }
 }

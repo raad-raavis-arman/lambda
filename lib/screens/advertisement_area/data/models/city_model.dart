@@ -6,8 +6,8 @@ part 'city_model.g.dart';
 @JsonSerializable()
 class CityModel extends City {
   const CityModel({
-    required super.cityId,
-    required super.cityName,
+    required super.id,
+    required super.name,
     required super.provinceId,
     required super.provinceName,
   });

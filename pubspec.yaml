@@ -28,6 +28,7 @@ dependencies:
   logger: ^2.0.2+1
   package_info_plus: ^5.0.1
   pin_code_fields: ^8.0.1
+  shamsi_date: ^1.0.2
   shared_preferences: ^2.2.2
   toastification: ^1.2.1
   url_strategy: ^0.2.0
