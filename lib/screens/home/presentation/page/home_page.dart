@@ -91,6 +91,28 @@ class _HomeViewState extends State<_HomeView> {
       child: MScaffold(
         body: BlocBuilder<HomeBloc, HomeState>(
           builder: (context, state) {
+            if (state.status == StateStatus.success &&
+                state.advertisements.isEmpty) {
+              return Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    MText(
+                      text: context.l10n.thereIsNoAdToShow,
+                      textAlign: TextAlign.center,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        context.goNamed(RouteNames.createAdvertisement);
+                      },
+                      child: MText(
+                        text: context.l10n.createAdvertisement,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }
             final data = state.advertisements;
             return RefreshIndicator(
               onRefresh: () async {
