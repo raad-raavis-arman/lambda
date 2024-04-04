@@ -43,6 +43,24 @@ class _HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<_HomeView> {
+  int offset = 0;
+  int limit = 10;
+  late final ScrollController _scrollController;
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        offset += limit;
+        context.read<HomeBloc>().add(
+              HomeGetAllAdEvent(offset: offset, limit: limit),
+            );
+      }
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocListener(
@@ -76,16 +94,27 @@ class _HomeViewState extends State<_HomeView> {
             final data = state.advertisements;
             return RefreshIndicator(
               onRefresh: () async {
-                await Future.delayed(const Duration(seconds: 1));
+                offset = 0;
+                limit = 10;
+                context.read<HomeBloc>().add(
+                      HomeGetAllAdEvent(offset: offset, limit: limit),
+                    );
               },
-              child: ListView.builder(
-                itemCount: data.length,
-                itemBuilder: (_, index) {
-                  return AdvertisementItem(
-                    advertisement: data[index],
-                  );
-                },
-              ),
+              child: state.status == StateStatus.loading &&
+                      state.advertisements.isEmpty
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : ListView.builder(
+                      itemCount: data.length,
+                      controller: _scrollController,
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      itemBuilder: (_, index) {
+                        return AdvertisementItem(
+                          advertisement: data[index],
+                        );
+                      },
+                    ),
             );
           },
         ),

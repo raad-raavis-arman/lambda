@@ -38,6 +38,7 @@ class AdvertisementItem extends StatelessWidget {
                 PriceDiscount(
                   realPrice: advertisement.originalPrice,
                   discount: advertisement.discount,
+                  discountedPrice: advertisement.discountedPrice,
                 ),
               ],
             ),

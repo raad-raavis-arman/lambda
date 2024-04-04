@@ -21,9 +21,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       );
       result.fold(
         (l) => emit(state.copyWith(status: StateStatus.error)),
-        (r) => emit(
-          state.copyWith(advertisements: r, status: StateStatus.success),
-        ),
+        (r) {
+          List<Advertisement> data = state.advertisements;
+          if (event.offset > 0) {
+            data.addAll(r);
+          } else {
+            data = r;
+          }
+          emit(
+            state.copyWith(advertisements: data, status: StateStatus.success),
+          );
+        },
       );
     });
   }
