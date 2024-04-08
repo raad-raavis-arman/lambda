@@ -15,7 +15,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   }) : super(SplashInitialState()) {
     on<SplashCheckAuthEvent>((event, emit) {
       final userAuthJsonString = preferences.getString(PreferenceKeys.userAuth);
-      if (userAuthJsonString == null) {
+      if (userAuthJsonString == null || userAuthJsonString.isEmpty) {
         emit(SplashNotAuthorizedState());
       } else {
         final loginAuthModel = LoginAuthModel.fromJson(
@@ -32,6 +32,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
           );
 
           if (DateTime.now().isAfter(expireDateTime)) {
+            preferences.setString(PreferenceKeys.userAuth, '');
             emit(SplashNotAuthorizedState());
           } else {
             emit(SplashAuthorizedState());
