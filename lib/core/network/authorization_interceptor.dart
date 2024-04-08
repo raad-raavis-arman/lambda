@@ -11,7 +11,15 @@ class AuthorizationInterceptor extends Interceptor {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     final authToken = preferences.getAuthorizationToken();
     options.headers.addAll({'Authorization': authToken});
-    super.onRequest(options, handler);
+    handler.next(options);
+  }
+
+  @override
+  void onError(DioException err, ErrorInterceptorHandler handler) {
+    if (err.response?.statusCode == 401) {
+      preferences.setString(PreferenceKeys.userAuth, '');
+    }
+    handler.next(err);
   }
 
   @override
@@ -19,6 +27,6 @@ class AuthorizationInterceptor extends Interceptor {
     if (response.statusCode == 401) {
       preferences.setString(PreferenceKeys.userAuth, '');
     }
-    super.onResponse(response, handler);
+    handler.next(response);
   }
 }

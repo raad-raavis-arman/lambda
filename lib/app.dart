@@ -72,7 +72,7 @@ class _AppRootView extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           title: flavorConfig.appTitle,
-          routerConfig: RouteConfig.router,
+          routerConfig: locator.get<RouteConfig>().router,
           debugShowCheckedModeBanner:
               flavorConfig.flavorType == FlavorType.production,
         ).animate().fadeIn(

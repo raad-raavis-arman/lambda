@@ -45,11 +45,9 @@ class _SplashViewState extends State<_SplashView>
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 400)).then(
-      (value) => context.read<SplashBloc>().add(
-            SplashCheckAuthEvent(),
-          ),
-    );
+    context.read<SplashBloc>().add(
+          SplashCheckAuthEvent(),
+        );
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 400),

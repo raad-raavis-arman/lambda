@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:landa/core/network/authorization_interceptor.dart';
 import 'package:landa/core/network/network.dart';
+import 'package:landa/core/utils/utils.dart';
 import 'package:landa/screens/advertisement_area/data/datasources/province_local_datasource.dart';
 import 'package:landa/screens/advertisement_area/data/repositories/province_repository_impl.dart';
 import 'package:landa/screens/advertisement_area/domain/repositories/province_repository.dart';
@@ -35,6 +36,17 @@ Future<void> setup() async {
   final SharedPreferences preferences = await SharedPreferences.getInstance();
   final PackageInfo packageInfo = await PackageInfo.fromPlatform();
   locator
+    // register shared preferences
+    ..registerLazySingleton(() => preferences)
+
+    // register package info pluse
+    ..registerLazySingleton(() => packageInfo)
+    // register route config
+    ..registerLazySingleton(
+      () => RouteConfig(
+        locator.get(),
+      ),
+    )
     // register LoginBloc
     ..registerFactory(() => UserOtpUsescase(userOtpRepository: locator.get()))
     ..registerLazySingleton<UserOtpRepository>(
@@ -141,12 +153,6 @@ Future<void> setup() async {
     ..registerLazySingleton(
       ProvinceLocalDatasource.new,
     )
-
-    // register shared preferences
-    ..registerLazySingleton(() => preferences)
-
-    // register package info pluse
-    ..registerLazySingleton(() => packageInfo)
 
     // CreateAdvertisementBloc depencies
     ..registerLazySingleton(
