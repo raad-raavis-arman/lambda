@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:landa/core/network/authorization_interceptor.dart';
 import 'package:landa/core/network/network.dart';
 import 'package:landa/screens/advertisement_area/data/datasources/province_local_datasource.dart';
 import 'package:landa/screens/advertisement_area/data/repositories/province_repository_impl.dart';
@@ -44,7 +45,16 @@ Future<void> setup() async {
         restClientService: locator.get(),
       ),
     )
-    ..registerLazySingleton<RestClientService>(RestClientServiceImpl.new)
+    ..registerLazySingleton<RestClientService>(
+      () => RestClientServiceImpl(
+        locator.get(),
+      ),
+    )
+    ..registerLazySingleton(
+      () => AuthorizationInterceptor(
+        preferences: locator.get(),
+      ),
+    )
 
     // register VerifyLoginBloc
     ..registerLazySingleton(
@@ -152,7 +162,6 @@ Future<void> setup() async {
     ..registerLazySingleton(
       () => CreateAdvertisementRemoteDatasource(
         restClientService: locator.get(),
-        preferences: locator.get(),
       ),
     )
 
@@ -169,7 +178,6 @@ Future<void> setup() async {
     )
     ..registerLazySingleton(
       () => HomeRemoteDatasource(
-        preferences: locator.get(),
         restClientService: locator.get(),
       ),
     );
