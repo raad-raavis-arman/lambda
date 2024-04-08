@@ -1,14 +1,15 @@
 import 'package:dio/dio.dart';
+import 'package:landa/core/network/authorization_interceptor.dart';
 import 'package:landa/core/network/network.dart';
 
 class RestClientServiceImpl implements RestClientService {
-  factory RestClientServiceImpl() => _instance;
-
-  RestClientServiceImpl._() {
+  RestClientServiceImpl(
+    this.authorizationInterceptor,
+  ) {
     _initializeDio();
   }
 
-  static final _instance = RestClientServiceImpl._();
+  final AuthorizationInterceptor authorizationInterceptor;
 
   late final Dio _dio;
 
@@ -20,11 +21,14 @@ class RestClientServiceImpl implements RestClientService {
         connectTimeout: const Duration(seconds: 60),
       ),
     );
-    _dio.interceptors.add(
-      LogInterceptor(
-        responseBody: true,
-        requestBody: true,
-      ),
+    _dio.interceptors.addAll(
+      [
+        LogInterceptor(
+          responseBody: true,
+          requestBody: true,
+        ),
+        authorizationInterceptor,
+      ],
     );
   }
 

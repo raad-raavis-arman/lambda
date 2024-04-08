@@ -52,6 +52,11 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
