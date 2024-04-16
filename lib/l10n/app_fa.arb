@@ -72,5 +72,6 @@
     "fillingThisFieldIsRequired": "پر کردن این فیلد الزامی است",
     "advertisementUploadSuccess": "درخواست ایجاد آگهی شما با موفقیت ارسال شد و پس از بررسی واحد پشتیبانی در برنامه منتشر میشود",
     "thereIsNoAdToShow": "هیچ آگهی برای نمایش وجود ندارد، شما میتوانید اولین نفر  باشید که آگهی جدید ایجاد میکند :)",
-    "createAdvertisement": "ایجاد آگهی"
+    "createAdvertisement": "ایجاد آگهی",
+    "advertisementDetails": "جزئیات آگهی"
 }

@@ -7,6 +7,7 @@ class RouteNames {
   static const String advertisementArea = '/advertisementArea';
   static const String advertisementPrice = '/advertisementPrice';
   static const String advertisementDate = '/advertisementDate';
+  static const String advertisementDetails = '/advertisementDetails';
   static const String advertisementContactInfo = '/advertisementContactInfo';
   static const String splash = '/';
 }

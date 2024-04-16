@@ -15,41 +15,49 @@ class AdvertisementItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Row(
-        children: [
-          Flexible(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                MText(
-                  text: advertisement.title,
-                  style: Theme.of(context).textTheme.labelLarge,
-                  maxLines: 1,
-                ),
-                const SizedBox.shrink().paddingXXS(),
-                MText(
-                  text: advertisement.description,
-                  style: Theme.of(context).textTheme.labelMedium,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                const SizedBox.shrink().paddingXXS(),
-                PriceDiscount(
-                  realPrice: advertisement.originalPrice,
-                  discount: advertisement.discount,
-                  discountedPrice: advertisement.discountedPrice,
-                ),
-              ],
+    return InkWell(
+      onTap: () {
+        context.pushNamed(
+          RouteNames.advertisementDetails,
+          extra: advertisement,
+        );
+      },
+      child: Card(
+        child: Row(
+          children: [
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  MText(
+                    text: advertisement.title,
+                    style: Theme.of(context).textTheme.labelLarge,
+                    maxLines: 1,
+                  ),
+                  const SizedBox.shrink().paddingXXS(),
+                  MText(
+                    text: advertisement.description,
+                    style: Theme.of(context).textTheme.labelMedium,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                  const SizedBox.shrink().paddingXXS(),
+                  PriceDiscount(
+                    realPrice: advertisement.originalPrice,
+                    discount: advertisement.discount,
+                    discountedPrice: advertisement.discountedPrice,
+                  ),
+                ],
+              ),
             ),
-          ),
-          CountDownTime(
-            expireDateTime: DateTime.parse(advertisement.pExpireDateTime),
-            creationDateTime: DateTime.parse(advertisement.pCreateDateTime),
-          ),
-        ],
-      ).paddingS(),
+            CountDownTime(
+              expireDateTime: DateTime.parse(advertisement.pExpireDateTime),
+              creationDateTime: DateTime.parse(advertisement.pCreateDateTime),
+            ),
+          ],
+        ).paddingS(),
+      ),
     );
   }
 }

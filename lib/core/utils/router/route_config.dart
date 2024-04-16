@@ -43,6 +43,7 @@ class RouteConfig {
           AdvertisementPricePage.route,
           AdvertisementDatePage.route,
           AdvertisementContactInfoPage.route,
+          AdvertisementDetailsPage.route,
         ],
       );
 }

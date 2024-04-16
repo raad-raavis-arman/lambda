@@ -8,11 +8,13 @@ class CountDownTime extends StatelessWidget {
   const CountDownTime({
     required this.expireDateTime,
     required this.creationDateTime,
+    this.size = 80,
     super.key,
   });
 
   final DateTime expireDateTime;
   final DateTime creationDateTime;
+  final double size;
 
   Duration get remainedDuration => expireDateTime.difference(
         DateTime(
@@ -36,8 +38,8 @@ class CountDownTime extends StatelessWidget {
           children: [
             IntrinsicHeight(
               child: SizedBox(
-                width: 80,
-                height: 80,
+                width: size,
+                height: size,
                 child: CircularProgressIndicator(
                   backgroundColor: Theme.of(context).highlightColor,
                   value: remainedDuration.inMinutes / totalDuration.inMinutes,
