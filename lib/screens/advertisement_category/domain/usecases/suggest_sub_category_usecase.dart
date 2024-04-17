@@ -6,13 +6,13 @@ import 'package:landa/screens/advertisement_category/domain/repositories/reposit
 
 class SuggestSubCategoryUsescase
     extends BaseUseCase<bool, SuggestSubCategoryParams> {
-  SuggestSubCategoryUsescase({required this.subCategoryRepository});
+  SuggestSubCategoryUsescase({required this.categoryRepository});
 
-  final SubCategoryRepository subCategoryRepository;
+  final CategoryRepository categoryRepository;
 
   @override
   Future<Either<Failure, bool>> call(SuggestSubCategoryParams params) {
-    return subCategoryRepository.suggestNewSubCategory(
+    return categoryRepository.suggestNewSubCategory(
       name: params.name,
       categoryId: params.categoryId,
     );

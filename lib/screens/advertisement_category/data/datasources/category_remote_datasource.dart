@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+import 'package:landa/core/error/error.dart';
 import 'package:landa/core/network/network.dart';
 import 'package:landa/screens/advertisement_category/data/datasources/datasources.dart';
 import 'package:landa/screens/advertisement_category/data/models/models.dart';
@@ -9,8 +11,29 @@ class CategoryRemoteDataSourceImpl implements CategoryDataSource {
   final RestClientService restClientService;
 
   @override
-  Future<List<CategoryModel>> getAllCategory() {
-    throw UnimplementedError();
+  Future<List<CategoryModel>> getAllCategory() async {
+    try {
+      final result = await restClientService.get(
+        '/category',
+      );
+      if (result['success'] == true) {
+        final jsonArray = result['data'] as List<dynamic>;
+        return List<CategoryModel>.from(
+          jsonArray.map(
+            (e) => CategoryModel.fromJson(e as Map<String, dynamic>),
+          ),
+        );
+      } else {
+        throw MException(
+          errorMessage: 'failed to get all categories',
+          data: result,
+        );
+      }
+    } on DioException catch (e) {
+      throw MException.fromDioError(e);
+    } on Exception catch (_) {
+      rethrow;
+    }
   }
 
   @override

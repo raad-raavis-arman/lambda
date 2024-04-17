@@ -3,6 +3,10 @@ import 'package:landa/core/error/failure.dart';
 import 'package:landa/screens/advertisement_category/domain/entities/entities.dart';
 
 abstract interface class CategoryRepository {
-  Future<Either<Failure, List<Category>>> getAllCategories();
+  Future<Either<Failure, Map<Category, List<SubCategory>>>> getAllCategories();
   Future<Either<Failure, bool>> suggestNewCategory({required String name});
+  Future<Either<Failure, bool>> suggestNewSubCategory({
+    required String name,
+    required int categoryId,
+  });
 }
