@@ -73,5 +73,21 @@
     "advertisementUploadSuccess": "درخواست ایجاد آگهی شما با موفقیت ارسال شد و پس از بررسی واحد پشتیبانی در برنامه منتشر میشود",
     "thereIsNoAdToShow": "هیچ آگهی برای نمایش وجود ندارد، شما میتوانید اولین نفر  باشید که آگهی جدید ایجاد میکند :)",
     "createAdvertisement": "ایجاد آگهی",
-    "advertisementDetails": "جزئیات آگهی"
+    "advertisementDetails": "جزئیات آگهی",
+    "makeCallTo": "تماس تلفنی با {number}",
+    "@makeCallTo": {
+        "placeholders": {
+            "number": {
+                "type": "String"
+            }
+        }
+    },
+    "sendSmsTo": "ارسال پیام به {number}",
+    "@sendSmsTo": {
+        "placeholders": {
+            "number": {
+                "type": "String"
+            }
+        }
+    }
 }

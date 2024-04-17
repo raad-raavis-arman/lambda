@@ -1,6 +1,5 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
@@ -132,7 +131,14 @@ class _AdvertisementDetailsView extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (_) => ContactInfoBottomSheet(
+              mobileNumber: advertisement.contactNumber,
+            ),
+          );
+        },
         child: MText(
           text: context.l10n.contactInfo,
           style: Theme.of(context).textTheme.labelLarge,

@@ -96,42 +96,42 @@ class MScaffold extends StatelessWidget {
             child: body,
           );
 
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
-      child: Scaffold(
-        key: key,
-        appBar: appBar,
-        body: mBody,
-        floatingActionButton: floatingActionButton,
-        floatingActionButtonLocation: floatingActionButtonLocation,
-        floatingActionButtonAnimator: floatingActionButtonAnimator,
-        persistentFooterButtons: persistentFooterButtons,
-        persistentFooterAlignment: persistentFooterAlignment,
-        drawer: drawer,
-        onDrawerChanged: onDrawerChanged,
-        endDrawer: endDrawer,
-        onEndDrawerChanged: onEndDrawerChanged,
-        bottomNavigationBar: SafeArea(
-          child: Padding(
-            padding: bodyPadding,
-            child: bottomNavigationBar,
-          ),
-        ),
-        bottomSheet: bottomSheet,
-        backgroundColor: backgroundColor,
-        resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-        primary: primary,
-        drawerDragStartBehavior: drawerDragStartBehavior,
-        extendBody: extendBody,
-        extendBodyBehindAppBar: extendBodyBehindAppBar,
-        drawerScrimColor: drawerScrimColor,
-        drawerEdgeDragWidth: drawerEdgeDragWidth,
-        drawerEnableOpenDragGesture: drawerEnableOpenDragGesture,
-        endDrawerEnableOpenDragGesture: endDrawerEnableOpenDragGesture,
-        restorationId: restorationId,
+    return Scaffold(
+      key: key,
+      appBar: appBar,
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: mBody,
       ),
+      floatingActionButton: floatingActionButton,
+      floatingActionButtonLocation: floatingActionButtonLocation,
+      floatingActionButtonAnimator: floatingActionButtonAnimator,
+      persistentFooterButtons: persistentFooterButtons,
+      persistentFooterAlignment: persistentFooterAlignment,
+      drawer: drawer,
+      onDrawerChanged: onDrawerChanged,
+      endDrawer: endDrawer,
+      onEndDrawerChanged: onEndDrawerChanged,
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: bodyPadding,
+          child: bottomNavigationBar,
+        ),
+      ),
+      bottomSheet: bottomSheet,
+      backgroundColor: backgroundColor,
+      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+      primary: primary,
+      drawerDragStartBehavior: drawerDragStartBehavior,
+      extendBody: extendBody,
+      extendBodyBehindAppBar: extendBodyBehindAppBar,
+      drawerScrimColor: drawerScrimColor,
+      drawerEdgeDragWidth: drawerEdgeDragWidth,
+      drawerEnableOpenDragGesture: drawerEnableOpenDragGesture,
+      endDrawerEnableOpenDragGesture: endDrawerEnableOpenDragGesture,
+      restorationId: restorationId,
     );
   }
 }
