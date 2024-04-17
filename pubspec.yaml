@@ -12,6 +12,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   dio: ^5.4.0
+  dotted_border: ^2.1.0
   equatable: ^2.0.5
   flutter:
     sdk: flutter
@@ -31,6 +32,7 @@ dependencies:
   shamsi_date: ^1.0.2
   shared_preferences: ^2.2.2
   toastification: ^1.2.1
+  url_launcher: ^6.2.6
   url_strategy: ^0.2.0
 
 dev_dependencies:

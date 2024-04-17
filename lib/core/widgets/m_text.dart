@@ -21,6 +21,7 @@ class MText extends StatelessWidget {
     this.textHeightBehavior,
     this.selectionColor,
     this.textSpan,
+    this.margin,
   });
 
   final String text;
@@ -41,6 +42,7 @@ class MText extends StatelessWidget {
   final TextWidthBasis? textWidthBasis;
   final ui.TextHeightBehavior? textHeightBehavior;
   final Color? selectionColor;
+  final EdgeInsets? margin;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,7 @@ class MText extends StatelessWidget {
     final translatedText = mLocale.languageCode == 'fa'
         ? text.replaceEnNumToFa()
         : text.replaceFaNumToEn();
-    return Text(
+    final txtWidget = Text(
       translatedText,
       key: key,
       style: style,
@@ -65,5 +67,13 @@ class MText extends StatelessWidget {
       textHeightBehavior: textHeightBehavior,
       selectionColor: selectionColor,
     );
+    if (margin != null) {
+      return Padding(
+        padding: margin!,
+        child: txtWidget,
+      );
+    } else {
+      return txtWidget;
+    }
   }
 }
