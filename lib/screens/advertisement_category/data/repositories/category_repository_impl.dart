@@ -32,9 +32,23 @@ class CategoryRepositoryImpl implements CategoryRepository {
                   .toList(),
             ),
           );
+      categoryLocalDataSourceImpl.setAllCategory(categories);
+      subcategoryLocalDataSourceImpl.setAllSubCategory(subCategories);
       return Right(result);
-    } on MException catch (e) {
-      return Left(ServerFailure(e.errorMessage));
+    } on MException catch (_) {
+      final categories = categoryLocalDataSourceImpl.getAllCategory();
+      final subCategories = subcategoryLocalDataSourceImpl.getAllSubCategory();
+      final result = categories.asMap().map(
+            (key, value) => MapEntry(
+              value,
+              subCategories
+                  .where((element) => element.categoryId == value.id)
+                  .toList(),
+            ),
+          );
+      return Right(result);
+    } on Exception catch (e) {
+      return Left(ServerFailure(e.toString()));
     }
   }
 

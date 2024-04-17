@@ -95,7 +95,6 @@ Future<void> setup() async {
         categoryRepository: locator.get(),
       ),
     )
-    
     ..registerLazySingleton(
       () => SuggestSubCategoryUsescase(
         categoryRepository: locator.get(),
@@ -110,7 +109,7 @@ Future<void> setup() async {
       ),
     )
     ..registerLazySingleton(
-      () => const CategoryLocalDataSourceImpl(),
+      () => CategoryLocalDataSourceImpl(locator.get()),
     )
     ..registerLazySingleton(
       () => CategoryRemoteDataSourceImpl(
@@ -123,7 +122,9 @@ Future<void> setup() async {
       ),
     )
     ..registerLazySingleton(
-      () => const SubCategoryLocalDataSourceImpl(),
+      () => SubCategoryLocalDataSourceImpl(
+        locator.get(),
+      ),
     )
 
     //register for AdvertisementAreaBloc
