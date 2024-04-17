@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:landa/core/bloc/bloc.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/di_service.dart';
-import 'package:landa/screens/advertisement_category/domain/entities/entities.dart';
+import 'package:landa/l10n/l10n.dart';
 import 'package:landa/screens/advertisement_category/presentation/bloc/bloc.dart';
 
 class CategoryPage extends StatelessWidget {
@@ -30,10 +31,9 @@ class CategoryPage extends StatelessWidget {
     return BlocProvider(
       create: (_) => CategoryBloc(
         getCategoriesUsescase: locator.get(),
-        getSubCategoriesUsescase: locator.get(),
         suggestCategoryUsescase: locator.get(),
         suggestSubCategoryUsescase: locator.get(),
-      ),
+      )..add(GetCategoriesEvent()),
       child: _CategoryView(
         isSelect: isSelect,
       ),
@@ -42,61 +42,62 @@ class CategoryPage extends StatelessWidget {
 }
 
 class _CategoryView extends StatelessWidget {
-  _CategoryView({this.isSelect = true});
+  const _CategoryView({this.isSelect = true});
 
   final bool isSelect;
-
-  final mData = {
-    const Category(id: 1, title: 'دسته بندی ۱', productType: 0): const [
-      SubCategory(id: 1, categoryId: 1, title: 'ساب کتگوری ۱'),
-      SubCategory(id: 2, categoryId: 1, title: 'ساب کتگوری ۲'),
-      SubCategory(id: 3, categoryId: 1, title: 'ساب کتگوری ۳'),
-      SubCategory(id: 4, categoryId: 1, title: 'ساب کتگوری ۴'),
-    ],
-    const Category(id: 2, title: 'دسته بندی ۲', productType: 0): const [
-      SubCategory(id: 1, categoryId: 2, title: 'ساب کتگوری ۱'),
-      SubCategory(id: 2, categoryId: 2, title: 'ساب کتگوری ۲'),
-      SubCategory(id: 3, categoryId: 2, title: 'ساب کتگوری ۳'),
-      SubCategory(id: 4, categoryId: 2, title: 'ساب کتگوری ۴'),
-    ],
-    const Category(id: 3, title: 'دسته بندی ۳', productType: 0): const [
-      SubCategory(id: 1, categoryId: 3, title: 'ساب کتگوری ۱'),
-      SubCategory(id: 2, categoryId: 3, title: 'ساب کتگوری ۲'),
-      SubCategory(id: 3, categoryId: 3, title: 'ساب کتگوری ۳'),
-      SubCategory(id: 4, categoryId: 3, title: 'ساب کتگوری ۴'),
-    ],
-  };
 
   @override
   Widget build(BuildContext context) {
     return MScaffold(
-      body: ListView.builder(
-        itemCount: mData.length,
-        itemBuilder: (context, index) {
-          final category = mData.entries.toList()[index].key;
-          final subCategories = mData.entries.toList()[index].value;
-          return ExpansionTile(
-            title: MText(
-              text: category.title,
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-            children: List.generate(
-              subCategories.length,
-              (index) => InkWell(
-                child: SizedBox(
-                  width: double.infinity,
-                  child: MText(
-                    text: subCategories[index].title,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ).paddingS(),
-                ),
-                onTap: () {
-                  if (isSelect) {
-                    context.pop([category,subCategories[index]]);
-                  }
+      body: BlocBuilder<CategoryBloc, CategoryState>(
+        builder: (context, state) {
+          if (state.status == StateStatus.loading &&
+              state.categories.entries.isEmpty) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (state.status == StateStatus.error &&
+              state.categories.entries.isEmpty) {
+            return Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  context.read<CategoryBloc>().add(GetCategoriesEvent());
                 },
+                child: MText(text: context.l10n.tryAgain),
               ),
-            ),
+            );
+          }
+          final categories = state.categories.keys.toList();
+          return ListView.builder(
+            itemCount: categories.length,
+            itemBuilder: (context, index) {
+              final category = categories[index];
+              final subCategories = state.categories[category] ?? [];
+              return ExpansionTile(
+                title: MText(
+                  text: category.title,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                children: List.generate(
+                  subCategories.length,
+                  (index) => InkWell(
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: MText(
+                        text: subCategories[index].title,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ).paddingS(),
+                    ),
+                    onTap: () {
+                      if (isSelect) {
+                        context.pop([category, subCategories[index]]);
+                      }
+                    },
+                  ),
+                ),
+              );
+            },
           );
         },
       ),

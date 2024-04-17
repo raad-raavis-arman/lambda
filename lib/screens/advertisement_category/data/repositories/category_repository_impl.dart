@@ -6,18 +6,32 @@ import 'package:landa/screens/advertisement_category/domain/repositories/reposit
 
 class CategoryRepositoryImpl implements CategoryRepository {
   CategoryRepositoryImpl({
+    required this.subcategoryRemoteDataSourceImpl,
+    required this.subcategoryLocalDataSourceImpl,
     required this.categoryRemoteDataSourceImpl,
     required this.categoryLocalDataSourceImpl,
   });
 
   final CategoryRemoteDataSourceImpl categoryRemoteDataSourceImpl;
   final CategoryLocalDataSourceImpl categoryLocalDataSourceImpl;
+  final SubCategoryRemoteDataSourceImpl subcategoryRemoteDataSourceImpl;
+  final SubCategoryLocalDataSourceImpl subcategoryLocalDataSourceImpl;
 
   @override
-  Future<Either<Failure, List<Category>>> getAllCategories() async {
-    // TODO(Taleb): handle offline mode also
+  Future<Either<Failure, Map<Category, List<SubCategory>>>>
+      getAllCategories() async {
     try {
-      final result = await categoryRemoteDataSourceImpl.getAllCategory();
+      final categories = await categoryRemoteDataSourceImpl.getAllCategory();
+      final subCategories =
+          await subcategoryRemoteDataSourceImpl.getAllSubCategory();
+      final result = categories.asMap().map(
+            (key, value) => MapEntry(
+              value,
+              subCategories
+                  .where((element) => element.categoryId == value.id)
+                  .toList(),
+            ),
+          );
       return Right(result);
     } on MException catch (e) {
       return Left(ServerFailure(e.errorMessage));
@@ -28,10 +42,26 @@ class CategoryRepositoryImpl implements CategoryRepository {
   Future<Either<Failure, bool>> suggestNewCategory({
     required String name,
   }) async {
-    // TODO(Taleb): handle offline mode also
     try {
       final result =
           await categoryRemoteDataSourceImpl.suggestNewCategory(name: name);
+      return Right(result);
+    } on MException catch (e) {
+      return Left(ServerFailure(e.errorMessage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> suggestNewSubCategory({
+    required String name,
+    required int categoryId,
+  }) async {
+    try {
+      final result =
+          await subcategoryRemoteDataSourceImpl.suggestNewSubCategory(
+        name: name,
+        categoryId: categoryId,
+      );
       return Right(result);
     } on MException catch (e) {
       return Left(ServerFailure(e.errorMessage));

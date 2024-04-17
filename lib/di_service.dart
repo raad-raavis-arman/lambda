@@ -9,7 +9,7 @@ import 'package:landa/screens/advertisement_area/domain/usecases/cities_usecase.
 import 'package:landa/screens/advertisement_area/domain/usecases/provinces_usecase.dart';
 import 'package:landa/screens/advertisement_category/data/datasources/datasources.dart';
 import 'package:landa/screens/advertisement_category/data/repositories/category_repository_impl.dart';
-import 'package:landa/screens/advertisement_category/data/repositories/sub_category_repository_impl.dart';
+import 'package:landa/screens/advertisement_category/domain/repositories/repositories.dart';
 import 'package:landa/screens/advertisement_category/domain/usecases/usecases.dart';
 import 'package:landa/screens/create_advertisement/data/datasources/create_advertisement_remote_datasource.dart';
 import 'package:landa/screens/create_advertisement/data/repositories/create_advertisement_repository_impl.dart';
@@ -91,30 +91,22 @@ Future<void> setup() async {
       ),
     )
     ..registerLazySingleton(
-      () => GetSubCategoriesUsescase(
-        subCategoryRepository: locator.get(),
-      ),
-    )
-    ..registerLazySingleton(
       () => SuggestCategoryUsescase(
         categoryRepository: locator.get(),
       ),
     )
+    
     ..registerLazySingleton(
       () => SuggestSubCategoryUsescase(
-        subCategoryRepository: locator.get(),
+        categoryRepository: locator.get(),
       ),
     )
-    ..registerLazySingleton(
+    ..registerLazySingleton<CategoryRepository>(
       () => CategoryRepositoryImpl(
         categoryLocalDataSourceImpl: locator.get(),
         categoryRemoteDataSourceImpl: locator.get(),
-      ),
-    )
-    ..registerLazySingleton(
-      () => SubCategoryRepositoryImpl(
-        subcategoryRemoteDataSourceImpl: locator.get(),
         subcategoryLocalDataSourceImpl: locator.get(),
+        subcategoryRemoteDataSourceImpl: locator.get(),
       ),
     )
     ..registerLazySingleton(
