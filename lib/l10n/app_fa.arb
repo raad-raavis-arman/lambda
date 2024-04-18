@@ -90,5 +90,6 @@
             }
         }
     },
-    "tryAgain": "تلاش مجدد"
+    "tryAgain": "تلاش مجدد",
+    "creationDateTimeMustNotBeAfterExpirationDateTime": "تاریخ تولید نباید بعد از تاریخ انقضا باشد"
 }
