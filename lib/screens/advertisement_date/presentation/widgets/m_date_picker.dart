@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:shamsi_date/shamsi_date.dart';
@@ -12,6 +13,17 @@ class MDatePickerValue extends Equatable {
     required this.hour,
     required this.minute,
   });
+
+  factory MDatePickerValue.now() {
+    final jalaliDateTime = Jalali.now();
+    return MDatePickerValue(
+      year: jalaliDateTime.year,
+      month: jalaliDateTime.month,
+      day: jalaliDateTime.day,
+      hour: jalaliDateTime.hour,
+      minute: jalaliDateTime.minute,
+    );
+  }
 
   final int year;
   final int month;
@@ -38,7 +50,11 @@ class MDatePickerValue extends Equatable {
 
   @override
   String toString() {
-    return '$year-$month-$day $hour:$minute';
+    final twoDidgiFormat = NumberFormat('00');
+    final fourDidgiFormat = NumberFormat('0000');
+    return '${fourDidgiFormat.format(year)}-${twoDidgiFormat.format(month)}'
+        '-${twoDidgiFormat.format(day)}'
+        ' ${twoDidgiFormat.format(hour)}:${twoDidgiFormat.format(minute)}';
   }
 
   @override
@@ -55,9 +71,11 @@ class MDatePicker extends StatefulWidget {
   const MDatePicker({
     required this.title,
     required this.onChage,
+    this.initialValue,
     super.key,
   });
   final String title;
+  final MDatePickerValue? initialValue;
   final void Function(MDatePickerValue) onChage;
 
   @override
@@ -65,12 +83,11 @@ class MDatePicker extends StatefulWidget {
 }
 
 class _MDatePickerState extends State<MDatePicker> {
-  final jalaliDateTime = Jalali.now();
-  late int _year = jalaliDateTime.year;
-  late int _month = jalaliDateTime.month;
-  late int _day = jalaliDateTime.day;
-  late int _hour = jalaliDateTime.hour;
-  late int _minute = jalaliDateTime.minute;
+  late int _year;
+  late int _month;
+  late int _day;
+  late int _hour;
+  late int _minute;
 
   MDatePickerValue get _pickedValue => MDatePickerValue(
         year: _year,
@@ -80,11 +97,29 @@ class _MDatePickerState extends State<MDatePicker> {
         minute: _minute,
       );
 
+  void _firstInitialize() {
+    if (widget.initialValue == null) {
+      final jalaliDateTime = Jalali.now();
+      _year = jalaliDateTime.year;
+      _month = jalaliDateTime.month;
+      _day = jalaliDateTime.day;
+      _hour = jalaliDateTime.hour;
+      _minute = jalaliDateTime.minute;
+    } else {
+      _year = widget.initialValue!.year;
+      _month = widget.initialValue!.month;
+      _day = widget.initialValue!.day;
+      _hour = widget.initialValue!.hour;
+      _minute = widget.initialValue!.minute;
+    }
+  }
+
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       widget.onChage(_pickedValue);
     });
+    _firstInitialize();
     super.initState();
   }
 
@@ -116,7 +151,9 @@ class _MDatePickerState extends State<MDatePicker> {
                 maxValue: 59,
                 value: _minute,
                 itemWidth: 20,
-                textMapper: (numberText) => numberText.replaceEnNumToFa(),
+                textMapper: (numberText) => NumberFormat('00')
+                    .format(int.parse(numberText))
+                    .replaceEnNumToFa(),
                 selectedTextStyle: Theme.of(context)
                     .textTheme
                     .labelLarge
@@ -135,7 +172,9 @@ class _MDatePickerState extends State<MDatePicker> {
                 maxValue: 24,
                 value: _hour,
                 itemWidth: 20,
-                textMapper: (numberText) => numberText.replaceEnNumToFa(),
+                textMapper: (numberText) => NumberFormat('00')
+                    .format(int.parse(numberText))
+                    .replaceEnNumToFa(),
                 selectedTextStyle: Theme.of(context)
                     .textTheme
                     .labelLarge
@@ -154,7 +193,9 @@ class _MDatePickerState extends State<MDatePicker> {
                 maxValue: 31,
                 value: _day,
                 itemWidth: 20,
-                textMapper: (numberText) => numberText.replaceEnNumToFa(),
+                textMapper: (numberText) => NumberFormat('00')
+                    .format(int.parse(numberText))
+                    .replaceEnNumToFa(),
                 selectedTextStyle: Theme.of(context)
                     .textTheme
                     .labelLarge
@@ -173,7 +214,9 @@ class _MDatePickerState extends State<MDatePicker> {
                 maxValue: 12,
                 value: _month,
                 itemWidth: 20,
-                textMapper: (numberText) => numberText.replaceEnNumToFa(),
+                textMapper: (numberText) => NumberFormat('00')
+                    .format(int.parse(numberText))
+                    .replaceEnNumToFa(),
                 selectedTextStyle: Theme.of(context)
                     .textTheme
                     .labelLarge
@@ -192,7 +235,9 @@ class _MDatePickerState extends State<MDatePicker> {
                 maxValue: 1500,
                 value: _year,
                 itemWidth: 40,
-                textMapper: (numberText) => numberText.replaceEnNumToFa(),
+                textMapper: (numberText) => NumberFormat('0000')
+                    .format(int.parse(numberText))
+                    .replaceEnNumToFa(),
                 selectedTextStyle: Theme.of(context)
                     .textTheme
                     .labelLarge

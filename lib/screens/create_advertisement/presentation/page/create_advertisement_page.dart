@@ -9,6 +9,7 @@ import 'package:landa/di_service.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/screens/advertisement_area/domain/entities/entities.dart';
 import 'package:landa/screens/advertisement_category/domain/entities/entities.dart';
+import 'package:landa/screens/advertisement_date/presentation/widgets/widgets.dart';
 import 'package:landa/screens/create_advertisement/domain/usecases/creaet_advertisement_usecase.dart';
 import 'package:landa/screens/create_advertisement/presentation/bloc/bloc.dart';
 import 'package:toastification/toastification.dart';
@@ -224,10 +225,13 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                 }
               },
               onClick: () async {
-                final result =
-                    await context.pushNamed(RouteNames.advertisementDate);
+                final result = await context.pushNamed(
+                  RouteNames.advertisementDate,
+                  extra: creationAndExpirationDateController.object,
+                );
                 if (result != null) {
-                  final List<String> data = result as List<String>;
+                  final List<MDatePickerValue> data =
+                      result as List<MDatePickerValue>;
                   creationAndExpirationDateController
                     ..text = '${data.first} $until '
                         '${data.last}'
@@ -317,12 +321,14 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                       formKey.currentState?.save();
                       final productCreateAndExpirationDateTime =
                           creationAndExpirationDateController.object
-                              as List<String>;
+                              as List<MDatePickerValue>;
                       final productCreateDateTime =
                           productCreateAndExpirationDateTime.first
+                              .toString()
                               .replaceFaNumToEn();
                       final productExpirationDateTime =
                           productCreateAndExpirationDateTime.last
+                              .toString()
                               .replaceFaNumToEn();
                       //
                       final priceData = priceController.object as List<String>;
