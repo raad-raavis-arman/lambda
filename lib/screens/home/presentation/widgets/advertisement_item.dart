@@ -48,6 +48,12 @@ class AdvertisementItem extends StatelessWidget {
                     discount: advertisement.discount,
                     discountedPrice: advertisement.discountedPrice,
                   ),
+                  MText(
+                    text: getAgo(
+                      postDate: DateTime.parse(advertisement.adCreateDateTime),
+                      isPersian: context.isPersian,
+                    ),
+                  ),
                 ],
               ),
             ),

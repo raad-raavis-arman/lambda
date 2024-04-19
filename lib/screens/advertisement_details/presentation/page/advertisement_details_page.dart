@@ -107,13 +107,15 @@ class _AdvertisementDetailsView extends StatelessWidget {
                     ),
                     MDivider(text: context.l10n.creationDate),
                     MText(
-                      text: advertisement.pCreateDateTime,
+                      text:
+                          advertisement.pCreateDateTime.utcToJalaliFormatter(),
                       margin: EdgeInsets.all(context.margingS),
                       style: Theme.of(context).textTheme.labelLarge,
                     ),
                     MDivider(text: context.l10n.expirationDate),
                     MText(
-                      text: advertisement.pExpireDateTime,
+                      text:
+                          advertisement.pExpireDateTime.utcToJalaliFormatter(),
                       margin: EdgeInsets.all(context.margingS),
                       style: Theme.of(context).textTheme.labelLarge,
                     ),
