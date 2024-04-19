@@ -265,7 +265,8 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
             TextFormField(
               controller: descriptionController,
               style: Theme.of(context).textTheme.titleMedium,
-              textInputAction: TextInputAction.done,
+              textInputAction: TextInputAction.newline,
+              keyboardType: TextInputType.multiline,
               minLines: 4,
               maxLines: 10,
               autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -279,7 +280,10 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
               decoration: InputDecoration(
                 labelText: context.l10n.description,
                 labelStyle: Theme.of(context).textTheme.titleMedium,
-                contentPadding: EdgeInsets.all(context.margingXS),
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: context.margingM,
+                  horizontal: context.margingXS,
+                ),
               ),
               inputFormatters: [
                 if (context.isPersian)
