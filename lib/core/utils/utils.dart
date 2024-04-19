@@ -1,6 +1,7 @@
 export 'constants/constants.dart';
 export 'enums/enums.dart';
 export 'extensions/extensions.dart';
+export 'helper_functions/helper_functions.dart';
 export 'new_version/new_version_bloc.dart';
 export 'router/router.dart';
 export 'textfield_formatters/textfield_formatters.dart';
