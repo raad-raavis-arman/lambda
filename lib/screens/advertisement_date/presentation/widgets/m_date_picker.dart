@@ -46,7 +46,15 @@ class MDatePickerValue extends Equatable {
         minute: minute ?? this.minute,
       );
 
-  DateTime toDateTime() => DateTime(year, month, day, hour, minute);
+  DateTime toJalaliDateTime() => DateTime(year, month, day, hour, minute);
+
+  String toUtcDateTime() {
+    return DateFormat('yyyy-MM-dd HH:mmZ').format(
+      Gregorian.fromJalali(
+        Jalali(year, month, day, hour, minute),
+      ).toUtcDateTime(),
+    );
+  }
 
   @override
   String toString() {

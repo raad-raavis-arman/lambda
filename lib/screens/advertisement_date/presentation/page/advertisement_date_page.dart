@@ -77,8 +77,8 @@ class _AdvertisementDateView extends StatelessWidget {
       ),
       bottomNavigationBar: ElevatedButton(
         onPressed: () {
-          if (productionDateTime.toDateTime().isAfter(
-                expirationDateTime.toDateTime(),
+          if (productionDateTime.toJalaliDateTime().isAfter(
+                expirationDateTime.toJalaliDateTime(),
               )) {
             Toastification().show(
               context: context,

@@ -328,12 +328,10 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                               as List<MDatePickerValue>;
                       final productCreateDateTime =
                           productCreateAndExpirationDateTime.first
-                              .toString()
-                              .replaceFaNumToEn();
+                              .toUtcDateTime();
                       final productExpirationDateTime =
                           productCreateAndExpirationDateTime.last
-                              .toString()
-                              .replaceFaNumToEn();
+                              .toUtcDateTime();
                       //
                       final priceData = priceController.object as List<String>;
                       final origianlPrice =
