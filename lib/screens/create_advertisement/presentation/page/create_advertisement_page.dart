@@ -252,8 +252,10 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                 }
               },
               onClick: () async {
-                final result = await context
-                    .pushNamed(RouteNames.advertisementContactInfo);
+                final result = await context.pushNamed(
+                  RouteNames.advertisementContactInfo,
+                  extra: contactInfoController.text,
+                );
                 if (result != null && result is List<String>) {
                   contactInfoController
                     ..text = result.first

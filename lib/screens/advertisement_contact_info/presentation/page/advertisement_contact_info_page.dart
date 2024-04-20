@@ -5,26 +5,33 @@ import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/l10n/l10n.dart';
 
 class AdvertisementContactInfoPage extends StatelessWidget {
-  const AdvertisementContactInfoPage({super.key});
+  const AdvertisementContactInfoPage({required this.mobileNumber, super.key});
+
+  final String mobileNumber;
 
   static GoRoute get route => GoRoute(
         path: RouteNames.advertisementContactInfo,
         name: RouteNames.advertisementContactInfo,
         pageBuilder: (context, state) {
-          return const NoTransitionPage(
-            child: AdvertisementContactInfoPage(),
+          final mobileNumber = state.extra as String? ?? '';
+          return NoTransitionPage(
+            child: AdvertisementContactInfoPage(
+              mobileNumber: mobileNumber,
+            ),
           );
         },
       );
 
   @override
   Widget build(BuildContext context) {
-    return const _AdvertisementContactInfoView();
+    return _AdvertisementContactInfoView(mobileNumber: mobileNumber,);
   }
 }
 
 class _AdvertisementContactInfoView extends StatefulWidget {
-  const _AdvertisementContactInfoView();
+  const _AdvertisementContactInfoView({required this.mobileNumber});
+
+  final String mobileNumber;
 
   @override
   State<_AdvertisementContactInfoView> createState() =>
@@ -55,6 +62,7 @@ class _AdvertisementContactInfoViewState
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
+              initialValue: widget.mobileNumber,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleMedium,
               textInputAction: TextInputAction.done,
