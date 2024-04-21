@@ -12,6 +12,7 @@ import 'package:landa/screens/advertisement_category/domain/entities/entities.da
 import 'package:landa/screens/advertisement_date/presentation/widgets/widgets.dart';
 import 'package:landa/screens/create_advertisement/domain/usecases/creaet_advertisement_usecase.dart';
 import 'package:landa/screens/create_advertisement/presentation/bloc/bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toastification/toastification.dart';
 
 class CreateAdvertisementPage extends StatelessWidget {
@@ -59,6 +60,18 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
   final productCountController = MTextEditingController();
 
   late final until = context.l10n.until;
+
+  @override
+  void initState() {
+    final user = locator.get<SharedPreferences>().getUser();
+    contactInfoController
+      ..text = user?.mobileNumber ?? ''
+      ..object = [
+        user?.mobileNumber ?? '',
+        'true',
+      ];
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -254,7 +267,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
               onClick: () async {
                 final result = await context.pushNamed(
                   RouteNames.advertisementContactInfo,
-                  extra: contactInfoController.text,
+                  extra: contactInfoController.object,
                 );
                 if (result != null && result is List<String>) {
                   contactInfoController

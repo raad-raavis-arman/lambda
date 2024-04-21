@@ -5,18 +5,26 @@ import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/l10n/l10n.dart';
 
 class AdvertisementContactInfoPage extends StatelessWidget {
-  const AdvertisementContactInfoPage({required this.mobileNumber, super.key});
+  const AdvertisementContactInfoPage({
+    required this.showContactInfo,
+    required this.mobileNumber,
+    super.key,
+  });
 
   final String mobileNumber;
+  final bool showContactInfo;
 
   static GoRoute get route => GoRoute(
         path: RouteNames.advertisementContactInfo,
         name: RouteNames.advertisementContactInfo,
         pageBuilder: (context, state) {
-          final mobileNumber = state.extra as String? ?? '';
+          final extra = state.extra as List<dynamic>?;
+          final mobileNumber = extra?[0] as String? ?? '';
+          final showContactInfo = bool.parse(extra?[1] as String? ?? 'false');
           return NoTransitionPage(
             child: AdvertisementContactInfoPage(
               mobileNumber: mobileNumber,
+              showContactInfo: showContactInfo,
             ),
           );
         },
@@ -24,14 +32,21 @@ class AdvertisementContactInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _AdvertisementContactInfoView(mobileNumber: mobileNumber,);
+    return _AdvertisementContactInfoView(
+      mobileNumber: mobileNumber,
+      showContactInfo: showContactInfo,
+    );
   }
 }
 
 class _AdvertisementContactInfoView extends StatefulWidget {
-  const _AdvertisementContactInfoView({required this.mobileNumber});
+  const _AdvertisementContactInfoView({
+    required this.showContactInfo,
+    required this.mobileNumber,
+  });
 
   final String mobileNumber;
+  final bool showContactInfo;
 
   @override
   State<_AdvertisementContactInfoView> createState() =>
@@ -41,8 +56,8 @@ class _AdvertisementContactInfoView extends StatefulWidget {
 class _AdvertisementContactInfoViewState
     extends State<_AdvertisementContactInfoView> with MobileNumberValidator {
   final formKey = GlobalKey<FormState>();
-  String contactNumber = '';
-  final checkBoxNotifier = ValueNotifier(false);
+  late String contactNumber = widget.mobileNumber;
+  late final checkBoxNotifier = ValueNotifier(!widget.showContactInfo);
 
   @override
   void dispose() {
@@ -62,9 +77,11 @@ class _AdvertisementContactInfoViewState
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
-              initialValue: widget.mobileNumber,
+              initialValue: widget.mobileNumber.replaceEnNumToFa(),
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleMedium,
+              enabled: false,
+              readOnly: true,
               textInputAction: TextInputAction.done,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
@@ -120,7 +137,7 @@ class _AdvertisementContactInfoViewState
             formKey.currentState?.save();
             context.pop([
               contactNumber,
-              checkBoxNotifier.value.toString(),
+              (!checkBoxNotifier.value).toString(),
             ]);
           }
         },
