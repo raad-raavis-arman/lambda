@@ -50,7 +50,7 @@ class AdvertisementItem extends StatelessWidget {
                   ),
                   MText(
                     text: getAgo(
-                      postDate: DateTime.parse(advertisement.adCreateDateTime),
+                      postDate: advertisement.adCreateDateTime,
                       isPersian: context.isPersian,
                     ),
                   ),

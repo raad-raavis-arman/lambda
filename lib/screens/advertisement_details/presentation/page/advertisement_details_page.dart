@@ -82,8 +82,7 @@ class _AdvertisementDetailsView extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: MText(
                         text: '${context.l10n.publishTime}: ${getAgo(
-                          postDate:
-                              DateTime.parse(advertisement.adCreateDateTime),
+                          postDate: advertisement.adCreateDateTime,
                           isPersian: context.isPersian,
                         )}',
                         style: Theme.of(context).textTheme.labelSmall,

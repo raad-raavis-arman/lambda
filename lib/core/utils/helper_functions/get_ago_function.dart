@@ -1,9 +1,12 @@
 String getAgo({
-  required DateTime postDate,
+  required String postDate,
   required bool isPersian,
 }) {
   final now = DateTime.now().toUtc();
-  final difference = now.difference(postDate);
+  if (!postDate.endsWith('Z')) {
+    postDate = '${postDate}Z';
+  }
+  final difference = now.difference(DateTime.parse(postDate));
 
   if (difference.inDays >= 365) {
     return '${(difference.inDays / 365).floor()} '
