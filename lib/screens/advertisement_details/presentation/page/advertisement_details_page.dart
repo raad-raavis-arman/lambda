@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
@@ -77,6 +78,17 @@ class _AdvertisementDetailsView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: MText(
+                        text: '${context.l10n.publishTime}: ${getAgo(
+                          postDate:
+                              DateTime.parse(advertisement.adCreateDateTime),
+                          isPersian: context.isPersian,
+                        )}',
+                        style: Theme.of(context).textTheme.labelSmall,
+                      ),
+                    ),
                     MDivider(text: context.l10n.caption),
                     MText(
                       text: advertisement.title,

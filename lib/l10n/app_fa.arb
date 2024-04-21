@@ -91,5 +91,6 @@
         }
     },
     "tryAgain": "تلاش مجدد",
-    "creationDateTimeMustNotBeAfterExpirationDateTime": "تاریخ تولید نباید بعد از تاریخ انقضا باشد"
+    "creationDateTimeMustNotBeAfterExpirationDateTime": "تاریخ تولید نباید بعد از تاریخ انقضا باشد",
+    "publishTime": "زمان انتشار"
 }
