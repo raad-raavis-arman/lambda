@@ -7,10 +7,18 @@ sealed class CreateAdvertisementState extends Equatable {
   List<Object> get props => [];
 }
 
-final class CreateAdvertisementInitialState extends CreateAdvertisementState {}
+final class CreateAdvertisementInitialState extends CreateAdvertisementState {
+  const CreateAdvertisementInitialState();
+}
 
-final class CreateAdvertisementLoadingState extends CreateAdvertisementState {}
+final class CreateAdvertisementLoadingState extends CreateAdvertisementState {
+  const CreateAdvertisementLoadingState();
+}
 
-final class CreateAdvertisementErrorState extends CreateAdvertisementState {}
+final class CreateAdvertisementErrorState extends CreateAdvertisementState {
+  const CreateAdvertisementErrorState();
+}
 
-final class CreateAdvertisementSuccessState extends CreateAdvertisementState {}
+final class CreateAdvertisementSuccessState extends CreateAdvertisementState {
+  const CreateAdvertisementSuccessState();
+}

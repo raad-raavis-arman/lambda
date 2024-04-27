@@ -9,15 +9,15 @@ class CreateAdvertisementBloc
     extends Bloc<CreateAdvertisementEvent, CreateAdvertisementState> {
   CreateAdvertisementBloc({
     required this.createAdvertisementUsescase,
-  }) : super(CreateAdvertisementInitialState()) {
+  }) : super(const CreateAdvertisementInitialState()) {
     on<CreateAdvertisementEvent>((event, emit) async {
-      emit(CreateAdvertisementLoadingState());
+      emit(const CreateAdvertisementLoadingState());
       final result = await createAdvertisementUsescase.call(event.param);
-      result.fold((l) => emit(CreateAdvertisementErrorState()), (r) {
+      result.fold((l) => emit(const CreateAdvertisementErrorState()), (r) {
         if (r) {
-          emit(CreateAdvertisementSuccessState());
+          emit(const CreateAdvertisementSuccessState());
         } else {
-          emit(CreateAdvertisementErrorState());
+          emit(const CreateAdvertisementErrorState());
         }
       });
     });
