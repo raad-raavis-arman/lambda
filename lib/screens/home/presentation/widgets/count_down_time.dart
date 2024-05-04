@@ -36,7 +36,9 @@ class CountDownTime extends StatelessWidget {
                 height: size,
                 child: CircularProgressIndicator(
                   backgroundColor: Theme.of(context).highlightColor,
-                  value: remainedDuration.inMinutes / totalDuration.inMinutes,
+                  value: remainedDuration.inMinutes <= 0
+                      ? 0
+                      : remainedDuration.inMinutes / totalDuration.inMinutes,
                 ),
               ),
             ),

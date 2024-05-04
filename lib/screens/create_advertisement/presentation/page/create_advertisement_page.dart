@@ -11,7 +11,7 @@ import 'package:landa/screens/advertisement_area/domain/entities/entities.dart';
 import 'package:landa/screens/advertisement_category/domain/entities/entities.dart';
 import 'package:landa/screens/advertisement_date/presentation/widgets/widgets.dart';
 import 'package:landa/screens/create_advertisement/domain/usecases/creaet_advertisement_usecase.dart';
-import 'package:landa/screens/create_advertisement/presentation/bloc/bloc.dart';
+import 'package:landa/screens/create_advertisement/presentation/presentation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toastification/toastification.dart';
 
@@ -55,9 +55,9 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
   final priceController = MTextEditingController();
   final creationAndExpirationDateController = MTextEditingController();
   final contactInfoController = MTextEditingController();
-  final titleController = MTextEditingController();
   final descriptionController = MTextEditingController();
   final productCountController = MTextEditingController();
+  int productType = 0;
 
   late final until = context.l10n.until;
 
@@ -99,30 +99,12 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
         key: formKey,
         child: Column(
           children: [
-            TextFormField(
-              controller: titleController,
-              style: Theme.of(context).textTheme.titleMedium,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              maxLength: 60,
-              textInputAction: TextInputAction.done,
-              validator: (value) {
-                if ((value?.trim().length ?? 0) < 3) {
-                  return context.l10n.fillingThisFieldIsRequired;
-                } else {
-                  return null;
-                }
+            MDropDownField(
+              labels: [context.l10n.goods, context.l10n.services],
+              caption: context.l10n.productType,
+              onSelected: (index) {
+                productType = index;
               },
-              decoration: InputDecoration(
-                labelText: context.l10n.caption,
-                labelStyle: Theme.of(context).textTheme.titleMedium,
-                contentPadding: EdgeInsets.all(context.margingXS),
-              ),
-              inputFormatters: [
-                if (context.isPersian)
-                  TextFieldPersianFormatter()
-                else
-                  TextFieldEnglishFormatter(),
-              ],
             ),
             const SizedBox.shrink().paddingM(),
             SelectableItemFormButton(
@@ -368,7 +350,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                       final showContactInfo = !bool.parse(contactInfo[1]);
                       //
                       final param = CreateAdvertisementParam(
-                        title: titleController.text,
+                        pType: productType,
                         description: descriptionController.text,
                         pExpireDateTime: productExpirationDateTime,
                         pCreateDateTime: productCreateDateTime,

@@ -18,7 +18,7 @@ class CreateAdvertisementRepositoryImpl
     try {
       final result = await remoteDatasource.create(
         CreateAdvertisementModel(
-          title: createAdvertisement.title,
+          pType: createAdvertisement.pType,
           description: createAdvertisement.description,
           pExpireDateTime: createAdvertisement.pExpireDateTime,
           pCreateDateTime: createAdvertisement.pCreateDateTime,
