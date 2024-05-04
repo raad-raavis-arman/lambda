@@ -60,14 +60,13 @@ class _AdvertisementDetailsView extends StatelessWidget {
             child: CountDownTime(
               expireDateTime: DateTime.parse(advertisement.pExpireDateTime),
               creationDateTime: DateTime.parse(advertisement.pCreateDateTime),
-              size: 100,
             ),
           ),
           const SizedBox().paddingM(),
           DottedBorder(
             borderType: BorderType.RRect,
             radius: Radius.circular(context.radiusM),
-            padding: EdgeInsets.all(context.margingM),
+            padding: EdgeInsets.all(context.marginM),
             child: ClipRRect(
               borderRadius: BorderRadius.all(
                 Radius.circular(context.radiusM),
@@ -93,13 +92,13 @@ class _AdvertisementDetailsView extends StatelessWidget {
                       realPrice: advertisement.originalPrice,
                       discount: advertisement.discount,
                       discountedPrice: advertisement.discountedPrice,
-                      margin: EdgeInsets.all(context.margingS),
+                      margin: EdgeInsets.all(context.marginS),
                     ),
                     MDivider(text: context.l10n.category),
                     MText(
                       text:
                           '${advertisement.subCategory.title}/${advertisement.category.title}',
-                      margin: EdgeInsets.all(context.margingS),
+                      margin: EdgeInsets.all(context.marginS),
                       style: Theme.of(context).textTheme.labelLarge,
                     ),
                     MDivider(text: context.l10n.advertisementArea),
@@ -107,26 +106,26 @@ class _AdvertisementDetailsView extends StatelessWidget {
                       text:
                           '${advertisement.province.name}/${advertisement.city.name}',
                       style: Theme.of(context).textTheme.labelLarge,
-                      margin: EdgeInsets.all(context.margingS),
+                      margin: EdgeInsets.all(context.marginS),
                     ),
                     MDivider(text: context.l10n.creationDate),
                     MText(
                       text:
                           advertisement.pCreateDateTime.utcToJalaliFormatter(),
-                      margin: EdgeInsets.all(context.margingS),
+                      margin: EdgeInsets.all(context.marginS),
                       style: Theme.of(context).textTheme.labelLarge,
                     ),
                     MDivider(text: context.l10n.expirationDate),
                     MText(
                       text:
                           advertisement.pExpireDateTime.utcToJalaliFormatter(),
-                      margin: EdgeInsets.all(context.margingS),
+                      margin: EdgeInsets.all(context.marginS),
                       style: Theme.of(context).textTheme.labelLarge,
                     ),
                     MDivider(text: context.l10n.description),
                     MText(
                       text: advertisement.description,
-                      margin: EdgeInsets.all(context.margingS),
+                      margin: EdgeInsets.all(context.marginS),
                       style: Theme.of(context).textTheme.labelLarge,
                     ),
                   ],

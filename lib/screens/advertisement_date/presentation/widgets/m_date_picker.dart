@@ -145,7 +145,7 @@ class _MDatePickerState extends State<MDatePicker> {
             enabled: false,
             decoration: InputDecoration(
               contentPadding:
-                  EdgeInsets.symmetric(horizontal: context.margingXS),
+                  EdgeInsets.symmetric(horizontal: context.marginXS),
               labelText: widget.title,
               labelStyle: Theme.of(context).textTheme.titleMedium,
               suffixIcon: const Icon(Icons.date_range),

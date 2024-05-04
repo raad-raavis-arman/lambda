@@ -86,7 +86,7 @@ class _AdvertisementContactInfoViewState
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 contentPadding:
-                    EdgeInsets.symmetric(horizontal: context.margingXS),
+                    EdgeInsets.symmetric(horizontal: context.marginXS),
                 labelText: context.l10n.mobileNumber,
                 labelStyle: Theme.of(context).textTheme.titleMedium,
                 suffixIcon: const Icon(Icons.contact_phone),
@@ -113,7 +113,7 @@ class _AdvertisementContactInfoViewState
               valueListenable: checkBoxNotifier,
               builder: (_, value, __) => CheckboxListTile(
                 contentPadding:
-                    EdgeInsets.symmetric(horizontal: context.margingXS),
+                    EdgeInsets.symmetric(horizontal: context.marginXS),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
                   side: const BorderSide(width: 0.4),

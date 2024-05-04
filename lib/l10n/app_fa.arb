@@ -95,5 +95,11 @@
     "publishTime": "زمان انتشار",
     "productType": "نوع محصول",
     "goods": "کالا",
-    "services": "خدمات"
+    "services": "خدمات",
+
+    "@_COUNT_DOWN": {},
+    "day": "روز",
+    "hour": "ساعت",
+    "minute": "دقیقه",
+    "second": "ثانیه"
 }

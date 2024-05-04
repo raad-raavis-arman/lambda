@@ -23,8 +23,8 @@ class MPopup extends StatelessWidget {
       backgroundColor: Colors.grey[200]!.withOpacity(0.65),
       surfaceTintColor: Colors.transparent,
       contentPadding: EdgeInsets.symmetric(
-        horizontal: context.margingM,
-        vertical: context.margingS,
+        horizontal: context.marginM,
+        vertical: context.marginS,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(context.radiusM)),
@@ -35,7 +35,7 @@ class MPopup extends StatelessWidget {
           children: [
             Container(
               width: double.infinity,
-              padding: EdgeInsets.all(context.margingS),
+              padding: EdgeInsets.all(context.marginS),
               decoration: BoxDecoration(
                 color: Theme.of(context).dialogBackgroundColor,
                 borderRadius: BorderRadius.all(
@@ -48,9 +48,9 @@ class MPopup extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-            SizedBox(height: context.margingS),
+            SizedBox(height: context.marginS),
             Container(
-              padding: EdgeInsets.all(context.margingS),
+              padding: EdgeInsets.all(context.marginS),
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Theme.of(context).dialogBackgroundColor,
@@ -63,7 +63,7 @@ class MPopup extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
             ),
-            SizedBox(height: context.margingS),
+            SizedBox(height: context.marginS),
             if (buttonLabel != null)
               SizedBox(
                 width: double.infinity,

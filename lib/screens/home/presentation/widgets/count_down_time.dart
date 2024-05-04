@@ -1,55 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:landa/core/utils/utils.dart';
-import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/l10n/l10n.dart';
+import 'package:landa/screens/home/presentation/widgets/widgets.dart';
 
 class CountDownTime extends StatelessWidget {
   const CountDownTime({
     required this.expireDateTime,
     required this.creationDateTime,
-    this.size = 80,
     super.key,
   });
 
   final DateTime expireDateTime;
   final DateTime creationDateTime;
-  final double size;
-
-  Duration get remainedDuration => expireDateTime.difference(
-        DateTime.now().toUtc(),
-      );
 
   @override
   Widget build(BuildContext context) {
-    final totalDuration = expireDateTime.difference(creationDateTime);
-    return StreamBuilder(
-      stream: remainedDuration.isNegative
-          ? null
-          : Stream.periodic(const Duration(seconds: 30)),
-      builder: (context, _) {
-        return Stack(
-          alignment: Alignment.center,
+    return CountdownTimer(
+      endTime: expireDateTime.millisecondsSinceEpoch + 1000 * 30,
+      widgetBuilder: (context, time) {
+        final bgColor = (time?.days ?? 0) < 1
+            ? Theme.of(context).colorScheme.errorContainer
+            : Theme.of(context).highlightColor;
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            IntrinsicHeight(
-              child: SizedBox(
-                width: size,
-                height: size,
-                child: CircularProgressIndicator(
-                  backgroundColor: Theme.of(context).highlightColor,
-                  value: remainedDuration.inMinutes <= 0
-                      ? 0
-                      : remainedDuration.inMinutes / totalDuration.inMinutes,
-                ),
-              ),
+            CountDownTimeItem(
+              label: context.l10n.second,
+              time: time?.sec,
+              bgColor: bgColor,
             ),
-            MText(
-              text: context.l10n.countdownTime(
-                remainedDuration.days.toString(),
-                remainedDuration.hours.toString(),
-                remainedDuration.minutes.toString(),
-              ),
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.labelSmall,
+            const SizedBox.shrink().paddingXXS(),
+            CountDownTimeItem(
+              label: context.l10n.minute,
+              time: time?.min,
+              bgColor: bgColor,
+            ),
+            const SizedBox.shrink().paddingXXS(),
+            CountDownTimeItem(
+              label: context.l10n.hour,
+              time: time?.hours,
+              bgColor: bgColor,
+            ),
+            const SizedBox.shrink().paddingXXS(),
+            CountDownTimeItem(
+              label: context.l10n.day,
+              time: time?.days,
+              bgColor: bgColor,
             ),
           ],
         );

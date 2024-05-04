@@ -20,7 +20,7 @@ class ContactInfoBottomSheet extends StatelessWidget {
           MText(
             text: context.l10n.contactInfo,
             style: Theme.of(context).textTheme.titleLarge,
-            margin: EdgeInsets.all(context.margingS),
+            margin: EdgeInsets.all(context.marginS),
           ),
           const Flexible(child: Divider()),
           InkWell(
@@ -30,7 +30,7 @@ class ContactInfoBottomSheet extends StatelessWidget {
             child: MText(
               text: context.l10n.makeCallTo(mobileNumber),
               style: Theme.of(context).textTheme.titleMedium,
-              margin: EdgeInsets.all(context.margingS),
+              margin: EdgeInsets.all(context.marginS),
             ),
           ),
           const Flexible(child: Divider()),
@@ -41,7 +41,7 @@ class ContactInfoBottomSheet extends StatelessWidget {
             child: MText(
               text: context.l10n.sendSmsTo(mobileNumber),
               style: Theme.of(context).textTheme.titleMedium,
-              margin: EdgeInsets.all(context.margingS),
+              margin: EdgeInsets.all(context.marginS),
             ),
           ),
         ],

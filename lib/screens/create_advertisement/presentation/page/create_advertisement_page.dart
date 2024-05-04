@@ -198,7 +198,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                 NumberSeparatorFormatter(),
               ],
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(context.margingXS),
+                contentPadding: EdgeInsets.all(context.marginXS),
                 suffix: MText(
                   text: context.l10n.number,
                   style: Theme.of(context).textTheme.titleSmall,
@@ -278,8 +278,8 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                 labelText: context.l10n.description,
                 labelStyle: Theme.of(context).textTheme.titleMedium,
                 contentPadding: EdgeInsets.symmetric(
-                  vertical: context.margingM,
-                  horizontal: context.margingXS,
+                  vertical: context.marginM,
+                  horizontal: context.marginXS,
                 ),
               ),
               inputFormatters: [

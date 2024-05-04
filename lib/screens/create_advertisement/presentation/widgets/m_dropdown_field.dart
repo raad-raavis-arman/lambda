@@ -31,7 +31,7 @@ class _MToggleFieldState extends State<MDropDownField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: context.margingXS),
+      padding: EdgeInsets.symmetric(horizontal: context.marginXS),
       child: Row(
         children: [
           if (widget.caption != null)

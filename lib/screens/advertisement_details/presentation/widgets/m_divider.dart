@@ -18,8 +18,8 @@ class MDivider extends StatelessWidget {
           text: text,
           style: Theme.of(context).textTheme.labelMedium,
           margin: EdgeInsets.only(
-            left: context.margingS,
-            right: context.margingS,
+            left: context.marginS,
+            right: context.marginS,
           ),
         ),
         const Flexible(child: Divider()),

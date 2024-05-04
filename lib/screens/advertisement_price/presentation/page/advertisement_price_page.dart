@@ -77,7 +77,7 @@ class _AdvertisementPriceViewState extends State<_AdvertisementPriceView> {
               ],
               decoration: InputDecoration(
                 contentPadding:
-                    EdgeInsets.symmetric(horizontal: context.margingXS),
+                    EdgeInsets.symmetric(horizontal: context.marginXS),
                 suffix: MText(
                   text: context.l10n.tooman,
                   style: Theme.of(context).textTheme.titleSmall,
@@ -119,7 +119,7 @@ class _AdvertisementPriceViewState extends State<_AdvertisementPriceView> {
               ],
               decoration: InputDecoration(
                 contentPadding:
-                    EdgeInsets.symmetric(horizontal: context.margingXS),
+                    EdgeInsets.symmetric(horizontal: context.marginXS),
                 suffix: MText(
                   text: context.l10n.percentage,
                   style: Theme.of(context).textTheme.titleSmall,
@@ -156,7 +156,7 @@ class _AdvertisementPriceViewState extends State<_AdvertisementPriceView> {
               ],
               decoration: InputDecoration(
                 contentPadding:
-                    EdgeInsets.symmetric(horizontal: context.margingXS),
+                    EdgeInsets.symmetric(horizontal: context.marginXS),
                 suffix: MText(
                   text: context.l10n.tooman,
                   style: Theme.of(context).textTheme.titleSmall,

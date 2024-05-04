@@ -95,5 +95,11 @@
     "publishTime": "Publish time",
     "productType": "Product type",
     "goods": "Goods",
-    "services": "Services"
+    "services": "Services",
+    
+    "@_COUNT_DOWN": {},
+    "day": "day",
+    "hour": "hour",
+    "minute": "minute",
+    "second": "second"
 }
