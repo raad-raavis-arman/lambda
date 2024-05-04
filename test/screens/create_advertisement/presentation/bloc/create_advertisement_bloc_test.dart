@@ -16,7 +16,7 @@ import 'create_advertisement_bloc_test.mocks.dart';
 void main() {
   late final MockCreateAdvertisementUsescase mockCreateAdvertisementUsescase;
   const createAdvertisementParam = CreateAdvertisementParam(
-    title: 'title',
+    pType: 0,
     description: 'description',
     pExpireDateTime: 'pExpireDateTime',
     pCreateDateTime: 'pCreateDateTime',

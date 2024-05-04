@@ -92,5 +92,8 @@
     },
     "tryAgain": "Try again",
     "creationDateTimeMustNotBeAfterExpirationDateTime": "Creation date time must not be after expiration date time",
-    "publishTime": "Publish time"
+    "publishTime": "Publish time",
+    "productType": "Product type",
+    "goods": "Goods",
+    "services": "Services"
 }

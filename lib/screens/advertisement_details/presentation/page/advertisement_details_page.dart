@@ -87,12 +87,6 @@ class _AdvertisementDetailsView extends StatelessWidget {
                         style: Theme.of(context).textTheme.labelSmall,
                       ),
                     ),
-                    MDivider(text: context.l10n.caption),
-                    MText(
-                      text: advertisement.title,
-                      margin: EdgeInsets.all(context.margingS),
-                      style: Theme.of(context).textTheme.labelLarge,
-                    ),
                     MDivider(text: context.l10n.price),
                     PriceDiscount(
                       style: Theme.of(context).textTheme.labelLarge,

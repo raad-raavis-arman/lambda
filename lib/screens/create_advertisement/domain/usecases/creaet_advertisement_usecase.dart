@@ -16,7 +16,7 @@ class CreateAdvertisementUsescase
 
 class CreateAdvertisementParam extends CreateAdvertisement {
   const CreateAdvertisementParam({
-    required super.title,
+    required super.pType,
     required super.description,
     required super.pExpireDateTime,
     required super.pCreateDateTime,

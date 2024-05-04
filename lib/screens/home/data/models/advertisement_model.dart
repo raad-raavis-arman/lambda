@@ -10,7 +10,7 @@ class AdvertisementModel extends Advertisement {
       
   const AdvertisementModel({
     required super.id,
-    required super.title,
+    required super.pType,
     required super.description,
     required super.adCreateDateTime,
     required super.adExpireDateTime,

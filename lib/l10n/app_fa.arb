@@ -92,5 +92,8 @@
     },
     "tryAgain": "تلاش مجدد",
     "creationDateTimeMustNotBeAfterExpirationDateTime": "تاریخ تولید نباید بعد از تاریخ انقضا باشد",
-    "publishTime": "زمان انتشار"
+    "publishTime": "زمان انتشار",
+    "productType": "نوع محصول",
+    "goods": "کالا",
+    "services": "خدمات"
 }
