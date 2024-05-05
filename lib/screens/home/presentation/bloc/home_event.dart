@@ -9,8 +9,8 @@ sealed class HomeEvent extends Equatable {
 
 final class HomeGetAllAdEvent extends HomeEvent {
   const HomeGetAllAdEvent({
-    required this.offset,
-    required this.limit,
+    this.offset = 0,
+    this.limit = 10,
   });
 
   final int offset;

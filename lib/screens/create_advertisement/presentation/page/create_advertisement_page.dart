@@ -12,6 +12,7 @@ import 'package:landa/screens/advertisement_category/domain/entities/entities.da
 import 'package:landa/screens/advertisement_date/presentation/widgets/widgets.dart';
 import 'package:landa/screens/create_advertisement/domain/usecases/creaet_advertisement_usecase.dart';
 import 'package:landa/screens/create_advertisement/presentation/presentation.dart';
+import 'package:landa/screens/home/presentation/presentation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toastification/toastification.dart';
 
@@ -303,6 +304,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
               title: MText(text: context.l10n.success),
               description: MText(text: context.l10n.advertisementUploadSuccess),
             );
+            context.read<HomeBloc>().add(const HomeGetAllAdEvent());
             context.replaceNamed(RouteNames.home);
           }
         },

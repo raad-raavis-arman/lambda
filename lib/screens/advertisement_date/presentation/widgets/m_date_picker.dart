@@ -177,7 +177,7 @@ class _MDatePickerState extends State<MDatePicker> {
               const Text(':'),
               NumberPicker(
                 minValue: 0,
-                maxValue: 24,
+                maxValue: 23,
                 value: _hour,
                 itemWidth: 20,
                 textMapper: (numberText) => NumberFormat('00')

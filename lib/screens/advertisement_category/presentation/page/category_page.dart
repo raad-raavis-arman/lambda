@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:landa/core/bloc/bloc.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
-import 'package:landa/di_service.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/screens/advertisement_category/presentation/bloc/bloc.dart';
 
@@ -28,15 +27,8 @@ class CategoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => CategoryBloc(
-        getCategoriesUsescase: locator.get(),
-        suggestCategoryUsescase: locator.get(),
-        suggestSubCategoryUsescase: locator.get(),
-      )..add(GetCategoriesEvent()),
-      child: _CategoryView(
-        isSelect: isSelect,
-      ),
+    return _CategoryView(
+      isSelect: isSelect,
     );
   }
 }
