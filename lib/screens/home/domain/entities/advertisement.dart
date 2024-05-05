@@ -27,7 +27,7 @@ class Advertisement extends Equatable {
   final int id;
   @JsonKey(name: 'p_type')
   final int pType;
-  final String description;
+  final String? description;
   @JsonKey(name: 'ad_create_date_time')
   final String adCreateDateTime;
   @JsonKey(name: 'ad_expire_date_time')

@@ -37,7 +37,8 @@ class AdvertisementItem extends StatelessWidget {
                   ),
                   const SizedBox.shrink().paddingXXS(),
                   MText(
-                    text: advertisement.description,
+                    text:
+                        '${advertisement.city.provinceName}/${advertisement.city.name}',
                     style: Theme.of(context).textTheme.labelMedium,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,

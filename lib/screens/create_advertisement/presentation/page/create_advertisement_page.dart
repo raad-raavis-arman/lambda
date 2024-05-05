@@ -267,13 +267,6 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
               minLines: 4,
               maxLines: 10,
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: (value) {
-                if ((value?.trim().length ?? 0) < 3) {
-                  return context.l10n.fillingThisFieldIsRequired;
-                } else {
-                  return null;
-                }
-              },
               decoration: InputDecoration(
                 labelText: context.l10n.description,
                 labelStyle: Theme.of(context).textTheme.titleMedium,

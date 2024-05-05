@@ -124,7 +124,7 @@ class _AdvertisementDetailsView extends StatelessWidget {
                     ),
                     MDivider(text: context.l10n.description),
                     MText(
-                      text: advertisement.description,
+                      text: advertisement.description ?? '',
                       margin: EdgeInsets.all(context.marginS),
                       style: Theme.of(context).textTheme.labelLarge,
                     ),
