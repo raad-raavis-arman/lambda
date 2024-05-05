@@ -17,11 +17,11 @@ class CountDownTimeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: const BoxConstraints(
-        minWidth: 50,
+      constraints: BoxConstraints(
+        minWidth: context.rW(20),
       ),
       child: Container(
-        padding: EdgeInsets.all(context.marginXS),
+        padding: EdgeInsets.all(context.rW(2)),
         decoration: BoxDecoration(
           color: bgColor ?? Theme.of(context).highlightColor,
           borderRadius: BorderRadius.all(
@@ -32,7 +32,9 @@ class CountDownTimeItem extends StatelessWidget {
           children: [
             MText(
               text: '${time ?? 0}',
-              style: Theme.of(context).textTheme.labelMedium,
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    fontSize: context.rW(10),
+                  ),
             ),
             Container(
               width: 30,
@@ -41,7 +43,9 @@ class CountDownTimeItem extends StatelessWidget {
             ).paddingXXS(),
             MText(
               text: label,
-              style: Theme.of(context).textTheme.labelSmall,
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                fontSize: context.rW(8),
+              ),
             ),
           ],
         ),

@@ -26,7 +26,10 @@ class PriceDiscount extends StatelessWidget {
     final discountedPriceFormatted =
         discountedPrice.toString().separate(textType: TextType.double);
     final discountFormatted = ' ⬅️ $discount٪ ⬅️ ';
-    final mStyle = style ?? Theme.of(context).textTheme.labelSmall;
+    final mStyle = style ??
+        Theme.of(context).textTheme.labelSmall?.copyWith(
+              fontSize: context.rW(10),
+            );
     return Padding(
       padding: margin,
       child: Row(

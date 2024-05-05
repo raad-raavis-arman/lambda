@@ -23,44 +23,45 @@ class AdvertisementItem extends StatelessWidget {
         );
       },
       child: Card(
-        child: Row(
+        child: Stack(
+          alignment: Alignment.topLeft,
           children: [
-            Flexible(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  MText(
-                    text: advertisement.subCategory.title,
-                    style: Theme.of(context).textTheme.labelLarge,
-                    maxLines: 1,
-                  ),
-                  const SizedBox.shrink().paddingXXS(),
-                  MText(
-                    text:
-                        '${advertisement.city.provinceName}/${advertisement.city.name}',
-                    style: Theme.of(context).textTheme.labelMedium,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  ),
-                  const SizedBox.shrink().paddingXXS(),
-                  PriceDiscount(
-                    realPrice: advertisement.originalPrice,
-                    discount: advertisement.discount,
-                    discountedPrice: advertisement.discountedPrice,
-                  ),
-                  MText(
-                    text: getAgo(
-                      postDate: advertisement.adCreateDateTime,
-                      isPersian: context.isPersian,
-                    ),
-                  ),
-                ],
-              ),
-            ),
             CountDownTime(
               expireDateTime: DateTime.parse(advertisement.pExpireDateTime),
               creationDateTime: DateTime.parse(advertisement.pCreateDateTime),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                MText(
+                  text: advertisement.subCategory.title,
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        fontSize: context.rW(12),
+                      ),
+                  maxLines: 1,
+                ),
+                const SizedBox.shrink().paddingXXS(),
+                MText(
+                  text:
+                      '${advertisement.city.provinceName}/${advertisement.city.name}',
+                  style: Theme.of(context).textTheme.labelMedium,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                ),
+                const SizedBox.shrink().paddingXXS(),
+                PriceDiscount(
+                  realPrice: advertisement.originalPrice,
+                  discount: advertisement.discount,
+                  discountedPrice: advertisement.discountedPrice,
+                ),
+                MText(
+                  text: getAgo(
+                    postDate: advertisement.adCreateDateTime,
+                    isPersian: context.isPersian,
+                  ),
+                ),
+              ],
             ),
           ],
         ).paddingS(),
