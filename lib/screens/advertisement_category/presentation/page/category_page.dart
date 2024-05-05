@@ -5,7 +5,8 @@ import 'package:landa/core/bloc/bloc.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/l10n/l10n.dart';
-import 'package:landa/screens/advertisement_category/presentation/bloc/bloc.dart';
+import 'package:landa/screens/advertisement_category/domain/entities/entities.dart';
+import 'package:landa/screens/advertisement_category/presentation/presentation.dart';
 
 class CategoryPage extends StatelessWidget {
   const CategoryPage({
@@ -33,16 +34,35 @@ class CategoryPage extends StatelessWidget {
   }
 }
 
-class _CategoryView extends StatelessWidget {
+class _CategoryView extends StatefulWidget {
   const _CategoryView({this.isSelect = true});
 
   final bool isSelect;
 
   @override
+  State<_CategoryView> createState() => _CategoryViewState();
+}
+
+class _CategoryViewState extends State<_CategoryView> {
+  List<SubCategory> subCategories1 = [];
+  List<SubCategory> subCategories2 = [];
+  Category? selectedCategory;
+  final pageController = PageController();
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MScaffold(
+      appBar: AppBar(
+        title: MText(text: context.l10n.category),
+      ),
       body: BlocBuilder<CategoryBloc, CategoryState>(
-        builder: (context, state) {
+        builder: (_, state) {
           if (state.status == StateStatus.loading &&
               state.categories.entries.isEmpty) {
             return const Center(
@@ -61,34 +81,49 @@ class _CategoryView extends StatelessWidget {
             );
           }
           final categories = state.categories.keys.toList();
-          return ListView.builder(
-            itemCount: categories.length,
-            itemBuilder: (context, index) {
-              final category = categories[index];
-              final subCategories = state.categories[category] ?? [];
-              return ExpansionTile(
-                title: MText(
-                  text: category.title,
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-                children: List.generate(
-                  subCategories.length,
-                  (index) => InkWell(
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: MText(
-                        text: subCategories[index].title,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ).paddingS(),
-                    ),
-                    onTap: () {
-                      if (isSelect) {
-                        context.pop([category, subCategories[index]]);
-                      }
+          return PageView.builder(
+            controller: pageController,
+            itemCount: 3,
+            itemBuilder: (_, index) {
+              return switch (index) {
+                0 => CategoryList(
+                    categories: categories,
+                    onTap: (category) {
+                      selectedCategory = category;
+                      subCategories1 = state.categories[category]
+                              ?.where((element) => element.parentId == null)
+                              .toList() ??
+                          [];
+                      pageController.nextPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.linear,
+                      );
                     },
                   ),
-                ),
-              );
+                1 => SubCategoryList(
+                    subCategories: subCategories1,
+                    onTap: (subCategory) {
+                      subCategories2 = state.categories[selectedCategory]
+                              ?.where(
+                                (element) => element.parentId == subCategory.id,
+                              )
+                              .toList() ??
+                          [];
+                      pageController.nextPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.linear,
+                      );
+                    },
+                  ),
+                2 => SubCategoryList(
+                    subCategories: subCategories2,
+                    onTap: (subCategory) {
+                      GoRouter.of(context)
+                          .pop([selectedCategory!, subCategory]);
+                    },
+                  ),
+                _ => const SizedBox.shrink(),
+              };
             },
           );
         },

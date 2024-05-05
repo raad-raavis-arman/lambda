@@ -9,6 +9,7 @@ class SubCategoryModel extends SubCategory {
     required super.id,
     required super.title,
     required super.categoryId,
+    required super.parentId,
   });
 
   factory SubCategoryModel.fromJson(Map<String, dynamic> json) =>

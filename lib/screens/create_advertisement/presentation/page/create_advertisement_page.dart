@@ -104,6 +104,9 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
               labels: [context.l10n.goods, context.l10n.services],
               caption: context.l10n.productType,
               onSelected: (index) {
+                if (index != productType) {
+                  categoryController.clear();
+                }
                 productType = index;
               },
             ),
