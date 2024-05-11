@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:landa/app.dart';
 import 'package:landa/di_service.dart';
 import 'package:landa/flavor_config.dart';
@@ -13,6 +14,8 @@ Future<void> mainCommon(FlavorConfig flavorConfig) async {
   if (kIsWeb) {
     MetaSEO().config();
   }
+  await dotenv.load();
+
   runApp(
     AppRootPage(
       flavorConfig: flavorConfig,
