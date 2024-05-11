@@ -16,39 +16,32 @@ class CountDownTimeItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: BoxConstraints(
-        minWidth: context.rW(20),
+    return Container(
+      padding: EdgeInsets.all(context.rW(2)),
+      alignment: Alignment.center,
+      width: context.rW(50),
+      decoration: BoxDecoration(
+        color: bgColor ?? Theme.of(context).highlightColor,
+        borderRadius: BorderRadius.all(
+          Radius.circular(context.radiusS),
+        ),
       ),
-      child: Container(
-        padding: EdgeInsets.all(context.rW(2)),
-        decoration: BoxDecoration(
-          color: bgColor ?? Theme.of(context).highlightColor,
-          borderRadius: BorderRadius.all(
-            Radius.circular(context.radiusS),
+      child: Column(
+        children: [
+          MText(
+            text: '${time ?? 0}',
+            style: Theme.of(context).textTheme.labelMedium,
           ),
-        ),
-        child: Column(
-          children: [
-            MText(
-              text: '${time ?? 0}',
-              style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                    fontSize: context.rW(10),
-                  ),
-            ),
-            Container(
-              width: 30,
-              color: Theme.of(context).dividerColor,
-              height: 0.2,
-            ).paddingXXS(),
-            MText(
-              text: label,
-              style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                fontSize: context.rW(8),
-              ),
-            ),
-          ],
-        ),
+          Container(
+            width: 30,
+            color: Theme.of(context).dividerColor,
+            height: 0.4,
+          ).paddingXXS(),
+          MText(
+            text: label,
+            style: Theme.of(context).textTheme.labelSmall,
+          ),
+        ],
       ),
     );
   }

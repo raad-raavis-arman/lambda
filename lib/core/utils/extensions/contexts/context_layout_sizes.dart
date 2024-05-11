@@ -17,7 +17,7 @@ extension ContextLayoutSizes on BuildContext {
         ? mediaQueryData.size.shortestSide
         : mediaQueryData.size.longestSide;
   }
-  
+
   Size get targetDeviceSize {
     if (screenWidth < 479) {
       //mobile
@@ -35,16 +35,16 @@ extension ContextLayoutSizes on BuildContext {
 
   double rH(double value) => screenHeight * (value / targetDeviceSize.height);
   // margins
-  double get marginXS => 6;
-  double get marginS => 8;
-  double get marginM => 12;
-  double get marginL => 16;
+  double get marginXS => rW(6);
+  double get marginS => rW(8);
+  double get marginM => rW(12);
+  double get marginL => rW(16);
 
   //border radius
 
-  double get radiusS => 6;
-  double get radiusM => 10;
-  double get radiusL => 14;
-  double get radiusXL => 18;
-  double get radiusXXL => 22;
+  double get radiusS => rW(6);
+  double get radiusM => rW(10);
+  double get radiusL => rW(14);
+  double get radiusXL => rW(18);
+  double get radiusXXL => rW(22);
 }

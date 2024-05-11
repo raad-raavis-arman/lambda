@@ -36,9 +36,7 @@ class AdvertisementItem extends StatelessWidget {
               children: [
                 MText(
                   text: advertisement.subCategory.title,
-                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        fontSize: context.rW(12),
-                      ),
+                  style: Theme.of(context).textTheme.labelLarge,
                   maxLines: 1,
                 ),
                 const SizedBox.shrink().paddingXXS(),
@@ -50,16 +48,17 @@ class AdvertisementItem extends StatelessWidget {
                   maxLines: 1,
                 ),
                 const SizedBox.shrink().paddingXXS(),
-                PriceDiscount(
-                  realPrice: advertisement.originalPrice,
-                  discount: advertisement.discount,
-                  discountedPrice: advertisement.discountedPrice,
-                ),
                 MText(
                   text: getAgo(
                     postDate: advertisement.adCreateDateTime,
                     isPersian: context.isPersian,
                   ),
+                ),
+                const SizedBox.shrink().paddingXXS(),
+                PriceDiscount(
+                  realPrice: advertisement.originalPrice,
+                  discount: advertisement.discount,
+                  discountedPrice: advertisement.discountedPrice,
                 ),
               ],
             ),

@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:landa/core/utils/theme/constant/constant.dart';
 
 class LightTheme {
-
-  LightTheme({required this.fontFamily});
+  LightTheme({
+    required this.fontFamily,
+    required this.context,
+  });
   final String fontFamily;
+  final BuildContext context;
 
   ThemeData get data => ThemeData(
         useMaterial3: true,
         brightness: Brightness.light,
         fontFamily: fontFamily,
         colorScheme: lightColorScheme,
-        textTheme: textTheme,
+        textTheme: textTheme(context),
         inputDecorationTheme: const InputDecorationTheme(
           border: OutlineInputBorder(),
         ),
