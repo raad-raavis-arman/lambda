@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -6,6 +7,7 @@ import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/screens/home/presentation/presentation.dart';
+import 'package:meta_seo/meta_seo.dart';
 import 'package:toastification/toastification.dart';
 
 class HomePage extends StatelessWidget {
@@ -15,6 +17,13 @@ class HomePage extends StatelessWidget {
         path: RouteNames.home,
         name: RouteNames.home,
         pageBuilder: (context, state) {
+          if (kIsWeb) {
+            // TODO(Taleb): do seo for all routes with keywords
+            MetaSEO()
+              ..ogTitle(ogTitle: 'home screen')
+              ..description(description: 'all advertisements')
+              ..keywords(keywords: 'advertisement, buy, sell, off, discount');
+          }
           return const NoTransitionPage(
             child: HomePage(),
           );
