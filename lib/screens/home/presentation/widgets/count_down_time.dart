@@ -23,14 +23,9 @@ class CountDownTime extends StatelessWidget {
             ? Theme.of(context).colorScheme.errorContainer
             : Theme.of(context).highlightColor;
         return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            CountDownTimeItem(
-              label: context.l10n.second,
-              time: time?.sec,
-              bgColor: bgColor,
-            ),
-            const SizedBox.shrink().paddingXXS(),
             CountDownTimeItem(
               label: context.l10n.minute,
               time: time?.min,

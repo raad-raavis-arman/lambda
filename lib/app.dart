@@ -88,7 +88,9 @@ class _AppRootView extends StatelessWidget {
           return MaterialApp.router(
             themeMode: themeState.mode,
             darkTheme: DarkTheme(fontFamily: langState.fontFamily).data,
-            theme: LightTheme(fontFamily: langState.fontFamily).data,
+            theme:
+                LightTheme(fontFamily: langState.fontFamily, context: context)
+                    .data,
             supportedLocales: L10n.all,
             locale: langState.locale,
             localizationsDelegates: const [

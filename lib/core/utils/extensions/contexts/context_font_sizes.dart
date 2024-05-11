@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:landa/core/utils/utils.dart';
 
 extension ContextFontSizes on BuildContext {
-  double fontSize(double value) {
-    return MediaQuery.of(this).textScaler.scale(value);
-  }
-
-  double get iconS => fontSize(18);
-  double get iconM => fontSize(24);
-  double get iconL => fontSize(28);
+  double get iconS => rW(18);
+  double get iconM => rW(24);
+  double get iconL => rW(28);
+  //
+  double get h => rW(24);
 }
