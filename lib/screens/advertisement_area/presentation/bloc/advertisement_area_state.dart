@@ -17,4 +17,5 @@ final class AdvertisementAreaDataState extends AdvertisementAreaState {
 }
 
 final class AdvertisementAreaLoadingState extends AdvertisementAreaState {}
+
 final class AdvertisementAreaErrorState extends AdvertisementAreaState {}

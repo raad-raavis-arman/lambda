@@ -17,7 +17,6 @@ class GetAllAdUsecase extends BaseUseCase<List<Advertisement>, GetAllAdParam> {
       limit: params.limit,
     );
   }
-  
 }
 
 class GetAllAdParam extends Equatable {

@@ -33,7 +33,7 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
       if (response['success'] = true) {
         return LoginAuthModel.fromJson(response['data']);
       } else {
-        throw MException(errorMessage: 'failed to verify otp',data: response);
+        throw MException(errorMessage: 'failed to verify otp', data: response);
       }
     } on DioException catch (e) {
       throw MException.fromDioError(e);

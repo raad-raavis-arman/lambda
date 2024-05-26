@@ -7,7 +7,6 @@ part 'advertisement_model.g.dart';
 
 @JsonSerializable()
 class AdvertisementModel extends Advertisement {
-      
   const AdvertisementModel({
     required super.id,
     required super.pType,

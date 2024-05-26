@@ -6,7 +6,6 @@ part 'login_auth_model.g.dart';
 
 @JsonSerializable()
 class LoginAuthModel extends LoginAuth {
-
   const LoginAuthModel({
     required super.accessToken,
     required super.expiresIn,
@@ -17,7 +16,7 @@ class LoginAuthModel extends LoginAuth {
 
   factory LoginAuthModel.fromJson(Map<String, dynamic> json) =>
       _$LoginAuthModelFromJson(json);
-      
+
   @JsonKey(name: 'user')
   final UserModel mUser;
 

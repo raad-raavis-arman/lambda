@@ -1,5 +1,4 @@
 class FlavorConfig {
-
   const FlavorConfig({
     required this.appTitle,
     required this.flavorType,
