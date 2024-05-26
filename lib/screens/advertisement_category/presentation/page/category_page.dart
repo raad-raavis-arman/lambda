@@ -44,9 +44,8 @@ class _CategoryView extends StatefulWidget {
 }
 
 class _CategoryViewState extends State<_CategoryView> {
-  List<SubCategory> subCategories1 = [];
-  List<SubCategory> subCategories2 = [];
-  Category? selectedCategory;
+  List<SubCategory> subCategories = [];
+  List<SubCategoryItem> subCategoryItems = [];
   final pageController = PageController();
 
   @override
@@ -64,13 +63,13 @@ class _CategoryViewState extends State<_CategoryView> {
       body: BlocBuilder<CategoryBloc, CategoryState>(
         builder: (_, state) {
           if (state.status == StateStatus.loading &&
-              state.categories.entries.isEmpty) {
+              state.categoryData.categories.isEmpty) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           }
           if (state.status == StateStatus.error &&
-              state.categories.entries.isEmpty) {
+              state.categoryData.categories.isEmpty) {
             return Center(
               child: ElevatedButton(
                 onPressed: () {
@@ -80,20 +79,19 @@ class _CategoryViewState extends State<_CategoryView> {
               ),
             );
           }
-          final categories = state.categories.keys.toList();
           return PageView.builder(
             controller: pageController,
             itemCount: 3,
             itemBuilder: (_, index) {
               return switch (index) {
                 0 => CategoryList(
-                    categories: categories,
+                    categories: state.categoryData.categories,
                     onTap: (category) {
-                      selectedCategory = category;
-                      subCategories1 = state.categories[category]
-                              ?.where((element) => element.parentId == null)
-                              .toList() ??
-                          [];
+                      subCategories = state.categoryData.subCategories
+                          .where(
+                            (element) => element.categoryId == category.id,
+                          )
+                          .toList();
                       pageController.nextPage(
                         duration: const Duration(milliseconds: 300),
                         curve: Curves.linear,
@@ -101,25 +99,24 @@ class _CategoryViewState extends State<_CategoryView> {
                     },
                   ),
                 1 => SubCategoryList(
-                    subCategories: subCategories1,
+                    subCategories: subCategories,
                     onTap: (subCategory) {
-                      subCategories2 = state.categories[selectedCategory]
-                              ?.where(
-                                (element) => element.parentId == subCategory.id,
-                              )
-                              .toList() ??
-                          [];
+                      subCategoryItems = state.categoryData.subCategoryItems
+                          .where(
+                            (element) =>
+                                element.subCategoryId == subCategory.id,
+                          )
+                          .toList();
                       pageController.nextPage(
                         duration: const Duration(milliseconds: 300),
                         curve: Curves.linear,
                       );
                     },
                   ),
-                2 => SubCategoryList(
-                    subCategories: subCategories2,
-                    onTap: (subCategory) {
-                      GoRouter.of(context)
-                          .pop([selectedCategory!, subCategory]);
+                2 => SubCategoryItemList(
+                    subCategoryItems: subCategoryItems,
+                    onTap: (subCategoryItem) {
+                      GoRouter.of(context).pop(subCategoryItem);
                     },
                   ),
                 _ => const SizedBox.shrink(),

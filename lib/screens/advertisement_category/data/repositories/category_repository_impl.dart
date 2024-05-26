@@ -6,6 +6,8 @@ import 'package:landa/screens/advertisement_category/domain/repositories/reposit
 
 class CategoryRepositoryImpl implements CategoryRepository {
   CategoryRepositoryImpl({
+    required this.subcategoryItemRemoteDataSourceImpl,
+    required this.subcategoryItemLocalDataSourceImpl,
     required this.subcategoryRemoteDataSourceImpl,
     required this.subcategoryLocalDataSourceImpl,
     required this.categoryRemoteDataSourceImpl,
@@ -16,39 +18,70 @@ class CategoryRepositoryImpl implements CategoryRepository {
   final CategoryLocalDataSourceImpl categoryLocalDataSourceImpl;
   final SubCategoryRemoteDataSourceImpl subcategoryRemoteDataSourceImpl;
   final SubCategoryLocalDataSourceImpl subcategoryLocalDataSourceImpl;
+  final SubCategoryItemRemoteDataSourceImpl subcategoryItemRemoteDataSourceImpl;
+  final SubCategoryItemLocalDataSourceImpl subcategoryItemLocalDataSourceImpl;
 
   @override
-  Future<Either<Failure, Map<Category, List<SubCategory>>>>
-      getAllCategories() async {
+  Future<Either<Failure, CategoryData>> getAllCategoriesData() async {
     try {
-      final categories = await categoryRemoteDataSourceImpl.getAllCategory();
-      final subCategories =
-          await subcategoryRemoteDataSourceImpl.getAllSubCategory();
-      final result = categories.asMap().map(
-            (key, value) => MapEntry(
-              value,
-              subCategories
-                  .where((element) => element.categoryId == value.id)
-                  .toList(),
-            ),
-          );
-      categoryLocalDataSourceImpl.setAllCategory(categories);
-      subcategoryLocalDataSourceImpl.setAllSubCategory(subCategories);
-      return Right(result);
-    } on MException catch (_) {
-      final categories = categoryLocalDataSourceImpl.getAllCategory();
-      final subCategories = subcategoryLocalDataSourceImpl.getAllSubCategory();
-      final result = categories.asMap().map(
-            (key, value) => MapEntry(
-              value,
-              subCategories
-                  .where((element) => element.categoryId == value.id)
-                  .toList(),
-            ),
-          );
-      return Right(result);
+      final categories = await getAllCategories();
+      final subCategories = await getAllSubCategories();
+      final subCategoryItems = await getAllSubCategoryItems();
+      return Right(
+        CategoryData(
+          categories: categories,
+          subCategories: subCategories,
+          subCategoryItems: subCategoryItems,
+        ),
+      );
     } on Exception catch (e) {
       return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<List<Category>> getAllCategories() async {
+    try {
+      final categories = await categoryRemoteDataSourceImpl.getAllCategory();
+      categoryLocalDataSourceImpl.setAllCategory(categories);
+      return categories;
+    } on MException catch (_) {
+      final categories = categoryLocalDataSourceImpl.getAllCategory();
+      return categories;
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<SubCategory>> getAllSubCategories() async {
+    try {
+      final subCategories =
+          await subcategoryRemoteDataSourceImpl.getAllSubCategory();
+      subcategoryLocalDataSourceImpl.setAllSubCategory(subCategories);
+      return subCategories;
+    } on MException catch (_) {
+      final subCategories = subcategoryLocalDataSourceImpl.getAllSubCategory();
+      return subCategories;
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<SubCategoryItem>> getAllSubCategoryItems() async {
+    try {
+      final subCategoryItems =
+          await subcategoryItemRemoteDataSourceImpl.getAllSubCategoryItem();
+      subcategoryItemLocalDataSourceImpl
+          .setAllSubCategoryItems(subCategoryItems);
+      return subCategoryItems;
+    } on MException catch (_) {
+      final subCategoryItems =
+          subcategoryItemLocalDataSourceImpl.getAllSubCategoryItems();
+      return subCategoryItems;
+    } on Exception catch (_) {
+      rethrow;
     }
   }
 

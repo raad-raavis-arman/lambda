@@ -19,7 +19,8 @@ class CategoryList extends StatelessWidget {
       itemCount: categories.length,
       itemBuilder: (_, index) {
         return CategoryItem(
-          title: categories[index].title,
+          title: categories[index].nameFa,
+          iconName: categories[index].iconName,
           onTap: () {
             onTap?.call(categories[index]);
           },

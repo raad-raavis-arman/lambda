@@ -94,6 +94,7 @@ class _AppRootView extends StatelessWidget {
             supportedLocales: L10n.all,
             locale: langState.locale,
             localizationsDelegates: const [
+              AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,

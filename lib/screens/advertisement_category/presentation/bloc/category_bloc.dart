@@ -29,11 +29,11 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     Emitter<CategoryState> emit,
   ) async {
     emit(state.copyWith(status: StateStatus.loading));
-    final categories = await getCategoriesUsescase.call(NoParams());
-    categories.fold(
+    final result = await getCategoriesUsescase.call(NoParams());
+    result.fold(
       (l) => emit(state.copyWith(status: StateStatus.error)),
       (r) => emit(
-        state.copyWith(status: StateStatus.success, categories: r),
+        state.copyWith(status: StateStatus.success, categoryData: r),
       ),
     );
   }

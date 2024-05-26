@@ -106,10 +106,24 @@ Future<void> setup() async {
         categoryRemoteDataSourceImpl: locator.get(),
         subcategoryLocalDataSourceImpl: locator.get(),
         subcategoryRemoteDataSourceImpl: locator.get(),
+        subcategoryItemLocalDataSourceImpl: locator.get(),
+        subcategoryItemRemoteDataSourceImpl: locator.get(),
       ),
     )
     ..registerLazySingleton(
-      () => CategoryLocalDataSourceImpl(locator.get()),
+      () => SubCategoryItemLocalDataSourceImpl(
+        locator.get(),
+      ),
+    )
+    ..registerLazySingleton(
+      () => SubCategoryItemRemoteDataSourceImpl(
+        restClientService: locator.get(),
+      ),
+    )
+    ..registerLazySingleton(
+      () => CategoryLocalDataSourceImpl(
+        locator.get(),
+      ),
     )
     ..registerLazySingleton(
       () => CategoryRemoteDataSourceImpl(

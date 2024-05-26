@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -124,11 +123,9 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
               },
               onClick: () async {
                 final data = await context.pushNamed(RouteNames.category);
-                if (data != null && data is List<Equatable>) {
-                  final category = data[0] as Category;
-                  final subCategory = data[1] as SubCategory;
+                if (data != null && data is SubCategoryItem) {
                   categoryController
-                    ..text = '${category.title}/${subCategory.title}'
+                    ..text = data.nameFa
                     ..object = data;
                 }
               },
@@ -336,9 +333,8 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                       final discountedPrice =
                           priceData[2].replaceFaNumToEn().parseDouble();
                       //
-                      final categoryData =
-                          categoryController.object as List<Equatable>;
-                      final subCategory = categoryData.last as SubCategory;
+                      final subCategoryItem =
+                          categoryController.object as SubCategoryItem;
                       //
                       final city = advertisementAreaController.object as City;
                       //
@@ -360,8 +356,9 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                         originalPrice: origianlPrice,
                         discountedPrice: discountedPrice,
                         discount: discount,
-                        categoryId: subCategory.categoryId,
-                        subCategoryId: subCategory.id,
+                        categoryId: subCategoryItem.categoryId,
+                        subCategoryId: subCategoryItem.subCategoryId,
+                        // TODO(Taleb): add sub category item id in backend
                         provinceId: city.provinceId,
                         cityId: city.id,
                         contactNumber: mobileNumber,

@@ -35,7 +35,7 @@ class AdvertisementItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 MText(
-                  text: advertisement.subCategory.title,
+                  text: advertisement.subCategory.nameFa,
                   style: Theme.of(context).textTheme.labelLarge,
                   maxLines: 1,
                 ),

@@ -7,9 +7,10 @@ part 'sub_category_model.g.dart';
 class SubCategoryModel extends SubCategory {
   const SubCategoryModel({
     required super.id,
-    required super.title,
+    required super.nameEn,
+    required super.nameFa,
     required super.categoryId,
-    required super.parentId,
+    required super.iconName,
   });
 
   factory SubCategoryModel.fromJson(Map<String, dynamic> json) =>

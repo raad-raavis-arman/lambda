@@ -2,26 +2,30 @@ part of 'category_bloc.dart';
 
 final class CategoryState extends Equatable {
   const CategoryState({
-    this.categories = const {},
+    this.categoryData = const CategoryData(
+      categories: [],
+      subCategories: [],
+      subCategoryItems: [],
+    ),
     this.status = StateStatus.initial,
   });
 
-  final Map<Category, List<SubCategory>> categories;
+  final CategoryData categoryData;
   final StateStatus status;
 
   CategoryState copyWith({
     StateStatus? status,
-    Map<Category, List<SubCategory>>? categories,
+    CategoryData? categoryData,
   }) {
     return CategoryState(
-      categories: categories ?? this.categories,
+      categoryData: categoryData ?? this.categoryData,
       status: status ?? this.status,
     );
   }
 
   @override
   List<Object> get props => [
-        categories,
+        categoryData,
         status,
       ];
 }

@@ -5,22 +5,27 @@ class SubCategory extends Equatable {
   const SubCategory({
     required this.id,
     required this.categoryId,
-    required this.title,
-    required this.parentId,
+    required this.nameFa,
+    required this.nameEn,
+    required this.iconName,
   });
 
   final int id;
   @JsonKey(name: 'category_id')
   final int categoryId;
-  @JsonKey(name: 'parent_id')
-  final int? parentId;
-  final String title;
+  @JsonKey(name: 'name_fa')
+  final String nameFa;
+  @JsonKey(name: 'name_en')
+  final String nameEn;
+  @JsonKey(name: 'icon_name')
+  final String iconName;
 
   @override
   List<Object?> get props => [
         id,
         categoryId,
-        parentId,
-        title,
+        nameEn,
+        nameFa,
+        iconName,
       ];
 }

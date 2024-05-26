@@ -97,7 +97,7 @@ class _AdvertisementDetailsView extends StatelessWidget {
                     MDivider(text: context.l10n.category),
                     MText(
                       text:
-                          '${advertisement.subCategory.title}/${advertisement.category.title}',
+                          '${advertisement.subCategory.nameFa}/${advertisement.category.nameFa}',
                       margin: EdgeInsets.all(context.marginS),
                       style: Theme.of(context).textTheme.labelLarge,
                     ),

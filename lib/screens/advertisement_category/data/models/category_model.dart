@@ -7,7 +7,9 @@ part 'category_model.g.dart';
 class CategoryModel extends Category {
   const CategoryModel({
     required super.id,
-    required super.title,
+    required super.nameFa,
+    required super.nameEn,
+    required super.iconName,
     required super.productType,
   });
 

@@ -5,12 +5,14 @@ import 'package:landa/core/widgets/widgets.dart';
 class CategoryItem extends StatelessWidget {
   const CategoryItem({
     required this.title,
+    required this.iconName,
     super.key,
     this.onTap,
   });
 
   final VoidCallback? onTap;
   final String title;
+  final String iconName;
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +31,11 @@ class CategoryItem extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Icon(
-              Icons.category,
-              size: context.iconM,
+            Image.network(
+              '$iconBaseUrl$iconName',
+              width: context.iconM,
+              height: context.iconM,
+              errorBuilder: (_, __, ___) => const SizedBox.shrink(),
             ),
             const SizedBox.shrink().paddingXS(),
             Expanded(
