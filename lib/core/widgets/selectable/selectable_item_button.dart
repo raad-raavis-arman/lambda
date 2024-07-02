@@ -94,7 +94,7 @@ class _SelectableItemButtonState extends State<SelectableItemButton> {
                     if (value != null) {
                       return MText(
                         text: value!,
-                        style: Theme.of(context).textTheme.titleSmall,
+                        style: Theme.of(context).textTheme.labelMedium,
                       );
                     } else {
                       return const SizedBox.shrink();

@@ -16,7 +16,8 @@ class RestClientServiceImpl implements RestClientService {
   void _initializeDio() {
     _dio = Dio(
       BaseOptions(
-        baseUrl: 'https://lambda-api.gymino.ir/api/v1/',
+        //baseUrl: 'https://lambda-api.gymino.ir/api/v1/',
+        baseUrl: 'http://127.0.0.1:8000/api/v1/',
         receiveTimeout: const Duration(seconds: 60),
         connectTimeout: const Duration(seconds: 60),
       ),
