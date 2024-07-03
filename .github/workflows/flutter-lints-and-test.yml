@@ -20,7 +20,7 @@ jobs:
         uses: flutter-actions/setup-flutter@v2
         with:
           channel: stable
-          version: 3.19.5
+          version: 3.22.2
           cache: true
       - name: Clean dependencies
         run: flutter clean
