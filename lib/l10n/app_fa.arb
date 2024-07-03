@@ -101,5 +101,7 @@
     "day": "روز",
     "hour": "ساعت",
     "minute": "دقیقه",
-    "second": "ثانیه"
+    "second": "ثانیه",
+    "advertisements": "آگهی ها",
+    "profile": "پروفایل"
 }

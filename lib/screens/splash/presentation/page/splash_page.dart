@@ -83,7 +83,7 @@ class _SplashViewState extends State<_SplashView>
     return BlocListener<SplashBloc, SplashState>(
       listener: (context, state) {
         if (state is SplashAuthorizedState) {
-          context.replaceNamed(RouteNames.home);
+          context.replaceNamed(RouteNames.dashboard);
         } else if (state is SplashNotAuthorizedState) {
           context.replaceNamed(RouteNames.login);
         }

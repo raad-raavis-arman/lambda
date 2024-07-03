@@ -101,5 +101,7 @@
     "day": "day",
     "hour": "hour",
     "minute": "minute",
-    "second": "second"
+    "second": "second",
+    "advertisements": "Advertisements",
+    "profile": "Profile"
 }
