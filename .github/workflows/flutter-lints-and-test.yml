@@ -26,6 +26,11 @@ jobs:
         run: flutter clean
       - name: Run build_runner
         run: dart run build_runner build --delete-conflicting-outputs
+      - name: Write .env file
+        env:
+          ENV_CONTENTS: ${{ secrets.ENV_CONTENTS }}
+        run: |
+          printf "$ENV_CONTENTS" > .env
       - name: Install dependencies
         run: flutter pub get
       - name: Lint
