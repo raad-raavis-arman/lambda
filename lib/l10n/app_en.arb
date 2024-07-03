@@ -103,5 +103,19 @@
     "minute": "minute",
     "second": "second",
     "advertisements": "Advertisements",
-    "profile": "Profile"
+    "profile": "Profile",
+    "editProfile": "Edit profile",
+    "myAdvertisements": "My advertisement",
+    "bookmarkedAdvertisements": "Bookmarked advertisements",
+    "enrollCampaign": "Enroll campaign",
+    "registerCommentAndRecommends": "Register your comments/recommends",
+    "logoutFromAccount": "Logout from account",
+    "youLoggedInWithThisMobileNumber": "you are logged in with {mobileNumber} mobile number",
+    "@youLoggedInWithThisMobileNumber": {
+        "placeholders": {
+            "mobileNumber": {
+                "type": "String"
+            }
+        }
+    }
 }

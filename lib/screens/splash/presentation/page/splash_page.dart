@@ -83,9 +83,9 @@ class _SplashViewState extends State<_SplashView>
     return BlocListener<SplashBloc, SplashState>(
       listener: (context, state) {
         if (state is SplashAuthorizedState) {
-          context.replaceNamed(RouteNames.dashboard);
+          context.goNamed(RouteNames.dashboard);
         } else if (state is SplashNotAuthorizedState) {
-          context.replaceNamed(RouteNames.login);
+          context.goNamed(RouteNames.login);
         }
       },
       child: MScaffold(

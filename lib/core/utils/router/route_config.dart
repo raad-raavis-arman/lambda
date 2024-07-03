@@ -7,9 +7,10 @@ import 'package:landa/screens/advertisement_date/presentation/presentation.dart'
 import 'package:landa/screens/advertisement_details/presentation/presentation.dart';
 import 'package:landa/screens/advertisement_price/presentation/presentation.dart';
 import 'package:landa/screens/create_advertisement/presentation/presentation.dart';
-import 'package:landa/screens/dashboard/presentation/page/dashboard_page.dart';
+import 'package:landa/screens/dashboard/presentation/page/page.dart';
 import 'package:landa/screens/home/presentation/presentation.dart';
 import 'package:landa/screens/login/presentation/presentation.dart';
+import 'package:landa/screens/profile/presentation/page/page.dart';
 import 'package:landa/screens/splash/presentation/page/page.dart';
 import 'package:landa/screens/verify_login/presentation/presentation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,6 +37,7 @@ class RouteConfig {
         routes: [
           SplashPage.route,
           LoginPage.route,
+          ProfilePage.route,
           VerifyLoginPage.route,
           DashboardPage.route,
           HomePage.route,
