@@ -59,6 +59,12 @@ class _CategoryViewState extends State<_CategoryView> {
     return MScaffold(
       appBar: AppBar(
         title: MText(text: context.l10n.category),
+        bottom: PreferredSize(
+          preferredSize: const Size(double.infinity, kToolbarHeight),
+          child: SuggestCategoryWidget(
+            onButtonPressed: () {},
+          ),
+        ),
       ),
       body: BlocBuilder<CategoryBloc, CategoryState>(
         builder: (_, state) {

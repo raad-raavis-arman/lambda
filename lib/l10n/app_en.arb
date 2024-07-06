@@ -117,5 +117,7 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "suggestCategoryWarning": "Did you not find you category in the bottom list?",
+    "suggestNewCategory": "Suggest new category"
 }
