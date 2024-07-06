@@ -62,7 +62,22 @@ class _CategoryViewState extends State<_CategoryView> {
         bottom: PreferredSize(
           preferredSize: const Size(double.infinity, kToolbarHeight),
           child: SuggestCategoryWidget(
-            onButtonPressed: () {},
+            onButtonPressed: () {
+              showModalBottomSheet(
+                context: context,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(
+                      context.radiusS,
+                    ),
+                    topLeft: Radius.circular(
+                      context.radiusS,
+                    ),
+                  ),
+                ),
+                builder: (_) => const SuggestNewCategoryPopup(),
+              );
+            },
           ),
         ),
       ),
