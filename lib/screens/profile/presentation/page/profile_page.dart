@@ -23,12 +23,18 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _ProfileView();
+    final mobileNumber =
+        locator.get<SharedPreferences>().getUser()?.mobileNumber ?? '';
+    return _ProfileView(mobileNumber);
   }
 }
 
 class _ProfileView extends StatelessWidget {
-  const _ProfileView();
+  const _ProfileView(
+    this.mobileNumber,
+  );
+
+  final String mobileNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +45,7 @@ class _ProfileView extends StatelessWidget {
         children: [
           MText(
             text: context.l10n.youLoggedInWithThisMobileNumber(
-              locator.get<SharedPreferences>().getUser()?.mobileNumber ?? '',
+              mobileNumber,
             ),
             style: Theme.of(context).textTheme.titleMedium,
             textAlign: TextAlign.center,
