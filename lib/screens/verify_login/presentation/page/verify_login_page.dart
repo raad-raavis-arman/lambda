@@ -72,7 +72,7 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
     return BlocListener<VerifyLoginBloc, VerifyLoginState>(
       listener: (context, state) {
         if (state is VerifyLoginSuccessState) {
-          context.replaceNamed(RouteNames.home);
+          context.goNamed(RouteNames.dashboard);
         } else if (state is VerifyLoginFailState) {
           Toastification().show(
             context: context,

@@ -50,7 +50,7 @@ class _AdvertisementDetailsView extends StatelessWidget {
         ),
         leading: BackButton(
           onPressed: () {
-            GoRouter.of(context).goNamed(RouteNames.home);
+            GoRouter.of(context).goNamed(RouteNames.dashboard);
           },
         ),
       ),

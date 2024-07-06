@@ -90,7 +90,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
         title: MText(text: context.l10n.newAdvertisement),
         leading: BackButton(
           onPressed: () {
-            context.goNamed(RouteNames.home);
+            context.goNamed(RouteNames.dashboard);
           },
         ),
       ),
@@ -305,7 +305,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
               description: MText(text: context.l10n.advertisementUploadSuccess),
             );
             context.read<HomeBloc>().add(const HomeGetAllAdEvent());
-            context.replaceNamed(RouteNames.home);
+            context.replaceNamed(RouteNames.dashboard);
           }
         },
         builder: (context, state) {

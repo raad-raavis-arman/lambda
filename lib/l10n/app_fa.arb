@@ -101,5 +101,21 @@
     "day": "روز",
     "hour": "ساعت",
     "minute": "دقیقه",
-    "second": "ثانیه"
+    "second": "ثانیه",
+    "advertisements": "آگهی ها",
+    "profile": "پروفایل",
+    "editProfile": "ویرایش پروفایل",
+    "myAdvertisements": "آگهی های من",
+    "bookmarkedAdvertisements": "آگهی های نشان شده",
+    "enrollCampaign": "مشارکت در کمپین",
+    "registerCommentAndRecommends": "ثبت نظرات/پیشنهادات",
+    "logoutFromAccount": "خروج از حساب کاربری",
+    "youLoggedInWithThisMobileNumber": "شما با شماره {mobileNumber} وارد حساب کاربری خود شده اید",
+    "@youLoggedInWithThisMobileNumber": {
+        "placeholders": {
+            "mobileNumber": {
+                "type": "String"
+            }
+        }
+    }
 }

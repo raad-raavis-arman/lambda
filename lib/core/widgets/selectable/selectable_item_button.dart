@@ -49,15 +49,9 @@ class _SelectableItemButtonState extends State<SelectableItemButton> {
   late String? value = widget.value ?? widget.textController?.text;
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: widget.onClick,
-      child: _buildContent(context),
-    );
-  }
-
-  Widget _buildContent(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Container(
           margin: widget.margin,
@@ -71,49 +65,52 @@ class _SelectableItemButtonState extends State<SelectableItemButton> {
               width: widget.borderWidth,
             ),
           ),
-          child: Row(
-            children: [
-              if (widget.icon != null)
-                widget.icon!.padding(left: Paddings.medium.value),
-              MText(
-                text: widget.title,
-                textAlign: TextAlign.start,
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              const Spacer(),
-              if (widget.textController != null && widget.value == null)
-                ValueListenableBuilder(
-                  valueListenable: widget.textController!,
-                  builder: (_, newValue, __) {
-                    if (newValue.text != value) {
-                      value = newValue.text;
-                      Future.microtask(() {
-                        return widget.onChange?.call(newValue.text);
-                      });
-                    }
-                    if (value != null) {
-                      return MText(
-                        text: value!,
-                        style: Theme.of(context).textTheme.labelMedium,
-                      );
-                    } else {
-                      return const SizedBox.shrink();
-                    }
-                  },
-                ),
-              if (widget.value != null && widget.textController == null)
+          child: InkWell(
+            onTap: widget.onClick,
+            child: Row(
+              children: [
+                if (widget.icon != null)
+                  widget.icon!.padding(left: Paddings.medium.value),
                 MText(
-                  text: widget.value!,
-                  style: Theme.of(context).textTheme.titleSmall,
+                  text: widget.title,
+                  textAlign: TextAlign.start,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
-              const SizedBox.shrink().paddingXXS(),
-              if (widget.showArrow)
-                Icon(
-                  Icons.navigate_next_rounded,
-                  size: context.iconM,
-                ),
-            ],
-          ).paddingS(),
+                const Spacer(),
+                if (widget.textController != null && widget.value == null)
+                  ValueListenableBuilder(
+                    valueListenable: widget.textController!,
+                    builder: (_, newValue, __) {
+                      if (newValue.text != value) {
+                        value = newValue.text;
+                        Future.microtask(() {
+                          return widget.onChange?.call(newValue.text);
+                        });
+                      }
+                      if (value != null) {
+                        return MText(
+                          text: value!,
+                          style: Theme.of(context).textTheme.labelMedium,
+                        );
+                      } else {
+                        return const SizedBox.shrink();
+                      }
+                    },
+                  ),
+                if (widget.value != null && widget.textController == null)
+                  MText(
+                    text: widget.value!,
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                const SizedBox.shrink().paddingXXS(),
+                if (widget.showArrow)
+                  Icon(
+                    Icons.navigate_next_rounded,
+                    size: context.iconM,
+                  ),
+              ],
+            ).paddingS(),
+          ),
         ),
         if (widget.errorText != null)
           MText(

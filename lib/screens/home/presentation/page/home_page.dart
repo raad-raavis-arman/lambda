@@ -141,13 +141,6 @@ class _HomeViewState extends State<_HomeView> {
             );
           },
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            context.goNamed(RouteNames.createAdvertisement);
-          },
-          child: const Icon(Icons.add),
-        ),
       ),
     );
   }
