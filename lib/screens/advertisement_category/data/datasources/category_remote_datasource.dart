@@ -41,6 +41,9 @@ class CategoryRemoteDataSourceImpl implements CategoryDataSource {
     try {
       final result = await restClientService.post(
         '/suggestCategory',
+        data: {
+          'name': name,
+        },
       );
       final isSuccess = result['success'];
       if (isSuccess) {
