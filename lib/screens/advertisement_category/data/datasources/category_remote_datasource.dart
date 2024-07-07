@@ -50,7 +50,7 @@ class CategoryRemoteDataSourceImpl implements CategoryDataSource {
         return isSuccess;
       } else {
         throw MException(
-          errorMessage: 'failed to get all categories',
+          errorMessage: 'failed to send your category suggestion to the server',
           data: result,
         );
       }

@@ -15,7 +15,6 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
   }) : super(const CategoryState()) {
     on<GetCategoriesEvent>(_getCategories);
     on<SuggestCategoryEvent>(_suggestCategory);
-    on<GetSubCategoriesEvent>((event, emit) {});
   }
 
   final GetCategoriesUsescase getCategoriesUsescase;

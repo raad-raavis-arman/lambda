@@ -30,6 +30,7 @@ class SuggestNewCategoryPopup extends StatelessWidget {
           MToast.showSuccessToast(
             msg: context.l10n.yourSuggestionSentSuccessfully,
           );
+          textController.dispose();
           context.pop();
         }
       },

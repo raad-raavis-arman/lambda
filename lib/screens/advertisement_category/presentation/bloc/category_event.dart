@@ -17,5 +17,3 @@ final class SuggestCategoryEvent extends CategoryEvent {
   @override
   List<Object> get props => [name];
 }
-
-final class GetSubCategoriesEvent extends CategoryEvent {}
