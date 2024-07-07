@@ -71,7 +71,6 @@ class _AppRootView extends StatelessWidget {
           create: (context) => CategoryBloc(
             getCategoriesUsescase: locator.get(),
             suggestCategoryUsescase: locator.get(),
-            suggestSubCategoryUsescase: locator.get(),
           )..add(GetCategoriesEvent()),
         ),
         BlocProvider(

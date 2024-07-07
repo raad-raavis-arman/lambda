@@ -19,19 +19,3 @@ final class SuggestCategoryEvent extends CategoryEvent {
 }
 
 final class GetSubCategoriesEvent extends CategoryEvent {}
-
-final class SuggestSubCategoryEvent extends CategoryEvent {
-  const SuggestSubCategoryEvent({
-    required this.name,
-    required this.categoryId,
-  });
-
-  final String name;
-  final int categoryId;
-
-  @override
-  List<Object> get props => [
-        name,
-        categoryId,
-      ];
-}

@@ -95,11 +95,6 @@ Future<void> setup() async {
         categoryRepository: locator.get(),
       ),
     )
-    ..registerLazySingleton(
-      () => SuggestSubCategoryUsescase(
-        categoryRepository: locator.get(),
-      ),
-    )
     ..registerLazySingleton<CategoryRepository>(
       () => CategoryRepositoryImpl(
         categoryLocalDataSourceImpl: locator.get(),

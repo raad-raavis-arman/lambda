@@ -6,4 +6,5 @@ export 'new_version/new_version_bloc.dart';
 export 'router/router.dart';
 export 'textfield_formatters/textfield_formatters.dart';
 export 'theme/theme.dart';
+export 'toast/toast.dart';
 export 'validators/validators.dart';

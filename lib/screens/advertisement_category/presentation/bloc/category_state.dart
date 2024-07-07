@@ -8,18 +8,23 @@ final class CategoryState extends Equatable {
       subCategoryItems: [],
     ),
     this.status = StateStatus.initial,
+    this.suggestCategorystatus = StateStatus.initial,
   });
 
   final CategoryData categoryData;
   final StateStatus status;
+  final StateStatus suggestCategorystatus;
 
   CategoryState copyWith({
     StateStatus? status,
+    StateStatus? suggestCategorystatus,
     CategoryData? categoryData,
   }) {
     return CategoryState(
       categoryData: categoryData ?? this.categoryData,
       status: status ?? this.status,
+      suggestCategorystatus:
+          suggestCategorystatus ?? this.suggestCategorystatus,
     );
   }
 
@@ -27,5 +32,6 @@ final class CategoryState extends Equatable {
   List<Object> get props => [
         categoryData,
         status,
+        suggestCategorystatus,
       ];
 }

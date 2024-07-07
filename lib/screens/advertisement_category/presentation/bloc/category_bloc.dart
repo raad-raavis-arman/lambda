@@ -12,17 +12,32 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
   CategoryBloc({
     required this.getCategoriesUsescase,
     required this.suggestCategoryUsescase,
-    required this.suggestSubCategoryUsescase,
   }) : super(const CategoryState()) {
     on<GetCategoriesEvent>(_getCategories);
-    on<SuggestCategoryEvent>((event, emit) {});
+    on<SuggestCategoryEvent>(_suggestCategory);
     on<GetSubCategoriesEvent>((event, emit) {});
-    on<SuggestSubCategoryEvent>((event, emit) {});
   }
 
   final GetCategoriesUsescase getCategoriesUsescase;
   final SuggestCategoryUsescase suggestCategoryUsescase;
-  final SuggestSubCategoryUsescase suggestSubCategoryUsescase;
+
+  Future<void> _suggestCategory(
+    SuggestCategoryEvent event,
+    Emitter<CategoryState> emit,
+  ) async {
+    emit(state.copyWith(suggestCategorystatus: StateStatus.loading));
+    final result = await suggestCategoryUsescase.call(event.name);
+    result.fold(
+      (l) => emit(
+        state.copyWith(
+          suggestCategorystatus: StateStatus.error,
+        ),
+      ),
+      (r) => emit(
+        state.copyWith(suggestCategorystatus: StateStatus.success),
+      ),
+    );
+  }
 
   Future<void> _getCategories(
     GetCategoriesEvent event,
