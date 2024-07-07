@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:landa/core/error/error.dart';
 import 'package:landa/core/network/network.dart';
 import 'package:landa/screens/home/data/datasources/datasources.dart';
 import 'package:landa/screens/home/data/models/advertisement_model.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 class HomeRemoteDatasource implements HomeDatasource {
   const HomeRemoteDatasource({
@@ -38,7 +41,10 @@ class HomeRemoteDatasource implements HomeDatasource {
       }
     } on DioException catch (e) {
       throw MException.fromDioError(e);
-    } on Exception catch (_) {
+    } on Exception catch (e, s) {
+      unawaited(
+        Sentry.captureException(e, stackTrace: s),
+      );
       rethrow;
     }
   }

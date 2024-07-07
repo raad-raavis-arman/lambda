@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:landa/core/network/authorization_interceptor.dart';
 import 'package:landa/core/network/network.dart';
+import 'package:sentry_dio/sentry_dio.dart';
 
 class RestClientServiceImpl implements RestClientService {
   RestClientServiceImpl(
@@ -31,6 +32,7 @@ class RestClientServiceImpl implements RestClientService {
         authorizationInterceptor,
       ],
     );
+    _dio.addSentry();
   }
 
   @override

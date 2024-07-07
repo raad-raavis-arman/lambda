@@ -42,8 +42,29 @@ class AppRootPage extends StatelessWidget {
           )..add(CheckNewVersionEvent()),
         ),
       ],
-      child: _AppRootView(
-        flavorConfig: flavorConfig,
+      child: Material(
+        color: const Color(0xFF006A6A),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxWidth: 400,
+              minHeight: double.infinity,
+            ),
+            child: LayoutBuilder(
+              builder: (context, constraint) {
+                return MediaQuery(
+                  data: MediaQuery.of(context).copyWith(
+                    size: Size(constraint.maxWidth, constraint.maxHeight),
+                  ),
+                  child: _AppRootView(
+                    flavorConfig: flavorConfig,
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
       ),
     );
   }
