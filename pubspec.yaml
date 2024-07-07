@@ -33,6 +33,8 @@ dependencies:
   numberpicker: ^2.1.2
   package_info_plus: ^8.0.0
   pin_code_fields: ^8.0.1
+  sentry_dio: ^8.3.0
+  sentry_flutter: ^8.3.0
   seo_renderer: ^0.6.0
   shamsi_date: ^1.0.2
   shared_preferences: ^2.2.3
