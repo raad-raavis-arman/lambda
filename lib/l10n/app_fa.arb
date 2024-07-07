@@ -96,7 +96,6 @@
     "productType": "نوع محصول",
     "goods": "کالا",
     "services": "خدمات",
-
     "@_COUNT_DOWN": {},
     "day": "روز",
     "hour": "ساعت",
@@ -117,5 +116,12 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "suggestCategoryWarning": "دسته بندی موردنظر خود را در لیست پایین پیدا نکردید؟",
+    "suggestNewCategory": "پیشنهاد دسته بندی جدید",
+    "sendSuggestion": "ارسال پیشنهاد",
+    "categoryName": "نام دسته بندی",
+    "categorySuggestionNameError": "نام دسته بندی باید حداقل شامل سه کاراکتر باشد",
+    "failedToSendYourSuggestion": "!خطا در ارسال پیشنهاد شما به سرور",
+    "yourSuggestionSentSuccessfully": "پیشنهاد شما با موفقیت ثبت شد"
 }

@@ -117,5 +117,12 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "suggestCategoryWarning": "Did you not find your category in the bottom list?",
+    "suggestNewCategory": "Suggest new category",
+    "sendSuggestion": "Send suggestion",
+    "categoryName": "Category name",
+    "categorySuggestionNameError": "Category name must be at least 3 character",
+    "failedToSendYourSuggestion": "Failed to send your suggestion to the server!",
+    "yourSuggestionSentSuccessfully": "Your suggestion registered successfully"
 }

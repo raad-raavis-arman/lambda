@@ -37,7 +37,27 @@ class CategoryRemoteDataSourceImpl implements CategoryDataSource {
   }
 
   @override
-  Future<bool> suggestNewCategory({required String name}) {
-    throw UnimplementedError();
+  Future<bool> suggestNewCategory({required String name}) async {
+    try {
+      final result = await restClientService.post(
+        '/suggestCategory',
+        data: {
+          'name': name,
+        },
+      );
+      final isSuccess = result['success'];
+      if (isSuccess) {
+        return isSuccess;
+      } else {
+        throw MException(
+          errorMessage: 'failed to send your category suggestion to the server',
+          data: result,
+        );
+      }
+    } on DioException catch (e) {
+      throw MException.fromDioError(e);
+    } on Exception catch (_) {
+      rethrow;
+    }
   }
 }

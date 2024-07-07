@@ -97,21 +97,4 @@ class CategoryRepositoryImpl implements CategoryRepository {
       return Left(ServerFailure(e.errorMessage));
     }
   }
-
-  @override
-  Future<Either<Failure, bool>> suggestNewSubCategory({
-    required String name,
-    required int categoryId,
-  }) async {
-    try {
-      final result =
-          await subcategoryRemoteDataSourceImpl.suggestNewSubCategory(
-        name: name,
-        categoryId: categoryId,
-      );
-      return Right(result);
-    } on MException catch (e) {
-      return Left(ServerFailure(e.errorMessage));
-    }
-  }
 }
