@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:landa/core/error/m_exception.dart';
 import 'package:landa/core/network/network.dart';
 import 'package:landa/screens/verify_login/data/models/login_auth_model.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 abstract interface class LoginRemoteDataSource {
   Future<LoginAuthModel> loginWithMobile(String mobileNumber, String otpCode);
@@ -37,7 +40,10 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
       }
     } on DioException catch (e) {
       throw MException.fromDioError(e);
-    } on Exception catch (_) {
+    } on Exception catch (e, s) {
+      unawaited(
+        Sentry.captureException(e, stackTrace: s),
+      );
       rethrow;
     }
   }
