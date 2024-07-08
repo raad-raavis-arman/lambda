@@ -13,6 +13,7 @@ class CreateAdvertisement extends Equatable {
     required this.discount,
     required this.categoryId,
     required this.subCategoryId,
+    required this.subCategoryItemId,
     required this.provinceId,
     required this.cityId,
     required this.contactNumber,
@@ -36,6 +37,8 @@ class CreateAdvertisement extends Equatable {
   final int categoryId;
   @JsonKey(name: 'sub_category_id')
   final int subCategoryId;
+  @JsonKey(name: 'sub_category_item_id')
+  final int subCategoryItemId;
   @JsonKey(name: 'province_id')
   final int provinceId;
   @JsonKey(name: 'city_id')
@@ -57,6 +60,7 @@ class CreateAdvertisement extends Equatable {
         discount,
         categoryId,
         subCategoryId,
+        subCategoryItemId,
         provinceId,
         cityId,
         contactNumber,

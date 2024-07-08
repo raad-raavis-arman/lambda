@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:landa/core/error/failure.dart';
 import 'package:landa/core/usecase/usecase.dart';
-import 'package:landa/screens/home/domain/entities/advertisement.dart';
+import 'package:landa/screens/home/domain/entities/entities.dart';
 import 'package:landa/screens/home/domain/repositories/repositories.dart';
 
 class GetAllAdUsecase extends BaseUseCase<List<Advertisement>, GetAllAdParam> {
@@ -13,21 +13,18 @@ class GetAllAdUsecase extends BaseUseCase<List<Advertisement>, GetAllAdParam> {
   @override
   Future<Either<Failure, List<Advertisement>>> call(GetAllAdParam params) {
     return homeRepository.getAllAds(
-      offset: params.offset,
-      limit: params.limit,
+      query: params.query,
     );
   }
 }
 
 class GetAllAdParam extends Equatable {
-  const GetAllAdParam({required this.offset, required this.limit});
+  const GetAllAdParam({required this.query});
 
-  final int offset;
-  final int limit;
+  final AdvertisementQuery query;
 
   @override
   List<Object?> get props => [
-        offset,
-        limit,
+        query,
       ];
 }

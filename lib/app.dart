@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:landa/core/utils/utils.dart';
+import 'package:landa/core/widgets/m_web_frame.dart';
 import 'package:landa/di_service.dart';
 import 'package:landa/flavor_config.dart';
 import 'package:landa/l10n/l10n.dart';
@@ -42,28 +43,9 @@ class AppRootPage extends StatelessWidget {
           )..add(CheckNewVersionEvent()),
         ),
       ],
-      child: Material(
-        color: const Color(0xFF006A6A),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(
-              maxWidth: 400,
-              minHeight: double.infinity,
-            ),
-            child: LayoutBuilder(
-              builder: (context, constraint) {
-                return MediaQuery(
-                  data: MediaQuery.of(context).copyWith(
-                    size: Size(constraint.maxWidth, constraint.maxHeight),
-                  ),
-                  child: _AppRootView(
-                    flavorConfig: flavorConfig,
-                  ),
-                );
-              },
-            ),
-          ),
+      child: MWebFrame(
+        child: _AppRootView(
+          flavorConfig: flavorConfig,
         ),
       ),
     );
@@ -84,8 +66,13 @@ class _AppRootView extends StatelessWidget {
         BlocProvider(
           create: (context) => HomeBloc(
             getAllAdUsecase: locator.get(),
-          )..add(
+            getCategoriesUsescase: locator.get(),
+          )
+            ..add(
               const HomeGetAllAdEvent(),
+            )
+            ..add(
+              HomeGetAllCategoriesEvent(),
             ),
         ),
         BlocProvider(

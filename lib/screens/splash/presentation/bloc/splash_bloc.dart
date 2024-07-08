@@ -11,7 +11,6 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     required this.preferences,
   }) : super(SplashInitialState()) {
     on<SplashCheckAuthEvent>((event, emit) async {
-      await Future.delayed(const Duration(milliseconds: 400));
       final isUserAuthorized = preferences.isUserAuthorized();
       if (isUserAuthorized) {
         emit(SplashAuthorizedState());

@@ -358,7 +358,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                         discount: discount,
                         categoryId: subCategoryItem.categoryId,
                         subCategoryId: subCategoryItem.subCategoryId,
-                        // TODO(Taleb): add sub category item id in backend
+                        subCategoryItemId: subCategoryItem.id,
                         provinceId: city.provinceId,
                         cityId: city.id,
                         contactNumber: mobileNumber,

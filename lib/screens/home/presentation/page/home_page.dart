@@ -22,7 +22,9 @@ class HomePage extends StatelessWidget {
             MetaSEO()
               ..ogTitle(ogTitle: 'home screen')
               ..description(description: 'all advertisements')
-              ..keywords(keywords: 'advertisement, buy, sell, off, discount');
+              ..keywords(
+                keywords: 'تخفیف',
+              );
           }
           return const NoTransitionPage(
             child: HomePage(),
@@ -46,6 +48,7 @@ class _HomeView extends StatefulWidget {
 class _HomeViewState extends State<_HomeView> {
   int offset = 0;
   int limit = 10;
+  String querySearch = '';
   late final ScrollController _scrollController;
   @override
   void initState() {
@@ -90,29 +93,19 @@ class _HomeViewState extends State<_HomeView> {
         ),
       ],
       child: MScaffold(
+        appBar: AppBar(
+          title: SearchBarWidget(
+            onSubmitSearch: onSubmitSearch,
+          ),
+        ),
         body: BlocBuilder<HomeBloc, HomeState>(
+          buildWhen: (previous, current) {
+            return previous.status != current.status;
+          },
           builder: (context, state) {
             if (state.status == StateStatus.success &&
                 state.advertisements.isEmpty) {
-              return Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    MText(
-                      text: context.l10n.thereIsNoAdToShow,
-                      textAlign: TextAlign.center,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        context.goNamed(RouteNames.createAdvertisement);
-                      },
-                      child: MText(
-                        text: context.l10n.createAdvertisement,
-                      ),
-                    ),
-                  ],
-                ),
-              );
+              return const NoAdvertisementWidget();
             }
             final data = state.advertisements;
             return RefreshIndicator(
@@ -143,5 +136,20 @@ class _HomeViewState extends State<_HomeView> {
         ),
       ),
     );
+  }
+
+  void onSubmitSearch(String query) {
+    if (query == querySearch) {
+      return;
+    } else {
+      offset = 0;
+      querySearch = query;
+      context.read<HomeBloc>().add(
+            HomeGetAllAdEvent(
+              query: query,
+              offset: offset,
+            ),
+          );
+    }
   }
 }

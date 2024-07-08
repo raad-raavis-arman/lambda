@@ -4,7 +4,6 @@ import 'package:landa/screens/home/domain/entities/entities.dart';
 
 abstract interface class HomeRepository {
   Future<Either<Failure, List<Advertisement>>> getAllAds({
-    int offset = 0,
-    int limit = 10,
+    AdvertisementQuery query = const AdvertisementQuery(),
   });
 }

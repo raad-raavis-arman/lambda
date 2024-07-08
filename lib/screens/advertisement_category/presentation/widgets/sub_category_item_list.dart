@@ -6,11 +6,13 @@ import 'package:landa/screens/advertisement_category/presentation/presentation.d
 class SubCategoryItemList extends StatelessWidget {
   const SubCategoryItemList({
     required this.subCategoryItems,
+    this.showArrow = true,
     this.onTap,
     super.key,
   });
 
   final List<SubCategoryItem> subCategoryItems;
+  final bool showArrow;
   final void Function(SubCategoryItem)? onTap;
 
   @override
@@ -19,6 +21,7 @@ class SubCategoryItemList extends StatelessWidget {
       itemCount: subCategoryItems.length,
       itemBuilder: (_, index) {
         return CategoryItem(
+          showArrow: showArrow,
           title: subCategoryItems[index].nameFa,
           iconName: subCategoryItems[index].iconName,
           onTap: () {

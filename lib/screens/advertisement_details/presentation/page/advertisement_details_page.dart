@@ -88,7 +88,7 @@ class _AdvertisementDetailsView extends StatelessWidget {
                     ),
                     MDivider(text: context.l10n.price),
                     PriceDiscount(
-                      style: Theme.of(context).textTheme.labelLarge,
+                      style: Theme.of(context).textTheme.labelMedium,
                       realPrice: advertisement.originalPrice,
                       discount: advertisement.discount,
                       discountedPrice: advertisement.discountedPrice,
