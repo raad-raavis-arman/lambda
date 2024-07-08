@@ -14,6 +14,7 @@ class LightTheme {
         brightness: Brightness.light,
         fontFamily: fontFamily,
         colorScheme: lightColorScheme,
+        indicatorColor: const Color(0xFF006A6A),
         textTheme: textTheme(context),
         inputDecorationTheme: const InputDecorationTheme(
           border: OutlineInputBorder(),

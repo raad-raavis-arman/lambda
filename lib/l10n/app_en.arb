@@ -124,5 +124,6 @@
     "categoryName": "Category name",
     "categorySuggestionNameError": "Category name must be at least 3 character",
     "failedToSendYourSuggestion": "Failed to send your suggestion to the server!",
-    "yourSuggestionSentSuccessfully": "Your suggestion registered successfully"
+    "yourSuggestionSentSuccessfully": "Your suggestion registered successfully",
+    "searchBarHint": "Search in all advertisements (for example milk)"
 }

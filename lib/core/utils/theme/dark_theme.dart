@@ -8,5 +8,6 @@ class DarkTheme {
         useMaterial3: true,
         brightness: Brightness.dark,
         fontFamily: fontFamily,
+        indicatorColor: const Color(0xFF006A6A),
       );
 }
