@@ -96,11 +96,17 @@ class SearchBarWidget extends StatelessWidget {
     if (allCategories.isEmpty) {
       allCategories.addAll(getAllCategories(context));
     }
+    if (allCategories.isEmpty) {
+      return [];
+    }
     final suggestionList = allCategories.where(
       (e) => e.contains(
         searchController.text,
       ),
     );
+    if (suggestionList.isEmpty) {
+      return [];
+    }
     return suggestionList
         .map(
           (e) => InkWell(
