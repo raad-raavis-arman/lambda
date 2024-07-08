@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:landa/core/error/error.dart';
 import 'package:landa/screens/home/data/datasources/datasources.dart';
-import 'package:landa/screens/home/domain/entities/advertisement.dart';
+import 'package:landa/screens/home/domain/entities/entities.dart';
 import 'package:landa/screens/home/domain/repositories/repositories.dart';
 
 class HomeRepositoryImpl implements HomeRepository {
@@ -10,13 +10,11 @@ class HomeRepositoryImpl implements HomeRepository {
   final HomeRemoteDatasource remoteDatasource;
   @override
   Future<Either<Failure, List<Advertisement>>> getAllAds({
-    int offset = 0,
-    int limit = 10,
+    AdvertisementQuery query = const AdvertisementQuery(),
   }) async {
     try {
       final result = await remoteDatasource.getAllAds(
-        offset: offset,
-        limit: limit,
+        query: query,
       );
       return Right(result);
     } on MException catch (e) {

@@ -48,6 +48,7 @@ class _HomeView extends StatefulWidget {
 class _HomeViewState extends State<_HomeView> {
   int offset = 0;
   int limit = 10;
+  String querySearch = '';
   late final ScrollController _scrollController;
   @override
   void initState() {
@@ -92,8 +93,15 @@ class _HomeViewState extends State<_HomeView> {
         ),
       ],
       child: MScaffold(
-        appBar: AppBar(title: const SearchBarWidget(),),
+        appBar: AppBar(
+          title: SearchBarWidget(
+            onSubmitSearch: onSubmitSearch,
+          ),
+        ),
         body: BlocBuilder<HomeBloc, HomeState>(
+          buildWhen: (previous, current) {
+            return previous.status != current.status;
+          },
           builder: (context, state) {
             if (state.status == StateStatus.success &&
                 state.advertisements.isEmpty) {
@@ -128,5 +136,17 @@ class _HomeViewState extends State<_HomeView> {
         ),
       ),
     );
+  }
+
+  void onSubmitSearch(String query) {
+    if (query == querySearch) {
+      return;
+    } else {
+      offset = 0;
+      querySearch = query;
+      context.read<HomeBloc>().add(
+            HomeGetAllAdEvent(query: query),
+          );
+    }
   }
 }

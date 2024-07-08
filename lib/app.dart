@@ -84,8 +84,13 @@ class _AppRootView extends StatelessWidget {
         BlocProvider(
           create: (context) => HomeBloc(
             getAllAdUsecase: locator.get(),
-          )..add(
+            getCategoriesUsescase: locator.get(),
+          )
+            ..add(
               const HomeGetAllAdEvent(),
+            )
+            ..add(
+              HomeGetAllCategoriesEvent(),
             ),
         ),
         BlocProvider(

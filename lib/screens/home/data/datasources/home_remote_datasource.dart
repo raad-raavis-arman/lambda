@@ -5,6 +5,7 @@ import 'package:landa/core/error/error.dart';
 import 'package:landa/core/network/network.dart';
 import 'package:landa/screens/home/data/datasources/datasources.dart';
 import 'package:landa/screens/home/data/models/advertisement_model.dart';
+import 'package:landa/screens/home/domain/entities/entities.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class HomeRemoteDatasource implements HomeDatasource {
@@ -15,16 +16,12 @@ class HomeRemoteDatasource implements HomeDatasource {
   final RestClientService restClientService;
   @override
   Future<List<AdvertisementModel>> getAllAds({
-    required int offset,
-    required int limit,
+    required AdvertisementQuery query,
   }) async {
     try {
       final result = await restClientService.get(
         '/advertisement',
-        queryParameters: {
-          'offset': offset,
-          'limit': limit,
-        },
+        queryParameters: query.toJson(),
       );
       if (result['success'] == true) {
         final jsonArray = result['data'] as List<dynamic>;
