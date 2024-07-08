@@ -26,6 +26,7 @@ void main() {
     discount: 10,
     categoryId: 3,
     subCategoryId: 3,
+    subCategoryItemId: 3,
     provinceId: 2,
     cityId: 8,
     contactNumber: 'contactNumber',

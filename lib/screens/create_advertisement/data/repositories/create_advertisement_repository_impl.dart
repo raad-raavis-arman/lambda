@@ -28,6 +28,7 @@ class CreateAdvertisementRepositoryImpl
           discount: createAdvertisement.discount,
           categoryId: createAdvertisement.categoryId,
           subCategoryId: createAdvertisement.subCategoryId,
+          subCategoryItemId: createAdvertisement.subCategoryItemId,
           provinceId: createAdvertisement.provinceId,
           cityId: createAdvertisement.cityId,
           contactNumber: createAdvertisement.contactNumber,

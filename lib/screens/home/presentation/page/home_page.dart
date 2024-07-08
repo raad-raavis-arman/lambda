@@ -22,7 +22,9 @@ class HomePage extends StatelessWidget {
             MetaSEO()
               ..ogTitle(ogTitle: 'home screen')
               ..description(description: 'all advertisements')
-              ..keywords(keywords: 'advertisement, buy, sell, off, discount');
+              ..keywords(
+                keywords: 'تخفیف',
+              );
           }
           return const NoTransitionPage(
             child: HomePage(),

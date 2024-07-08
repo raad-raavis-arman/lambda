@@ -26,6 +26,7 @@ class CreateAdvertisementParam extends CreateAdvertisement {
     required super.discount,
     required super.categoryId,
     required super.subCategoryId,
+    required super.subCategoryItemId,
     required super.provinceId,
     required super.cityId,
     required super.contactNumber,
