@@ -136,6 +136,7 @@ class _CategoryViewState extends State<_CategoryView> {
                   ),
                 2 => SubCategoryItemList(
                     subCategoryItems: subCategoryItems,
+                    showArrow: false,
                     onTap: (subCategoryItem) {
                       GoRouter.of(context).pop(subCategoryItem);
                     },

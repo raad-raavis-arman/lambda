@@ -40,16 +40,19 @@ class _ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return MScaffold(
       scrollable: true,
+      appBar: AppBar(
+        title: MText(
+          text: context.l10n.youLoggedInWithThisMobileNumber(
+            mobileNumber,
+          ),
+          style: Theme.of(context).textTheme.titleMedium,
+          maxLines: 3,
+          textAlign: TextAlign.center,
+        ),
+      ),
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          MText(
-            text: context.l10n.youLoggedInWithThisMobileNumber(
-              mobileNumber,
-            ),
-            style: Theme.of(context).textTheme.titleMedium,
-            textAlign: TextAlign.center,
-          ),
           SelectableItemButton(
             title: context.l10n.editProfile,
             margin: EdgeInsets.only(top: context.marginM),

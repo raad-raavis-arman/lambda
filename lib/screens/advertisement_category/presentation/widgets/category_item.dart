@@ -6,6 +6,7 @@ class CategoryItem extends StatelessWidget {
   const CategoryItem({
     required this.title,
     required this.iconName,
+    this.showArrow = true,
     super.key,
     this.onTap,
   });
@@ -13,6 +14,7 @@ class CategoryItem extends StatelessWidget {
   final VoidCallback? onTap;
   final String title;
   final String iconName;
+  final bool showArrow;
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +47,11 @@ class CategoryItem extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ),
-            Icon(
-              Icons.arrow_right_rounded,
-              size: context.iconS,
-            ),
+            if (showArrow)
+              Icon(
+                Icons.arrow_right_rounded,
+                size: context.iconS,
+              ),
           ],
         ),
       ),
