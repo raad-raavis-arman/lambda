@@ -145,7 +145,10 @@ class _HomeViewState extends State<_HomeView> {
       offset = 0;
       querySearch = query;
       context.read<HomeBloc>().add(
-            HomeGetAllAdEvent(query: query),
+            HomeGetAllAdEvent(
+              query: query,
+              offset: offset,
+            ),
           );
     }
   }
