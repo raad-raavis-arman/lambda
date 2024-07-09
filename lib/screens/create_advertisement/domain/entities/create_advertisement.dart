@@ -3,7 +3,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 class CreateAdvertisement extends Equatable {
   const CreateAdvertisement({
-    required this.pType,
     required this.description,
     required this.pExpireDateTime,
     required this.pCreateDateTime,
@@ -20,8 +19,6 @@ class CreateAdvertisement extends Equatable {
     required this.showContactInfo,
   });
 
-  @JsonKey(name: 'p_type')
-  final int pType;
   final String description;
   @JsonKey(name: 'p_expire_date_time')
   final String pExpireDateTime;
@@ -50,7 +47,6 @@ class CreateAdvertisement extends Equatable {
 
   @override
   List<Object?> get props => [
-        pType,
         description,
         pExpireDateTime,
         pCreateDateTime,

@@ -6,7 +6,9 @@ import 'package:landa/screens/create_advertisement/domain/repositories/repositor
 
 class CreateAdvertisementUsescase
     extends BaseUseCase<bool, CreateAdvertisementParam> {
-  CreateAdvertisementUsescase({required this.createAdvertisementRepository});
+  CreateAdvertisementUsescase({
+    required this.createAdvertisementRepository,
+  });
   final CreateAdvertisementRepository createAdvertisementRepository;
 
   @override
@@ -16,7 +18,6 @@ class CreateAdvertisementUsescase
 
 class CreateAdvertisementParam extends CreateAdvertisement {
   const CreateAdvertisementParam({
-    required super.pType,
     required super.description,
     required super.pExpireDateTime,
     required super.pCreateDateTime,

@@ -57,7 +57,6 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
   final contactInfoController = MTextEditingController();
   final descriptionController = MTextEditingController();
   final productCountController = MTextEditingController();
-  int productType = 0;
 
   late final until = context.l10n.until;
 
@@ -99,17 +98,6 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
         key: formKey,
         child: Column(
           children: [
-            MDropDownField(
-              labels: [context.l10n.goods, context.l10n.services],
-              caption: context.l10n.productType,
-              onSelected: (index) {
-                if (index != productType) {
-                  categoryController.clear();
-                }
-                productType = index;
-              },
-            ),
-            const SizedBox.shrink().paddingM(),
             SelectableItemFormButton(
               title: context.l10n.category,
               textController: categoryController,
@@ -344,7 +332,6 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                       final showContactInfo = !bool.parse(contactInfo[1]);
                       //
                       final param = CreateAdvertisementParam(
-                        pType: productType,
                         description: descriptionController.text,
                         pExpireDateTime: productExpirationDateTime,
                         pCreateDateTime: productCreateDateTime,

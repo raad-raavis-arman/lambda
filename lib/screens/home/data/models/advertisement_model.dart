@@ -9,7 +9,6 @@ part 'advertisement_model.g.dart';
 class AdvertisementModel extends Advertisement {
   const AdvertisementModel({
     required super.id,
-    required super.pType,
     required super.description,
     required super.adCreateDateTime,
     required super.adExpireDateTime,

@@ -6,7 +6,6 @@ import 'package:landa/screens/advertisement_category/domain/entities/entities.da
 class Advertisement extends Equatable {
   const Advertisement({
     required this.id,
-    required this.pType,
     required this.description,
     required this.adCreateDateTime,
     required this.adExpireDateTime,
@@ -25,8 +24,6 @@ class Advertisement extends Equatable {
   });
 
   final int id;
-  @JsonKey(name: 'p_type')
-  final int pType;
   final String? description;
   @JsonKey(name: 'ad_create_date_time')
   final String adCreateDateTime;
@@ -55,7 +52,6 @@ class Advertisement extends Equatable {
   @override
   List<Object?> get props => [
         id,
-        pType,
         description,
         adCreateDateTime,
         adExpireDateTime,
