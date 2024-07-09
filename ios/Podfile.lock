@@ -5,6 +5,11 @@ PODS:
     - Toast
   - package_info_plus (0.4.5):
     - Flutter
+  - PostHog (3.6.1)
+  - posthog_flutter (0.0.1):
+    - Flutter
+    - FlutterMacOS
+    - PostHog (~> 3.0)
   - Sentry/HybridSDK (8.29.0)
   - sentry_flutter (8.3.0):
     - Flutter
@@ -21,12 +26,14 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
+  - posthog_flutter (from `.symlinks/plugins/posthog_flutter/ios`)
   - sentry_flutter (from `.symlinks/plugins/sentry_flutter/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 SPEC REPOS:
   trunk:
+    - PostHog
     - Sentry
     - Toast
 
@@ -37,6 +44,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/fluttertoast/ios"
   package_info_plus:
     :path: ".symlinks/plugins/package_info_plus/ios"
+  posthog_flutter:
+    :path: ".symlinks/plugins/posthog_flutter/ios"
   sentry_flutter:
     :path: ".symlinks/plugins/sentry_flutter/ios"
   shared_preferences_foundation:
@@ -48,6 +57,8 @@ SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   fluttertoast: 723e187574b149e68e63ca4d39b837586b903cfa
   package_info_plus: 58f0028419748fad15bf008b270aaa8e54380b1c
+  PostHog: cef6dfc3653d158a51e28ef16d614bedcd311627
+  posthog_flutter: e80defebf021b13375b351c838c9b87d769d7546
   Sentry: 016de45ee5ce5fca2a829996f1bfafeb5e62e8b4
   sentry_flutter: 5fb57c5b7e6427a9dc1fedde4269eb65823982d4
   shared_preferences_foundation: b4c3b4cddf1c21f02770737f147a3f5da9d39695
