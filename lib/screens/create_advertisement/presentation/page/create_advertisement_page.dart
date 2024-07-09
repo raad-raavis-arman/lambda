@@ -183,7 +183,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
               keyboardType: TextInputType.number,
               textInputAction: TextInputAction.done,
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              style: Theme.of(context).textTheme.titleMedium,
+              style: Theme.of(context).textTheme.bodyMedium,
               validator: (value) {
                 if (value?.trim().isEmpty ?? true) {
                   return context.l10n.fillingThisFieldIsRequired;
@@ -202,10 +202,10 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                 contentPadding: EdgeInsets.all(context.marginXS),
                 suffix: MText(
                   text: context.l10n.number,
-                  style: Theme.of(context).textTheme.titleSmall,
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
                 labelText: context.l10n.productCount,
-                labelStyle: Theme.of(context).textTheme.titleMedium,
+                labelStyle: Theme.of(context).textTheme.bodyMedium,
               ),
             ),
             const SizedBox.shrink().paddingL(),
@@ -262,7 +262,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
             const SizedBox.shrink().paddingL(),
             TextFormField(
               controller: descriptionController,
-              style: Theme.of(context).textTheme.titleMedium,
+              style: Theme.of(context).textTheme.bodyMedium,
               textInputAction: TextInputAction.newline,
               keyboardType: TextInputType.multiline,
               minLines: 4,
@@ -270,7 +270,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
               autovalidateMode: AutovalidateMode.onUserInteraction,
               decoration: InputDecoration(
                 labelText: context.l10n.description,
-                labelStyle: Theme.of(context).textTheme.titleMedium,
+                labelStyle: Theme.of(context).textTheme.bodyMedium,
                 contentPadding: EdgeInsets.symmetric(
                   vertical: context.marginM,
                   horizontal: context.marginXS,

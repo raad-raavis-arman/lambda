@@ -74,7 +74,7 @@ class _SelectableItemButtonState extends State<SelectableItemButton> {
                 MText(
                   text: widget.title,
                   textAlign: TextAlign.start,
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const Spacer(),
                 if (widget.textController != null && widget.value == null)
