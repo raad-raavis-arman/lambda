@@ -38,9 +38,6 @@
 
 <body>
   <script>
-    function delay(time) {
-      return new Promise(resolve => setTimeout(resolve, time));
-    }
     window.addEventListener('load', function (ev) {
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
@@ -51,7 +48,6 @@
           engineInitializer.initializeEngine().then(async function (appRunner) {
             var loaderContent = document.querySelector('#loader-content');
             loaderContent.style.opacity = "0";
-            await delay(400);
             await appRunner.runApp();
             loaderContent.remove();
           });
