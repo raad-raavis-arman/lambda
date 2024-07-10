@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:landa/core/bloc/bloc.dart';
 import 'package:landa/core/utils/utils.dart';
+import 'package:landa/core/widgets/searchable_list/searchable_list.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/screens/advertisement_category/domain/entities/entities.dart';
@@ -104,10 +105,21 @@ class _CategoryViewState extends State<_CategoryView> {
             controller: pageController,
             itemCount: 3,
             itemBuilder: (_, index) {
-              return switch (index) {
-                0 => CategoryList(
-                    categories: state.categoryData.categories,
-                    onTap: (category) {
+              switch (index) {
+                case 0:
+                  final categories = state.categoryData.categories;
+                  final data = categories
+                      .map(
+                        (e) => SearchableListEntity(
+                          title: e.nameFa,
+                          iconUrl: '$iconBaseUrl${e.iconName}',
+                        ),
+                      )
+                      .toList();
+                  return SearchableListWidget(
+                    data: data,
+                    onTap: (index) {
+                      final category = categories[index];
                       subCategories = state.categoryData.subCategories
                           .where(
                             (element) => element.categoryId == category.id,
@@ -118,10 +130,20 @@ class _CategoryViewState extends State<_CategoryView> {
                         curve: Curves.linear,
                       );
                     },
-                  ),
-                1 => SubCategoryList(
-                    subCategories: subCategories,
-                    onTap: (subCategory) {
+                  );
+                case 1:
+                  final data = subCategories
+                      .map(
+                        (e) => SearchableListEntity(
+                          title: e.nameFa,
+                          iconUrl: '$iconBaseUrl${e.iconName}',
+                        ),
+                      )
+                      .toList();
+                  return SearchableListWidget(
+                    data: data,
+                    onTap: (index) {
+                      final subCategory = subCategories[index];
                       subCategoryItems = state.categoryData.subCategoryItems
                           .where(
                             (element) =>
@@ -133,16 +155,28 @@ class _CategoryViewState extends State<_CategoryView> {
                         curve: Curves.linear,
                       );
                     },
-                  ),
-                2 => SubCategoryItemList(
-                    subCategoryItems: subCategoryItems,
-                    showArrow: false,
-                    onTap: (subCategoryItem) {
+                  );
+
+                case 2:
+                  final data = subCategoryItems
+                      .map(
+                        (e) => SearchableListEntity(
+                          title: e.nameFa,
+                          iconUrl: '$iconBaseUrl${e.iconName}',
+                          showTrailingArrow: false,
+                        ),
+                      )
+                      .toList();
+                  return SearchableListWidget(
+                    data: data,
+                    onTap: (index) {
+                      final subCategoryItem = subCategoryItems[index];
                       GoRouter.of(context).pop(subCategoryItem);
                     },
-                  ),
-                _ => const SizedBox.shrink(),
-              };
+                  );
+                default:
+                  return const SizedBox.shrink();
+              }
             },
           );
         },

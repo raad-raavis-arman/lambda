@@ -125,5 +125,8 @@
     "categorySuggestionNameError": "Category name must be at least 3 character",
     "failedToSendYourSuggestion": "Failed to send your suggestion to the server!",
     "yourSuggestionSentSuccessfully": "Your suggestion registered successfully",
-    "searchBarHint": "Search in all advertisements"
+    "searchBarHint": "Search in all advertisements",
+    "loadingDataFailed": "Failed to load data!",
+    "search": "Search",
+    "thereIsNoData": "There is no data to show!"
 }

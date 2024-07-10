@@ -124,5 +124,8 @@
     "categorySuggestionNameError": "نام دسته بندی باید حداقل شامل سه کاراکتر باشد",
     "failedToSendYourSuggestion": "!خطا در ارسال پیشنهاد شما به سرور",
     "yourSuggestionSentSuccessfully": "پیشنهاد شما با موفقیت ثبت شد",
-    "searchBarHint": "جستجو در همه آگهی ها"
+    "searchBarHint": "جستجو در همه آگهی ها",
+    "loadingDataFailed": "!خطا در بارگذاری اطلاعات",
+    "search":"جستجو",
+    "thereIsNoData": "!هیچ اطلاعاتی برای نمایش وجود ندارد"
 }

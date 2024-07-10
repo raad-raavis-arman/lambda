@@ -18,6 +18,19 @@ extension PaddingX on Widget {
     );
   }
 
+  Widget paddingSymmetric({
+    double horizontal = 0,
+    double vertical = 0,
+  }) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: horizontal,
+        vertical: vertical,
+      ),
+      child: this,
+    );
+  }
+
   Widget paddingXL() {
     return Padding(
       padding: const EdgeInsets.all(22),

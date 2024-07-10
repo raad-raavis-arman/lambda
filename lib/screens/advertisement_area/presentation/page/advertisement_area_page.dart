@@ -71,8 +71,8 @@ class _AdvertisementAreaView extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           } else if (state is AdvertisementAreaErrorState) {
-            return const Center(
-              child: MText(text: 'خطایی رخ داده است'),
+            return Center(
+              child: MText(text: context.l10n.loadingDataFailed,),
             );
           } else {
             return const SizedBox.shrink();
