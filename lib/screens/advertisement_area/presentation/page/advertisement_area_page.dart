@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:landa/core/utils/utils.dart';
+import 'package:landa/core/widgets/searchable_list/searchable_list_entity.dart';
+import 'package:landa/core/widgets/searchable_list/searchable_list_widget.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/l10n/l10n.dart';
+import 'package:landa/screens/advertisement_area/domain/entities/entities.dart';
 import 'package:landa/screens/advertisement_area/presentation/bloc/bloc.dart';
 
 class AdvertisementAreaPage extends StatelessWidget {
@@ -37,33 +40,53 @@ class _AdvertisementAreaView extends StatelessWidget {
       body: BlocBuilder<AdvertisementAreaBloc, AdvertisementAreaState>(
         builder: (context, state) {
           if (state is AdvertisementAreaDataState) {
+            final pageController = PageController();
             final data = state.data;
-            return ListView.builder(
-              itemCount: data.length,
+            final provinces = data.keys.toList();
+            List<City> allCities = [];
+            return PageView.builder(
+              controller: pageController,
+              itemCount: 2,
               itemBuilder: (context, index) {
-                final province = data.entries.toList()[index].key;
-                final cities = data.entries.toList()[index].value;
-                return ExpansionTile(
-                  title: MText(
-                    text: province.name,
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  children: List.generate(
-                    cities.length,
-                    (index) => InkWell(
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: MText(
-                          text: cities[index].name,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ).paddingS(),
-                      ),
-                      onTap: () {
-                        context.pop(cities[index]);
+                switch (index) {
+                  case 0:
+                    final data = provinces
+                        .map(
+                          (e) => SearchableListEntity(
+                            title: e.name,
+                          ),
+                        )
+                        .toList();
+                    return SearchableListWidget(
+                      data: data,
+                      onTap: (index) {
+                        final province = provinces[index];
+                        allCities = state.data[province] ?? [];
+                        pageController.nextPage(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.linear,
+                        );
                       },
-                    ),
-                  ),
-                );
+                    );
+                  case 1:
+                    final data = allCities
+                        .map(
+                          (e) => SearchableListEntity(
+                            title: e.name,
+                            showTrailingArrow: false,
+                          ),
+                        )
+                        .toList();
+                    return SearchableListWidget(
+                      data: data,
+                      onTap: (index) {
+                        final city = allCities[index];
+                        context.pop(city);
+                      },
+                    );
+                  default:
+                    return const SizedBox.shrink();
+                }
               },
             );
           } else if (state is AdvertisementAreaLoadingState) {
@@ -72,7 +95,9 @@ class _AdvertisementAreaView extends StatelessWidget {
             );
           } else if (state is AdvertisementAreaErrorState) {
             return Center(
-              child: MText(text: context.l10n.loadingDataFailed,),
+              child: MText(
+                text: context.l10n.loadingDataFailed,
+              ),
             );
           } else {
             return const SizedBox.shrink();

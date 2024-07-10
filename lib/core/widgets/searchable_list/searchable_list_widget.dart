@@ -49,6 +49,9 @@ class _SearchableListWidgetState extends State<SearchableListWidget> {
                   },
                 ),
         ),
+        SizedBox(
+          height: context.marginXS,
+        ),
         TextField(
           onChanged: (value) {
             filteredData = widget.data
