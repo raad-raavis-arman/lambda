@@ -10,6 +10,7 @@ import 'package:landa/screens/create_advertisement/presentation/presentation.dar
 import 'package:landa/screens/dashboard/presentation/page/page.dart';
 import 'package:landa/screens/home/presentation/presentation.dart';
 import 'package:landa/screens/login/presentation/presentation.dart';
+import 'package:landa/screens/not_found/not_found_page.dart';
 import 'package:landa/screens/profile/presentation/page/page.dart';
 import 'package:landa/screens/splash/presentation/page/page.dart';
 import 'package:landa/screens/verify_login/presentation/presentation.dart';
@@ -33,6 +34,9 @@ class RouteConfig {
           } else {
             return RouteNames.splash;
           }
+        },
+        errorPageBuilder: (context, state) {
+          return NotFoundPage.page;
         },
         routes: [
           SplashPage.route,
