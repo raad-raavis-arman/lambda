@@ -10,7 +10,7 @@ import 'package:url_strategy/url_strategy.dart';
 
 Future<void> mainCommon(FlavorConfig flavorConfig) async {
   WidgetsFlutterBinding.ensureInitialized();
-  await setup();
+  await setup(flavorConfig);
   setPathUrlStrategy();
   if (kIsWeb) {
     MetaSEO().config();

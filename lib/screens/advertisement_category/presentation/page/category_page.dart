@@ -59,6 +59,7 @@ class _CategoryViewState extends State<_CategoryView> {
   Widget build(BuildContext context) {
     return MScaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: MText(text: context.l10n.category),
         bottom: PreferredSize(
           preferredSize: const Size(double.infinity, kToolbarHeight),

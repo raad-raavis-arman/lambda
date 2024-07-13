@@ -128,5 +128,6 @@
     "searchBarHint": "Search in all advertisements",
     "loadingDataFailed": "Failed to load data!",
     "search": "Search",
-    "thereIsNoData": "There is no data to show!"
+    "thereIsNoData": "There is no data to show!",
+    "yourDesiredPageNotFound": "Your desired page not found!"
 }

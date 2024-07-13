@@ -88,33 +88,29 @@ class _AppRootView extends StatelessWidget {
           )..add(AdvertisementAreaInitialEvent()),
         ),
       ],
-      child: Builder(
-        builder: (context) {
-          final langState = context.watch<LangBloc>().state;
-          final themeState = context.watch<ThemeBloc>().state;
-          return MaterialApp.router(
-            themeMode: themeState.mode,
-            darkTheme: DarkTheme(fontFamily: langState.fontFamily).data,
-            theme:
-                LightTheme(fontFamily: langState.fontFamily, context: context)
-                    .data,
-            supportedLocales: L10n.all,
-            locale: langState.locale,
-            localizationsDelegates: const [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            title: flavorConfig.appTitle,
-            routerConfig: locator.get<RouteConfig>().router,
-            debugShowCheckedModeBanner:
-                flavorConfig.flavorType == FlavorType.production,
-          ).animate().fadeIn(
-                duration: const Duration(milliseconds: 400),
-              );
-        },
-      ),
+      child: MaterialApp.router(
+        themeMode: context.read<ThemeBloc>().state.mode,
+        darkTheme: DarkTheme(
+          fontFamily: context.read<LangBloc>().state.fontFamily,
+        ).data,
+        theme: LightTheme(
+          fontFamily: context.read<LangBloc>().state.fontFamily,
+        ).data,
+        supportedLocales: L10n.all,
+        locale: context.read<LangBloc>().state.locale,
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        title: flavorConfig.appTitle,
+        routerConfig: locator.get<RouteConfig>().router,
+        debugShowCheckedModeBanner:
+            flavorConfig.flavorType == FlavorType.production,
+      ).animate().fadeIn(
+            duration: const Duration(milliseconds: 400),
+          ),
     );
   }
 }

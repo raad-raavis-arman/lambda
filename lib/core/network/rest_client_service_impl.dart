@@ -6,19 +6,20 @@ import 'package:sentry_dio/sentry_dio.dart';
 class RestClientServiceImpl implements RestClientService {
   RestClientServiceImpl(
     this.authorizationInterceptor,
+    this.baseUrl,
   ) {
     _initializeDio();
   }
 
   final AuthorizationInterceptor authorizationInterceptor;
+  final String baseUrl;
 
   late final Dio _dio;
 
   void _initializeDio() {
     _dio = Dio(
       BaseOptions(
-        //baseUrl: 'https://lambda-api.gymino.ir/api/v1/',
-        baseUrl: 'http://127.0.0.1:8000/api/v1/',
+        baseUrl: baseUrl,
         receiveTimeout: const Duration(seconds: 60),
         connectTimeout: const Duration(seconds: 60),
       ),

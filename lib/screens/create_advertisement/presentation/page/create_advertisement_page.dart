@@ -86,6 +86,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
   Widget build(BuildContext context) {
     return MScaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: MText(text: context.l10n.newAdvertisement),
         leading: BackButton(
           onPressed: () {
@@ -168,7 +169,9 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
             TextFormField(
               controller: productCountController,
               textAlign: TextAlign.center,
-              keyboardType: TextInputType.number,
+              keyboardType: const TextInputType.numberWithOptions(
+                signed: true,
+              ),
               textInputAction: TextInputAction.done,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               style: Theme.of(context).textTheme.bodyMedium,

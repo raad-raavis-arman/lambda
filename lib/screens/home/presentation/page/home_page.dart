@@ -94,6 +94,7 @@ class _HomeViewState extends State<_HomeView> {
       ],
       child: MScaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: SearchBarWidget(
             onSubmitSearch: onSubmitSearch,
           ),

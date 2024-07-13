@@ -53,6 +53,7 @@ class _AdvertisementDateView extends StatelessWidget {
     late MDatePickerValue expirationDateTime;
     return MScaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: MText(text: context.l10n.creationAndExpirationDate),
       ),
       body: Column(

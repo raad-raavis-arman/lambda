@@ -54,6 +54,7 @@ class _AdvertisementPriceViewState extends State<_AdvertisementPriceView> {
   Widget build(BuildContext context) {
     return MScaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: MText(text: context.l10n.price),
       ),
       body: Form(
@@ -64,8 +65,11 @@ class _AdvertisementPriceViewState extends State<_AdvertisementPriceView> {
             TextFormField(
               textAlign: TextAlign.center,
               controller: originalPriceController,
-              keyboardType: TextInputType.number,
-              textInputAction: TextInputAction.done,
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+                signed: true,
+              ),
+              textInputAction: TextInputAction.next,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               style: Theme.of(context).textTheme.titleMedium,
               inputFormatters: [
@@ -107,7 +111,10 @@ class _AdvertisementPriceViewState extends State<_AdvertisementPriceView> {
             const SizedBox.shrink().paddingM(),
             TextFormField(
               textAlign: TextAlign.center,
-              keyboardType: TextInputType.number,
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+                signed: true,
+              ),
               controller: discountController,
               textInputAction: TextInputAction.done,
               inputFormatters: [

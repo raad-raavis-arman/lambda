@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:landa/core/network/authorization_interceptor.dart';
 import 'package:landa/core/network/network.dart';
 import 'package:landa/core/utils/utils.dart';
+import 'package:landa/flavor_config.dart';
 import 'package:landa/screens/advertisement_area/data/datasources/province_local_datasource.dart';
 import 'package:landa/screens/advertisement_area/data/repositories/province_repository_impl.dart';
 import 'package:landa/screens/advertisement_area/domain/repositories/province_repository.dart';
@@ -32,7 +33,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 final locator = GetIt.instance;
 
-Future<void> setup() async {
+Future<void> setup(FlavorConfig flavorConfig) async {
   final SharedPreferences preferences = await SharedPreferences.getInstance();
   final PackageInfo packageInfo = await PackageInfo.fromPlatform();
   locator
@@ -60,6 +61,7 @@ Future<void> setup() async {
     ..registerLazySingleton<RestClientService>(
       () => RestClientServiceImpl(
         locator.get(),
+        flavorConfig.baseUrl,
       ),
     )
     ..registerLazySingleton(

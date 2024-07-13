@@ -127,5 +127,6 @@
     "searchBarHint": "جستجو در همه آگهی ها",
     "loadingDataFailed": "!خطا در بارگذاری اطلاعات",
     "search":"جستجو",
-    "thereIsNoData": "!هیچ اطلاعاتی برای نمایش وجود ندارد"
+    "thereIsNoData": "!هیچ اطلاعاتی برای نمایش وجود ندارد",
+    "yourDesiredPageNotFound": "!صفحه مورد نظر شما پیدا نشد"
 }
