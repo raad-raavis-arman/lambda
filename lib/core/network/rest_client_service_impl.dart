@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:landa/core/network/authorization_interceptor.dart';
 import 'package:landa/core/network/network.dart';
@@ -18,7 +20,9 @@ class RestClientServiceImpl implements RestClientService {
     _dio = Dio(
       BaseOptions(
         //baseUrl: 'https://lambda-api.gymino.ir/api/v1/',
-        baseUrl: 'http://127.0.0.1:8000/api/v1/',
+        baseUrl: Platform.isAndroid
+            ? 'http://10.0.2.2:8000/api/v1/'
+            : 'http://127.0.0.1:8000/api/v1/',
         receiveTimeout: const Duration(seconds: 60),
         connectTimeout: const Duration(seconds: 60),
       ),

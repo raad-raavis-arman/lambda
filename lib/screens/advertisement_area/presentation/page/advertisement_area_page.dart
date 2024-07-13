@@ -35,6 +35,7 @@ class _AdvertisementAreaView extends StatelessWidget {
   Widget build(BuildContext context) {
     return MScaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: MText(text: context.l10n.advertisementArea),
       ),
       body: BlocBuilder<AdvertisementAreaBloc, AdvertisementAreaState>(

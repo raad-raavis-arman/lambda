@@ -41,7 +41,9 @@ class SearchBarWidget extends StatelessWidget {
     return SearchAnchor.bar(
       onSubmitted: (value) {
         onSubmitSearch.call(value);
-        searchController.closeView(value);
+        if (searchController.isOpen) {
+          searchController.closeView(value);
+        }
       },
       searchController: searchController,
       barElevation: const WidgetStatePropertyAll(0),
@@ -111,7 +113,10 @@ class SearchBarWidget extends StatelessWidget {
         .map(
           (e) => InkWell(
             onTap: () {
-              searchController.closeView(e);
+              if (searchController.isOpen) {
+                searchController.closeView(e);
+              }
+
               onSubmitSearch.call(e);
             },
             child: MText(

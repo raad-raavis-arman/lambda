@@ -41,6 +41,7 @@ class _ProfileView extends StatelessWidget {
     return MScaffold(
       scrollable: true,
       appBar: AppBar(
+        centerTitle: true,
         title: MText(
           text: context.l10n.youLoggedInWithThisMobileNumber(
             mobileNumber,

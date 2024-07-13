@@ -86,6 +86,7 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
       },
       child: MScaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: MText(text: context.l10n.login),
         ),
         body: Center(

@@ -69,6 +69,7 @@ class _AdvertisementContactInfoViewState
   Widget build(BuildContext context) {
     return MScaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: MText(text: context.l10n.contactInfo),
       ),
       body: Form(

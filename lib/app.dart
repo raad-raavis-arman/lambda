@@ -95,7 +95,6 @@ class _AppRootView extends StatelessWidget {
         ).data,
         theme: LightTheme(
           fontFamily: context.read<LangBloc>().state.fontFamily,
-          context: context,
         ).data,
         supportedLocales: L10n.all,
         locale: context.read<LangBloc>().state.locale,

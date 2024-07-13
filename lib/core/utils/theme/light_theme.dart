@@ -4,10 +4,8 @@ import 'package:landa/core/utils/theme/constant/constant.dart';
 class LightTheme {
   LightTheme({
     required this.fontFamily,
-    required this.context,
   });
   final String fontFamily;
-  final BuildContext context;
 
   ThemeData get data => ThemeData(
         useMaterial3: true,
@@ -15,12 +13,13 @@ class LightTheme {
         fontFamily: fontFamily,
         colorScheme: lightColorScheme,
         indicatorColor: const Color(0xFF006A6A),
-        textTheme: textTheme(context),
+        textTheme: textTheme,
         inputDecorationTheme: const InputDecorationTheme(
           border: OutlineInputBorder(),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
+            backgroundColor: const WidgetStatePropertyAll(Color(0xFFE8F5E9)),
             shape: WidgetStateProperty.all<RoundedRectangleBorder>(
               const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(
