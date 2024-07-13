@@ -5,6 +5,7 @@ void main(List<String> args) {
   const flavorConfig = FlavorConfig(
     appTitle: 'Landa-STG',
     flavorType: FlavorType.staging,
+    baseUrl: 'https://lambda-api.gymino.ir/api/v1/',
   );
 
   mainCommon(flavorConfig);
