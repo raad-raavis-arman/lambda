@@ -77,15 +77,24 @@ class _AdvertisementDetailsView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: MText(
-                        text: '${context.l10n.publishTime}: ${getAgo(
-                          postDate: advertisement.adCreateDateTime,
-                          isPersian: context.isPersian,
-                        )}',
-                        style: Theme.of(context).textTheme.labelSmall,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton.outlined(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.bookmark_add_outlined,
+                            size: context.iconS,
+                          ),
+                        ),
+                        MText(
+                          text: '${context.l10n.publishTime}: ${getAgo(
+                            postDate: advertisement.adCreateDateTime,
+                            isPersian: context.isPersian,
+                          )}',
+                          style: Theme.of(context).textTheme.labelSmall,
+                        ),
+                      ],
                     ),
                     MDivider(text: context.l10n.price),
                     PriceDiscount(
