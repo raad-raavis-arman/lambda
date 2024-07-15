@@ -20,6 +20,7 @@ class AdvertisementModel extends Advertisement {
     required super.count,
     required super.contactNumber,
     required super.showContactInfo,
+    required this.mIsMarked,
     required this.mCategory,
     required this.mSubCategory,
     required this.mProvince,
@@ -29,6 +30,7 @@ class AdvertisementModel extends Advertisement {
           category: mCategory,
           province: mProvince,
           city: mCity,
+          isMarked: mIsMarked,
         );
 
   factory AdvertisementModel.fromJson(Map<String, dynamic> json) =>
@@ -42,6 +44,16 @@ class AdvertisementModel extends Advertisement {
   final ProvinceModel mProvince;
   @JsonKey(name: 'city')
   final CityModel mCity;
+  @JsonKey(
+    defaultValue: false,
+    name: 'mark',
+    fromJson: _isMarkedFromJson,
+  )
+  final bool mIsMarked;
+
+  static bool _isMarkedFromJson(Map<String, dynamic> json) {
+    return true;
+  }
 
   Map<String, dynamic> toJson() => _$AdvertisementModelToJson(this);
 }

@@ -1,8 +1,10 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
+import 'package:landa/di_service.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/screens/advertisement_details/presentation/presentation.dart';
 import 'package:landa/screens/home/domain/entities/entities.dart';
@@ -31,15 +33,28 @@ class AdvertisementDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _AdvertisementDetailsView(advertisement);
+    return BlocProvider(
+      create: (context) => AdvertisementDetailsBloc(
+        locator.get(),
+        locator.get(),
+      ),
+      child: _AdvertisementDetailsView(advertisement),
+    );
   }
 }
 
-class _AdvertisementDetailsView extends StatelessWidget {
+class _AdvertisementDetailsView extends StatefulWidget {
   const _AdvertisementDetailsView(this.advertisement);
 
   final Advertisement advertisement;
 
+  @override
+  State<_AdvertisementDetailsView> createState() =>
+      _AdvertisementDetailsViewState();
+}
+
+class _AdvertisementDetailsViewState extends State<_AdvertisementDetailsView> {
+  late Advertisement advertisement = widget.advertisement;
   @override
   Widget build(BuildContext context) {
     return MScaffold(
@@ -51,7 +66,9 @@ class _AdvertisementDetailsView extends StatelessWidget {
         ),
         leading: BackButton(
           onPressed: () {
-            GoRouter.of(context).goNamed(RouteNames.dashboard);
+            final updatedAd =
+                widget.advertisement != advertisement ? advertisement : null;
+            context.pop(updatedAd);
           },
         ),
       ),
@@ -81,9 +98,23 @@ class _AdvertisementDetailsView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton.outlined(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.read<AdvertisementDetailsBloc>().add(
+                                  ToggleBookmarkAdvertisementEvent(
+                                    advertisementId: advertisement.id,
+                                    isMarked: advertisement.isMarked,
+                                  ),
+                                );
+                            setState(() {
+                              advertisement = advertisement.copyWith(
+                                isMarked: !advertisement.isMarked,
+                              );
+                            });
+                          },
                           icon: Icon(
-                            Icons.bookmark_add_outlined,
+                            advertisement.isMarked
+                                ? Icons.bookmark
+                                : Icons.bookmark_add_outlined,
                             size: context.iconS,
                           ),
                         ),

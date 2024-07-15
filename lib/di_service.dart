@@ -12,6 +12,10 @@ import 'package:landa/screens/advertisement_category/data/datasources/datasource
 import 'package:landa/screens/advertisement_category/data/repositories/category_repository_impl.dart';
 import 'package:landa/screens/advertisement_category/domain/repositories/repositories.dart';
 import 'package:landa/screens/advertisement_category/domain/usecases/usecases.dart';
+import 'package:landa/screens/advertisement_details/data/datasources/datasources.dart';
+import 'package:landa/screens/advertisement_details/data/repositories/repositories.dart';
+import 'package:landa/screens/advertisement_details/domain/repositories/repositories.dart';
+import 'package:landa/screens/advertisement_details/domain/usecases/usecases.dart';
 import 'package:landa/screens/create_advertisement/data/datasources/create_advertisement_remote_datasource.dart';
 import 'package:landa/screens/create_advertisement/data/repositories/create_advertisement_repository_impl.dart';
 import 'package:landa/screens/create_advertisement/domain/repositories/repositories.dart';
@@ -188,6 +192,28 @@ Future<void> setup(FlavorConfig flavorConfig) async {
     )
     ..registerLazySingleton(
       () => HomeRemoteDatasource(
+        restClientService: locator.get(),
+      ),
+    )
+
+    //regiseter for advertisement details bloc
+    ..registerLazySingleton(
+      () => BookmarkAdvertisementUsescase(
+        advertisementDetailsRepository: locator.get(),
+      ),
+    )
+    ..registerLazySingleton(
+      () => RemoveBookmarkAdvertisementUsescase(
+        advertisementDetailsRepository: locator.get(),
+      ),
+    )
+    ..registerLazySingleton<AdvertisementDetailsRepository>(
+      () => AdvertisementDetailsRepositoryImpl(
+        advertisementDetailsRemoteDatasource: locator.get(),
+      ),
+    )
+    ..registerLazySingleton(
+      () => AdvertisementDetailsRemoteDatasource(
         restClientService: locator.get(),
       ),
     );

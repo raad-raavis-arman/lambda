@@ -7,6 +7,7 @@ import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/screens/home/presentation/presentation.dart';
+import 'package:landa/screens/home/presentation/widgets/advertisement_list_widget.dart';
 import 'package:meta_seo/meta_seo.dart';
 import 'package:toastification/toastification.dart';
 
@@ -46,24 +47,9 @@ class _HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<_HomeView> {
+  String querySearch = '';
   int offset = 0;
   int limit = 10;
-  String querySearch = '';
-  late final ScrollController _scrollController;
-  @override
-  void initState() {
-    _scrollController = ScrollController();
-    _scrollController.addListener(() {
-      if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
-        offset += limit;
-        context.read<HomeBloc>().add(
-              HomeGetAllAdEvent(offset: offset, limit: limit),
-            );
-      }
-    });
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,32 +93,30 @@ class _HomeViewState extends State<_HomeView> {
             if (state.status == StateStatus.success &&
                 state.advertisements.isEmpty) {
               return const NoAdvertisementWidget();
+            } else if (state.status == StateStatus.loading &&
+                state.advertisements.isEmpty) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              final data = state.advertisements;
+              return AdvertisementListWidget(
+                data: data,
+                onScrollReachedEnd: () {
+                  offset += limit;
+                  context.read<HomeBloc>().add(
+                        HomeGetAllAdEvent(offset: offset, limit: limit),
+                      );
+                },
+                onRefresh: () async {
+                  offset = 0;
+                  limit = 10;
+                  context.read<HomeBloc>().add(
+                        HomeGetAllAdEvent(offset: offset, limit: limit),
+                      );
+                },
+              );
             }
-            final data = state.advertisements;
-            return RefreshIndicator(
-              onRefresh: () async {
-                offset = 0;
-                limit = 10;
-                context.read<HomeBloc>().add(
-                      HomeGetAllAdEvent(offset: offset, limit: limit),
-                    );
-              },
-              child: state.status == StateStatus.loading &&
-                      state.advertisements.isEmpty
-                  ? const Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : ListView.builder(
-                      itemCount: data.length,
-                      controller: _scrollController,
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      itemBuilder: (_, index) {
-                        return AdvertisementItem(
-                          advertisement: data[index],
-                        );
-                      },
-                    ),
-            );
           },
         ),
       ),
