@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -118,9 +120,17 @@ class _HomeView extends StatelessWidget {
                 onRefresh: () async {
                   offset = 0;
                   limit = 10;
+                  final getEventsCompleter = Completer();
                   context.read<HomeBloc>().add(
                         HomeGetAllAdEvent(offset: offset, limit: limit),
                       );
+                  context.read<HomeBloc>().stream.listen((state) {
+                    if (state.status != StateStatus.loading &&
+                        state.status != StateStatus.initial) {
+                      getEventsCompleter.complete();
+                    }
+                  });
+                  return getEventsCompleter.future;
                 },
               );
             }
