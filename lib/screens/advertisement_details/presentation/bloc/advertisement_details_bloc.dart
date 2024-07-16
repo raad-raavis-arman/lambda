@@ -23,7 +23,7 @@ class AdvertisementDetailsBloc
     Emitter<AdvertisementDetailsState> emit,
   ) async {
     emit(
-      const AdvertisementDetailsState(status: StateStatus.loading),
+      const AdvertisementDetailsState(bookmarkStatus: StateStatus.loading),
     );
     final _ = (event.isMarked)
         ? await removeBookmarkAdvertisementUsescase.call(
@@ -39,20 +39,20 @@ class AdvertisementDetailsBloc
       ..fold(
         (_) => emit(
           const AdvertisementDetailsState(
-            status: StateStatus.error,
+            bookmarkStatus: StateStatus.error,
           ),
         ),
         (isDone) {
           if (isDone) {
             emit(
               const AdvertisementDetailsState(
-                status: StateStatus.success,
+                bookmarkStatus: StateStatus.success,
               ),
             );
           } else {
             emit(
               const AdvertisementDetailsState(
-                status: StateStatus.error,
+                bookmarkStatus: StateStatus.error,
               ),
             );
           }
