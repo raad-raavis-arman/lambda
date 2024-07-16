@@ -39,20 +39,14 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class _HomeView extends StatefulWidget {
+class _HomeView extends StatelessWidget {
   const _HomeView();
 
   @override
-  State<_HomeView> createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<_HomeView> {
-  String querySearch = '';
-  int offset = 0;
-  int limit = 10;
-
-  @override
   Widget build(BuildContext context) {
+    String querySearch = '';
+    int offset = 0;
+    int limit = 10;
     return MultiBlocListener(
       listeners: [
         BlocListener<NewVersionBloc, NewVersionState>(
@@ -82,7 +76,20 @@ class _HomeViewState extends State<_HomeView> {
         appBar: AppBar(
           centerTitle: true,
           title: SearchBarWidget(
-            onSubmitSearch: onSubmitSearch,
+            onSubmitSearch: (query) {
+              if (query == querySearch) {
+                return;
+              } else {
+                offset = 0;
+                querySearch = query;
+                context.read<HomeBloc>().add(
+                      HomeGetAllAdEvent(
+                        query: query,
+                        offset: offset,
+                      ),
+                    );
+              }
+            },
           ),
         ),
         body: BlocBuilder<HomeBloc, HomeState>(
@@ -121,20 +128,5 @@ class _HomeViewState extends State<_HomeView> {
         ),
       ),
     );
-  }
-
-  void onSubmitSearch(String query) {
-    if (query == querySearch) {
-      return;
-    } else {
-      offset = 0;
-      querySearch = query;
-      context.read<HomeBloc>().add(
-            HomeGetAllAdEvent(
-              query: query,
-              offset: offset,
-            ),
-          );
-    }
   }
 }
