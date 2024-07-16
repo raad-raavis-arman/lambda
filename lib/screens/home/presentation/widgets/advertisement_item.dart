@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/screens/home/domain/entities/entities.dart';
@@ -8,20 +7,17 @@ import 'package:landa/screens/home/presentation/widgets/widgets.dart';
 class AdvertisementItem extends StatelessWidget {
   const AdvertisementItem({
     required this.advertisement,
+    this.onTap,
     super.key,
   });
 
   final Advertisement advertisement;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        context.pushNamed(
-          RouteNames.advertisementDetails,
-          extra: advertisement,
-        );
-      },
+      onTap: onTap,
       child: Card(
         child: Stack(
           alignment: Alignment.topLeft,

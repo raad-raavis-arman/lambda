@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:landa/core/error/error.dart';
+import 'package:landa/core/exceptions/exceptions.dart';
 import 'package:landa/core/network/network.dart';
 import 'package:landa/screens/advertisement_category/data/datasources/datasources.dart';
 import 'package:landa/screens/advertisement_category/data/models/models.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 class SubCategoryRemoteDataSourceImpl implements SubCategoryDataSource {
   SubCategoryRemoteDataSourceImpl({
@@ -36,7 +36,7 @@ class SubCategoryRemoteDataSourceImpl implements SubCategoryDataSource {
       throw MException.fromDioError(e);
     } on Exception catch (e, s) {
       unawaited(
-        Sentry.captureException(e, stackTrace: s),
+        sentToSentry(exception: e, stackTrace: s),
       );
       rethrow;
     }

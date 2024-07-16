@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:landa/core/error/m_exception.dart';
+import 'package:landa/core/exceptions/exceptions.dart';
 import 'package:landa/core/network/network.dart';
 import 'package:landa/screens/login/data/models/otp_model.dart';
 import 'package:landa/screens/login/domain/entities/entities.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 abstract interface class OtpRemoteDataSource {
   Future<Otp> sendMobileOtp(String mobileNumber);
@@ -39,7 +39,7 @@ class OtpRemoteDataSourceImpl implements OtpRemoteDataSource {
       throw MException.fromDioError(e);
     } on Exception catch (e, s) {
       unawaited(
-        Sentry.captureException(e, stackTrace: s),
+        sentToSentry(exception: e, stackTrace: s),
       );
       rethrow;
     }
