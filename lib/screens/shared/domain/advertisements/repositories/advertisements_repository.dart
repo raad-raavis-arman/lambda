@@ -6,4 +6,7 @@ abstract interface class AdvertisementsRepository {
   Future<Either<Failure, List<Advertisement>>> getAllAds({
     AdvertisementQuery query = const AdvertisementQuery(),
   });
+  
+  Future<Either<Failure, List<Advertisement>>> getMyAds();
+  Future<Either<Failure, List<Advertisement>>> getBookmarkedAds();
 }

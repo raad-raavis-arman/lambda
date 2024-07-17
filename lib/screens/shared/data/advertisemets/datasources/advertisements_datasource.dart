@@ -5,4 +5,7 @@ abstract interface class AdvertisementsDatasource {
   Future<List<AdvertisementModel>> getAllAds({
     required AdvertisementQuery query,
   });
+ 
+  Future<List<AdvertisementModel>> getMyAds();
+  Future<List<AdvertisementModel>> getBookmarkedAds();
 }

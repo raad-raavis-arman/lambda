@@ -9,7 +9,7 @@ final class AdvertisementDetailsState extends BaseState {
   final StateStatus bookmarkStatus;
 
   @override
-  List<Object?> get props => [
+  List<Object> get props => [
         ...super.props,
         bookmarkStatus,
       ];

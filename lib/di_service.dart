@@ -196,6 +196,20 @@ Future<void> setup(FlavorConfig flavorConfig) async {
       ),
     )
 
+    //regiseter for marked advertisements bloc
+    ..registerLazySingleton(
+      () => GetMyMarkedAdsUsecase(
+        advertisementsRepository: locator.get(),
+      ),
+    )
+
+    //regiseter for my advertisements bloc
+    ..registerLazySingleton(
+      () => GetMyAdsUsecase(
+        advertisementsRepository: locator.get(),
+      ),
+    )
+
     //regiseter for advertisement details bloc
     ..registerLazySingleton(
       () => BookmarkAdvertisementUsescase(

@@ -129,5 +129,8 @@
     "loadingDataFailed": "Failed to load data!",
     "search": "Search",
     "thereIsNoData": "There is no data to show!",
-    "yourDesiredPageNotFound": "Your desired page not found!"
+    "yourDesiredPageNotFound": "Your desired page not found!",
+
+    "@PROFILE": {},
+    "thereIsNoMarkedAdToShow": "There is  no marked advertisement to show here!"
 }

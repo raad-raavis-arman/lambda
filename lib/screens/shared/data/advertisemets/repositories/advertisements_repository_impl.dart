@@ -21,4 +21,24 @@ class AdvertisementsRepositoryImpl implements AdvertisementsRepository {
       return Left(ServerFailure(e.errorMessage));
     }
   }
+
+  @override
+  Future<Either<Failure, List<Advertisement>>> getMyAds() async {
+    try {
+      final result = await remoteDatasource.getMyAds();
+      return Right(result);
+    } on MException catch (e) {
+      return Left(ServerFailure(e.errorMessage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Advertisement>>> getBookmarkedAds() async {
+    try {
+      final result = await remoteDatasource.getBookmarkedAds();
+      return Right(result);
+    } on MException catch (e) {
+      return Left(ServerFailure(e.errorMessage));
+    }
+  }
 }
