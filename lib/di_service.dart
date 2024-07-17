@@ -20,14 +20,14 @@ import 'package:landa/screens/create_advertisement/data/datasources/create_adver
 import 'package:landa/screens/create_advertisement/data/repositories/create_advertisement_repository_impl.dart';
 import 'package:landa/screens/create_advertisement/domain/repositories/repositories.dart';
 import 'package:landa/screens/create_advertisement/domain/usecases/creaet_advertisement_usecase.dart';
-import 'package:landa/screens/home/data/datasources/datasources.dart';
-import 'package:landa/screens/home/data/repositories/home_repository_impl.dart';
-import 'package:landa/screens/home/domain/repositories/repositories.dart';
-import 'package:landa/screens/home/domain/usecases/get_all_ad_usecase.dart';
 import 'package:landa/screens/login/data/datasources/datasources.dart';
 import 'package:landa/screens/login/data/repositories/repositories.dart';
 import 'package:landa/screens/login/domain/repositories/repositories.dart';
 import 'package:landa/screens/login/domain/usecases/usecases.dart';
+import 'package:landa/screens/shared/data/advertisemets/datasources/datasources.dart';
+import 'package:landa/screens/shared/data/advertisemets/repositories/repositories.dart';
+import 'package:landa/screens/shared/domain/advertisements/repositories/repositories.dart';
+import 'package:landa/screens/shared/domain/advertisements/usecases/usecases.dart';
 import 'package:landa/screens/verify_login/data/datasources/datasources.dart';
 import 'package:landa/screens/verify_login/data/repositories/repositories.dart';
 import 'package:landa/screens/verify_login/domain/repositories/repositories.dart';
@@ -182,16 +182,16 @@ Future<void> setup(FlavorConfig flavorConfig) async {
     //regiseter for home bloc
     ..registerLazySingleton(
       () => GetAllAdUsecase(
-        homeRepository: locator.get(),
+        advertisementsRepository: locator.get(),
       ),
     )
-    ..registerLazySingleton<HomeRepository>(
-      () => HomeRepositoryImpl(
+    ..registerLazySingleton<AdvertisementsRepository>(
+      () => AdvertisementsRepositoryImpl(
         remoteDatasource: locator.get(),
       ),
     )
     ..registerLazySingleton(
-      () => HomeRemoteDatasource(
+      () => AdvertisementsRemoteDatasource(
         restClientService: locator.get(),
       ),
     )

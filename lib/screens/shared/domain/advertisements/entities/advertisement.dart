@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:landa/screens/advertisement_area/domain/entities/entities.dart';
-import 'package:landa/screens/advertisement_category/domain/entities/entities.dart';
+import 'package:landa/screens/shared/domain/advertisements/entities/entities.dart';
 
 class Advertisement extends Equatable {
   const Advertisement({

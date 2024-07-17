@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:landa/core/error/error.dart';
-import 'package:landa/screens/home/domain/entities/entities.dart';
+import 'package:landa/screens/shared/domain/advertisements/entities/entities.dart';
 
-abstract interface class HomeRepository {
+abstract interface class AdvertisementsRepository {
   Future<Either<Failure, List<Advertisement>>> getAllAds({
     AdvertisementQuery query = const AdvertisementQuery(),
   });

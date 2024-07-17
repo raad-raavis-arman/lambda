@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:landa/core/utils/router/route_names.dart';
-import 'package:landa/screens/home/domain/entities/entities.dart';
-import 'package:landa/screens/home/presentation/widgets/widgets.dart';
+import 'package:landa/screens/shared/domain/advertisements/entities/entities.dart';
+import 'package:landa/screens/shared/presentaion/widgets/widgets.dart';
 
 class AdvertisementListWidget extends StatefulWidget {
   const AdvertisementListWidget({

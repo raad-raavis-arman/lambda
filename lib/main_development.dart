@@ -1,5 +1,3 @@
-
-
 import 'package:landa/flavor_config.dart';
 import 'package:landa/main_common.dart';
 

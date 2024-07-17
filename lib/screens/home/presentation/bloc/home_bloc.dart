@@ -4,8 +4,8 @@ import 'package:landa/core/bloc/bloc.dart';
 import 'package:landa/core/usecase/usecase.dart';
 import 'package:landa/screens/advertisement_category/domain/entities/entities.dart';
 import 'package:landa/screens/advertisement_category/domain/usecases/usecases.dart';
-import 'package:landa/screens/home/domain/entities/entities.dart';
-import 'package:landa/screens/home/domain/usecases/usecases.dart';
+import 'package:landa/screens/shared/domain/advertisements/entities/entities.dart';
+import 'package:landa/screens/shared/domain/advertisements/usecases/usecases.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';

@@ -4,12 +4,12 @@ import 'package:dio/dio.dart';
 import 'package:landa/core/error/error.dart';
 import 'package:landa/core/exceptions/exceptions.dart';
 import 'package:landa/core/network/network.dart';
-import 'package:landa/screens/home/data/datasources/datasources.dart';
-import 'package:landa/screens/home/data/models/advertisement_model.dart';
-import 'package:landa/screens/home/domain/entities/entities.dart';
+import 'package:landa/screens/shared/data/advertisemets/datasources/datasources.dart';
+import 'package:landa/screens/shared/data/advertisemets/models/advertisement_model.dart';
+import 'package:landa/screens/shared/domain/advertisements/entities/entities.dart';
 
-class HomeRemoteDatasource implements HomeDatasource {
-  const HomeRemoteDatasource({
+class AdvertisementsRemoteDatasource implements AdvertisementsDatasource {
+  const AdvertisementsRemoteDatasource({
     required this.restClientService,
   });
 

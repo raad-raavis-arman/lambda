@@ -9,8 +9,8 @@ import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/di_service.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/screens/advertisement_details/presentation/presentation.dart';
-import 'package:landa/screens/home/domain/entities/entities.dart';
-import 'package:landa/screens/home/presentation/presentation.dart';
+import 'package:landa/screens/shared/domain/advertisements/entities/entities.dart';
+import 'package:landa/screens/shared/presentaion/widgets/widgets.dart';
 
 class AdvertisementDetailsPage extends StatelessWidget {
   const AdvertisementDetailsPage({

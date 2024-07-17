@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
-import 'package:landa/screens/home/domain/entities/entities.dart';
-import 'package:landa/screens/home/presentation/widgets/widgets.dart';
+import 'package:landa/screens/shared/domain/advertisements/entities/entities.dart';
+import 'package:landa/screens/shared/presentaion/widgets/widgets.dart';
 
 class AdvertisementItem extends StatelessWidget {
   const AdvertisementItem({

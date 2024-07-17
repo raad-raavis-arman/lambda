@@ -9,7 +9,7 @@ import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/screens/home/presentation/presentation.dart';
-import 'package:landa/screens/home/presentation/widgets/advertisement_list_widget.dart';
+import 'package:landa/screens/shared/presentaion/widgets/widgets.dart';
 import 'package:meta_seo/meta_seo.dart';
 import 'package:toastification/toastification.dart';
 

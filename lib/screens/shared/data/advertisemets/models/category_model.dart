@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:landa/screens/advertisement_category/domain/entities/entities.dart';
+import 'package:landa/screens/shared/domain/advertisements/entities/entities.dart';
 
 part 'category_model.g.dart';
 
