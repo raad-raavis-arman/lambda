@@ -10,6 +10,7 @@ import 'package:landa/screens/create_advertisement/presentation/presentation.dar
 import 'package:landa/screens/dashboard/presentation/page/page.dart';
 import 'package:landa/screens/home/presentation/presentation.dart';
 import 'package:landa/screens/login/presentation/presentation.dart';
+import 'package:landa/screens/marked_advertisements/presentation/page/page.dart';
 import 'package:landa/screens/not_found/not_found_page.dart';
 import 'package:landa/screens/profile/presentation/page/page.dart';
 import 'package:landa/screens/splash/presentation/page/page.dart';
@@ -39,6 +40,7 @@ class RouteConfig {
           return NotFoundPage.page;
         },
         routes: [
+          MarkedAdvertisementsPage.route,
           SplashPage.route,
           LoginPage.route,
           ProfilePage.route,

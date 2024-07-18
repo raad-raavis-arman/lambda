@@ -2,8 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:landa/screens/advertisement_area/data/datasources/datasources.dart';
-import 'package:landa/screens/advertisement_area/data/models/city_model.dart';
-import 'package:landa/screens/advertisement_area/data/models/province_model.dart';
+import 'package:landa/screens/advertisement_area/data/models/models.dart';
 
 class ProvinceLocalDatasource implements ProvinceDatasource {
   @override

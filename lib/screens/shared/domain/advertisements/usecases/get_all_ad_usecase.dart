@@ -2,17 +2,17 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:landa/core/error/failure.dart';
 import 'package:landa/core/usecase/usecase.dart';
-import 'package:landa/screens/home/domain/entities/entities.dart';
-import 'package:landa/screens/home/domain/repositories/repositories.dart';
+import 'package:landa/screens/shared/domain/advertisements/entities/entities.dart';
+import 'package:landa/screens/shared/domain/advertisements/repositories/repositories.dart';
 
 class GetAllAdUsecase extends BaseUseCase<List<Advertisement>, GetAllAdParam> {
-  GetAllAdUsecase({required this.homeRepository});
+  GetAllAdUsecase({required this.advertisementsRepository});
 
-  final HomeRepository homeRepository;
+  final AdvertisementsRepository advertisementsRepository;
 
   @override
   Future<Either<Failure, List<Advertisement>>> call(GetAllAdParam params) {
-    return homeRepository.getAllAds(
+    return advertisementsRepository.getAllAds(
       query: params.query,
     );
   }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/l10n/l10n.dart';
-import 'package:landa/screens/home/presentation/widgets/widgets.dart';
+import 'package:landa/screens/shared/presentaion/widgets/widgets.dart';
 
 class CountDownTime extends StatelessWidget {
   const CountDownTime({

@@ -1,7 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:landa/screens/advertisement_area/data/models/models.dart';
-import 'package:landa/screens/advertisement_category/data/models/models.dart';
-import 'package:landa/screens/home/domain/entities/advertisement.dart';
+import 'package:landa/screens/shared/data/advertisemets/models/models.dart';
+import 'package:landa/screens/shared/domain/advertisements/entities/advertisement.dart';
 
 part 'advertisement_model.g.dart';
 

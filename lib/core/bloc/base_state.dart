@@ -7,5 +7,5 @@ abstract class BaseState extends Equatable {
   final StateStatus status;
 
   @override
-  List<Object?> get props => [status];
+  List<Object> get props => [status];
 }

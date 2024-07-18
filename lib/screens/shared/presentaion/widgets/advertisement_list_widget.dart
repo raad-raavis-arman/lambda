@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:landa/core/utils/router/route_names.dart';
-import 'package:landa/screens/home/domain/entities/entities.dart';
-import 'package:landa/screens/home/presentation/widgets/widgets.dart';
+import 'package:landa/screens/shared/domain/advertisements/entities/entities.dart';
+import 'package:landa/screens/shared/presentaion/widgets/widgets.dart';
 
 class AdvertisementListWidget extends StatefulWidget {
   const AdvertisementListWidget({
     required this.data,
-    required this.onScrollReachedEnd,
-    required this.onRefresh,
+    this.onScrollReachedEnd,
+    this.onRefresh,
     super.key,
   });
 
   final List<Advertisement> data;
-  final VoidCallback onScrollReachedEnd;
-  final Future<void> Function() onRefresh;
+  final VoidCallback? onScrollReachedEnd;
+  final Future<void> Function()? onRefresh;
 
   @override
   State<AdvertisementListWidget> createState() =>
@@ -31,7 +31,7 @@ class _AdvertisementListWidgetState extends State<AdvertisementListWidget> {
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
-        widget.onScrollReachedEnd();
+        widget.onScrollReachedEnd?.call();
       }
     });
     super.initState();
@@ -46,7 +46,7 @@ class _AdvertisementListWidgetState extends State<AdvertisementListWidget> {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      onRefresh: widget.onRefresh,
+      onRefresh: widget.onRefresh ?? () async => Future.value(),
       child: ListView.builder(
         itemCount: data.length,
         controller: _scrollController,
@@ -60,9 +60,15 @@ class _AdvertisementListWidgetState extends State<AdvertisementListWidget> {
                 extra: data[index],
               );
               if (updatedAd != null) {
-                setState(() {
-                  data[index] = updatedAd;
-                });
+                if (updatedAd.isMarked) {
+                  setState(() {
+                    data[index] = updatedAd;
+                  });
+                } else {
+                  setState(() {
+                    data.removeAt(index);
+                  });
+                }
               }
             },
           );

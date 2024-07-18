@@ -128,5 +128,8 @@
     "loadingDataFailed": "!خطا در بارگذاری اطلاعات",
     "search":"جستجو",
     "thereIsNoData": "!هیچ اطلاعاتی برای نمایش وجود ندارد",
-    "yourDesiredPageNotFound": "!صفحه مورد نظر شما پیدا نشد"
+    "yourDesiredPageNotFound": "!صفحه مورد نظر شما پیدا نشد",
+
+    "@PROFILE": {},
+    "thereIsNoMarkedAdToShow": "هیچ آگهی نشان شده ای برای نمایش وجود ندارد!"
 }
