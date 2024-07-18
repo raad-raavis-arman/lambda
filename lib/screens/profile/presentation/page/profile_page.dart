@@ -66,7 +66,9 @@ class _ProfileView extends StatelessWidget {
           SelectableItemButton(
             title: context.l10n.myAdvertisements,
             margin: EdgeInsets.only(top: context.marginM),
-            onClick: () {},
+            onClick: () {
+              context.pushNamed(RouteNames.myAdvertisements);
+            },
             icon: Icon(
               FontAwesomeIcons.list,
               size: context.iconS,

@@ -9,10 +9,10 @@ class NoMarkedAdvertisementWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: MText(
-            text: context.l10n.thereIsNoMarkedAdToShow,
-            style: Theme.of(context).textTheme.labelLarge,
-            textAlign: TextAlign.center,
-          ),
+        text: context.l10n.thereIsNoMarkedAdToShow,
+        style: Theme.of(context).textTheme.labelLarge,
+        textAlign: TextAlign.center,
+      ),
     );
   }
 }

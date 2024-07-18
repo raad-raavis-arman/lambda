@@ -131,5 +131,6 @@
     "yourDesiredPageNotFound": "!صفحه مورد نظر شما پیدا نشد",
 
     "@PROFILE": {},
-    "thereIsNoMarkedAdToShow": "هیچ آگهی نشان شده ای برای نمایش وجود ندارد!"
+    "thereIsNoMarkedAdToShow": "هیچ آگهی نشان شده ای برای نمایش وجود ندارد!",
+    "youHaveNotCreatedAnyAdsYet": "شما تا کنون هیچ آگهی ای ثبت نکرده اید!"
 }
