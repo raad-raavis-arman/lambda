@@ -24,6 +24,10 @@ import 'package:landa/screens/login/data/datasources/datasources.dart';
 import 'package:landa/screens/login/data/repositories/repositories.dart';
 import 'package:landa/screens/login/domain/repositories/repositories.dart';
 import 'package:landa/screens/login/domain/usecases/usecases.dart';
+import 'package:landa/screens/profile/data/datasources/datasources.dart';
+import 'package:landa/screens/profile/data/repositories/repositories.dart';
+import 'package:landa/screens/profile/domain/repositories/repositories.dart';
+import 'package:landa/screens/profile/domain/usecases/usecases.dart';
 import 'package:landa/screens/shared/data/advertisemets/datasources/datasources.dart';
 import 'package:landa/screens/shared/data/advertisemets/repositories/repositories.dart';
 import 'package:landa/screens/shared/domain/advertisements/repositories/repositories.dart';
@@ -229,6 +233,24 @@ Future<void> setup(FlavorConfig flavorConfig) async {
     ..registerLazySingleton(
       () => AdvertisementDetailsRemoteDatasource(
         restClientService: locator.get(),
+      ),
+    )
+
+    //regiseter for Profile bloc
+    ..registerLazySingleton(
+      () => SignoutUsecase(
+        profileRepository: locator.get(),
+      ),
+    )
+    ..registerLazySingleton<ProfileRepository>(
+      () => ProfileRepositoryImpl(
+        profileRemoteDatasource: locator.get(),
+      ),
+    )
+    ..registerLazySingleton(
+      () => ProfileRemoteDatasource(
+        restClientService: locator.get(),
+        sharedPreferences: locator.get(),
       ),
     );
 }

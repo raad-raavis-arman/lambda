@@ -51,7 +51,8 @@ class _DashboardViewState extends State<_DashboardView> {
           });
         },
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterDocked,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           context.goNamed(RouteNames.createAdvertisement);

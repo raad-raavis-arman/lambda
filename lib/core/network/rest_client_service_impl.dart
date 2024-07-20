@@ -113,7 +113,11 @@ class RestClientServiceImpl implements RestClientService {
       if (response.statusCode == 200 || response.statusCode == 201) {
         return response.data;
       } else {
-        throw Exception('something went wrong');
+        throw DioException(
+          requestOptions: response.requestOptions,
+          response: response,
+          message: response.statusMessage,
+        );
       }
     } on Exception catch (_) {
       rethrow;

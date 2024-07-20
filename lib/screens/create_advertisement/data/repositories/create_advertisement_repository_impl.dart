@@ -37,6 +37,12 @@ class CreateAdvertisementRepositoryImpl
       return Right(result);
     } on MException catch (e) {
       return Left(ServerFailure(e.errorMessage));
+    } on Exception catch (e) {
+      return Left(
+        ServerFailure(
+          e.toString(),
+        ),
+      );
     }
   }
 }

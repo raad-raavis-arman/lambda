@@ -60,15 +60,9 @@ class _AdvertisementListWidgetState extends State<AdvertisementListWidget> {
                 extra: data[index],
               );
               if (updatedAd != null) {
-                if (updatedAd.isMarked) {
-                  setState(() {
-                    data[index] = updatedAd;
-                  });
-                } else {
-                  setState(() {
-                    data.removeAt(index);
-                  });
-                }
+                setState(() {
+                  data[index] = updatedAd;
+                });
               }
             },
           );

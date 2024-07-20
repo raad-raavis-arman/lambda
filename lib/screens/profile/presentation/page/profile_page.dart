@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:landa/core/utils/extensions/extensions.dart';
@@ -6,6 +7,8 @@ import 'package:landa/core/utils/router/router.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/di_service.dart';
 import 'package:landa/l10n/l10n.dart';
+import 'package:landa/screens/profile/presentation/bloc/bloc.dart';
+import 'package:landa/screens/profile/presentation/widgets/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -25,7 +28,12 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final mobileNumber =
         locator.get<SharedPreferences>().getUser()?.mobileNumber ?? '';
-    return _ProfileView(mobileNumber);
+    return BlocProvider(
+      create: (context) => ProfileBloc(
+        locator.get(),
+      ),
+      child: _ProfileView(mobileNumber),
+    );
   }
 }
 
@@ -38,6 +46,7 @@ class _ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileBloc = context.read<ProfileBloc>();
     return MScaffold(
       scrollable: true,
       appBar: AppBar(
@@ -106,7 +115,14 @@ class _ProfileView extends StatelessWidget {
           SelectableItemButton(
             title: context.l10n.logoutFromAccount,
             margin: EdgeInsets.only(top: context.marginM),
-            onClick: () async {},
+            onClick: () {
+              showModalBottomSheet<bool?>(
+                context: context,
+                builder: (_) => SignoutWarningBottomSheet(
+                  profileBloc: profileBloc,
+                ),
+              );
+            },
             icon: Icon(
               Icons.logout_outlined,
               size: context.iconS,
