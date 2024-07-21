@@ -28,11 +28,15 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final mobileNumber =
         locator.get<SharedPreferences>().getUser()?.mobileNumber ?? '';
+    final profileBloc = ProfileBloc(
+      locator.get(),
+    );
     return BlocProvider(
-      create: (context) => ProfileBloc(
-        locator.get(),
+      create: (context) => profileBloc,
+      child: _ProfileView(
+        mobileNumber,
+        profileBloc,
       ),
-      child: _ProfileView(mobileNumber),
     );
   }
 }
@@ -40,13 +44,14 @@ class ProfilePage extends StatelessWidget {
 class _ProfileView extends StatelessWidget {
   const _ProfileView(
     this.mobileNumber,
+    this.profileBloc,
   );
 
   final String mobileNumber;
+  final ProfileBloc profileBloc;
 
   @override
   Widget build(BuildContext context) {
-    final profileBloc = context.read<ProfileBloc>();
     return MScaffold(
       scrollable: true,
       appBar: AppBar(
@@ -116,7 +121,7 @@ class _ProfileView extends StatelessWidget {
             title: context.l10n.logoutFromAccount,
             margin: EdgeInsets.only(top: context.marginM),
             onClick: () {
-              showModalBottomSheet<bool?>(
+              showModalBottomSheet(
                 context: context,
                 builder: (_) => SignoutWarningBottomSheet(
                   profileBloc: profileBloc,

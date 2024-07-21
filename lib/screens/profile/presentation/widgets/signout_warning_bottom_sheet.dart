@@ -38,7 +38,7 @@ class _SignoutWarningView extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return Container(
+        return Padding(
           padding: EdgeInsets.all(context.marginS),
           child: SafeArea(
             child: Column(
