@@ -19,8 +19,9 @@ class LightTheme {
         ),
         bottomSheetTheme: const BottomSheetThemeData(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(8),
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(8),
+              topLeft: Radius.circular(8),
             ),
           ),
         ),
