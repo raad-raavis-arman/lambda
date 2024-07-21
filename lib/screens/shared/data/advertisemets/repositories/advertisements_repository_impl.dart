@@ -19,6 +19,8 @@ class AdvertisementsRepositoryImpl implements AdvertisementsRepository {
       return Right(result);
     } on MException catch (e) {
       return Left(ServerFailure(e.errorMessage));
+    } on Exception catch (e) {
+      return Left(ServerFailure(e.toString()));
     }
   }
 
@@ -29,6 +31,8 @@ class AdvertisementsRepositoryImpl implements AdvertisementsRepository {
       return Right(result);
     } on MException catch (e) {
       return Left(ServerFailure(e.errorMessage));
+    } on Exception catch (e) {
+      return Left(ServerFailure(e.toString()));
     }
   }
 
@@ -39,6 +43,8 @@ class AdvertisementsRepositoryImpl implements AdvertisementsRepository {
       return Right(result);
     } on MException catch (e) {
       return Left(ServerFailure(e.errorMessage));
+    } on Exception catch (e) {
+      return Left(ServerFailure(e.toString()));
     }
   }
 }

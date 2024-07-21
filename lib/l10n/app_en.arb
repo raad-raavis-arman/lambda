@@ -133,5 +133,8 @@
 
     "@PROFILE": {},
     "thereIsNoMarkedAdToShow": "There is  no marked advertisement to show here!",
-    "youHaveNotCreatedAnyAdsYet": "You have not created any advertisements yet!"
+    "youHaveNotCreatedAnyAdsYet": "You have not created any advertisements yet!",
+    "yes": "Yes",
+    "no": "No",
+    "doYouWantToSignout": "Do you want to sign out from your account?"
 }

@@ -34,6 +34,8 @@ class CategoryRepositoryImpl implements CategoryRepository {
           subCategoryItems: subCategoryItems,
         ),
       );
+    } on MException catch (e) {
+      return Left(ServerFailure(e.errorMessage));
     } on Exception catch (e) {
       return Left(ServerFailure(e.toString()));
     }
@@ -95,6 +97,8 @@ class CategoryRepositoryImpl implements CategoryRepository {
       return Right(result);
     } on MException catch (e) {
       return Left(ServerFailure(e.errorMessage));
+    } on Exception catch (e) {
+      return Left(ServerFailure(e.toString()));
     }
   }
 }

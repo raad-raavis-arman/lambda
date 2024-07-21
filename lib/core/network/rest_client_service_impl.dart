@@ -55,7 +55,11 @@ class RestClientServiceImpl implements RestClientService {
       if (response.statusCode == 204 || response.statusCode == 200) {
         return response.data;
       } else {
-        throw Exception('something went wrong');
+        throw DioException(
+          requestOptions: response.requestOptions,
+          response: response,
+          message: response.statusMessage,
+        );
       }
     } on Exception catch (_) {
       rethrow;
@@ -83,7 +87,11 @@ class RestClientServiceImpl implements RestClientService {
       if (response.statusCode == 200) {
         return response.data;
       } else {
-        throw Exception('something went wrong');
+        throw DioException(
+          requestOptions: response.requestOptions,
+          response: response,
+          message: response.statusMessage,
+        );
       }
     } on Exception catch (_) {
       rethrow;
@@ -113,7 +121,11 @@ class RestClientServiceImpl implements RestClientService {
       if (response.statusCode == 200 || response.statusCode == 201) {
         return response.data;
       } else {
-        throw Exception('something went wrong');
+        throw DioException(
+          requestOptions: response.requestOptions,
+          response: response,
+          message: response.statusMessage,
+        );
       }
     } on Exception catch (_) {
       rethrow;
@@ -131,7 +143,7 @@ class RestClientServiceImpl implements RestClientService {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      final respnse = await _dio.put(
+      final response = await _dio.put(
         path,
         data: data,
         queryParameters: queryParameters,
@@ -140,10 +152,14 @@ class RestClientServiceImpl implements RestClientService {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
-      if (respnse.statusCode == 200) {
-        return respnse.data;
+      if (response.statusCode == 200) {
+        return response.data;
       } else {
-        throw Exception('something went wrong');
+        throw DioException(
+          requestOptions: response.requestOptions,
+          response: response,
+          message: response.statusMessage,
+        );
       }
     } on Exception catch (_) {
       rethrow;

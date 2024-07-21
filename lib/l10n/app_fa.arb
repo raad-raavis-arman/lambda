@@ -132,5 +132,8 @@
 
     "@PROFILE": {},
     "thereIsNoMarkedAdToShow": "هیچ آگهی نشان شده ای برای نمایش وجود ندارد!",
-    "youHaveNotCreatedAnyAdsYet": "شما تا کنون هیچ آگهی ای ثبت نکرده اید!"
+    "youHaveNotCreatedAnyAdsYet": "شما تا کنون هیچ آگهی ای ثبت نکرده اید!",
+    "yes": "بله",
+    "no": "خیر",
+    "doYouWantToSignout": "آیا میخواهید از حساب کاربری خود خارج شوید؟"
 }
