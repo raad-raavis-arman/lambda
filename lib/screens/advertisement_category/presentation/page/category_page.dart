@@ -113,14 +113,15 @@ class _CategoryViewState extends State<_CategoryView> {
                       .map(
                         (e) => SearchableListEntity(
                           title: e.nameFa,
+                          value: e,
                           iconUrl: '$iconBaseUrl${e.iconName}',
                         ),
                       )
                       .toList();
                   return SearchableListWidget(
                     data: data,
-                    onTap: (index) {
-                      final category = categories[index];
+                    onTap: (item) {
+                      final category = item.value as Category;
                       subCategories = state.categoryData.subCategories
                           .where(
                             (element) => element.categoryId == category.id,
@@ -137,14 +138,15 @@ class _CategoryViewState extends State<_CategoryView> {
                       .map(
                         (e) => SearchableListEntity(
                           title: e.nameFa,
+                          value: e,
                           iconUrl: '$iconBaseUrl${e.iconName}',
                         ),
                       )
                       .toList();
                   return SearchableListWidget(
                     data: data,
-                    onTap: (index) {
-                      final subCategory = subCategories[index];
+                    onTap: (item) {
+                      final subCategory = item.value as SubCategory;
                       subCategoryItems = state.categoryData.subCategoryItems
                           .where(
                             (element) =>
@@ -164,14 +166,15 @@ class _CategoryViewState extends State<_CategoryView> {
                         (e) => SearchableListEntity(
                           title: e.nameFa,
                           iconUrl: '$iconBaseUrl${e.iconName}',
+                          value: e,
                           showTrailingArrow: false,
                         ),
                       )
                       .toList();
                   return SearchableListWidget(
                     data: data,
-                    onTap: (index) {
-                      final subCategoryItem = subCategoryItems[index];
+                    onTap: (item) {
+                      final subCategoryItem = item.value as SubCategoryItem;
                       GoRouter.of(context).pop(subCategoryItem);
                     },
                   );

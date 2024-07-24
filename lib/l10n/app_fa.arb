@@ -135,5 +135,26 @@
     "youHaveNotCreatedAnyAdsYet": "شما تا کنون هیچ آگهی ای ثبت نکرده اید!",
     "yes": "بله",
     "no": "خیر",
-    "doYouWantToSignout": "آیا میخواهید از حساب کاربری خود خارج شوید؟"
+    "doYouWantToSignout": "آیا میخواهید از حساب کاربری خود خارج شوید؟",
+
+    "@HOME": {},
+    "cancel": "انصراف",
+    "selectAll": "انتخاب همه",
+    "allCitiesOf": "همه شهرهای {province}",
+    "@allCitiesOf": {
+        "placeholders": {
+            "province":{
+                "type": "String"
+            }
+        }
+    },
+    "numOfCity": "{num} شهر",
+    "@numOfCity": {
+        "placeholders": {
+            "num":{
+                "type": "int"
+            }
+        }
+    },
+    "allCities": "همه شهرها"
 }

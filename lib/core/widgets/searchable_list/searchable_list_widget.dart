@@ -7,23 +7,52 @@ import 'package:landa/l10n/l10n.dart';
 class SearchableListWidget extends StatefulWidget {
   const SearchableListWidget({
     required this.data,
+    this.selectAllTitle,
+    this.onSelection,
+    this.isMultipleSelect = false,
+    this.selectedEntities = const [],
     this.onTap,
+    this.onCancel,
+    this.onConfirm,
     super.key,
   });
 
+  final String? selectAllTitle;
   final List<SearchableListEntity> data;
-  final void Function(int)? onTap;
+  //onSelection will trigger by the list of selected
+  //items when user select or unselect an item
+  final void Function(List<SearchableListEntity>)? onSelection;
+  final void Function(SearchableListEntity)? onTap;
+  final bool isMultipleSelect;
+
+  final Function(List<SearchableListEntity>)? onConfirm;
+  final VoidCallback? onCancel;
+  final List<SearchableListEntity> selectedEntities;
 
   @override
   State<SearchableListWidget> createState() => _SearchableListWidgetState();
 }
 
 class _SearchableListWidgetState extends State<SearchableListWidget> {
-  late List<SearchableListEntity> filteredData = widget.data;
+  late List<SearchableListEntity> filteredData = List.from(widget.data);
+  late final Set<SearchableListEntity> selectedEntities =
+      List<SearchableListEntity>.from(widget.selectedEntities).toSet();
+  String searchedQuery = '';
+
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        if (selectedEntities.isNotEmpty)
+          SeletedItemChipList(
+            selectedEntities: List.from(selectedEntities),
+            onDeleted: (item) {
+              setState(() {
+                selectedEntities.remove(item);
+              });
+            },
+          ),
         Expanded(
           child: filteredData.isEmpty
               ? Center(
@@ -32,45 +61,146 @@ class _SearchableListWidgetState extends State<SearchableListWidget> {
                     style: Theme.of(context).textTheme.labelMedium,
                   ),
                 )
-              : ListView.separated(
-                  itemCount: filteredData.length,
-                  itemBuilder: (_, index) {
-                    return SearchableListItem(
-                      entity: filteredData[index],
-                      onTap: () {
-                        widget.onTap?.call(
-                          widget.data.indexOf(filteredData[index]),
-                        );
-                      },
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return const SizedBox.shrink().paddingXS();
-                  },
+              : Column(
+                  children: [
+                    if (widget.isMultipleSelect)
+                      SearchableListItem(
+                        title: widget.selectAllTitle ?? context.l10n.selectAll,
+                        isSelected:
+                            selectedEntities.length == widget.data.length,
+                        isSelectable: true,
+                        showTrailingArrow: false,
+                        onSelect: () {
+                          for (var i = 0; i < widget.data.length; i++) {
+                            selectedEntities.add(widget.data[i]);
+                          }
+                          setState(() {});
+                          widget.onSelection?.call(
+                            selectedEntities.toList(),
+                          );
+                        },
+                        onUnSelect: () {
+                          for (var i = 0; i < widget.data.length; i++) {
+                            selectedEntities.remove(widget.data[i]);
+                          }
+                          setState(() {});
+                          widget.onSelection?.call(
+                            selectedEntities.toList(),
+                          );
+                        },
+                      ),
+                    SizedBox(
+                      height: context.marginXS,
+                    ),
+                    Expanded(
+                      child: ListView.separated(
+                        itemCount: filteredData.length,
+                        itemBuilder: (_, index) {
+                          return SearchableListItem(
+                            title: filteredData[index].title,
+                            iconUrl: filteredData[index].iconUrl,
+                            showTrailingArrow:
+                                filteredData[index].showTrailingArrow,
+                            isSelected:
+                                selectedEntities.contains(filteredData[index]),
+                            isSelectable: widget.isMultipleSelect,
+                            onTap: () {
+                              widget.onTap?.call(filteredData[index]);
+                            },
+                            onSelect: () {
+                              setState(() {
+                                selectedEntities.add(
+                                  filteredData[index],
+                                );
+                              });
+                              widget.onSelection?.call(
+                                selectedEntities.toList(),
+                              );
+                            },
+                            onUnSelect: () {
+                              setState(() {
+                                selectedEntities.remove(
+                                  filteredData[index],
+                                );
+                              });
+                              widget.onSelection?.call(
+                                selectedEntities.toList(),
+                              );
+                            },
+                          );
+                        },
+                        separatorBuilder: (context, index) {
+                          return const SizedBox.shrink().paddingXS();
+                        },
+                      ),
+                    ),
+                  ],
                 ),
         ),
-        SizedBox(
-          height: context.marginXS,
-        ),
-        TextField(
-          onChanged: (value) {
-            filteredData = widget.data
-                .where(
-                  (e) => e.title.contains(value),
-                )
-                .toList();
-            setState(() {});
-          },
-          textInputAction: TextInputAction.done,
-          decoration: InputDecoration(
-            isDense: true,
-            hintText: context.l10n.search,
-            prefixIcon: Icon(
-              Icons.search,
-              size: context.iconS,
-            ),
+        if (widget.data.length > 5) ...[
+          SizedBox(
+            height: context.marginXS,
           ),
-        ),
+          TextField(
+            onChanged: (value) {
+              if (value != searchedQuery) {
+                searchedQuery = value;
+                filteredData = widget.data
+                    .where(
+                      (e) => e.title
+                          .toLowerCase()
+                          .contains(searchedQuery.toLowerCase()),
+                    )
+                    .toList();
+                setState(() {});
+              }
+            },
+            textInputAction: TextInputAction.done,
+            decoration: InputDecoration(
+              isDense: true,
+              hintText: context.l10n.search,
+              prefixIcon: Icon(
+                Icons.search,
+                size: context.iconS,
+              ),
+            ),
+          ).paddingSymmetric(
+            horizontal: context.marginXS,
+          ),
+        ],
+        if (selectedEntities.isNotEmpty)
+          Row(
+            children: [
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: selectedEntities.isEmpty
+                      ? null
+                      : () {
+                          widget.onConfirm?.call(
+                            selectedEntities.toList(),
+                          );
+                        },
+                  child: MText(
+                    text: context.l10n.confirm,
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: context.marginM,
+              ),
+              Expanded(
+                child: OutlinedButton(
+                  onPressed: widget.onCancel,
+                  child: MText(
+                    text: context.l10n.cancel,
+                  ),
+                ),
+              ),
+            ],
+          ).paddingSymmetric(
+            vertical: context.marginS,
+            horizontal: context.marginXS,
+          ),
       ],
     );
   }
