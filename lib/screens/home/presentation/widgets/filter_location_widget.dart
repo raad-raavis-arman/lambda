@@ -37,7 +37,9 @@ class _FilterLocationWidgetState extends State<FilterLocationWidget> {
               selectedCities
                 ..clear()
                 ..addAll(result);
-              filteredLocations = context.l10n.numOfCity(selectedCities.length);
+              filteredLocations = selectedCities.isEmpty
+                  ? context.l10n.allCities
+                  : context.l10n.numOfCity(selectedCities.length);
               widget.onFilteredLocation?.call(selectedCities);
               setState(() {});
             }

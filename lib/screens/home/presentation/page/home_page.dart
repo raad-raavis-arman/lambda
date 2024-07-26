@@ -102,16 +102,15 @@ class _HomeView extends StatelessWidget {
                 selectedCities
                   ..clear()
                   ..addAll(filteredCities);
-                if (selectedCities.isNotEmpty) {
-                  offset = 0;
-                  context.read<HomeBloc>().add(
-                        HomeGetAllAdEvent(
-                          cityIds: selectedCities.map((e) => e.id).toList(),
-                          query: querySearch,
-                          offset: offset,
-                        ),
-                      );
-                }
+
+                offset = 0;
+                context.read<HomeBloc>().add(
+                      HomeGetAllAdEvent(
+                        cityIds: selectedCities.map((e) => e.id).toList(),
+                        query: querySearch,
+                        offset: offset,
+                      ),
+                    );
               },
             ),
           ],

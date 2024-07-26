@@ -10,7 +10,7 @@ class SearchableListWidget extends StatefulWidget {
     this.selectAllTitle,
     this.onSelection,
     this.isMultipleSelect = false,
-    this.selectedEntities = const [],
+    this.selectedEntities,
     this.onTap,
     this.onCancel,
     this.onConfirm,
@@ -27,17 +27,43 @@ class SearchableListWidget extends StatefulWidget {
 
   final Function(List<SearchableListEntity>)? onConfirm;
   final VoidCallback? onCancel;
-  final List<SearchableListEntity> selectedEntities;
+  final List<SearchableListEntity>? selectedEntities;
 
   @override
   State<SearchableListWidget> createState() => _SearchableListWidgetState();
 }
 
 class _SearchableListWidgetState extends State<SearchableListWidget> {
-  late List<SearchableListEntity> filteredData = List.from(widget.data);
-  late final Set<SearchableListEntity> selectedEntities =
-      List<SearchableListEntity>.from(widget.selectedEntities).toSet();
+  late List<SearchableListEntity> filteredData;
+  late final Set<SearchableListEntity> selectedEntities;
   String searchedQuery = '';
+  late final TextEditingController searchController;
+
+  @override
+  void initState() {
+    filteredData = List.from(widget.data);
+    selectedEntities =
+        List<SearchableListEntity>.from(widget.selectedEntities ?? []).toSet();
+    searchController = TextEditingController();
+    searchedQuery = '';
+    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant SearchableListWidget oldWidget) {
+    if (oldWidget.data.length != widget.data.length) {
+      filteredData = List.from(widget.data);
+      searchedQuery = '';
+      searchController.clear();
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +77,7 @@ class _SearchableListWidgetState extends State<SearchableListWidget> {
               setState(() {
                 selectedEntities.remove(item);
               });
+              widget.onSelection?.call(selectedEntities.toList());
             },
           ),
         Expanded(
@@ -142,14 +169,18 @@ class _SearchableListWidgetState extends State<SearchableListWidget> {
             height: context.marginXS,
           ),
           TextField(
+            controller: searchController,
             onChanged: (value) {
               if (value != searchedQuery) {
                 searchedQuery = value;
                 filteredData = widget.data
                     .where(
-                      (e) => e.title
-                          .toLowerCase()
-                          .contains(searchedQuery.toLowerCase()),
+                      (e) =>
+                          e.title
+                              .toLowerCase()
+                              .contains(searchedQuery.toLowerCase()) ||
+                          e.title.toLowerCase().trim() ==
+                              searchedQuery.toLowerCase().trim(),
                     )
                     .toList();
                 setState(() {});
@@ -168,18 +199,16 @@ class _SearchableListWidgetState extends State<SearchableListWidget> {
             horizontal: context.marginXS,
           ),
         ],
-        if (selectedEntities.isNotEmpty)
+        if (widget.selectedEntities != null)
           Row(
             children: [
               Expanded(
                 child: ElevatedButton(
-                  onPressed: selectedEntities.isEmpty
-                      ? null
-                      : () {
-                          widget.onConfirm?.call(
-                            selectedEntities.toList(),
-                          );
-                        },
+                  onPressed: () {
+                    widget.onConfirm?.call(
+                      selectedEntities.toList(),
+                    );
+                  },
                   child: MText(
                     text: context.l10n.confirm,
                   ),

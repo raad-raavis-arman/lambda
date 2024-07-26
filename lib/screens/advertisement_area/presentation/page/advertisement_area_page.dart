@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:landa/core/bloc/state_status.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/searchable_list/searchable_list_entity.dart';
 import 'package:landa/core/widgets/searchable_list/searchable_list_widget.dart';
@@ -37,7 +38,7 @@ class AdvertisementAreaPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return _AdvertisementAreaView(
       isMultipleSelect: isMultipleSelect,
-      selectedCities: selectedCities,
+      selectedCityList: selectedCities,
     );
   }
 }
@@ -45,11 +46,11 @@ class AdvertisementAreaPage extends StatelessWidget {
 class _AdvertisementAreaView extends StatefulWidget {
   const _AdvertisementAreaView({
     required this.isMultipleSelect,
-    required this.selectedCities,
+    required this.selectedCityList,
   });
 
   final bool isMultipleSelect;
-  final List<City> selectedCities;
+  final List<City> selectedCityList;
 
   @override
   State<_AdvertisementAreaView> createState() => _AdvertisementAreaViewState();
@@ -57,19 +58,14 @@ class _AdvertisementAreaView extends StatefulWidget {
 
 class _AdvertisementAreaViewState extends State<_AdvertisementAreaView> {
   late List<SearchableListEntity> selectedCities = List.from(
-    widget.selectedCities.map(
+    widget.selectedCityList.map(
       (e) => SearchableListEntity(title: e.name, value: e),
     ),
   );
 
   final pageController = PageController(keepPage: false);
   Province? selectedProvince;
-
-  @override
-  void dispose() {
-    pageController.dispose();
-    super.dispose();
-  }
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -80,11 +76,11 @@ class _AdvertisementAreaViewState extends State<_AdvertisementAreaView> {
         leading: BackButton(
           onPressed: () {
             if ((pageController.page?.round() ?? 0) > 0) {
+              selectedIndex = 0;
               pageController.previousPage(
                 duration: const Duration(milliseconds: 200),
                 curve: Curves.linear,
               );
-              selectedProvince = null;
             } else {
               context.pop();
             }
@@ -93,13 +89,18 @@ class _AdvertisementAreaViewState extends State<_AdvertisementAreaView> {
       ),
       body: BlocBuilder<AdvertisementAreaBloc, AdvertisementAreaState>(
         builder: (context, state) {
-          if (state is AdvertisementAreaDataState) {
+          if (state.status == StateStatus.success || state.data.isNotEmpty) {
             final data = state.data;
             final provinces = data.keys.toList();
             return PageView.builder(
               controller: pageController,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: 2,
+              onPageChanged: (value) {
+                setState(() {
+                  selectedIndex = value;
+                });
+              },
               itemBuilder: (context, index) {
                 switch (index) {
                   case 0:
@@ -116,6 +117,9 @@ class _AdvertisementAreaViewState extends State<_AdvertisementAreaView> {
                       selectedEntities: selectedCities,
                       onCancel: () {
                         context.pop();
+                      },
+                      onSelection: (selectedItems) {
+                        selectedCities = List.from(selectedItems);
                       },
                       onConfirm: (selectedItems) {
                         context.pop(
@@ -141,6 +145,7 @@ class _AdvertisementAreaViewState extends State<_AdvertisementAreaView> {
                         )
                         .toList();
                     return SearchableListWidget(
+                      key: ValueKey(selectedIndex),
                       data: data,
                       selectAllTitle:
                           context.l10n.allCitiesOf(selectedProvince!.name),
@@ -155,7 +160,7 @@ class _AdvertisementAreaViewState extends State<_AdvertisementAreaView> {
                         );
                       },
                       onSelection: (selectedItems) {
-                        selectedCities = selectedItems;
+                        selectedCities = List.from(selectedItems);
                       },
                       onTap: (item) {
                         final city = item.value as City;
@@ -167,11 +172,11 @@ class _AdvertisementAreaViewState extends State<_AdvertisementAreaView> {
                 }
               },
             );
-          } else if (state is AdvertisementAreaLoadingState) {
+          } else if (state.status == StateStatus.loading) {
             return const Center(
               child: CircularProgressIndicator(),
             );
-          } else if (state is AdvertisementAreaErrorState) {
+          } else if (state.status == StateStatus.error) {
             return Center(
               child: MText(
                 text: context.l10n.loadingDataFailed,
