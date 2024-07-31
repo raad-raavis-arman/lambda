@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 
@@ -32,6 +33,6 @@ class SelectedItemChip extends StatelessWidget {
               color: Colors.white,
             ),
       ),
-    ).paddingXXS();
+    ).paddingXXS().animate().fade().scale();
   }
 }

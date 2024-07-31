@@ -21,7 +21,7 @@ class AdvertisementDatePage extends StatelessWidget {
         name: RouteNames.advertisementDate,
         pageBuilder: (context, state) {
           final data = state.extra as List<MDatePickerValue>?;
-          return NoTransitionPage(
+          return SlideTransitionPage(
             child: AdvertisementDatePage(
               initialCreationDate: data?.first,
               initialExpirationDate: data?.last,

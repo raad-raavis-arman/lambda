@@ -25,7 +25,7 @@ class AdvertisementDetailsPage extends StatelessWidget {
         name: RouteNames.advertisementDetails,
         pageBuilder: (context, state) {
           final advertisement = state.extra as Advertisement?;
-          return NoTransitionPage(
+          return SlideTransitionPage(
             child: AdvertisementDetailsPage(
               advertisement: advertisement!,
             ),

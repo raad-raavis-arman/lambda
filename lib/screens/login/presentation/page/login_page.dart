@@ -17,8 +17,8 @@ class LoginPage extends StatelessWidget {
         path: RouteNames.login,
         name: RouteNames.login,
         pageBuilder: (context, state) {
-          return const NoTransitionPage(
-            child: LoginPage(),
+          return FadeTransitionPage(
+            child: const LoginPage(),
           );
         },
       );

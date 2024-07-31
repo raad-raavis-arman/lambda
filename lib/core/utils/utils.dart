@@ -1,3 +1,4 @@
+export 'animation/animation.dart';
 export 'constants/constants.dart';
 export 'debouncer/debouncer.dart';
 export 'enums/enums.dart';

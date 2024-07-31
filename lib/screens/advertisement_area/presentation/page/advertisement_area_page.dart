@@ -26,7 +26,7 @@ class AdvertisementAreaPage extends StatelessWidget {
         name: RouteNames.advertisementArea,
         pageBuilder: (context, state) {
           final extra = state.extra as Map<String, dynamic>?;
-          return NoTransitionPage(
+          return SlideTransitionPage(
             child: AdvertisementAreaPage(
               isMultipleSelect: extra?['isMultipleSelect'] ?? false,
               selectedCities: extra?['selectedCities'],

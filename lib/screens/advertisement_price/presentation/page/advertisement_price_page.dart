@@ -12,8 +12,8 @@ class AdvertisementPricePage extends StatelessWidget {
         path: RouteNames.advertisementPrice,
         name: RouteNames.advertisementPrice,
         pageBuilder: (context, state) {
-          return const NoTransitionPage(
-            child: AdvertisementPricePage(),
+          return SlideTransitionPage(
+            child: const AdvertisementPricePage(),
           );
         },
       );

@@ -21,8 +21,8 @@ class CategoryPage extends StatelessWidget {
         path: RouteNames.category,
         name: RouteNames.category,
         pageBuilder: (context, state) {
-          return const NoTransitionPage(
-            child: CategoryPage(),
+          return SlideTransitionPage(
+            child: const CategoryPage(),
           );
         },
       );

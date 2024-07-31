@@ -21,7 +21,7 @@ class AdvertisementContactInfoPage extends StatelessWidget {
           final extra = state.extra as List<dynamic>?;
           final mobileNumber = extra?[0] as String? ?? '';
           final showContactInfo = bool.parse(extra?[1] as String? ?? 'false');
-          return NoTransitionPage(
+          return SlideTransitionPage(
             child: AdvertisementContactInfoPage(
               mobileNumber: mobileNumber,
               showContactInfo: showContactInfo,

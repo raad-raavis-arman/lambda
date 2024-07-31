@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:landa/core/utils/extensions/extensions.dart';
-import 'package:landa/core/utils/router/router.dart';
+import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/di_service.dart';
 import 'package:landa/l10n/l10n.dart';
@@ -18,8 +17,8 @@ class ProfilePage extends StatelessWidget {
         path: RouteNames.profile,
         name: RouteNames.profile,
         pageBuilder: (context, state) {
-          return const NoTransitionPage(
-            child: ProfilePage(),
+          return SlideTransitionPage(
+            child: const ProfilePage(),
           );
         },
       );

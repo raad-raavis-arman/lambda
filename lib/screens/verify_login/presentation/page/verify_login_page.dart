@@ -25,7 +25,7 @@ class VerifyLoginPage extends StatelessWidget {
           if (mobileNumber == null) {
             throw Exception('Mobile number must not be null');
           }
-          return NoTransitionPage(
+          return SlideTransitionPage(
             child: VerifyLoginPage(
               mobileNumber: mobileNumber,
             ),

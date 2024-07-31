@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:landa/core/utils/router/router.dart';
+import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/screens/dashboard/presentation/widgets/widgets.dart';
 import 'package:landa/screens/home/presentation/page/page.dart';
@@ -13,8 +13,8 @@ class DashboardPage extends StatelessWidget {
         path: RouteNames.dashboard,
         name: RouteNames.dashboard,
         pageBuilder: (context, state) {
-          return const NoTransitionPage(
-            child: DashboardPage(),
+          return SlideTransitionPage(
+            child: const DashboardPage(),
           );
         },
       );

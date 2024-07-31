@@ -30,8 +30,8 @@ class HomePage extends StatelessWidget {
                 keywords: 'تخفیف',
               );
           }
-          return const NoTransitionPage(
-            child: HomePage(),
+          return SlideTransitionPage(
+            child: const HomePage(),
           );
         },
       );
@@ -125,14 +125,34 @@ class _HomeView extends StatelessWidget {
             return previous.status != current.status;
           },
           builder: (context, state) {
-            if (state.status == StateStatus.success &&
-                state.advertisements.isEmpty) {
-              return const NoAdvertisementWidget();
-            } else if (state.status == StateStatus.loading &&
-                state.advertisements.isEmpty) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+            if (state.advertisements.isEmpty) {
+              if (state.status == StateStatus.success) {
+                return const NoAdvertisementWidget();
+              } else if (state.status == StateStatus.loading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (state.status == StateStatus.error) {
+                return LoadDataFailed(
+                  tryAgain: () {
+                    searchDebouncer.run(
+                      () {
+                        offset = 0;
+                        context.read<HomeBloc>().add(
+                              HomeGetAllAdEvent(
+                                cityIds:
+                                    selectedCities.map((e) => e.id).toList(),
+                                query: querySearch,
+                                offset: offset,
+                              ),
+                            );
+                      },
+                    );
+                  },
+                );
+              } else {
+                return const SizedBox.shrink();
+              }
             } else {
               final data = state.advertisements;
               return AdvertisementListWidget(

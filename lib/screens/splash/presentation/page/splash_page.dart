@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:landa/core/utils/router/router.dart';
+import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/di_service.dart';
 import 'package:landa/screens/splash/presentation/bloc/bloc.dart';
@@ -13,8 +13,8 @@ class SplashPage extends StatelessWidget {
         path: RouteNames.splash,
         name: RouteNames.splash,
         pageBuilder: (context, state) {
-          return const NoTransitionPage(
-            child: SplashPage(),
+          return FadeTransitionPage(
+            child: const SplashPage(),
           );
         },
       );

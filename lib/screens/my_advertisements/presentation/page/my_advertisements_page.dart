@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:landa/core/bloc/state_status.dart';
-import 'package:landa/core/utils/router/router.dart';
+import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/di_service.dart';
 import 'package:landa/l10n/l10n.dart';
@@ -19,8 +19,8 @@ class MyAdvertisementsPage extends StatelessWidget {
         path: RouteNames.myAdvertisements,
         name: RouteNames.myAdvertisements,
         pageBuilder: (context, state) {
-          return const NoTransitionPage(
-            child: MyAdvertisementsPage(),
+          return SlideTransitionPage(
+            child: const MyAdvertisementsPage(),
           );
         },
       );

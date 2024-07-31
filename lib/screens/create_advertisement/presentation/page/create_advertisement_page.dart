@@ -22,8 +22,8 @@ class CreateAdvertisementPage extends StatelessWidget {
         path: RouteNames.createAdvertisement,
         name: RouteNames.createAdvertisement,
         pageBuilder: (context, state) {
-          return const NoTransitionPage(
-            child: CreateAdvertisementPage(),
+          return SlideTransitionPage(
+            child: const CreateAdvertisementPage(),
           );
         },
       );
