@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:landa/core/widgets/searchable_list/searchable_list.dart';
 
-class SeletedItemChipList extends StatefulWidget {
+class SeletedItemChipList extends StatelessWidget {
   const SeletedItemChipList({
     required this.selectedEntities,
     this.onDeleted,
@@ -11,38 +11,7 @@ class SeletedItemChipList extends StatefulWidget {
   final List<SearchableListEntity> selectedEntities;
   final Function(SearchableListEntity)? onDeleted;
 
-  @override
-  State<SeletedItemChipList> createState() => _SeletedItemChipListState();
-}
-
-class _SeletedItemChipListState extends State<SeletedItemChipList> {
-  late List<SearchableListEntity> selectedEntities =
-      List.from(widget.selectedEntities);
-
-  late final scrollController = ScrollController();
-
-  @override
-  void initState() {
-    scrollToEndOfList();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    scrollController.dispose();
-    super.dispose();
-  }
-
-  @override
-  void didUpdateWidget(covariant SeletedItemChipList oldWidget) {
-    if (oldWidget.selectedEntities.length != widget.selectedEntities.length) {
-      selectedEntities = List.from(widget.selectedEntities);
-      scrollToEndOfList();
-    }
-    super.didUpdateWidget(oldWidget);
-  }
-
-  void scrollToEndOfList() {
+  void scrollToEndOfList(ScrollController scrollController) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       scrollController.animateTo(
         scrollController.position.maxScrollExtent,
@@ -54,6 +23,8 @@ class _SeletedItemChipListState extends State<SeletedItemChipList> {
 
   @override
   Widget build(BuildContext context) {
+    final scrollController = ScrollController();
+    scrollToEndOfList(scrollController);
     return SingleChildScrollView(
       controller: scrollController,
       scrollDirection: Axis.horizontal,
@@ -61,12 +32,9 @@ class _SeletedItemChipListState extends State<SeletedItemChipList> {
         children: selectedEntities
             .map(
               (e) => SelectedItemChip(
-                entity: e,
+                title: e.title,
                 onDeleted: () {
-                  widget.onDeleted?.call(e);
-                  setState(() {
-                    selectedEntities.remove(e);
-                  });
+                  onDeleted?.call(e);
                 },
               ),
             )

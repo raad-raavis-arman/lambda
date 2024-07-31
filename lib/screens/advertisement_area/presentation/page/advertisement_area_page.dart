@@ -9,16 +9,17 @@ import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/screens/advertisement_area/domain/entities/entities.dart';
 import 'package:landa/screens/advertisement_area/presentation/bloc/bloc.dart';
+import 'package:landa/screens/shared/presentaion/widgets/widgets.dart';
 
 class AdvertisementAreaPage extends StatelessWidget {
   const AdvertisementAreaPage({
     super.key,
     this.isMultipleSelect = false,
-    this.selectedCities = const [],
+    this.selectedCities,
   });
 
   final bool isMultipleSelect;
-  final List<City> selectedCities;
+  final List<City>? selectedCities;
 
   static GoRoute get route => GoRoute(
         path: RouteNames.advertisementArea,
@@ -28,7 +29,7 @@ class AdvertisementAreaPage extends StatelessWidget {
           return NoTransitionPage(
             child: AdvertisementAreaPage(
               isMultipleSelect: extra?['isMultipleSelect'] ?? false,
-              selectedCities: extra?['selectedCities'] ?? [],
+              selectedCities: extra?['selectedCities'],
             ),
           );
         },
@@ -50,18 +51,26 @@ class _AdvertisementAreaView extends StatefulWidget {
   });
 
   final bool isMultipleSelect;
-  final List<City> selectedCityList;
+  final List<City>? selectedCityList;
 
   @override
   State<_AdvertisementAreaView> createState() => _AdvertisementAreaViewState();
 }
 
 class _AdvertisementAreaViewState extends State<_AdvertisementAreaView> {
-  late List<SearchableListEntity> selectedCities = List.from(
-    widget.selectedCityList.map(
-      (e) => SearchableListEntity(title: e.name, value: e),
-    ),
-  );
+  List<SearchableListEntity>? selectedCities;
+
+  @override
+  void initState() {
+    if (widget.selectedCityList != null) {
+      selectedCities = List.from(
+        widget.selectedCityList!.map(
+          (e) => SearchableListEntity(title: e.name, value: e),
+        ),
+      );
+    }
+    super.initState();
+  }
 
   final pageController = PageController(keepPage: false);
   Province? selectedProvince;
@@ -177,10 +186,12 @@ class _AdvertisementAreaViewState extends State<_AdvertisementAreaView> {
               child: CircularProgressIndicator(),
             );
           } else if (state.status == StateStatus.error) {
-            return Center(
-              child: MText(
-                text: context.l10n.loadingDataFailed,
-              ),
+            return LoadDataFailed(
+              tryAgain: () {
+                context
+                    .read<AdvertisementAreaBloc>()
+                    .add(AdvertisementAreaInitialEvent());
+              },
             );
           } else {
             return const SizedBox.shrink();

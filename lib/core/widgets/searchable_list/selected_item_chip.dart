@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:landa/core/utils/utils.dart';
-import 'package:landa/core/widgets/searchable_list/searchable_list_entity.dart';
 import 'package:landa/core/widgets/widgets.dart';
 
 class SelectedItemChip extends StatelessWidget {
   const SelectedItemChip({
-    required this.entity,
+    required this.title,
     this.onDeleted,
     super.key,
   });
 
-  final SearchableListEntity entity;
+  final String title;
   final VoidCallback? onDeleted;
 
   @override
@@ -28,7 +27,7 @@ class SelectedItemChip extends StatelessWidget {
       ),
       onDeleted: onDeleted,
       label: MText(
-        text: entity.title,
+        text: title,
         style: Theme.of(context).textTheme.labelSmall?.copyWith(
               color: Colors.white,
             ),

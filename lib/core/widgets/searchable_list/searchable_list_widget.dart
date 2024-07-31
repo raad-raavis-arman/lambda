@@ -98,6 +98,9 @@ class _SearchableListWidgetState extends State<SearchableListWidget> {
                         isSelectable: true,
                         showTrailingArrow: false,
                         onSelect: () {
+                          if (selectedEntities.length == widget.data.length) {
+                            return;
+                          }
                           for (var i = 0; i < widget.data.length; i++) {
                             selectedEntities.add(widget.data[i]);
                           }
@@ -107,6 +110,9 @@ class _SearchableListWidgetState extends State<SearchableListWidget> {
                           );
                         },
                         onUnSelect: () {
+                          if (selectedEntities.isEmpty) {
+                            return;
+                          }
                           for (var i = 0; i < widget.data.length; i++) {
                             selectedEntities.remove(widget.data[i]);
                           }
