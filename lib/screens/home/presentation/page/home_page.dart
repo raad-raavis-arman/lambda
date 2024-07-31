@@ -9,6 +9,7 @@ import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/screens/home/presentation/presentation.dart';
+import 'package:landa/screens/shared/domain/advertisements/entities/entities.dart';
 import 'package:landa/screens/shared/presentaion/widgets/widgets.dart';
 import 'package:meta_seo/meta_seo.dart';
 import 'package:toastification/toastification.dart';
@@ -49,6 +50,8 @@ class _HomeView extends StatelessWidget {
     String querySearch = '';
     int offset = 0;
     int limit = 10;
+    final List<City> selectedCities = [];
+
     return MultiBlocListener(
       listeners: [
         BlocListener<NewVersionBloc, NewVersionState>(
@@ -93,6 +96,24 @@ class _HomeView extends StatelessWidget {
               }
             },
           ),
+          actions: [
+            FilterLocationWidget(
+              onFilteredLocation: (filteredCities) {
+                selectedCities
+                  ..clear()
+                  ..addAll(filteredCities);
+
+                offset = 0;
+                context.read<HomeBloc>().add(
+                      HomeGetAllAdEvent(
+                        cityIds: selectedCities.map((e) => e.id).toList(),
+                        query: querySearch,
+                        offset: offset,
+                      ),
+                    );
+              },
+            ),
+          ],
         ),
         body: BlocBuilder<HomeBloc, HomeState>(
           buildWhen: (previous, current) {

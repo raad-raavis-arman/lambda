@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:landa/core/bloc/base_state.dart';
+import 'package:landa/core/bloc/state_status.dart';
 import 'package:landa/core/usecase/usecase.dart';
 import 'package:landa/screens/advertisement_area/domain/entities/entities.dart';
 import 'package:landa/screens/advertisement_area/domain/usecases/usecases.dart';
@@ -12,21 +14,33 @@ class AdvertisementAreaBloc
   AdvertisementAreaBloc({
     required this.citiesUsecase,
     required this.provincesUsecase,
-  }) : super(const AdvertisementAreaDataState()) {
+  }) : super(const AdvertisementAreaState()) {
     on<AdvertisementAreaInitialEvent>((event, emit) async {
-      emit(AdvertisementAreaLoadingState());
+      emit(
+        state.copyWith(
+          status: StateStatus.loading,
+        ),
+      );
       final cities = await citiesUsecase.call(NoParams());
       final provinces = await provincesUsecase.call(NoParams());
       final cityList = cities.fold<List<City>>(
         (l) {
-          emit(AdvertisementAreaErrorState());
+          emit(
+            state.copyWith(
+              status: StateStatus.error,
+            ),
+          );
           return [];
         },
         (r) => r,
       );
       final provinceList = provinces.fold<List<Province>>(
         (l) {
-          emit(AdvertisementAreaErrorState());
+          emit(
+            state.copyWith(
+              status: StateStatus.error,
+            ),
+          );
           return [];
         },
         (r) => r,
@@ -39,7 +53,12 @@ class AdvertisementAreaBloc
         );
       });
 
-      emit(AdvertisementAreaDataState(data: map));
+      emit(
+        state.copyWith(
+          data: map,
+          status: StateStatus.success,
+        ),
+      );
     });
   }
 

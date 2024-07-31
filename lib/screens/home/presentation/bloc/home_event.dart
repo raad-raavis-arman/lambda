@@ -12,17 +12,20 @@ final class HomeGetAllAdEvent extends HomeEvent {
     this.offset = 0,
     this.limit = 10,
     this.query = '',
+    this.cityIds = const [],
   });
 
   final int offset;
   final int limit;
   final String query;
+  final List<int> cityIds;
 
   @override
   List<Object> get props => [
         offset,
         limit,
         query,
+        cityIds,
       ];
 }
 

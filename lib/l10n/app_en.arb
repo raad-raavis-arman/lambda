@@ -136,5 +136,26 @@
     "youHaveNotCreatedAnyAdsYet": "You have not created any advertisements yet!",
     "yes": "Yes",
     "no": "No",
-    "doYouWantToSignout": "Do you want to sign out from your account?"
+    "doYouWantToSignout": "Do you want to sign out from your account?",
+
+    "@HOME": {},
+    "cancel": "Cancel",
+    "selectAll": "Select all",
+    "allCitiesOf": "All cities of {province}",
+    "@allCitiesOf": {
+        "placeholders": {
+            "province":{
+                "type": "String"
+            }
+        }
+    },
+    "numOfCity": "{num} City",
+    "@numOfCity": {
+        "placeholders": {
+            "num":{
+                "type": "int"
+            }
+        }
+    },
+    "allCities": "All cities"
 }

@@ -46,6 +46,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           offset: event.offset,
           limit: event.limit,
           query: event.query,
+          cityIds: event.cityIds,
         ),
       ),
     );
