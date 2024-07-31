@@ -51,6 +51,7 @@ class _HomeView extends StatelessWidget {
     int offset = 0;
     int limit = 10;
     final List<City> selectedCities = [];
+    final searchDebouncer = SearchDebouncer(milliseconds: 300);
 
     return MultiBlocListener(
       listeners: [
@@ -85,14 +86,18 @@ class _HomeView extends StatelessWidget {
               if (query == querySearch) {
                 return;
               } else {
-                offset = 0;
-                querySearch = query;
-                context.read<HomeBloc>().add(
-                      HomeGetAllAdEvent(
-                        query: query,
-                        offset: offset,
-                      ),
-                    );
+                searchDebouncer.run(
+                  () {
+                    offset = 0;
+                    querySearch = query;
+                    context.read<HomeBloc>().add(
+                          HomeGetAllAdEvent(
+                            query: query,
+                            offset: offset,
+                          ),
+                        );
+                  },
+                );
               }
             },
           ),
