@@ -3,3 +3,5 @@ flutter_native_splash:
   image: assets/logo/lambda.png
 
   web: true
+  android: true
+  ios: true
