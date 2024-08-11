@@ -4,8 +4,8 @@ flutter_native_splash:
   web: false
 
   color: "#006A6A"
-  image: "assets/img/logo/lambda-favicon-white.png"
+  image: "assets/img/logo/splash-logo-white.png"
 
   android_12:
     color: "#006A6A"
-    image: "assets/img/logo/lambda-favicon-white.png"
+    image: "assets/img/logo/splash-logo-white.png"
