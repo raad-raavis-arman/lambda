@@ -156,5 +156,9 @@
             }
         }
     },
-    "allCities": "همه شهرها"
+    "allCities": "همه شهرها",
+    "send": "ارسال",
+    "subject": "عنوان",
+    "yourRecommendationRegisteredSuccessfully": "پیشنهاد شما با موفقیت ثبت شد!",
+    "yourRecommendationRegisterFailed": "در زمان ثبت پیشنهاد خطایی بوجود آمده است،لطفا دوباره تلاش کنید!"
 }

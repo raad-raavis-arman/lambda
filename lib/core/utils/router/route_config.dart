@@ -14,6 +14,7 @@ import 'package:landa/screens/marked_advertisements/presentation/page/page.dart'
 import 'package:landa/screens/my_advertisements/presentation/page/page.dart';
 import 'package:landa/screens/not_found/not_found_page.dart';
 import 'package:landa/screens/profile/presentation/page/page.dart';
+import 'package:landa/screens/recommendations/presentation/page/page.dart';
 import 'package:landa/screens/splash/presentation/page/page.dart';
 import 'package:landa/screens/verify_login/presentation/presentation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -41,6 +42,7 @@ class RouteConfig {
           return NotFoundPage.page;
         },
         routes: [
+          RecommendationsPage.route,
           MyAdvertisementsPage.route,
           MarkedAdvertisementsPage.route,
           SplashPage.route,
