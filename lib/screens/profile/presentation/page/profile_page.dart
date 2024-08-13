@@ -110,7 +110,9 @@ class _ProfileView extends StatelessWidget {
           SelectableItemButton(
             title: context.l10n.registerCommentAndRecommends,
             margin: EdgeInsets.only(top: context.marginM),
-            onClick: () {},
+            onClick: () {
+              context.pushNamed(RouteNames.recommendations);
+            },
             icon: Icon(
               FontAwesomeIcons.solidPenToSquare,
               size: context.iconS,

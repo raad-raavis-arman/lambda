@@ -157,5 +157,9 @@
             }
         }
     },
-    "allCities": "All cities"
+    "allCities": "All cities",
+    "send": "Send",
+    "subject": "Subject",
+    "yourRecommendationRegisteredSuccessfully": "Your recommendation registered successfully!",
+    "yourRecommendationRegisterFailed": "Your recommendation failed to register, please try again!"
 }

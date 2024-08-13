@@ -1,4 +1,5 @@
 class RouteNames {
+  static const String recommendations = '/recommendations';
   static const String myAdvertisements = '/myAdvertisements';
   static const String markedAdvertisements = '/markedAdvertisements';
   static const String dashboard = '/dashboard';

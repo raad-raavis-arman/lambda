@@ -3,6 +3,7 @@ include: package:flutter_lints/flutter.yaml
 analyzer:
   exclude:
     - "**/*.g.dart"
+    - "bricks/"
   errors:
     no_logic_in_create_state: ignore
     always_put_control_body_on_new_line: ignore

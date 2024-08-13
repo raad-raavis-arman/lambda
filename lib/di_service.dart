@@ -28,6 +28,10 @@ import 'package:landa/screens/profile/data/datasources/datasources.dart';
 import 'package:landa/screens/profile/data/repositories/repositories.dart';
 import 'package:landa/screens/profile/domain/repositories/repositories.dart';
 import 'package:landa/screens/profile/domain/usecases/usecases.dart';
+import 'package:landa/screens/recommendations/data/datasources/recommendation_remote_datasource.dart';
+import 'package:landa/screens/recommendations/data/repositories/recommendation_repository_impl.dart';
+import 'package:landa/screens/recommendations/domain/repositories/recommendation_repository.dart';
+import 'package:landa/screens/recommendations/domain/usecases/send_recommendation_usecase.dart';
 import 'package:landa/screens/shared/data/advertisemets/datasources/datasources.dart';
 import 'package:landa/screens/shared/data/advertisemets/repositories/repositories.dart';
 import 'package:landa/screens/shared/domain/advertisements/repositories/repositories.dart';
@@ -251,6 +255,23 @@ Future<void> setup(FlavorConfig flavorConfig) async {
       () => ProfileRemoteDatasource(
         restClientService: locator.get(),
         sharedPreferences: locator.get(),
+      ),
+    )
+
+    // regiseter for recommendation bloc
+    ..registerLazySingleton(
+      () => SendRecommendationUsecase(
+        recommendationRepository: locator.get(),
+      ),
+    )
+    ..registerLazySingleton<RecommendationRepository>(
+      () => RecommendationRepositoryImpl(
+        recommendationRemoteDatasource: locator.get(),
+      ),
+    )
+    ..registerLazySingleton(
+      () => RecommendationRemoteDatasource(
+        restClientService: locator.get(),
       ),
     );
 }
