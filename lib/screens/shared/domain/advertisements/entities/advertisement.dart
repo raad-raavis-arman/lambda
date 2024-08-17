@@ -21,6 +21,7 @@ class Advertisement extends Equatable {
     required this.province,
     required this.city,
     required this.isMarked,
+    required this.status,
   });
 
   final int id;
@@ -49,6 +50,7 @@ class Advertisement extends Equatable {
   final Province province;
   final City city;
   final bool isMarked;
+  final int status;
 
   Advertisement copyWith({
     int? id,
@@ -68,6 +70,7 @@ class Advertisement extends Equatable {
     Province? province,
     City? city,
     bool? isMarked,
+    int? status,
   }) {
     return Advertisement(
       id: id ?? this.id,
@@ -87,6 +90,7 @@ class Advertisement extends Equatable {
       province: province ?? this.province,
       city: city ?? this.city,
       isMarked: isMarked ?? this.isMarked,
+      status: status ?? this.status,
     );
   }
 

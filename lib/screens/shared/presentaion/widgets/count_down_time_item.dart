@@ -19,7 +19,6 @@ class CountDownTimeItem extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(context.rW(2)),
       alignment: Alignment.center,
-      width: context.rW(50),
       decoration: BoxDecoration(
         color: bgColor ?? Theme.of(context).highlightColor,
         borderRadius: BorderRadius.all(
@@ -30,7 +29,9 @@ class CountDownTimeItem extends StatelessWidget {
         children: [
           MText(
             text: '${time ?? 0}',
-            style: Theme.of(context).textTheme.labelMedium,
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
           ),
           Container(
             width: 30,

@@ -8,12 +8,14 @@ import 'package:landa/screens/shared/presentaion/widgets/widgets.dart';
 class AdvertisementListWidget extends StatefulWidget {
   const AdvertisementListWidget({
     required this.data,
+    this.showStatus = false,
     this.onScrollReachedEnd,
     this.onRefresh,
     super.key,
   });
 
   final List<Advertisement> data;
+  final bool showStatus;
   final VoidCallback? onScrollReachedEnd;
   final Future<void> Function()? onRefresh;
 
@@ -54,6 +56,7 @@ class _AdvertisementListWidgetState extends State<AdvertisementListWidget> {
         physics: const AlwaysScrollableScrollPhysics(),
         itemBuilder: (_, index) {
           return AdvertisementItem(
+            showStatus: widget.showStatus,
             advertisement: data[index],
             onTap: () async {
               final updatedAd = await context.pushNamed<Advertisement?>(

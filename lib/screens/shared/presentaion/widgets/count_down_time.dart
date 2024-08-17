@@ -31,13 +31,11 @@ class CountDownTime extends StatelessWidget {
               time: time?.min,
               bgColor: bgColor,
             ),
-            const SizedBox.shrink().paddingXXS(),
             CountDownTimeItem(
               label: context.l10n.hour,
               time: time?.hours,
               bgColor: bgColor,
-            ),
-            const SizedBox.shrink().paddingXXS(),
+            ).paddingXXS(),
             CountDownTimeItem(
               label: context.l10n.day,
               time: time?.days,

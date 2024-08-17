@@ -19,6 +19,7 @@ class AdvertisementModel extends Advertisement {
     required super.count,
     required super.contactNumber,
     required super.showContactInfo,
+    required super.status,
     required this.mIsMarked,
     required this.mCategory,
     required this.mSubCategory,

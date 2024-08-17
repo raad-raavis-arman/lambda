@@ -63,3 +63,52 @@ const darkColorScheme = ColorScheme(
   outlineVariant: Color(0xFF3F4948),
   scrim: Color(0xFF000000),
 );
+
+extension ColorX on ColorScheme {
+  MaterialColor get warningColor => const MaterialColor(
+        0xFFFFBF00,
+        <int, Color>{
+          50: Color(0xFFFFF8E1), // 10%
+          100: Color(0xFFFFE0B2), // 20%
+          200: Color(0xFFFFCC80), // 30%
+          300: Color(0xFFFFB74D), // 40%
+          400: Color(0xFFFFA726), // 50%
+          500: Color(0xFFFFBF00), // 60%
+          600: Color(0xFFFFA000), // 70%
+          700: Color(0xFFFF8F00), // 80%
+          800: Color(0xFFFF6F00), // 90%
+          900: Color(0xFFFFD740), // 100%
+        },
+      );
+  MaterialColor get errorColor => const MaterialColor(
+        0xFFC7220A,
+        {
+          50: Color(0xFFF9E9E7),
+          100: Color(0xFFEEBAB3),
+          200: Color(0xFFE5998E),
+          300: Color(0xFFD96B5B),
+          400: Color(0xFFD24E3B),
+          500: Color(0xFFC7220A),
+          600: Color(0xFF8D1807),
+          700: Color(0xFF8D1807),
+          800: Color(0xFF6D1306),
+          900: Color(0xFF540E04),
+        },
+      );
+
+  MaterialColor get successColor => const MaterialColor(
+        0xFF0EA45F,
+        {
+          50: Color(0xFFE7F6EF),
+          100: Color(0xFFB4E3CD),
+          200: Color(0xFF90D5B5),
+          300: Color(0xFF5EC294),
+          400: Color(0xFF3EB67F),
+          500: Color(0xFF0EA45F),
+          600: Color(0xFF0D9556),
+          700: Color(0xFF0A7443),
+          800: Color(0xFF085A34),
+          900: Color(0xFF064528),
+        },
+      );
+}

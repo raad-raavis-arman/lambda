@@ -64,6 +64,7 @@ class _MyAdvertisementsPageView extends StatelessWidget {
             final data = state.data;
             return AdvertisementListWidget(
               data: data,
+              showStatus: true,
               onRefresh: () async {
                 final getEventsCompleter = Completer();
                 context.read<MyAdvertisementsBloc>().add(

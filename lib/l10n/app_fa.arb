@@ -160,5 +160,8 @@
     "send": "ارسال",
     "subject": "عنوان",
     "yourRecommendationRegisteredSuccessfully": "پیشنهاد شما با موفقیت ثبت شد!",
-    "yourRecommendationRegisterFailed": "در زمان ثبت پیشنهاد خطایی بوجود آمده است،لطفا دوباره تلاش کنید!"
+    "yourRecommendationRegisterFailed": "در زمان ثبت پیشنهاد خطایی بوجود آمده است،لطفا دوباره تلاش کنید!",
+    "underReview": "در حال بررسی",
+    "confirmed": "تایید شده",
+    "rejected": "رد شده"
 }

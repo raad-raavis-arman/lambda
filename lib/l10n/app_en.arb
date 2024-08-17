@@ -161,5 +161,8 @@
     "send": "Send",
     "subject": "Subject",
     "yourRecommendationRegisteredSuccessfully": "Your recommendation registered successfully!",
-    "yourRecommendationRegisterFailed": "Your recommendation failed to register, please try again!"
+    "yourRecommendationRegisterFailed": "Your recommendation failed to register, please try again!",
+    "underReview": "Under review",
+    "confirmed": "Confirmed",
+    "rejected": "Rejected"
 }
