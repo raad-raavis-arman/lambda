@@ -67,7 +67,7 @@ class _ProfileView extends StatelessWidget {
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SelectableItemButton(
+          /*SelectableItemButton(
             title: context.l10n.editProfile,
             margin: EdgeInsets.only(top: context.marginM),
             onClick: () {},
@@ -75,7 +75,7 @@ class _ProfileView extends StatelessWidget {
               FontAwesomeIcons.userPen,
               size: context.iconS,
             ),
-          ),
+          ),*/
           SelectableItemButton(
             title: context.l10n.myAdvertisements,
             margin: EdgeInsets.only(top: context.marginM),
@@ -98,7 +98,7 @@ class _ProfileView extends StatelessWidget {
               size: context.iconS,
             ),
           ),
-          SelectableItemButton(
+          /*SelectableItemButton(
             title: context.l10n.enrollCampaign,
             margin: EdgeInsets.only(top: context.marginM),
             onClick: () {},
@@ -106,7 +106,7 @@ class _ProfileView extends StatelessWidget {
               FontAwesomeIcons.usersLine,
               size: context.iconS,
             ),
-          ),
+          ),*/
           SelectableItemButton(
             title: context.l10n.registerCommentAndRecommends,
             margin: EdgeInsets.only(top: context.marginM),
