@@ -7,16 +7,16 @@ PODS:
     - Toast
   - package_info_plus (0.4.5):
     - Flutter
-  - PostHog (3.6.1)
+  - PostHog (3.12.5)
   - posthog_flutter (0.0.1):
     - Flutter
     - FlutterMacOS
     - PostHog (~> 3.0)
-  - Sentry/HybridSDK (8.29.0)
-  - sentry_flutter (8.3.0):
+  - Sentry/HybridSDK (8.36.0)
+  - sentry_flutter (8.9.0):
     - Flutter
     - FlutterMacOS
-    - Sentry/HybridSDK (= 8.29.0)
+    - Sentry/HybridSDK (= 8.36.0)
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -61,16 +61,16 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_native_splash: edf599c81f74d093a4daf8e17bd7a018854bc778
-  fluttertoast: 723e187574b149e68e63ca4d39b837586b903cfa
+  fluttertoast: e9a18c7be5413da53898f660530c56f35edfba9c
   package_info_plus: 58f0028419748fad15bf008b270aaa8e54380b1c
-  PostHog: cef6dfc3653d158a51e28ef16d614bedcd311627
+  PostHog: ad238453845899a2da2c1c1b56f56831ed50c805
   posthog_flutter: e80defebf021b13375b351c838c9b87d769d7546
-  Sentry: 016de45ee5ce5fca2a829996f1bfafeb5e62e8b4
-  sentry_flutter: 5fb57c5b7e6427a9dc1fedde4269eb65823982d4
+  Sentry: f8374b5415bc38dfb5645941b3ae31230fbeae57
+  sentry_flutter: 0eb93e5279eb41e2392212afe1ccd2fecb4f8cbe
   shared_preferences_foundation: b4c3b4cddf1c21f02770737f147a3f5da9d39695
   Toast: 1f5ea13423a1e6674c4abdac5be53587ae481c4e
   url_launcher_ios: 6116280ddcfe98ab8820085d8d76ae7449447586
 
 PODFILE CHECKSUM: c4c93c5f6502fe2754f48404d3594bf779584011
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.15.2
