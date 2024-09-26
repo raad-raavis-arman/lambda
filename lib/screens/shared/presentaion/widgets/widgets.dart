@@ -1,6 +1,7 @@
 export 'advertisement_image.dart';
 export 'advertisement_item.dart';
 export 'advertisement_list_widget.dart';
+export 'coach_mark_desc.dart';
 export 'count_down_time.dart';
 export 'count_down_time_item.dart';
 export 'load_data_failed.dart';

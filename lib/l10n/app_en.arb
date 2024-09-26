@@ -164,5 +164,10 @@
     "yourRecommendationRegisterFailed": "Your recommendation failed to register, please try again!",
     "underReview": "Under review",
     "confirmed": "Confirmed",
-    "rejected": "Rejected"
+    "rejected": "Rejected",
+
+    "@HOME_COACH_MARK": {},
+    "skip": "Skip",
+    "locationFilterCoachDesc": "You can choose specefic city/cities to show advertisements depends on that.",
+    "searchBarCoachDesc": "You can filter list of advertisements by a word or sentence which exist in one of category, sub category, or description of advertisements"
 }
