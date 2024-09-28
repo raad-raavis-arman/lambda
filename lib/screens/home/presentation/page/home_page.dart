@@ -8,6 +8,7 @@ import 'package:landa/core/bloc/bloc.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/l10n/l10n.dart';
+import 'package:landa/screens/dashboard/presentation/utils/dashboard_coach_mark_keys.dart';
 import 'package:landa/screens/home/presentation/presentation.dart';
 import 'package:landa/screens/shared/domain/advertisements/entities/entities.dart';
 import 'package:landa/screens/shared/presentaion/widgets/widgets.dart';
@@ -22,7 +23,6 @@ class HomePage extends StatelessWidget {
         name: RouteNames.home,
         pageBuilder: (context, state) {
           if (kIsWeb) {
-            // TODO(Taleb): do seo for all routes with keywords
             MetaSEO()
               ..ogTitle(ogTitle: 'home screen')
               ..description(description: 'all advertisements')
@@ -82,6 +82,7 @@ class _HomeView extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           title: SearchBarWidget(
+            key: DashboardCoachMarkKeys.searchBarKey,
             onSubmitSearch: (query) {
               if (query == querySearch) {
                 return;
@@ -103,6 +104,7 @@ class _HomeView extends StatelessWidget {
           ),
           actions: [
             FilterLocationWidget(
+              key: DashboardCoachMarkKeys.locationKey,
               onFilteredLocation: (filteredCities) {
                 selectedCities
                   ..clear()

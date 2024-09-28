@@ -95,7 +95,9 @@ class _AdvertisementDetailsViewState extends State<_AdvertisementDetailsView> {
             Center(
               child: CountDownTime(
                 expireDateTime: DateTime.parse(advertisement.pExpireDateTime),
-                creationDateTime: DateTime.parse(advertisement.pCreateDateTime),
+                creationDateTime: DateTime.parse(
+                  advertisement.pCreateDateTime,
+                ),
               ),
             ),
             const SizedBox().paddingM(),

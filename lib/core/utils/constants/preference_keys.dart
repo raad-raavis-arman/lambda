@@ -4,4 +4,6 @@ abstract class PreferenceKeys {
   static const subCategories = 'subCategories';
   static const subCategoryItems = 'subCategoryItems';
   static const categories = 'categories';
+  static const dashboardCoached = 'dashboardCoached';
+  static const profileCoached = 'profileCoached';
 }
