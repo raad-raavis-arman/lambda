@@ -8,7 +8,9 @@ import 'package:landa/di_service.dart';
 import 'package:landa/l10n/l10n.dart';
 import 'package:landa/screens/profile/presentation/bloc/bloc.dart';
 import 'package:landa/screens/profile/presentation/widgets/widgets.dart';
+import 'package:landa/screens/shared/presentaion/widgets/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -40,7 +42,7 @@ class ProfilePage extends StatelessWidget {
   }
 }
 
-class _ProfileView extends StatelessWidget {
+class _ProfileView extends StatefulWidget {
   const _ProfileView(
     this.mobileNumber,
     this.profileBloc,
@@ -50,6 +52,138 @@ class _ProfileView extends StatelessWidget {
   final ProfileBloc profileBloc;
 
   @override
+  State<_ProfileView> createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends State<_ProfileView> {
+  //
+  final myAdvKey = GlobalKey();
+  final mySavedAdvKey = GlobalKey();
+  final registerRecommendationKey = GlobalKey();
+  final logoutKey = GlobalKey();
+  //
+
+  @override
+  void initState() {
+    super.initState();
+    if (!(locator
+            .get<SharedPreferences>()
+            .getBool(PreferenceKeys.profileCoached) ??
+        false)) {
+      Future.delayed(
+        const Duration(seconds: 1),
+      ).then(
+        (_) {
+          showTutorialCoach();
+        },
+      );
+    }
+  }
+
+  void showTutorialCoach() {
+    final targets = [
+      TargetFocus(
+        keyTarget: myAdvKey,
+        shape: ShapeLightFocus.RRect,
+        radius: context.radiusM,
+        contents: [
+          TargetContent(
+            builder: (context, controller) {
+              return CoachMarkDesc(
+                next: context.l10n.next,
+                skip: context.l10n.skip,
+                text: context.l10n.myAdvCoachDesc,
+                onNext: () {
+                  controller.next();
+                },
+                onSkip: () {
+                  controller.skip();
+                },
+              );
+            },
+          ),
+        ],
+      ),
+      TargetFocus(
+        keyTarget: mySavedAdvKey,
+        shape: ShapeLightFocus.RRect,
+        radius: context.radiusM,
+        contents: [
+          TargetContent(
+            builder: (context, controller) {
+              return CoachMarkDesc(
+                next: context.l10n.next,
+                skip: context.l10n.skip,
+                text: context.l10n.mySavedAdvCoachDesc,
+                onNext: () {
+                  controller.next();
+                },
+                onSkip: () {
+                  controller.skip();
+                },
+              );
+            },
+          ),
+        ],
+      ),
+      TargetFocus(
+        keyTarget: registerRecommendationKey,
+        shape: ShapeLightFocus.RRect,
+        radius: context.radiusM,
+        contents: [
+          TargetContent(
+            builder: (context, controller) {
+              return CoachMarkDesc(
+                next: context.l10n.next,
+                skip: context.l10n.skip,
+                text: context.l10n.registerRecommendationCoachDesc,
+                onNext: () {
+                  controller.next();
+                },
+                onSkip: () {
+                  controller.skip();
+                },
+              );
+            },
+          ),
+        ],
+      ),
+      TargetFocus(
+        keyTarget: logoutKey,
+        shape: ShapeLightFocus.RRect,
+        radius: context.radiusM,
+        contents: [
+          TargetContent(
+            align: ContentAlign.top,
+            builder: (context, controller) {
+              return CoachMarkDesc(
+                next: context.l10n.next,
+                skip: context.l10n.skip,
+                text: context.l10n.logoutCoachDesc,
+                onNext: () {
+                  controller.next();
+                },
+                onSkip: () {
+                  controller.skip();
+                },
+              );
+            },
+          ),
+        ],
+      ),
+    ];
+    TutorialCoachMark(
+      targets: targets,
+      textSkip: context.l10n.skip,
+      onFinish: () {
+        locator
+            .get<SharedPreferences>()
+            .setBool(PreferenceKeys.profileCoached, true);
+      },
+    ).show(context: context, rootOverlay: true);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MScaffold(
       scrollable: true,
@@ -57,7 +191,7 @@ class _ProfileView extends StatelessWidget {
         centerTitle: true,
         title: MText(
           text: context.l10n.youLoggedInWithThisMobileNumber(
-            mobileNumber,
+            widget.mobileNumber,
           ),
           style: Theme.of(context).textTheme.titleMedium,
           maxLines: 3,
@@ -77,6 +211,7 @@ class _ProfileView extends StatelessWidget {
             ),
           ),*/
           SelectableItemButton(
+            key: myAdvKey,
             title: context.l10n.myAdvertisements,
             margin: EdgeInsets.only(top: context.marginM),
             onClick: () {
@@ -88,6 +223,7 @@ class _ProfileView extends StatelessWidget {
             ),
           ),
           SelectableItemButton(
+            key: mySavedAdvKey,
             title: context.l10n.bookmarkedAdvertisements,
             margin: EdgeInsets.only(top: context.marginM),
             onClick: () {
@@ -108,6 +244,7 @@ class _ProfileView extends StatelessWidget {
             ),
           ),*/
           SelectableItemButton(
+            key: registerRecommendationKey,
             title: context.l10n.registerCommentAndRecommends,
             margin: EdgeInsets.only(top: context.marginM),
             onClick: () {
@@ -119,13 +256,14 @@ class _ProfileView extends StatelessWidget {
             ),
           ),
           SelectableItemButton(
+            key: logoutKey,
             title: context.l10n.logoutFromAccount,
             margin: EdgeInsets.only(top: context.marginM),
             onClick: () {
               showModalBottomSheet(
                 context: context,
                 builder: (_) => SignoutWarningBottomSheet(
-                  profileBloc: profileBloc,
+                  profileBloc: widget.profileBloc,
                 ),
               );
             },

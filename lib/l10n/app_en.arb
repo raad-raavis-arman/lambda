@@ -170,5 +170,11 @@
     "skip": "Skip",
     "locationFilterCoachDesc": "You can choose specefic city/cities to show advertisements depends on that.",
     "searchBarCoachDesc": "You can filter list of advertisements by a word or sentence which exist in one of category, sub category, or description of advertisements",
-    "createAdvCoachDesc": "You can create your own advertisement for publishing in the platform"
+    "createAdvCoachDesc": "You can create your own advertisement for publishing in the platform",
+    
+    "@PROFILE_COACH_MARK": {},
+    "myAdvCoachDesc": "You can see all advertisements which created by you",
+    "mySavedAdvCoachDesc": "You can see all advertisements which you saved from home",
+    "registerRecommendationCoachDesc": "You can register every recommendation which comes to your mind and send it to the develpment team",
+    "logoutCoachDesc": "You can logout from your account and login again everytime you want"
 }
