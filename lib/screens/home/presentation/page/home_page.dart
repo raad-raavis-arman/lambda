@@ -8,12 +8,12 @@ import 'package:landa/core/bloc/bloc.dart';
 import 'package:landa/core/utils/utils.dart';
 import 'package:landa/core/widgets/widgets.dart';
 import 'package:landa/l10n/l10n.dart';
+import 'package:landa/screens/dashboard/presentation/utils/dashboard_coach_mark_keys.dart';
 import 'package:landa/screens/home/presentation/presentation.dart';
 import 'package:landa/screens/shared/domain/advertisements/entities/entities.dart';
 import 'package:landa/screens/shared/presentaion/widgets/widgets.dart';
 import 'package:meta_seo/meta_seo.dart';
 import 'package:toastification/toastification.dart';
-import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -23,7 +23,6 @@ class HomePage extends StatelessWidget {
         name: RouteNames.home,
         pageBuilder: (context, state) {
           if (kIsWeb) {
-            // TODO(Taleb): do seo for all routes with keywords
             MetaSEO()
               ..ogTitle(ogTitle: 'home screen')
               ..description(description: 'all advertisements')
@@ -43,77 +42,8 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class _HomeView extends StatefulWidget {
+class _HomeView extends StatelessWidget {
   const _HomeView();
-
-  @override
-  State<_HomeView> createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<_HomeView> {
-  //
-  final locationKey = GlobalKey();
-  final searchBarKey = GlobalKey();
-  //
-  void showTutorialCoach() {
-    final List<TargetFocus> targets = [
-      TargetFocus(
-        keyTarget: locationKey,
-        contents: [
-          TargetContent(
-            builder: (context, controller) {
-              return CoachMarkDesc(
-                next: context.l10n.next,
-                skip: context.l10n.skip,
-                text: context.l10n.locationFilterCoachDesc,
-                onNext: () {
-                  controller.next();
-                },
-                onSkip: () {
-                  controller.skip();
-                },
-              );
-            },
-          ),
-        ],
-      ),
-      TargetFocus(
-        keyTarget: searchBarKey,
-        shape: ShapeLightFocus.RRect,
-        contents: [
-          TargetContent(
-            builder: (context, controller) {
-              return CoachMarkDesc(
-                next: context.l10n.next,
-                skip: context.l10n.skip,
-                text: context.l10n.searchBarCoachDesc,
-                onNext: () {
-                  controller.next();
-                },
-                onSkip: () {
-                  controller.skip();
-                },
-              );
-            },
-          ),
-        ],
-      ),
-    ];
-    TutorialCoachMark(
-      targets: targets,
-      textSkip: context.l10n.skip,
-    ).show(context: context);
-  }
-
-  @override
-  void initState() {
-    Future.delayed(const Duration(seconds: 1)).then(
-      (_) {
-        showTutorialCoach();
-      },
-    );
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +82,7 @@ class _HomeViewState extends State<_HomeView> {
         appBar: AppBar(
           centerTitle: true,
           title: SearchBarWidget(
-            key: searchBarKey,
+            key: DashboardCoachMarkKeys.searchBarKey,
             onSubmitSearch: (query) {
               if (query == querySearch) {
                 return;
@@ -174,7 +104,7 @@ class _HomeViewState extends State<_HomeView> {
           ),
           actions: [
             FilterLocationWidget(
-              key: locationKey,
+              key: DashboardCoachMarkKeys.locationKey,
               onFilteredLocation: (filteredCities) {
                 selectedCities
                   ..clear()

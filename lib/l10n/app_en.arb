@@ -169,5 +169,6 @@
     "@HOME_COACH_MARK": {},
     "skip": "Skip",
     "locationFilterCoachDesc": "You can choose specefic city/cities to show advertisements depends on that.",
-    "searchBarCoachDesc": "You can filter list of advertisements by a word or sentence which exist in one of category, sub category, or description of advertisements"
+    "searchBarCoachDesc": "You can filter list of advertisements by a word or sentence which exist in one of category, sub category, or description of advertisements",
+    "createAdvCoachDesc": "You can create your own advertisement for publishing in the platform"
 }
