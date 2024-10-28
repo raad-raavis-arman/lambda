@@ -2,19 +2,20 @@ import 'dart:async';
 import 'dart:ui';
 
 class SearchDebouncer {
-  SearchDebouncer({required this.milliseconds});
+  SearchDebouncer({required this.duration});
 
-  final int milliseconds;
+  final Duration duration;
   Timer? timer;
 
   void run(VoidCallback action) {
     if (timer != null) {
       timer!.cancel();
     }
-    timer = Timer(Duration(milliseconds: milliseconds), action);
+    timer = Timer(duration, action);
   }
 
   void reset() {
+    timer?.cancel();
     timer = null;
   }
 }

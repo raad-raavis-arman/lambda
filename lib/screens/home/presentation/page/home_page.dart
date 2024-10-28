@@ -51,7 +51,9 @@ class _HomeView extends StatelessWidget {
     int offset = 0;
     int limit = 10;
     final List<City> selectedCities = [];
-    final searchDebouncer = SearchDebouncer(milliseconds: 300);
+    final searchDebouncer = SearchDebouncer(
+      duration: const Duration(milliseconds: 300),
+    );
 
     return MultiBlocListener(
       listeners: [
