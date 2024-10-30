@@ -6,9 +6,11 @@ class LoadDataFailed extends StatelessWidget {
   const LoadDataFailed({
     super.key,
     this.tryAgain,
+    this.errorMessage,
   });
 
   final VoidCallback? tryAgain;
+  final String? errorMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class LoadDataFailed extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           MText(
-            text: context.l10n.loadingDataFailed,
+            text: errorMessage ?? context.l10n.loadingDataFailed,
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           TextButton(
