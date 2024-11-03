@@ -5,9 +5,11 @@ PODS:
   - fluttertoast (0.0.2):
     - Flutter
     - Toast
+  - integration_test (0.0.1):
+    - Flutter
   - package_info_plus (0.4.5):
     - Flutter
-  - PostHog (3.12.5)
+  - PostHog (3.13.3)
   - posthog_flutter (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -28,6 +30,7 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - posthog_flutter (from `.symlinks/plugins/posthog_flutter/ios`)
   - sentry_flutter (from `.symlinks/plugins/sentry_flutter/ios`)
@@ -47,6 +50,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_native_splash/ios"
   fluttertoast:
     :path: ".symlinks/plugins/fluttertoast/ios"
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
   package_info_plus:
     :path: ".symlinks/plugins/package_info_plus/ios"
   posthog_flutter:
@@ -62,14 +67,15 @@ SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_native_splash: edf599c81f74d093a4daf8e17bd7a018854bc778
   fluttertoast: e9a18c7be5413da53898f660530c56f35edfba9c
-  package_info_plus: 58f0028419748fad15bf008b270aaa8e54380b1c
-  PostHog: ad238453845899a2da2c1c1b56f56831ed50c805
+  integration_test: 252f60fa39af5e17c3aa9899d35d908a0721b573
+  package_info_plus: c0502532a26c7662a62a356cebe2692ec5fe4ec4
+  PostHog: 561a3f335d3838a6738c12f8769d9de15259e1ec
   posthog_flutter: e80defebf021b13375b351c838c9b87d769d7546
   Sentry: f8374b5415bc38dfb5645941b3ae31230fbeae57
   sentry_flutter: 0eb93e5279eb41e2392212afe1ccd2fecb4f8cbe
-  shared_preferences_foundation: b4c3b4cddf1c21f02770737f147a3f5da9d39695
+  shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
   Toast: 1f5ea13423a1e6674c4abdac5be53587ae481c4e
-  url_launcher_ios: 6116280ddcfe98ab8820085d8d76ae7449447586
+  url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
 
 PODFILE CHECKSUM: c4c93c5f6502fe2754f48404d3594bf779584011
 

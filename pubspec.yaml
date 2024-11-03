@@ -43,14 +43,18 @@ dependencies:
   toastification: ^2.0.0
   toggle_switch: ^2.3.0
   tutorial_coach_mark: ^1.2.11
-  url_launcher: ^6.3.0
+  url_launcher: ^6.3.1
   url_strategy: ^0.2.0
 
 dev_dependencies:
   bloc_test: ^9.1.7
   build_runner: ^2.4.11
+  flutter_driver:
+    sdk: flutter
   flutter_lints: ^4.0.0
   flutter_test:
+    sdk: flutter
+  integration_test:
     sdk: flutter
   json_serializable: ^6.8.0
   mockito: ^5.4.4
