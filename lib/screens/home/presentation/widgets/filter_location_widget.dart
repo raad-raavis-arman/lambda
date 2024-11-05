@@ -23,6 +23,7 @@ class _FilterLocationWidgetState extends State<FilterLocationWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return InkWell(
       onTap: () {
         context.pushNamed<List<City>?>(
@@ -38,8 +39,8 @@ class _FilterLocationWidgetState extends State<FilterLocationWidget> {
                 ..clear()
                 ..addAll(result);
               filteredLocations = selectedCities.isEmpty
-                  ? context.l10n.allCities
-                  : context.l10n.numOfCity(selectedCities.length);
+                  ? l10n.allCities
+                  : l10n.numOfCity(selectedCities.length);
               widget.onFilteredLocation?.call(selectedCities);
               setState(() {});
             }

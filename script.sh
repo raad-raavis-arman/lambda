@@ -71,4 +71,9 @@ function releaseWebProd {
     echo "web release is ready in build/web/ path of your project"
 }
 
+function drive {
+    echo "run integration test on driver"
+    flutter driver --driver=test_driver/integration_test_driver.dart --target=integration_test/app_test.dart --flavor=dev
+}
+
 

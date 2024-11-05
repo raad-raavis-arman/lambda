@@ -85,6 +85,7 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
         }
       },
       child: MScaffold(
+        key: WidgetKeys.loginScreen,
         appBar: AppBar(
           centerTitle: true,
           title: MText(text: context.l10n.login),
@@ -99,6 +100,7 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
               Form(
                 key: formKey,
                 child: TextFormField(
+                  key: WidgetKeys.loginNumberInputField,
                   keyboardType: TextInputType.number,
                   maxLength: 13,
                   autofocus: true,
@@ -123,7 +125,7 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
                     if (validateMobileNumber(mobileNumber ?? '')) {
                       return null;
                     } else {
-                      return '';
+                      return context.l10n.pleaseEnterValidMobileNumber;
                     }
                   },
                 ),
@@ -138,6 +140,7 @@ class _LoginViewState extends State<_LoginView> with MobileNumberValidator {
                       child: BlocBuilder<OtpTimerBloc, OtpTimerState>(
                         builder: (context, otpTimerState) {
                           return ElevatedButton(
+                            key: WidgetKeys.loginNextButton,
                             onPressed: otpTimerState.timerFinished
                                 ? () {
                                     final formValidated =

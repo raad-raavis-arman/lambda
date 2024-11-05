@@ -101,7 +101,6 @@ class MScaffold extends StatelessWidget {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: Scaffold(
-        key: key,
         appBar: appBar,
         body: mBody,
         floatingActionButton: floatingActionButton,

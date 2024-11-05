@@ -84,10 +84,11 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return MScaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: MText(text: context.l10n.newAdvertisement),
+        title: MText(text: l10n.newAdvertisement),
         leading: BackButton(
           onPressed: () {
             context.goNamed(RouteNames.dashboard);
@@ -100,12 +101,12 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
         child: Column(
           children: [
             SelectableItemFormButton(
-              title: context.l10n.category,
+              title: l10n.category,
               textController: categoryController,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
                 if (value?.isEmpty ?? true) {
-                  return context.l10n.fillingThisFieldIsRequired;
+                  return l10n.fillingThisFieldIsRequired;
                 } else {
                   return null;
                 }
@@ -121,12 +122,12 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
             ),
             const SizedBox.shrink().paddingL(),
             SelectableItemFormButton(
-              title: context.l10n.advertisementArea,
+              title: l10n.advertisementArea,
               textController: advertisementAreaController,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
                 if (value?.isEmpty ?? true) {
-                  return context.l10n.fillingThisFieldIsRequired;
+                  return l10n.fillingThisFieldIsRequired;
                 } else {
                   return null;
                 }
@@ -144,7 +145,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
             ),
             const SizedBox.shrink().paddingL(),
             SelectableItemFormButton(
-              title: context.l10n.price,
+              title: l10n.price,
               textController: priceController,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
@@ -159,7 +160,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
                   if (data != null && data is List<String>) {
                     final finalPrice = data.last;
                     priceController
-                      ..text = context.l10n.tmn(finalPrice)
+                      ..text = l10n.tmn(finalPrice)
                       ..object = data;
                   }
                 });
@@ -177,7 +178,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
               style: Theme.of(context).textTheme.bodyMedium,
               validator: (value) {
                 if (value?.trim().isEmpty ?? true) {
-                  return context.l10n.fillingThisFieldIsRequired;
+                  return l10n.fillingThisFieldIsRequired;
                 } else {
                   return null;
                 }
@@ -192,7 +193,7 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.all(context.marginXS),
                 suffix: MText(
-                  text: context.l10n.number,
+                  text: l10n.number,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
                 labelText: context.l10n.productCount,
@@ -201,12 +202,12 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
             ),
             const SizedBox.shrink().paddingL(),
             SelectableItemFormButton(
-              title: context.l10n.creationAndExpirationDate,
+              title: l10n.creationAndExpirationDate,
               textController: creationAndExpirationDateController,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
                 if (value?.isEmpty ?? true) {
-                  return context.l10n.fillingThisFieldIsRequired;
+                  return l10n.fillingThisFieldIsRequired;
                 } else {
                   return null;
                 }
@@ -228,12 +229,12 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
             ),
             const SizedBox.shrink().paddingL(),
             SelectableItemFormButton(
-              title: context.l10n.contactInfo,
+              title: l10n.contactInfo,
               textController: contactInfoController,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
                 if (value?.isEmpty ?? true) {
-                  return context.l10n.fillingThisFieldIsRequired;
+                  return l10n.fillingThisFieldIsRequired;
                 } else {
                   return null;
                 }
@@ -285,8 +286,8 @@ class _CreateAdvertisementViewState extends State<_CreateAdvertisementView> {
             Toastification().show(
               context: context,
               type: ToastificationType.error,
-              title: MText(text: context.l10n.error),
-              description: MText(text: context.l10n.sthWentWrong),
+              title: MText(text: l10n.error),
+              description: MText(text: l10n.sthWentWrong),
             );
           } else if (state is CreateAdvertisementSuccessState) {
             Toastification().show(
