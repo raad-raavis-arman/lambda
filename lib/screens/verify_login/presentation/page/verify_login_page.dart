@@ -97,6 +97,7 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
         }
       },
       child: MScaffold(
+        key: WidgetKeys.verifyLoginScreen,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -127,6 +128,7 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
                 child: Form(
                   key: formKey,
                   child: PinCodeTextField(
+                    key: WidgetKeys.verifyLoginOtpInputField,
                     appContext: context,
                     length: 6,
                     keyboardType: TextInputType.number,
@@ -157,6 +159,7 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
                     child: BlocBuilder<VerifyLoginBloc, VerifyLoginState>(
                       builder: (context, state) {
                         return ElevatedButton(
+                          key: WidgetKeys.verifyLoginNextButton,
                           onPressed: state is VerifyLoginLoadingState
                               ? null
                               : () {
@@ -185,6 +188,7 @@ class _VerifyLoginViewState extends State<_VerifyLoginView> {
                   BlocBuilder<OtpTimerBloc, OtpTimerState>(
                     builder: (context, state) {
                       return OutlinedButton(
+                        key: WidgetKeys.verifyLoginResendButton,
                         onPressed: state.timerFinished
                             ? () {
                                 context

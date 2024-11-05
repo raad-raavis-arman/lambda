@@ -4,6 +4,8 @@
     "@language": {
         "description": "زبان فعلی"
     },
+
+    "@LOGIN": {},
     "loginTitle": "برای ورود و استفاده از خدمات،\n شماره تلفن خود را وارد نمایید",
     "next": "بعدی",
     "otpVerifyTitle": " کد تایید پیامک شده به{mobileNumber} را وارد نمایید",
@@ -14,6 +16,7 @@
             }
         }
     },
+    "pleaseEnterValidMobileNumber": "لطفا شماره موبایل معتبر وارد نمایید",
     "login": "ورود",
     "editMobileNumber": "ویرایش شماره",
     "sendCode": "ارسال کد",

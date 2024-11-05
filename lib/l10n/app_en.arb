@@ -4,6 +4,8 @@
     "@language": {
         "description": "The current Language"
     },
+
+    "@LOGIN": {},
     "loginTitle": "Enter your phone number,\n to log in and use the services.",
     "next": "Next",
     "otpVerifyTitle": "Enter the verification code sent to {mobileNumber}",
@@ -15,6 +17,7 @@
         }
     },
     "login": "Login",
+    "pleaseEnterValidMobileNumber": "Please enter a valid mobile number",
     "editMobileNumber": "Edit number",
     "sendCode": "Send code",
     "countdownTime": "Day(s) {days}\n hour(s) {hours}\nminute(s) {minutes}\n remained",

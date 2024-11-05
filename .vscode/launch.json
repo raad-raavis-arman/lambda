@@ -101,7 +101,6 @@
                 "canvaskit"
             ]
         },
-
         // release
         {
             "name": "Release development",
@@ -149,6 +148,17 @@
                 "--web-port=5002",
                 "--web-renderer",
                 "canvaskit"
+            ]
+        },
+        // integration test
+        {
+            "name": "Flutter Integration Test",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "program": "integration_test/app_test.dart",
+            "args": [
+                "--flavor=dev"
             ]
         }
     ]
